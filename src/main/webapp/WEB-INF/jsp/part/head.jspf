@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>동네 병원/약국(24시/주말)</title>
+
+<!-- 모바일에서 사이트가 PC에서의 픽셀크기 기준으로 작동하게 하기(반응형 하려면 필요) -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 구글 폰트 불러오기 -->
+<!-- rotobo(400/700/900), notosanskr(400/600/900) -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+
+<!-- 제이쿼리 불러오기 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- 공통(라이브러리) CSS -->
+<link rel="stylesheet" href="/resource/common.css" />
+<!-- 공통(라이브러리) JS -->
+<script src="/resource/common.js"></script>
+
+</head>
+<body>
+<!-- PC -->
+<div class="header-top-box con flex-jc-c">
+	<div class="header-top flex">
+		<ul class="flex">
+			<li><a href="/home/main">홈</a></li>
+			<li><a href="/member/join">회원 가입</a></li>
+			<li><a href="">병원 찾기</a></li>
+			<li><a href="">약국 찾기</a></li>	
+			<li><a href="">응급 처치</a></li>
+			<li><a href="">정보 변경</a></li>			
+			<li><a href="">문의</a></li>
+		</ul>
+	</div>
+</div>
