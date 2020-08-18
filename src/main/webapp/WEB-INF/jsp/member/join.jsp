@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<c:set var="pageTitle" value="회원가입" />
 <%@ include file="../part/head.jspf"%>
 
 <!-- sha256 암호화 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 
 <script>
-
 	var MemberJoinForm__submitDone = false;
 	
 	function MemberJoinForm__submit(form) {
@@ -138,6 +138,7 @@
 
 <div class="join-form-box con flex-jc-c">
 	<form method="POST" class="table-box" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;" style="background-color: #4BAF4B; color:white; width: 500px; padding: 20px;">
+		<input type="hidden" name="redirectUri" value="/member/login">
 		<input type="hidden" name="loginPwReal">
 		<table>
 			<colgroup>

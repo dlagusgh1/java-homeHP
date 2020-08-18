@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.sbs.lhh.hp.util.Util;
 import com.sbs.lhh.hp.service.MailService;
 import com.sbs.lhh.hp.dao.MemberDao;
+import com.sbs.lhh.hp.dto.Member;
 import com.sbs.lhh.hp.dto.ResultData;
 
 @Service
@@ -42,6 +43,7 @@ public class MemberService {
 		return Util.getAsInt(param.get("id"));
 	}
 
+	// 회원가입 완료 시 환영메일 보내기
 	private void sendJoinCompleteMail(String email) {
 		String mailTitle = String.format("[%s] 가입이 완료되었습니다.", siteName);
 
@@ -52,6 +54,10 @@ public class MemberService {
 		mailService.send(email, mailTitle, mailBodySb.toString());
 		
 	}
-	
+
+	// 로그인 대상 가져오기
+	public Member getMemberByLoginId(String loginId) {
+		return memberDao.getMemberByLoginId(loginId);
+	}	
 	
 }

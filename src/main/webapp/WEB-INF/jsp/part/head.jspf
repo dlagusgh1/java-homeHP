@@ -31,11 +31,11 @@
 	<div class="header-top flex">
 		<ul class="flex">
 			<li><a href="/home/main">홈</a></li>
-			<li><a href="/member/join">회원 가입</a></li>
 			<li><a href="">병원 찾기</a></li>
 			<li><a href="">약국 찾기</a></li>	
-			<li><a href="">응급 처치</a></li>
-			<li><a href="">정보 변경</a></li>			
+			<li><a href="">응급 처치</a></li>			
+			<li><a href="/member/join">회원 가입</a></li>
+			<li><a href="/member/login">로그인</a></li>
 			<li><a href="">문의</a></li>
 		</ul>
 	</div>
