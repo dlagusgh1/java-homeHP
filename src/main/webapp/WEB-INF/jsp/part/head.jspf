@@ -35,7 +35,7 @@
 			<ul class="flex">
 				<li><a href="/home/main"><img src="/resource/img/logo3W.png" alt="" style="height:100px; margin-right: 50px;"/></a></li>
 				<li><a href="/home/main">홈</a></li>
-				<li><a href="">병원 찾기</a></li>
+				<li><a href="/article/hospital">병원 찾기</a></li>
 				<li><a href="">약국 찾기</a></li>	
 				<li><a href="">응급 처치</a></li>			
 				<c:if test="${isLogined == false}">
