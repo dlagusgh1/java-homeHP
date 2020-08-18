@@ -148,6 +148,10 @@ label[for] {
 	flex: 1 0 0;
 }
 
+*>.flex-0-0-1 {
+	flex: 0 0 1;
+}
+
 .page-title-box {
 	margin-top: 30px;
 	margin-bottom: 30px;
@@ -167,24 +171,27 @@ label[for] {
 	color: #FFFFFF;
 	text-shadow: 1px 1px 20px #000000;
 	text-decoration: none;
+	margin-right: 10px;
 }
 
 .table-box th, .table-box input {
 	padding: 10px;
 }
+
+.outer-box {
+	padding-bottom: 30px;
+}
 /* 기본 CSS 끝 */
 
 /* head */
 .header-top-box {
-	margin-top: 5px;
-	padding: 20px;
 	background-color: #4BAF4B;
 	color: white;
 }
 
 .header-top-box>.header-top > ul > li > a {
-	padding: 20px;
-	font-size: 1.3rem;
+	padding: 50px 20px;
+	font-size: 1.5rem;
 	white-space:nowrap;
 	text-align:center;
 }
@@ -194,7 +201,7 @@ label[for] {
 }
 
 h1, h2 {
-	margin: 20px;
+	margin-bottom: 20px;
 }
 
 /* join */

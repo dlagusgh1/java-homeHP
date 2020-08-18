@@ -27,25 +27,29 @@
 
 </head>
 <body>
+
 <!-- PC -->
-<div class="header-top-box con flex-jc-c">
-	<div class="header-top flex">
-		<ul class="flex">
-			<li><a href="/home/main">홈</a></li>
-			<li><a href="">병원 찾기</a></li>
-			<li><a href="">약국 찾기</a></li>	
-			<li><a href="">응급 처치</a></li>			
-			<c:if test="${isLogined == false}">
-				<li><a href="/member/join">회원 가입</a></li>
-				<li><a href="/member/login">로그인</a></li>
-			</c:if>
-			<c:if test="${isLogined}">
-				<li><a href="/member/doLogout">로그아웃</a></li>
-			</c:if>	
-			<li><a href="">문의</a></li>
-			<c:if test="${isLogined}">
-				<li><a href="">${loginedMemberId}</a></li>
-			</c:if>
-		</ul>
+<div class="outer-box">
+	<div class="header-top-box con flex-jc-c">
+		<nav class="header-top">	
+			<ul class="flex">
+				<li><a href="/home/main"><img src="/resource/img/logo3W.png" alt="" style="height:100px; margin-right: 50px;"/></a></li>
+				<li><a href="/home/main">홈</a></li>
+				<li><a href="">병원 찾기</a></li>
+				<li><a href="">약국 찾기</a></li>	
+				<li><a href="">응급 처치</a></li>			
+				<c:if test="${isLogined == false}">
+					<li><a href="/member/join">회원 가입</a></li>
+					<li><a href="/member/login">로그인</a></li>
+				</c:if>
+				<c:if test="${isLogined}">
+					<li><a href="/member/doLogout">로그아웃</a></li>
+				</c:if>	
+				<li><a href="">문의</a></li>
+				<c:if test="${isLogined}">
+					<li><a href="" style="color: blue;">${loginedMember.organName} 님</a></li>
+				</c:if>
+			</ul>
+		</nav>
 	</div>
 </div>
