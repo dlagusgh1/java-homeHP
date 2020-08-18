@@ -35,15 +35,15 @@
 			<li><a href="">병원 찾기</a></li>
 			<li><a href="">약국 찾기</a></li>	
 			<li><a href="">응급 처치</a></li>			
-			<li><a href="/member/join">회원 가입</a></li>
-			<c:if test="${loginedMemberId == null}">
+			<c:if test="${isLogined == false}">
+				<li><a href="/member/join">회원 가입</a></li>
 				<li><a href="/member/login">로그인</a></li>
 			</c:if>
-			<c:if test="${loginedMemberId != null}">
+			<c:if test="${isLogined}">
 				<li><a href="/member/doLogout">로그아웃</a></li>
 			</c:if>	
 			<li><a href="">문의</a></li>
-			<c:if test="${loginedMemberId != null}">
+			<c:if test="${isLogined}">
 				<li><a href="">${loginedMemberId}</a></li>
 			</c:if>
 		</ul>
