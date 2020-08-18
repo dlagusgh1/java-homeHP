@@ -5,12 +5,12 @@
 <c:set var="pageTitle" value="회원가입" />
 <%@ include file="../part/head.jspf"%>
 
-<!-- sha256 암호화 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+	
+<h1 class="con flex-jc-c">회원 가입</h1>
 
 <script>
 	var MemberJoinForm__submitDone = false;
-	
 	function MemberJoinForm__submit(form) {
 		if (MemberJoinForm__submitDone) {
 			alert('처리중입니다.');
@@ -102,27 +102,28 @@
 			return;
 		}
 
-		form.phoneNo.value = form.phoneNo.value.trim();
-		form.phoneNo.value = form.phoneNo.value.replaceAll('-', '');
-		form.phoneNo.value = form.phoneNo.value.replaceAll(' ', '');
+		form.cellphoneNo.value = form.cellphoneNo.value.trim();
+		form.cellphoneNo.value = form.cellphoneNo.value.replaceAll('-', '');
+		form.cellphoneNo.value = form.cellphoneNo.value.replaceAll(' ', '');
 
-		if (form.phoneNo.value.length == 0) {
-			form.phoneNo.focus();
+		if (form.cellphoneNo.value.length == 0) {
+			form.cellphoneNo.focus();
 			alert('휴대전화번호를 입력해주세요.');
 
 			return;
 		}
 
-		if (form.phoneNo.value.length < 10) {
-			form.phoneNo.focus();
+		if (form.cellphoneNo.value.length < 10) {
+			form.cellphoneNo.focus();
 			alert('휴대폰번호를 10자 이상 입력해주세요.');
 
 			return;
 		}
 
-		if (isPhoneNo(form.phoneNo.value)) {
-			form.phoneNo.focus();
+		if (isCellphoneNo(form.cellphoneNo.value)) {
+			form.cellphoneNo.focus();
 			alert('휴대전화번호를 정확히 입력해주세요.');
+			
 		}
 
 		form.loginPwReal.value = sha256(form.loginPw.value);
@@ -134,10 +135,8 @@
 	}
 </script>
 
-<h1 class="con flex-jc-c">회원 가입</h1>
-
 <div class="join-form-box con flex-jc-c">
-	<form method="POST" class="table-box" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;" style="background-color: #4BAF4B; color:white; width: 500px; padding: 20px;">
+	<form method="POST" class="table-box con" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
 		<input type="hidden" name="redirectUri" value="/member/login">
 		<input type="hidden" name="loginPwReal">
 		<table>
@@ -149,7 +148,7 @@
 					<th>로그인 아이디</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="로그인 아이디 입력해주세요." name="loginId" maxlength="50" />
+							<input type="text" placeholder="로그인 아이디 입력해주세요." name="loginId"	maxlength="30" />
 						</div>
 					</td>
 				</tr>
@@ -181,7 +180,7 @@
 					<th>기관명</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="기관명을 입력해주세요." name="organName" maxlength="20" />
+							<input type="text" placeholder="기관명 입력해주세요." name="organName" maxlength="20" />
 						</div>
 					</td>
 				</tr>
@@ -189,7 +188,7 @@
 					<th>기관코드</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="기관코드를 입력해주세요." name="organCode" maxlength="20" />
+							<input type="text" placeholder="기관코드명 입력해주세요." name="organCode" maxlength="20" />
 						</div>
 					</td>
 				</tr>
@@ -197,7 +196,7 @@
 					<th>이메일</th>
 					<td>
 						<div class="form-control-box">
-							<input type="email" placeholder="이메일 입력해주세요." name="email" maxlength="50" />
+							<input type="email" placeholder="이메일 입력해주세요." name="email"	maxlength="50" />
 						</div>
 					</td>
 				</tr>
@@ -205,13 +204,13 @@
 					<th>휴대폰</th>
 					<td>
 						<div class="form-control-box">
-							<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="phoneNo" maxlength="12" />
+							<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="cellphoneNo"	maxlength="13" />
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<th>가입</th>
-					<td>
+					<th>회원가입</th>
+					<td class="flex-jc-c">
 						<button class="btn btn-primary" type="submit">가입</button>
 						<button class="btn btn-info" type="button" onclick="history.back();">취소</button>
 					</td>

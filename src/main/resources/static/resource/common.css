@@ -147,6 +147,31 @@ label[for] {
 *>.flex-1-0-0 {
 	flex: 1 0 0;
 }
+
+.page-title-box {
+	margin-top: 30px;
+	margin-bottom: 30px;
+} 
+
+.btn {
+	font-size: 1rem;
+	line-height: 1rem;
+	padding: 10px 15px 7px 15px;
+	display: inline-flex;
+	font-weight: bold;
+	border-radius: 10px;
+	outline: 0;
+	border: 0;
+	cursor: pointer;
+	background-color: #3D94F6;
+	color: #FFFFFF;
+	text-shadow: 1px 1px 20px #000000;
+	text-decoration: none;
+}
+
+.table-box th, .table-box input {
+	padding: 10px;
+}
 /* 기본 CSS 끝 */
 
 /* head */
@@ -170,4 +195,19 @@ label[for] {
 
 h1, h2 {
 	margin: 20px;
+}
+
+/* join */
+.join-form-box > .table-box {
+	background-color: #4BAF4B; 
+	color:white; 
+	width: 500px; 
+	padding: 20px;
+}
+/* login */
+.login-form-box > .table-box {
+	background-color: #4BAF4B; 
+	color:white; 
+	width: 500px; 
+	padding: 20px;
 }
