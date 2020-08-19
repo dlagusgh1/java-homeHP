@@ -9,4 +9,19 @@
 		FROM `cateItem`
 	</select>
 	
+	<insert id="organWrite">
+		INSERT
+		INTO `organ`
+		SET regDate = NOW(),
+		updateDate = NOW(),
+		`organNumber` = #{organNumber},
+		`organName` = #{organName},
+		`organAddress` = #{organAddress},
+		`organAdmAddress` = #{organAdmAddress},
+		`organTel` = #{organTel},
+		`organTime` = #{organTime},
+		`organWeekend` = #{organWeekend},
+		`organRemarks` = #{organRemarks}
+	</insert>
+		
 </mapper>

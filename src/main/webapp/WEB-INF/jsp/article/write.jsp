@@ -92,10 +92,7 @@
 
 			return;
 		}
-
 		
-		
-
 		form.submit();
 		OrganWriteForm__submitDone = true;
 	}
@@ -113,7 +110,7 @@
  비고 : 응급실 운영기관
  -->
 <div class="organWrite-form-box con flex-jc-c">
-	<form method="POST" class="table-box con" action="doJoin" onsubmit="OrganWriteForm__submit(this); return false;">
+	<form method="POST" class="table-box con" action="doOrganWrite" onsubmit="OrganWriteForm__submit(this); return false;">
 		<input type="hidden" name="redirectUri" value="/home/main">
 		<table>
 			<colgroup>
@@ -126,7 +123,7 @@
 						<div class="form-control-box">
 							<select name="organNumber">
 								<c:forEach items="${cateItems}" var="cateItem">
-									<option value="${cateItem.id}">${cateItem.name}</option>
+									<option id="organNumber" value="${cateItem.id}">${cateItem.name}</option>
 								</c:forEach>
 							</select>
 						</div>
