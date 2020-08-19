@@ -150,5 +150,11 @@ public class MemberController {
 		
 		return "common/redirect";
 	}
+	
+	// 마이페이지
+	@RequestMapping("member/myPage")
+	public String myPage() {
+		return "member/myPage";
+	}
 }
 

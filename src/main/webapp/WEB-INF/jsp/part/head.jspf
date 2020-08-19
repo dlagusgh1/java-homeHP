@@ -33,7 +33,7 @@
 	<div class="header-top-box con flex-jc-c">
 		<nav class="header-top">	
 			<ul class="flex">
-				<li><a href="/home/main"><img src="/resource/img/logo3W.png" alt="" style="height:80px; margin-right: 50px;"/></a></li>
+				<li><a href="/home/main"><img src="/resource/img/logo3W.png" alt="" style="height:80px; margin-right: 20px;"/></a></li>
 				<li><a href="/home/main">홈</a></li>
 				<li><a href="/article/hospital">병원 찾기</a></li>
 				<li><a href="">약국 찾기</a></li>	
@@ -44,10 +44,11 @@
 				</c:if>
 				<c:if test="${isLogined}">
 					<li><a href="/member/doLogout">로그아웃</a></li>
+					<li><a href="/member/myPage">마이페이지</a></li>
 				</c:if>	
 				<li><a href="">문의</a></li>
 				<c:if test="${isLogined}">
-					<li><a href="" style="color: blue;">${loginedMember.organName} 님</a></li>
+					<li><a href="/member/myPage" style="color: blue;">${loginedMember.organName} 님</a></li>
 				</c:if>
 			</ul>
 		</nav>
