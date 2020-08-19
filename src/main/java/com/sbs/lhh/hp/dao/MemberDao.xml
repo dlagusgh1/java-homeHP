@@ -6,27 +6,25 @@
 
 	<select id="getMemberById" resultType="Member">
 		SELECT *
-		FROM member
-		WHERE
-		id = #{id}
+		FROM `member`
+		WHERE id = #{id}
 	</select>
 
 	<select id="getLoginIdDupCount" resultType="int">
-		SELECT COUNT(*) AS
-		cnt
-		FROM member
+		SELECT COUNT(*) AS cnt
+		FROM `member`
 		WHERE loginId = #{loginId}
 	</select>
 	
 	<select id="getMemberByLoginId" resultType="Member">
 		SELECT *
-		FROM member
+		FROM `member`
 		WHERE loginId = #{loginId}
 	</select>
 
 	<insert id="join" useGeneratedKeys="true" keyProperty="id">
 		INSERT
-		INTO member
+		INTO `member`
 		SET regDate = NOW(),
 		updateDate = NOW(),
 		authStatus = 0,
@@ -41,9 +39,20 @@
 	
 	<select id="getMemberByParam" resultType="Member">
 		SELECT *
-		FROM member
+		FROM `member`
 		WHERE organName = #{organName}
 		AND email = #{email}
+		<if test="loginId != null">
+			AND loginId = #{loginId}
+		</if>
 	</select>
+	
+	<update id="memberModifyShaPw">
+		UPDATE `member`
+		SET loginPw = #{shaPw},
+		updateDate = NOW()
+		WHERE loginId = #{loginId}
+		AND organName = #{organName}
+	</update>
 	
 </mapper>

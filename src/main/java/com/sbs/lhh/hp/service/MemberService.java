@@ -41,7 +41,7 @@ public class MemberService {
 
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>가입이 완료되었습니다.</h1>");
-		mailBodySb.append(String.format("<p><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", siteMainUri, siteName));
+		mailBodySb.append(String.format("<p>담당자님의 가입을 진심으로 환영합니다.<br><br><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", siteMainUri, siteName));
 
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
@@ -62,7 +62,7 @@ public class MemberService {
 		return memberDao.getMemberByLoginId(loginId);
 	}
 
-	// 아이디 찾기 전 일치하는 정보 존재하는지 체크
+	// 아이디 / 비밀번호 찾기 전 일치하는 정보 존재하는지 체크
 	public Member getMemberByParam(Map<String, Object> param) {
 		return memberDao.getMemberByParam(param);
 	}
@@ -76,6 +76,28 @@ public class MemberService {
 		mailBodySb.append(String.format("<p>아이디 찾기 결과 : %s <br><br><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", member.getLoginId(), siteMainUri, siteName));
 
 		mailService.send(member.getEmail(), mailTitle, mailBodySb.toString());	
+	}
+
+	// 비밀번호 찾기 기능(임시 패스워드 발송 & 임시패스워드 적용)
+	public void changeLoginPw(Member member) {
+		
+		String tempPw = Util.getTempPassword(8);
+		String shaPw = Util.sha256(tempPw);	
+		
+		memberModifyShaPw(member.getLoginId(), member.getOrganName(), shaPw);
+		
+		String mailTitle = String.format("[%s] 비밀번호 찾기 결과", siteName);
+
+		StringBuilder mailBodySb = new StringBuilder();
+		mailBodySb.append("<h1>비밀번호 찾기 결과</h1>");
+		mailBodySb.append(String.format("<p>임시패스워드 : %s <br><br><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", tempPw, siteMainUri, siteName));
+
+		mailService.send(member.getEmail(), mailTitle, mailBodySb.toString());	
+	}
+
+	// 임시 패스워드 적용
+	private void memberModifyShaPw(String loginId, String organName, String shaPw) {
+		memberDao.memberModifyShaPw(loginId, organName, shaPw);
 	}
 	
 }

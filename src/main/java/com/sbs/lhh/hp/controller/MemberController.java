@@ -79,7 +79,7 @@ public class MemberController {
 		}
 
 		model.addAttribute("redirectUri", redirectUri);
-		model.addAttribute("alertMsg", String.format("%s 기관 담당자님 반갑습니다.", member.getOrganName()));
+		model.addAttribute("alertMsg", String.format("%s 담당자님 반갑습니다.", member.getOrganName()));
 
 		return "common/redirect";
 	}
@@ -97,10 +97,10 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
-	// 아이디 찾기 폼
-	@RequestMapping("member/findId")
-	public String findId() {
-		return "member/findId";
+	// 아이디 / 비밀번호 찾기 폼
+	@RequestMapping("member/findAccount")
+	public String findAccount() {
+		return "member/findAccount";
 	}
 	
 	// 아이디 찾기 기능
@@ -121,13 +121,34 @@ public class MemberController {
 			redirectUri = "/member/login";
 		}
 		
-		model.addAttribute("alertMsg", "등록하신 메일로 아이디가 전송되었습니다.");
+		model.addAttribute("alertMsg", "등록하신 메일로 아이디가 전송되었습니다.\\n메일 확인 부탁드립니다.");
 		model.addAttribute("redirectUri", redirectUri);
 		
 		return "common/redirect";
 	}
 
-	// 비밀번호 찾기
-	
+	// 비밀번호 찾기(임시패스워드 발급)
+	@RequestMapping("member/doFindPw")
+	public String doFindPw(@RequestParam Map<String, Object> param, Model model, String redirectUri) {
+		
+		Member member = memberService.getMemberByParam(param);
+		
+		if ( member == null ) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
+			return "common/redirect";
+		}		
+		
+		memberService.changeLoginPw(member);
+		
+		if (redirectUri == null || redirectUri.length() == 0) {
+			redirectUri = "/member/login";
+		}
+		
+		model.addAttribute("alertMsg", "등록하신 메일로 임시패스워드가 전송되었습니다.\\n메일 확인 부탁드립니다.");
+		model.addAttribute("redirectUri", redirectUri);
+		
+		return "common/redirect";
+	}
 }
 

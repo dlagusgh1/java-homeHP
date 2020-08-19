@@ -95,8 +95,7 @@
 				<tr>
 					<th>회원정보 찾기</th>
 					<td class="flex-jc-c">
-						<button class="btn" type="button"><a href="findId">아이디 찾기</a></button>
-						<button class="btn" type="button">비밀번호 찾기</button>
+						<button class="btn" type="button"><a href="findAccount">아이디 / 비밀번호 찾기</a></button>
 					</td>
 				</tr>
 			</tbody>

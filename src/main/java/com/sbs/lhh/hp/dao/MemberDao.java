@@ -18,4 +18,6 @@ public interface MemberDao {
 	Member getMemberByLoginId(@Param("loginId") String loginId);
 
 	Member getMemberByParam(Map<String, Object> param);
+
+	void memberModifyShaPw(String loginId, String organName, String shaPw);
 }
