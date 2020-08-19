@@ -7,8 +7,88 @@
 
 <h1 class="con flex-jc-c">병원 찾기</h1>
 
-<div class="con" id="map" style="width:100%; height:100vh;"></div>
+<style>
+	.administrative-district ul {
+		background-color: #4BAF4B;
+		border-radius: 10px;	
+		width: 80%;
+		padding: 10px;
+		margin: 5px 0 15px 0;
+		text-align: center;
+	}
+	.administrative-district ul li {
+		color: white;
+		text-align: center;
+	}
+	.administrative-district ul li:hover {
+		color: black;
+	}
+	
+	.administrative-district ul li a {
+		padding:10px 15px;
+	}
+</style>
 
+<!-- 행정구역(동/면) 리스트 -->
+<div class="administrative-district con">
+	<nav>
+		<div style="font-weight:bold; font-size: 1.2rem;">
+			행정구역(동)
+		</div>
+	</nav>
+	<ul class="flex">
+		<li><a href="">한솔동</a></li>
+		<li><a href="">도담동</a></li>
+		<li><a href="">소담동</a></li>
+		<li><a href="">새롬동</a></li>
+		<li><a href="">보람동</a></li>
+		<li><a href="">다정동</a></li>
+		<li><a href="">아름동</a></li>
+		<li><a href="">종촌동</a></li>
+		<li><a href="">고운동</a></li>
+		<li><a href="">대평동</a></li>
+	</ul>
+	<nav>
+		<div style="font-weight:bold; font-size: 1.2rem;">
+			행정구역(면)
+		</div>
+	</nav>
+	<ul class="flex">
+		<li><a href="">조치원읍</a></li>
+		<li><a href="">연기면</a></li>
+		<li><a href="">연동면</a></li>
+		<li><a href="">부강면</a></li>
+		<li><a href="">금남면</a></li>
+		<li><a href="">장군면</a></li>
+		<li><a href="">연서면</a></li>
+		<li><a href="">전의면</a></li>
+		<li><a href="">전동면</a></li>
+		<li><a href="">소정면</a></li>
+	</ul>
+</div>
+
+<!-- 병원 목록 -->
+<div class="con flex-jc-c">
+	<div class="con" id="map" style="width:100%; height:700px;"></div>
+	<div class="con" style="width:40%; height:700px; padding-left: 20px;">
+		<ul>
+			<li>
+				<a href="">1번 병원</a>
+				<ul>
+					<li><a href="">위치</a></li>
+					<li><a href="">번호</a></li>
+					<li><a href="">24시 운영여부</a></li>
+					<li><a href="">주말 운영여부</a></li>
+				</ul>			
+			</li>
+			<li><a href="">2번 병원</a></li>
+			<li><a href="">3번 병원</a></li>
+			<li><a href="">4번 병원</a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- 카카오맵 -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 

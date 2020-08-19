@@ -55,9 +55,6 @@ label[for] {
 
 .con {
 	max-width: 1200px;
-}
-
-.con {
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -180,6 +177,9 @@ label[for] {
 
 .outer-box {
 	padding-bottom: 30px;
+}
+body {
+	margin-bottom: 20px;
 }
 /* 기본 CSS 끝 */
 

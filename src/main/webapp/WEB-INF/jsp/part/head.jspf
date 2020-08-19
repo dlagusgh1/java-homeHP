@@ -33,7 +33,7 @@
 	<div class="header-top-box con flex-jc-c">
 		<nav class="header-top">	
 			<ul class="flex">
-				<li><a href="/home/main"><img src="/resource/img/logo3W.png" alt="" style="height:100px; margin-right: 50px;"/></a></li>
+				<li><a href="/home/main"><img src="/resource/img/logo3W.png" alt="" style="height:80px; margin-right: 50px;"/></a></li>
 				<li><a href="/home/main">홈</a></li>
 				<li><a href="/article/hospital">병원 찾기</a></li>
 				<li><a href="">약국 찾기</a></li>	
