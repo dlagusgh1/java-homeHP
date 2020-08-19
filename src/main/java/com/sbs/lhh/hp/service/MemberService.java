@@ -104,5 +104,10 @@ public class MemberService {
 	public void memberModify(Map<String, Object> param) {
 		memberDao.memberModify(param);
 	}
+
+	// 비밀번호 수정
+	public void memberModifyPw(Map<String, Object> param) {
+		memberDao.memberModifyPw(param);
+	}
 	
 }

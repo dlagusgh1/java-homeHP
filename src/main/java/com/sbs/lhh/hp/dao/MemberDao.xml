@@ -42,9 +42,6 @@
 		FROM `member`
 		WHERE organName = #{organName}
 		AND email = #{email}
-		<if test="loginId != null">
-			AND loginId = #{loginId}
-		</if>
 	</select>
 	
 	<update id="memberModifyShaPw">
@@ -64,6 +61,12 @@
 		updateDate = NOW()
 		WHERE loginId = #{loginId}
 		AND name = #{name}
+	</update>
+	
+	<update id="memberModifyPw">
+		UPDATE `member`
+		SET loginPw = #{loginPw}
+		WHERE loginId = #{loginId}
 	</update>
 	
 </mapper>

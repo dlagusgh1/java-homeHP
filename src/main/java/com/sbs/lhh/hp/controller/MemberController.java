@@ -182,5 +182,30 @@ public class MemberController {
 	public String memberModifyPw() {
 		return "member/memberModifyPw";
 	}
+	
+	// 비밀번호 수정 기능
+	@RequestMapping("member/doMemberModifyPw")
+	public String doMemberModifyPw(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUri) {
+
+		System.out.println("비밀번호 변경 출력 loginPwReal : " + param.get("loginPwReal"));
+		System.out.println("비밀번호 변경 출력 loginPw : " + param.get("loginPw"));
+		System.out.println("비밀번호 변경 출력 loginPwConfirm : " + param.get("loginPwConfirm"));
+		
+		Util.changeMapKey(param, "loginPwReal", "loginPw");
+		
+		System.out.println("비밀번호 변경 후 출력 loginPwReal : " + param.get("loginPwReal"));
+		System.out.println("비밀번호 변경 후 출력 loginPw : " + param.get("loginPw"));
+		System.out.println("비밀번호 변경 후 출력 loginPwConfirm : " + param.get("loginPwConfirm"));
+		
+		
+		memberService.memberModifyPw(param);
+		
+		model.addAttribute("alertMsg", "비밀번호가 정상적으로 수정되었습니다.\\n다시 로그인 해주세요.");
+		model.addAttribute("redirectUri", redirectUri);
+		
+		session.removeAttribute("loginedMemberId");
+		
+		return "common/redirect";	
+	}
 }
 

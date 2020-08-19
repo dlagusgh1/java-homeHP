@@ -74,7 +74,7 @@
 	}
 </script>
 
-<div class="mypage-box con flex-jc-c">
+<div class="memeberModify-box con flex-jc-c">
 	<form method="POST" class="table-box con" action="doMemberModify" onsubmit="MemberMemberModifyForm__submit(this); return false;">
 		<input type="hidden" name="redirectUri" value="/member/login">
 		<table>
