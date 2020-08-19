@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.sbs.lhh.hp.dao.ArticleDao;
 import com.sbs.lhh.hp.dto.CateItem;
+import com.sbs.lhh.hp.dto.AdCateItem;
 
 @Service
 public class ArticleService {
@@ -21,6 +22,9 @@ public class ArticleService {
 	public void organWrite(Map<String, Object> param) {
 		articleDao.organWrite(param);
 	}
-	
+
+	public List<AdCateItem> getAdCateItem() {
+		return articleDao.getAdCateItem();
+	}
 	
 }

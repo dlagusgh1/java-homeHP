@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="pageTitle" value="병원/약국 추가" />
+<c:set var="pageTitle" value="기관 정보 등록" />
 <%@ include file="../part/head.jspf"%>
 	
-<h1 class="con flex-jc-c">병원/약국 추가</h1>
+<h1 class="con flex-jc-c">기관 정보 등록</h1>
 
 <script>
 	var OrganWriteForm__submitDone = false;

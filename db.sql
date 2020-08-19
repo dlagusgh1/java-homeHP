@@ -44,6 +44,38 @@ CREATE TABLE cateItem (
 INSERT INTO cateItem SET regDate = NOW(), `name` = '병원';
 INSERT INTO cateItem SET regDate = NOW(), `name` = '약국';
 
+# 행정구역 구분 카테고리 테이블 생성
+DROP TABLE IF EXISTS adCateItem;
+CREATE TABLE adCateItem (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    `name` CHAR(100) NOT NULL UNIQUE
+);
+
+# 행정구역 구분 카테고리 추가
+# 세종시 행정구역(동)
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '한솔동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '도담동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '소담동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '새롬동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '보람동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '다정동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '아름동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '종촌동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '고운동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '대평동';
+# 세종시 행정구역(읍,면)
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '조치원읍';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '연기면';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '연동면';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '부강면';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '금남면';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '장군면';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '연서면';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '전의면';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '전동면';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '소정면';
+
 # 기관 테이블 생성
 DROP TABLE IF EXISTS `organ`;
 CREATE TABLE `organ` (

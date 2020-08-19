@@ -9,6 +9,11 @@
 		FROM `cateItem`
 	</select>
 	
+	<select id="getAdCateItem" resultType="AdCateItem">
+		SELECT *
+		FROM `adCateItem`
+	</select>
+	
 	<insert id="organWrite">
 		INSERT
 		INTO `organ`

@@ -11,9 +11,9 @@
 	.administrative-district ul {
 		background-color: #4BAF4B;
 		border-radius: 10px;	
-		width: 80%;
-		padding: 10px;
-		margin: 5px 0 15px 0;
+		width: 100%;
+		padding: 10px 0px;
+		margin: 5px 0 7px 0;
 		text-align: center;
 	}
 	.administrative-district ul li {
@@ -25,8 +25,11 @@
 	}
 	
 	.administrative-district ul li a {
-		padding:10px 15px;
+		padding:10px 5px;
+		font-size: 1rem;
+		margin-left: 5px;
 	}
+
 	.map_marker {
 		padding:5px; 
 		width: 300px;
@@ -36,58 +39,39 @@
 <!-- 행정구역(동/면) 리스트 -->
 <div class="administrative-district con">
 	<nav>
-		<div style="font-weight:bold; font-size: 1.2rem;">
-			행정구역(동)
+		<div style="font-weight:bold; font-size: 1.5rem;">
+			행정구역(동/읍/면)
 		</div>
 	</nav>
 	<ul class="flex">
-		<li><a href="">한솔동</a></li>
-		<li><a href="">도담동</a></li>
-		<li><a href="">소담동</a></li>
-		<li><a href="">새롬동</a></li>
-		<li><a href="">보람동</a></li>
-		<li><a href="">다정동</a></li>
-		<li><a href="">아름동</a></li>
-		<li><a href="">종촌동</a></li>
-		<li><a href="">고운동</a></li>
-		<li><a href="">대평동</a></li>
-	</ul>
-	<nav>
-		<div style="font-weight:bold; font-size: 1.2rem;">
-			행정구역(면)
-		</div>
-	</nav>
-	<ul class="flex">
-		<li><a href="">조치원읍</a></li>
-		<li><a href="">연기면</a></li>
-		<li><a href="">연동면</a></li>
-		<li><a href="">부강면</a></li>
-		<li><a href="">금남면</a></li>
-		<li><a href="">장군면</a></li>
-		<li><a href="">연서면</a></li>
-		<li><a href="">전의면</a></li>
-		<li><a href="">전동면</a></li>
-		<li><a href="">소정면</a></li>
+		<c:forEach items="${adCateItems}" var="adCateItem">
+			<li><a href="">${adCateItem.name}</a></li>
+		</c:forEach>
 	</ul>
 </div>
-
+<!--  
+ 기관명 : 엔케이(NK) 세종 병원
+ 기관 주소 : 세종 한누리대로 161
+ 전화 번호 : 044-850-7700
+ 진료 시간 : 24시간
+ 주말운영여부 : 토요일 / 일요일 운영
+ 비고 : 응급실 운영기관
+-->
 <!-- 병원 목록 -->
 <div class="con flex-jc-c">
 	<div class="con" id="map" style="width:100%; height:700px;"></div>
 	<div class="con" style="width:40%; height:700px; padding-left: 20px;">
 		<ul>
 			<li>
-				<a href="">1번 병원</a>
+				<a href="">기관명</a>
 				<ul>
-					<li><a href="">- 위치</a></li>
-					<li><a href="">- 번호</a></li>
-					<li><a href="">- 24시 운영여부</a></li>
-					<li><a href="">- 주말 운영여부</a></li>
+					<li><a href="">	- 주소 : </a></li>
+					<li><a href="">	- 전화 번호 : </a></li>
+					<li><a href="">	- 진료 시간 : </a></li>
+					<li><a href="">	- 주말 운영여부 : </a></li>
+					<li><a href="">	- 비고 : </a></li>
 				</ul>			
 			</li>
-			<li><a href="">2번 병원</a></li>
-			<li><a href="">3번 병원</a></li>
-			<li><a href="">4번 병원</a></li>
 		</ul>
 	</div>
 </div>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbs.lhh.hp.dto.CateItem;
+import com.sbs.lhh.hp.dto.AdCateItem;
 import com.sbs.lhh.hp.service.ArticleService;
 
 @Controller
@@ -19,7 +20,11 @@ public class ArticleController {
 	
 	// 회원가입
 	@RequestMapping("/article/hospital")
-	public String join() {
+	public String join(Model model) {
+		
+		List<AdCateItem> adCateItems = articleService.getAdCateItem();
+		
+		model.addAttribute("adCateItems", adCateItems);
 		
 		return "article/hospital";
 	}
