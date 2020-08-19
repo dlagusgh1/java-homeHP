@@ -55,4 +55,15 @@
 		AND organName = #{organName}
 	</update>
 	
+	<update id="memberModify">
+		UPDATE `member`
+		SET organName = #{organName},
+		organCode = #{organCode},
+		email = #{email},
+		phoneNo = #{cellphoneNo},
+		updateDate = NOW()
+		WHERE loginId = #{loginId}
+		AND name = #{name}
+	</update>
+	
 </mapper>

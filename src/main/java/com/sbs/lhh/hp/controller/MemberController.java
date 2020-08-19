@@ -156,5 +156,31 @@ public class MemberController {
 	public String myPage() {
 		return "member/myPage";
 	}
+	
+	// 회원정보 수정 폼
+	@RequestMapping("member/memberModify")
+	public String memberModify() {
+		return "member/memberModify";
+	}
+	
+	// 회원정보 수정 기능
+	@RequestMapping("member/doMemberModify")
+	public String doMemberModify(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUri) {
+		
+		memberService.memberModify(param);
+		
+		model.addAttribute("alertMsg", "회원 정보가 정상적으로 수정되었습니다.\\n다시 로그인 해주세요.");
+		model.addAttribute("redirectUri", redirectUri);
+		
+		session.removeAttribute("loginedMemberId");
+		
+		return "common/redirect";
+	}
+
+	// 비밀번호 수정 폼
+	@RequestMapping("member/memberModifyPw")
+	public String memberModifyPw() {
+		return "member/memberModifyPw";
+	}
 }
 

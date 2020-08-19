@@ -30,17 +30,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		// beforeActionInterceptor 인터셉터가 모든 액션 실행전에 실행되도록 처리
 		registry.addInterceptor(beforeActionInterceptor).addPathPatterns("/**").excludePathPatterns("/resource/**");
 
-		// 로그인 없이도 접속할 수 있는 URI 전부 기술
+		// 로그인 '없이'도 접속할 수 있는 URI 전부 기술
 		registry.addInterceptor(needToLoginInterceptor).addPathPatterns("/**").excludePathPatterns("/")
 				.excludePathPatterns("/resource/**").excludePathPatterns("/home/main")
 				.excludePathPatterns("/member/login").excludePathPatterns("/member/doLogin")
 				.excludePathPatterns("/member/join").excludePathPatterns("/member/doJoin")
 				.excludePathPatterns("/article/*-list").excludePathPatterns("/article/*-detail")
-				.excludePathPatterns("/article/hospital").excludePathPatterns("/member/findAccount")
-				.excludePathPatterns("/member/doFindId").excludePathPatterns("/member/doFindPw")
-				.excludePathPatterns("/member/myPage");
+				.excludePathPatterns("/article/hospital");
 
-		// 로그인 상태에서 접속할 수 없는 URI 전부 기술
+		// 로그인 상태에서 접속할 수 '없는' URI 전부 기술
 		registry.addInterceptor(needToLogoutInterceptor).addPathPatterns("/member/login")
 				.addPathPatterns("/member/doLogin").addPathPatterns("/member/join")
 				.addPathPatterns("/member/doJoin");

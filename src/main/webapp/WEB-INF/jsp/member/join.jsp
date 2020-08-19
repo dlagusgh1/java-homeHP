@@ -204,7 +204,7 @@
 					<th>휴대폰</th>
 					<td>
 						<div class="form-control-box">
-							<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="cellphoneNo"	maxlength="13" />
+							<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="cellphoneNo"	maxlength="12" />
 						</div>
 					</td>
 				</tr>

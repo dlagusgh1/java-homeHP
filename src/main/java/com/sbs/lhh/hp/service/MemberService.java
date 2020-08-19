@@ -99,5 +99,10 @@ public class MemberService {
 	private void memberModifyShaPw(String loginId, String organName, String shaPw) {
 		memberDao.memberModifyShaPw(loginId, organName, shaPw);
 	}
+
+	// 회원 정보 수정
+	public void memberModify(Map<String, Object> param) {
+		memberDao.memberModify(param);
+	}
 	
 }
