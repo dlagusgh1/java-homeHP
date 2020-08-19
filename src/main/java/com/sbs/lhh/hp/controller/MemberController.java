@@ -31,19 +31,19 @@ public class MemberController {
 	public String doJoin(@RequestParam Map<String, Object> param, Model model) {
 		Util.changeMapKey(param, "loginPwReal", "loginPw");
 
-		ResultData checkLoginIdJoinableResultData = memberService
-				.checkLoginIdJoinable(Util.getAsStr(param.get("loginId")));
+		ResultData checkLoginIdJoinableResultData = memberService.checkLoginIdJoinable(Util.getAsStr(param.get("loginId")));
 
 		if (checkLoginIdJoinableResultData.isFail()) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", checkLoginIdJoinableResultData.getMsg());
 			return "common/redirect";
 		}
-
+		
 		int newMemberId = memberService.join(param);
 
 		String redirectUri = (String) param.get("redirectUri");
 		model.addAttribute("redirectUri", redirectUri);
+		model.addAttribute("alertMsg", "가입을 환영합니다^^");
 
 		return "common/redirect";
 	}
