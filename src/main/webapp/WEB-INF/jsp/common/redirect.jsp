@@ -8,9 +8,11 @@
 	if (alertMsg) {
 		alert(alertMsg);
 	}
+	
 	if (historyBack) {
 		history.back();
 	}
+	
 	var redirectUri = '${redirectUri}'.trim();
 	if (redirectUri) {
 		location.replace(redirectUri);

@@ -61,5 +61,21 @@ public class MemberService {
 	public Member getMemberByLoginId(String loginId) {
 		return memberDao.getMemberByLoginId(loginId);
 	}
+
+	// 아이디 찾기 전 일치하는 정보 존재하는지 체크
+	public Member getMemberByParam(Map<String, Object> param) {
+		return memberDao.getMemberByParam(param);
+	}
+
+	// 아이디 찾기 기능(찾은 아이디 메일 전송)
+	public void sendFindId(Member member) {
+		String mailTitle = String.format("[%s] 아이디 찾기 결과", siteName);
+
+		StringBuilder mailBodySb = new StringBuilder();
+		mailBodySb.append("<h1>아이디 찾기 결과</h1>");
+		mailBodySb.append(String.format("<p>아이디 찾기 결과 : %s <br><br><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", member.getLoginId(), siteMainUri, siteName));
+
+		mailService.send(member.getEmail(), mailTitle, mailBodySb.toString());	
+	}
 	
 }

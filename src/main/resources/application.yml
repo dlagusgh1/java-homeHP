@@ -36,11 +36,11 @@ server:
     include-message: always
     include-binding-errors: always
 custom:
-  siteName: 동네 병원/약국(24시/주말)
+  siteName: 우리동네 병원/약국(24시/주말)
   siteMainUri: https://homeHP.com/
-  logoText: 동네 병원/약국(24시/주말)
+  logoText: 우리동네 병원/약국(24시/주말)
   emailFrom: no-reply@homeHP.com
-  emailFromName: 동네 병원/약국(24시/주말)
+  emailFromName: 우리동네 병원/약국(24시/주말)
   
 ---
 

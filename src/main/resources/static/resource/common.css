@@ -208,17 +208,18 @@ h1, h2 {
 	margin-bottom: 20px;
 }
 
+/* join, login, findId 테이블 관련 */
+.table-box {
+	background-color: #4BAF4B; 
+	color:white; 
+	width: 500px; 
+	padding: 20px;
+}
+
 /* join */
-.join-form-box > .table-box {
-	background-color: #4BAF4B; 
-	color:white; 
-	width: 500px; 
-	padding: 20px;
-}
+
+
 /* login */
-.login-form-box > .table-box {
-	background-color: #4BAF4B; 
-	color:white; 
-	width: 500px; 
-	padding: 20px;
-}
+
+
+/* findId */
