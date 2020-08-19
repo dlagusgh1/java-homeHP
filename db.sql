@@ -31,3 +31,33 @@ loginPw = SHA2('admin', 256),
 `organCode` = 'a12345',
 `email` = '',
 `phoneNo` = '';
+
+# 카테고리 테이블 생성
+DROP TABLE IF EXISTS cateItem;
+CREATE TABLE cateItem (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    `name` CHAR(100) NOT NULL UNIQUE
+);
+
+# 카테고리 추가
+INSERT INTO cateItem SET regDate = NOW(), `name` = '병원';
+INSERT INTO cateItem SET regDate = NOW(), `name` = '약국';
+
+# 기관 테이블 생성
+DROP TABLE IF EXISTS `organ`;
+CREATE TABLE `organ` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    delDate DATETIME,
+	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+	`organNumber` INT(10) UNSIGNED NOT NULL,
+	`organName` CHAR(100) NOT NULL UNIQUE,
+    `organAddress` CHAR(100) NOT NULL,
+    `organAdmAddress` CHAR(100) NOT NULL,
+    `organTel` CHAR(20) NOT NULL,
+    `organTime` CHAR(100) NOT NULL,
+    `organWeekend` CHAR(100) NOT NULL,
+    `organRemarks` CHAR(100) NOT NULL
+);
