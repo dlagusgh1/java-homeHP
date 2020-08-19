@@ -27,6 +27,10 @@
 	.administrative-district ul li a {
 		padding:10px 15px;
 	}
+	.map_marker {
+		padding:5px; 
+		width: 300px;
+	}
 </style>
 
 <!-- 행정구역(동/면) 리스트 -->
@@ -75,10 +79,10 @@
 			<li>
 				<a href="">1번 병원</a>
 				<ul>
-					<li><a href="">위치</a></li>
-					<li><a href="">번호</a></li>
-					<li><a href="">24시 운영여부</a></li>
-					<li><a href="">주말 운영여부</a></li>
+					<li><a href="">- 위치</a></li>
+					<li><a href="">- 번호</a></li>
+					<li><a href="">- 24시 운영여부</a></li>
+					<li><a href="">- 주말 운영여부</a></li>
 				</ul>			
 			</li>
 			<li><a href="">2번 병원</a></li>
@@ -93,7 +97,7 @@
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(36.49334, 127.27856), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(36.504171, 127.267834), // 지도의 중심좌표
         level: 6, // 지도의 확대 레벨
         mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
     }; 
@@ -122,10 +126,9 @@
 
 	// 다중 마커 생성
 	var 데이터 = [
-		[36.511513, 127.258927, '<div style="padding:5px;">도램마을 8단지</div>'],
-		[36.514043, 127.263682, '<div style="padding:5px;">도담 고등학교</div>'],
-		[36.514494, 127.254835, '<div style="padding:5px;">늘봄 초등학교</div>'],
-		[36.511590, 127.262530, '<div style="padding:5px;">도담 초등학교</div>']
+		[36.479739, 127.262182, '<div class="map_marker">엔케이(NK) 세종 병원<br>- 주소 : 세종 한누리대로 161(나성동)<br>- 전화 : 044-850-7700<br>- 진료시간 : 24시간<br>- 주말운영여부 : 토요일 / 일요일 운영<br>- 비고 : 응급실 운영기관</div>'],
+		[36.502449, 127.248440, '<div class="map_marker">한사랑 의원<br>- 주소 : 세종 도움1로 106(종촌동)<br>- 전화 : 전화 : 044-867-3569<br>- 진료시간 : 09:00 ~ 22:00<br>- 주말운영여부 : 토요일 / 일요일 운영<br>- 비고 : </div>'],
+		[36.507817, 127.258666, '<div class="map_marker">매일연합 의원<br>- 주소 : 세종특별자치 절재로 154 세종홈플러스(어진동)<br>- 전화 : 전화 : 044-864-7975<br>- 진료시간 : 10:00 ~ 21:00<br>- 주말운영여부 : 토요일 / 일요일 운영<br>(매월 2, 4째주 일요일 휴무)<br>- 비고 : </div>']
 	];
 
 	// 마커들을 저장할 변수 생성
@@ -142,10 +145,10 @@
 
 		// 인포윈도우를 생성하고 지도에 표시합니다
 		var infowindow = new kakao.maps.InfoWindow({
-		    map: map, // 인포윈도우가 표시될 지도
-		    position : iwPosition, 
+		    //map: map, // 인포윈도우가 표시될 지도
+		    //position : iwPosition, 
 		    content : 데이터[i][2],
-		    removable : iwRemoveable
+		    //removable : iwRemoveable
 		});
 
 		// 생성된 마커를 마커 저장하는 변수에 넣음
@@ -154,8 +157,16 @@
 	 	// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
 	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
 	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-	    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-	    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+	    kakao.maps.event.addListener(
+    	    marker, 
+    	    'mouseover',
+    	    makeOverListener(map, marker, infowindow)
+   	    );
+	    kakao.maps.event.addListener(
+    	    marker, 
+    	    'mouseout', 
+    	    makeOutListener(infowindow)
+   	    );
 	}	
 
 	// 클러스터러에 마커들을 추가합니다

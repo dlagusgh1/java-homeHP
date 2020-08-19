@@ -175,7 +175,7 @@ label[for] {
 	padding: 10px;
 }
 
-.table-box td {
+.table-box td, .table-box select {
 	padding: 10px;
 }
 
@@ -224,3 +224,12 @@ h1, h2 {
 
 
 /* findId */
+
+/* write (기관 등록) */
+.organWrite-form-box > .table-box input {
+	width: 300px;
+}
+
+.table-box select {
+	width: 320px;
+}

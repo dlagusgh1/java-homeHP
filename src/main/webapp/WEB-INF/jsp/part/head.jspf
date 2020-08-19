@@ -43,10 +43,10 @@
 					<li><a href="/member/login">로그인</a></li>
 				</c:if>
 				<c:if test="${isLogined}">
+					<li><a href="/member/myPage">내정보</a></li>
+					<li><a href="/article/write">정보등록</a></li>
 					<li><a href="/member/doLogout">로그아웃</a></li>
-					<li><a href="/member/myPage">마이페이지</a></li>
 				</c:if>	
-				<li><a href="">문의</a></li>
 				<c:if test="${isLogined}">
 					<li><a href="/member/myPage" style="color: blue;">${loginedMember.organName} 님</a></li>
 				</c:if>
