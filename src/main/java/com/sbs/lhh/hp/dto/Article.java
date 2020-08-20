@@ -44,4 +44,8 @@ public class Article {
 	public String getDetailLink(String boardCode) {
 		return "/article/" + boardCode + "-detail?id=" + id;
 	}
+	
+	public String getBodyForXTemplate() {
+		return body.replaceAll("(?i)script", "<!--REPLACE:script-->");
+	}
 }

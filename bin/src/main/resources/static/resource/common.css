@@ -175,13 +175,10 @@ label[for] {
 	padding: 10px;
 }
 
-.table-box td {
+.table-box td, .table-box select {
 	padding: 10px;
 }
 
-.outer-box {
-	padding-bottom: 30px;
-}
 body {
 	margin-bottom: 20px;
 }
@@ -193,8 +190,12 @@ body {
 	color: white;
 }
 
+.header-top-box>.header-top > ul > li{
+	margin:auto;
+}
+
 .header-top-box>.header-top > ul > li > a {
-	padding: 50px 20px;
+	padding: 30px 20px;
 	font-size: 1.5rem;
 	white-space:nowrap;
 	text-align:center;
@@ -224,3 +225,44 @@ h1, h2 {
 
 
 /* findId */
+
+/* organWrite (기관 등록) */
+.organWrite-form-box > .table-box input {
+	width: 300px;
+}
+
+.table-box select {
+	width: 320px;
+}
+
+/* list */
+.article-table-box, .article-detail-box {
+	margin-bottom: 10px;
+	display: block;
+	overflow-x: auto;
+	width: 100%;
+}
+
+.article-table-box > table, .article-detail-box > table {
+	border-collapse: collapse;
+	border-top: 3px solid #4BAF4B;
+	width: 100%;
+	min-width: 500px;
+	text-align: center;
+}
+
+.article-table-box tr, .article-detail-box tr {
+	height: 50px;
+	font-size: 1.2rem;
+}
+
+.article-table-box > table th, .article-detail-box > table th {
+	color: black;
+	background: #f0f6f9;
+	margin: 10px 0px;
+	width: 33.3333%;
+	font-size: 1.3rem;
+}
+
+/* detail */
+

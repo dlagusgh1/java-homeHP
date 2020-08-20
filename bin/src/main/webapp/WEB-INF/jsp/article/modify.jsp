@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- JSTL -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- JSTL 데이터 포맷 -->
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="pageTitle" value="${board.name} 게시물 수정" />
+<c:set var="pageTitle" value="${board.name} 게시물 상세내용" />
 <%@ include file="../part/head.jspf"%>
-
+	
 <h1 class="con flex-jc-c">게시물 수정</h1>
 
 <script>
@@ -41,12 +38,12 @@
 	}
 </script>
 
-<form method="POST" class="table-box con" action="${board.code}-doModify" onsubmit="ArticleModifyForm__submit(this); return false;">
+<form class="table-box con" method="POST" action="${board.code}-doModify" onsubmit="ArticleModifyForm__submit(this); return false;">
 	<input type="hidden" name="redirectUri" value="/article/${board.code}-detail?id=${article.id}" /> 
 	<input type="hidden" name="id" value="${article.id}"/>
 	<table>
 	   <colgroup>
-            <col class="table-first-col" width="250">
+            <col class="table-first-col">
         </colgroup>
 		<tbody>
 			<tr>
@@ -61,7 +58,8 @@
 				<th>제목</th>
 				<td>
 					<div class="form-control-box">
-						<input type="text" value="${article.title}" placeholder="제목을 입력해주세요." name="title" maxlength="100"/>
+						<input type="text" value="${article.title}" name="title"
+							placeholder="제목을 입력해주세요." />
 					</div>
 				</td>
 			</tr>
@@ -69,19 +67,16 @@
 				<th>내용</th>
 				<td>
 					<div class="form-control-box">
-						<textarea placeholder="내용을 입력해주세요." name="body" >${article.body}</textarea>
+						<textarea name="body" placeholder="내용을 입력해주세요.">${article.body}</textarea>
 					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>수정</th>
-				<td>
-					<button class="btn" type="submit">수정</button> 
-					<a class="btn" href="${listUrl}">리스트</a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
+	<div class="btn-box margin-top-20">
+		<button type="submit" class="btn">수정</button>
+		<a class="btn" href="${listUrl}">리스트</a>
+	</div>
 </form>
 	
 <%@ include file="../part/foot.jspf"%>

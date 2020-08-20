@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<c:set var="pageTitle" value="병원/약국 24시/주말" />
 <%@ include file="../part/head.jspf"%>
 
 <h1 class="con flex-jc-c">우리동네 24시 / 주말 운영 병원, 약국 찾기</h1>
@@ -16,7 +17,6 @@
 	<ul>
 		<li>- 병원 / 약국</li>
 		<li>- 응급처치</li>
-		<li>- 정보변경</li>
 		<li>- 문의</li>
 	</ul>
 </div>

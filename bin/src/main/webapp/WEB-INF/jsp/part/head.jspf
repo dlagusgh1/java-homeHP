@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>동네 병원/약국(24시/주말)</title>
+<title>${logoText}-${pageTitle}</title>
 
 <!-- 모바일에서 사이트가 PC에서의 픽셀크기 기준으로 작동하게 하기(반응형 하려면 필요) -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,28 +29,34 @@
 <body>
 
 <!-- PC -->
-<div class="outer-box">
-	<div class="header-top-box con flex-jc-c">
-		<nav class="header-top">	
-			<ul class="flex">
-				<li><a href="/home/main"><img src="/resource/img/logo3W.png" alt="" style="height:80px; margin-right: 20px;"/></a></li>
-				<li><a href="/home/main">홈</a></li>
-				<li><a href="/article/hospital">병원 찾기</a></li>
-				<li><a href="">약국 찾기</a></li>	
-				<li><a href="">응급 처치</a></li>			
-				<c:if test="${isLogined == false}">
-					<li><a href="/member/join">회원 가입</a></li>
-					<li><a href="/member/login">로그인</a></li>
-				</c:if>
-				<c:if test="${isLogined}">
-					<li><a href="/member/doLogout">로그아웃</a></li>
-					<li><a href="/member/myPage">마이페이지</a></li>
-				</c:if>	
-				<li><a href="">문의</a></li>
-				<c:if test="${isLogined}">
-					<li><a href="/member/myPage" style="color: blue;">${loginedMember.organName} 님</a></li>
-				</c:if>
-			</ul>
-		</nav>
-	</div>
+<div class="header-top-box con flex-jc-c">
+	<nav class="header-top">	
+		<ul class="flex">
+			<li><a href="/home/main" style="padding:0;">
+					<img src="/resource/img/logo3W.png" style="height:80px; margin-right: 20px;"/>
+				</a>
+			</li>
+			<li><a href="/home/main">홈</a></li>
+			<li><a href="/article/notice-list">공지</a></li>
+			<li><a href="/article/free-list">자유</a></li>
+			<li><a href="/article/kakaoMap">병원/약국 찾기</a></li>	
+			<li><a href="">응급 처치</a></li>			
+			<c:if test="${isLogined == false}">
+				<li><a href="/member/join">회원 가입</a></li>
+				<li><a href="/member/login">로그인</a></li>
+			</c:if>
+			<c:if test="${isLogined}">
+				<li><a href="/member/myPage">내정보</a></li>
+				<li><a href="/article/organWrite">정보등록</a></li>
+				<li><a href="/member/doLogout">로그아웃</a></li>
+			</c:if>	
+		</ul>
+	</nav>
 </div>
+
+<!-- 로그인 대상 표시 -->
+<c:if test="${isLogined}">
+	<div class="con flex-jc-end">
+			<div><a href="/member/myPage" style="color: blue; font-weight:bold;">${loginedMember.organName}</a> 님</div>	
+	</div>
+</c:if>

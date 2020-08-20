@@ -5,7 +5,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: dlagusgh1@gmail.com
-    password:
+    password: 
     properties:
       mail:
         smtp:
@@ -36,11 +36,11 @@ server:
     include-message: always
     include-binding-errors: always
 custom:
-  siteName: 우리동네 병원/약국(24시/주말)
+  siteName: 우리동네
   siteMainUri: https://homeHP.com/
-  logoText: 우리동네 병원/약국(24시/주말)
+  logoText: 우리동네
   emailFrom: no-reply@homeHP.com
-  emailFromName: 우리동네 병원/약국(24시/주말)
+  emailFromName: 우리동네 병원/약국
   
 ---
 
