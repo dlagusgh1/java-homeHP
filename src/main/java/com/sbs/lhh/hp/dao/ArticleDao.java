@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.sbs.lhh.hp.dto.AdCateItem;
+import com.sbs.lhh.hp.dto.Article;
+import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.dto.CateItem;
 
 @Mapper
@@ -16,4 +19,16 @@ public interface ArticleDao {
 	void organWrite(Map<String, Object> param);
 
 	List<AdCateItem> getAdCateItem();
+
+	Board getBoardByCode(String boardCode);
+
+	List<Article> getForPrintArticles();
+
+	Article getForPrintArticleById(@Param("id") int id);
+
+	Article getArticleById(@Param("id") int id);
+
+	void modify(Map<String, Object> param);
+
+	void delete(Map<String, Object> param);
 }

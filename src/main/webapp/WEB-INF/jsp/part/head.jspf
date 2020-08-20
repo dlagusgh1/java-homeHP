@@ -34,7 +34,8 @@
 		<ul class="flex">
 			<li><a href="/home/main"><img src="/resource/img/logo3W.png" alt="" style="height:80px; margin-right: 20px;"/></a></li>
 			<li><a href="/home/main">홈</a></li>
-			<li><a href="">공지사항</a></li>
+			<li><a href="/article/notice-list">공지</a></li>
+			<li><a href="/article/free-list">자유</a></li>
 			<li><a href="/article/hospital">병원/약국 찾기</a></li>	
 			<li><a href="">응급 처치</a></li>			
 			<c:if test="${isLogined == false}">
