@@ -10,21 +10,11 @@
 
 <h1 class="con flex-jc-c">${board.name} 게시물 작성</h1>
 
-
 <script>
 	var ArticleWriteForm__submitDone = false;
 	function ArticleWriteForm__submit(form) {
 		if (ArticleWriteForm__submitDone) {
 			alert('처리중입니다.');
-			return;
-		}
-
-		form.boardNumber.value = form.boardNumber.value.trim();
-
-		if (form.boardNumber.value.length == 0) {
-			form.boardNumber.focus();
-			alert('게시판을 선택해주세요.');
-
 			return;
 		}
 		
@@ -57,18 +47,6 @@
             <col class="table-first-col" width="250">
         </colgroup>
 		<tbody>
-			<tr>
-				<th>게시판 구분</th>
-				<td>
-					<div class="form-control-box">
-						<select name="boardNumber">
-							<c:forEach items="${boards}" var="boardlist">
-								<option id="organNumber" value="${boardlist.id}">${boardlist.name}</option>
-							</c:forEach>
-						</select>
-					</div>
-				</td>
-			</tr>
 			<tr>
 				<th>제목</th>
 				<td>
