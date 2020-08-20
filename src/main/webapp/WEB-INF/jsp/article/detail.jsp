@@ -7,7 +7,7 @@
 
 <h1 class="con flex-jc-c">${board.name} 게시물 상세내용</h1>
 	
-<div class="article-detail-box table-box con">
+<div class="article-detail-box con">
 	<table>
 		<colgroup>
 			<col class="table-first-col">

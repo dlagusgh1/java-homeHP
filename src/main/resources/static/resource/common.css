@@ -222,7 +222,7 @@ h1, h2 {
 
 /* findId */
 
-/* write (기관 등록) */
+/* organWrite (기관 등록) */
 .organWrite-form-box > .table-box input {
 	width: 300px;
 }
@@ -230,3 +230,35 @@ h1, h2 {
 .table-box select {
 	width: 320px;
 }
+
+/* list */
+.article-table-box, .article-detail-box {
+	margin-bottom: 10px;
+	display: block;
+	overflow-x: auto;
+	width: 100%;
+}
+
+.article-table-box > table, .article-detail-box > table {
+	border-collapse: collapse;
+	border-top: 3px solid #4BAF4B;
+	width: 100%;
+	min-width: 500px;
+	text-align: center;
+}
+
+.article-table-box tr, .article-detail-box tr {
+	height: 50px;
+	font-size: 1.2rem;
+}
+
+.article-table-box > table th, .article-detail-box > table th {
+	color: black;
+	background: #f0f6f9;
+	margin: 10px 0px;
+	width: 33.3333%;
+	font-size: 1.3rem;
+}
+
+/* detail */
+

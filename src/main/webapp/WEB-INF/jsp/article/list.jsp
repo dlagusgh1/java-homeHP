@@ -7,28 +7,34 @@
 	
 <h1 class="con flex-jc-c">${board.name} 게시물 리스트</h1>
 
-<div class="table-box con visible-on-md-up">
+<!-- 
+	boardId
+	1번 : 자유 게시판
+	2번 : 공지 게시판
+ -->
+<div class="article-table-box con visible-on-md-up">
 	<table>
 		<colgroup>
-			<col width="100" />
-			<col width="200" />
+			<col class="table-first-col">
 		</colgroup>
 		<thead>
 			<tr>
 				<th>번호</th>
-				<th>날짜</th>
 				<th>제목</th>
+				<th>날짜</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${articles}" var="article">
-				<tr>
-					<td>${article.id}</td>
-					<td>${article.regDate}</td>
-					<td>
-						<a href="${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
-					</td>
-				</tr>
+				<c:if test="${board.id == article.boardId}">
+					<tr>
+						<td>${article.id}</td>
+						<td>
+							<a href="${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
+						</td>
+						<td>${article.regDate}</td>
+					</tr>
+				</c:if>
 			</c:forEach>
 		</tbody>
 	</table>
