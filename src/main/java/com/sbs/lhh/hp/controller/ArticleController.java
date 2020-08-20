@@ -97,6 +97,42 @@ public class ArticleController {
 		return "article/detail";
 	}
 	
+	// 게시물 작성 폼
+	@RequestMapping("/article/{boardCode}-write")
+	public String showWrite(@PathVariable("boardCode") String boardCode, Model model, String listUrl) {
+		if ( listUrl == null ) {
+			listUrl = "./" + boardCode + "-list";
+		}
+		model.addAttribute("listUrl", listUrl);
+		
+		Board board = articleService.getBoardByCode(boardCode);
+		model.addAttribute("board", board);
+		
+		List<Board> boards = articleService.getBoards();
+		
+		model.addAttribute("boards", boards);
+		
+		return "article/write";
+	}
+	
+	// 게시물 작성 기능
+	@RequestMapping("/article/{boardCode}-doWrite")
+	public String doWrite(@RequestParam Map<String, Object> param, HttpServletRequest req, @PathVariable("boardCode") String boardCode, Model model) {
+		Board board = articleService.getBoardByCode(boardCode);
+		model.addAttribute("board", board);
+		
+		Map<String, Object> newParam = Util.getNewMapOf(param, "title", "body", "fileIdsStr");
+		int loginedMemberId = (int)req.getAttribute("loginedMemberId");
+		newParam.put("boardId", board.getId());
+		newParam.put("memberId", loginedMemberId);
+		int newArticleId = articleService.write(newParam);
+		
+		String redirectUri = (String) param.get("redirectUri");
+		redirectUri = redirectUri.replace("#id", newArticleId + "");
+
+		return "redirect:" + redirectUri;
+	}
+	
 	// 게시물 수정 폼
 	@RequestMapping("/article/{boardCode}-modify")
 	public String showModify(Model model, @RequestParam Map<String, Object> param, HttpServletRequest req, @PathVariable("boardCode") String boardCode, String listUrl) {

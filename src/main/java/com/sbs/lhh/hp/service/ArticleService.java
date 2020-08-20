@@ -35,6 +35,11 @@ public class ArticleService {
 		return articleDao.getAdCateItem();
 	}
 
+	// board 목록 가져오기
+	public List<Board> getBoards() {
+		return articleDao.getBoards();
+	}
+	
 	// 코드에 맞는 게시판 가져오기(공지/자유)
 	public Board getBoardByCode(String boardCode) {
 		return articleDao.getBoardByCode(boardCode);
@@ -103,19 +108,25 @@ public class ArticleService {
 		Util.putExtraVal(article, "actorCanDelete", actorCanDelete(actor, article));
 		Util.putExtraVal(article, "actorCanModify", actorCanModify(actor, article));
 	}
+	
+
+	// 게시물 작성
+	public int write(Map<String, Object> param) {
+		articleDao.write(param);
+		
+		int id = Util.getAsInt(param.get("id"));
+
+		return id;
+	}
 
 	// 게시물 수정 기능
 	public void modify(Map<String, Object> param) {
 		articleDao.modify(param);
-		
-		int id = Util.getAsInt(param.get("id"));
 	}
 
 	// 게시물 삭제 기능
 	public void delete(Map<String, Object> param) {
 		articleDao.delete(param);
-		
-		int id = Util.getAsInt(param.get("id"));
 	}
 	
 }

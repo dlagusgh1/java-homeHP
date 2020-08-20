@@ -60,6 +60,18 @@
 		WHERE id = #{id}
 	</select>
 	
+	<insert id="write" useGeneratedKeys="true" keyProperty="id">
+		INSERT
+		INTO article
+		SET regDate = NOW(),
+		updateDate = NOW(),
+		title = #{title},
+		body = #{body},
+		memberId = #{memberId},
+		boardId = #{boardId},
+		displayStatus = 1
+	</insert>
+	
 	<update id="modify">
 		UPDATE article
 		<set>
@@ -83,6 +95,11 @@
 		</set>
 		WHERE id = #{id}
 	</update>
+	
+	<select id="getBoards" resultType="Board">
+		SELECT *
+		FROM `board`
+	</select>
 	
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
