@@ -3,6 +3,8 @@ package com.sbs.lhh.hp.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,9 +43,9 @@ public class ArticleController {
 	}
 	// 기관(병원/약국) 추가 기능
 	@RequestMapping("/article/doOrganWrite")
-	public String doOrganWrite(@RequestParam Map<String, Object> param, Model model, String redirectUri) {
+	public String doOrganWrite(@RequestParam Map<String, Object> param, Model model, String redirectUri, HttpServletRequest request) {
 		
-		System.out.println("기관 등록 확인 : " + param);
+		param.put("memberId", request.getAttribute("loginedMemberId"));
 		
 		articleService.organWrite(param);
 		

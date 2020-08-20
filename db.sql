@@ -91,5 +91,6 @@ CREATE TABLE `organ` (
     `organTel` CHAR(20) NOT NULL,
     `organTime` CHAR(100) NOT NULL,
     `organWeekend` CHAR(100) NOT NULL,
-    `organRemarks` CHAR(100) NOT NULL
+    `organRemarks` CHAR(100) NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL 
 );

@@ -29,28 +29,30 @@
 <body>
 
 <!-- PC -->
-<div class="outer-box">
-	<div class="header-top-box con flex-jc-c">
-		<nav class="header-top">	
-			<ul class="flex">
-				<li><a href="/home/main"><img src="/resource/img/logo3W.png" alt="" style="height:80px; margin-right: 20px;"/></a></li>
-				<li><a href="/home/main">홈</a></li>
-				<li><a href="/article/hospital">병원 찾기</a></li>
-				<li><a href="">약국 찾기</a></li>	
-				<li><a href="">응급 처치</a></li>			
-				<c:if test="${isLogined == false}">
-					<li><a href="/member/join">회원 가입</a></li>
-					<li><a href="/member/login">로그인</a></li>
-				</c:if>
-				<c:if test="${isLogined}">
-					<li><a href="/member/myPage">내정보</a></li>
-					<li><a href="/article/organWrite">정보등록</a></li>
-					<li><a href="/member/doLogout">로그아웃</a></li>
-				</c:if>	
-				<c:if test="${isLogined}">
-					<li><a href="/member/myPage" style="color: blue;">${loginedMember.organName} 님</a></li>
-				</c:if>
-			</ul>
-		</nav>
-	</div>
+<div class="header-top-box con flex-jc-c">
+	<nav class="header-top">	
+		<ul class="flex">
+			<li><a href="/home/main"><img src="/resource/img/logo3W.png" alt="" style="height:80px; margin-right: 20px;"/></a></li>
+			<li><a href="/home/main">홈</a></li>
+			<li><a href="">공지사항</a></li>
+			<li><a href="/article/hospital">병원/약국 찾기</a></li>	
+			<li><a href="">응급 처치</a></li>			
+			<c:if test="${isLogined == false}">
+				<li><a href="/member/join">회원 가입</a></li>
+				<li><a href="/member/login">로그인</a></li>
+			</c:if>
+			<c:if test="${isLogined}">
+				<li><a href="/member/myPage">내정보</a></li>
+				<li><a href="/article/organWrite">정보등록</a></li>
+				<li><a href="/member/doLogout">로그아웃</a></li>
+			</c:if>	
+		</ul>
+	</nav>
 </div>
+
+<!-- 로그인 대상 표시 -->
+<c:if test="${isLogined}">
+	<div class="con flex-jc-end">
+			<div><a href="/member/myPage" style="color: blue; font-weight:bold;">${loginedMember.organName}</a> 님</div>	
+	</div>
+</c:if>

@@ -26,7 +26,8 @@
 		`organTel` = #{organTel},
 		`organTime` = #{organTime},
 		`organWeekend` = #{organWeekend},
-		`organRemarks` = #{organRemarks}
+		`organRemarks` = #{organRemarks},
+		`memberId` = #{memberId}
 	</insert>
 		
 </mapper>
