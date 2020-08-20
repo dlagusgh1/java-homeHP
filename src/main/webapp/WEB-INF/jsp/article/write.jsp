@@ -29,14 +29,19 @@
 			return;
 		}
 
-		form.body.value = form.body.value.trim();
-
-		if (form.body.value.length == 0) {
-			form.body.focus();
+		var editor = $(form).find('.toast-editor').data('data-toast-editor');
+		
+		var body = editor.getMarkdown();
+		
+		body = body.trim();
+		if ( body.length == 0 ) {
 			alert('내용을 입력해주세요.');
-
+			editor.focus();
 			return;
 		}	
+
+		form.body.value = body;
+		
 		form.submit();
 		ArticleWriteForm__submitDone = true;					
 	}
