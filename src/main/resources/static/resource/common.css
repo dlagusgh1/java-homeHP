@@ -172,11 +172,17 @@ label[for] {
 }
 
 .table-box th, .table-box input {
-	padding: 10px;
+	padding: 10px 0;
+	text-indent: 1rem;
 }
 
-.table-box td, .table-box select {
-	padding: 10px;
+.table-box td {
+	padding: 10px 0;
+	text-indent: 1rem;
+}
+.table-box select{
+	padding: 10px 0;
+	text-indent: 1rem;
 }
 
 body {
@@ -232,7 +238,7 @@ h1, h2 {
 }
 
 .table-box select {
-	width: 320px;
+	width: 300px;
 }
 
 /* write (게시물 작성) */
@@ -298,5 +304,5 @@ h1, h2 {
 	border-collapse: collapse;
 	display: block;
 	width: 100%;
-	height: 200px;
+	height: 400px;
 }
