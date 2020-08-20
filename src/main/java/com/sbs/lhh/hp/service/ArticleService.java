@@ -52,6 +52,14 @@ public class ArticleService {
 		return articles;
 	}
 	
+	// 게시물 리스트(자유) 출력제한
+	public List<Article> getForPrintBoarCodeArticles(String boardCode, int limit) {
+		List<Article> articles = articleDao.getForPrintBoarCodeArticles(boardCode, limit);
+
+		return articles;
+	}
+
+	
 	// 게시물 상세보기
 	public Article getForPrintArticleById(Member actor, int id) {
 		Article article = articleDao.getForPrintArticleById(id);

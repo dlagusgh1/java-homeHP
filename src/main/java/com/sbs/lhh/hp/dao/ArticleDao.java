@@ -23,6 +23,8 @@ public interface ArticleDao {
 	Board getBoardByCode(String boardCode);
 
 	List<Article> getForPrintArticles();
+	
+	List<Article> getForPrintBoarCodeArticles(String boardCode, int limit);
 
 	Article getForPrintArticleById(@Param("id") int id);
 
@@ -35,4 +37,5 @@ public interface ArticleDao {
 	void delete(Map<String, Object> param);
 	
 	List<Board> getBoards();
+
 }
