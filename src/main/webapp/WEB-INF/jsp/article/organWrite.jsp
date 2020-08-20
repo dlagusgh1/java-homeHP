@@ -33,10 +33,19 @@
 			return;
 		}
 
+		form.orgamLocation.value = form.orgamLocation.value.trim();
+
+		if (form.orgamLocation.value.length == 0) {
+			form.orgamLocation.focus();
+			alert('주소의 좌표를 입력해주세요.');
+
+			return;
+		}
+
 		form.organAddress.value = form.organAddress.value.trim();
 
-		if (form.organCode.value.length == 0) {
-			form.organCode.focus();
+		if (form.organAddress.value.length == 0) {
+			form.organAddress.focus();
 			alert('기관 주소를 입력해주세요.');
 
 			return;
@@ -134,6 +143,14 @@
 					<td>
 						<div class="form-control-box">
 							<input type="text" placeholder="기관명을 입력해주세요." name="organName" maxlength="30" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>좌표</th>
+					<td>
+						<div class="form-control-box">
+							<input type="text" placeholder="좌표를 입력해주세요." name="orgamLocation" maxlength="30" />
 						</div>
 					</td>
 				</tr>

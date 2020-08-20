@@ -27,6 +27,7 @@
 		`organTime` = #{organTime},
 		`organWeekend` = #{organWeekend},
 		`organRemarks` = #{organRemarks},
+		`organLocation` = #{organLocation},
 		`memberId` = #{memberId}
 	</insert>
 	
