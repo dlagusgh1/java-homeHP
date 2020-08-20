@@ -33,15 +33,13 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td>${article.forPrintBody}</td>
+				<td class="toast-editor-box">
+					<script type="text/x-template">${article.bodyForXTemplate}</script>
+					<div class="toast-editor toast-editor-viewer"></div>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-</div>
-
-<div class="article-detail-box con flex">
-	<script type="text/x-template">${article.bodyForXTemplate}</script>
-	<div class="toast-editor toast-editor-viewer con flex-jc-c"></div>
 </div>
 
 <div class="btn-box con margin-top-20">
