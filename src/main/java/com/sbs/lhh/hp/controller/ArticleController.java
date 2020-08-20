@@ -26,15 +26,15 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 	
-	// 회원가입
-	@RequestMapping("/article/hospital")
+	// 카카오맵
+	@RequestMapping("/article/kakaoMap")
 	public String join(Model model) {
 		
 		List<AdCateItem> adCateItems = articleService.getAdCateItem();
 		
 		model.addAttribute("adCateItems", adCateItems);
 		
-		return "article/hospital";
+		return "article/kakaoMap";
 	}
 	
 	// 기관(병원/약국) 추가 폼

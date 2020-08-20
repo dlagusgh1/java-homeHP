@@ -39,7 +39,7 @@
 			<li><a href="/home/main">홈</a></li>
 			<li><a href="/article/notice-list">공지</a></li>
 			<li><a href="/article/free-list">자유</a></li>
-			<li><a href="/article/hospital">병원/약국 찾기</a></li>	
+			<li><a href="/article/kakaoMap">병원/약국 찾기</a></li>	
 			<li><a href="">응급 처치</a></li>			
 			<c:if test="${isLogined == false}">
 				<li><a href="/member/join">회원 가입</a></li>
