@@ -8,6 +8,8 @@
 <c:set var="pageTitle" value="${board.name} 게시물 작성" />
 <%@ include file="../part/head.jspf"%>
 
+<!-- 토스트 UI -->
+<%@ include file="/WEB-INF/jsp/part/toastUiEditor.jspf"%>
 <h1 class="con flex-jc-c">${board.name} 게시물 작성</h1>
 
 <script>
@@ -40,7 +42,7 @@
 	}
 </script>
 
-<form method="POST" class="table-box con" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
+<form method="POST" class="table-box write-table-box con" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
 	<input type="hidden" name="redirectUri" value="/article/${board.code}-detail?id=#id">
 	<table>
 		<colgroup>
@@ -58,8 +60,10 @@
 			<tr>
 				<th>내용</th>
 				<td>
-					<div class="form-control-box">
-						<textarea placeholder="내용을 입력해주세요." name="body" maxlength="2000"></textarea>
+					<div class="form-control-box">		
+						<input name="body" type="hidden">			
+						<script type="text/x-template"></script>
+						<div class="toast-editor"></div>
 					</div>
 				</td>
 			</tr>

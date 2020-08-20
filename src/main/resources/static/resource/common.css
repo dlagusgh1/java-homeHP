@@ -235,6 +235,22 @@ h1, h2 {
 	width: 320px;
 }
 
+/* write (게시물 작성) */
+.write-table-box {
+	width: 100%;
+	padding: 0;
+}
+.write-table-box td {
+	width: 90%;
+}
+.write-table-box input {
+	width: 100%;
+	padding: 10px 0;
+}
+.write-table-box .toast-editor {
+	background-color: white;
+}
+
 /* list */
 .article-table-box, .article-detail-box {
 	margin-bottom: 10px;
