@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>동네 병원/약국(24시/주말)</title>
+<title>${logoText}-${pageTitle}</title>
 
 <!-- 모바일에서 사이트가 PC에서의 픽셀크기 기준으로 작동하게 하기(반응형 하려면 필요) -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +32,10 @@
 <div class="header-top-box con flex-jc-c">
 	<nav class="header-top">	
 		<ul class="flex">
-			<li><a href="/home/main"><img src="/resource/img/logo3W.png" alt="" style="height:80px; margin-right: 20px;"/></a></li>
+			<li><a href="/home/main" style="padding:0;">
+					<img src="/resource/img/logo3W.png" style="height:80px; margin-right: 20px;"/>
+				</a>
+			</li>
 			<li><a href="/home/main">홈</a></li>
 			<li><a href="/article/notice-list">공지</a></li>
 			<li><a href="/article/free-list">자유</a></li>

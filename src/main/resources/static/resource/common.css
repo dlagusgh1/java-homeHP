@@ -190,8 +190,12 @@ body {
 	color: white;
 }
 
+.header-top-box>.header-top > ul > li{
+	margin:auto;
+}
+
 .header-top-box>.header-top > ul > li > a {
-	padding: 50px 20px;
+	padding: 30px 20px;
 	font-size: 1.5rem;
 	white-space:nowrap;
 	text-align:center;
