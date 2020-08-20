@@ -169,20 +169,47 @@ label[for] {
 	text-shadow: 1px 1px 20px #000000;
 	text-decoration: none;
 	margin-right: 10px;
+	text-align: center;
 }
 
-.table-box th, .table-box input {
+.table-box {
+	background-color: #4BAF4B; 
+	color:white; 
+	width: 40%; 
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.table-box .form-control-box {
+	width: 100%;
+}
+
+.table-box tr {
+	width: 100%;	
+}
+
+.table-box th {
 	padding: 10px 0;
 	text-indent: 1rem;
+	width: 30%;
 }
 
 .table-box td {
 	padding: 10px 0;
 	text-indent: 1rem;
+	width: 70%;
 }
+
+.table-box input {
+	padding: 10px 0;
+	text-indent: 1rem;
+	width: 100%;
+}
+
 .table-box select{
 	padding: 10px 0;
 	text-indent: 1rem;
+	width: 95%;
 }
 
 body {
@@ -215,15 +242,11 @@ h1, h2 {
 	margin-bottom: 20px;
 }
 
-/* join, login, findId 테이블 관련 */
-.table-box {
-	background-color: #4BAF4B; 
-	color:white; 
-	width: 500px; 
-	padding: 20px;
-	margin-bottom: 20px;
+.btn-info {
+	display: flex;
+	justify-content: center;
+	margin: auto;
 }
-
 /* join */
 
 
@@ -237,21 +260,22 @@ h1, h2 {
 	width: 300px;
 }
 
-.table-box select {
-	width: 300px;
-}
-
 /* write (게시물 작성) */
 .write-table-box, .modify-table-box {
+	background-color: #4BAF4B; 
+	color:white; 
+	margin-bottom: 20px;
 	width: 100%;
 	padding: 10px 0;
 }
 .write-table-box td, .modify-table-box td {
+	padding: 10px 0;
+	text-indent: 1rem;
 	width: 90%;
 }
 .write-table-box input, .modify-table-box input {
 	width: 100%;
-	padding: 10px 0;
+	padding: 10px 0;	
 	text-indent: 1rem;
 }
 .write-table-box .toast-editor, .modify-table-box .toast-editor {

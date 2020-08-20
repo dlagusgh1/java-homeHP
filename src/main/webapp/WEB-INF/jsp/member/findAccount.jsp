@@ -73,7 +73,7 @@
 				</tr>
 				<tr>
 					<th>찾기</th>
-					<td class="flex-jc-c">
+					<td class="flex-jc-c" style="margin: auto;">
 						<button class="btn" type="submit">아이디 찾기</button>
 						<button class="btn" onclick="history.back();" type="button">취소</button>
 					</td>
@@ -166,7 +166,7 @@
 				</tr>
 				<tr>
 					<th>찾기</th>
-					<td class="flex-jc-c">
+					<td class="btn-info">
 						<button class="btn" type="submit">비밀번호 찾기</button>
 						<button class="btn" onclick="history.back();" type="button">취소</button>
 					</td>

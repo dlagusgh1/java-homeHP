@@ -207,7 +207,7 @@
 				</tr>
 				<tr>
 					<th>등록하기</th>
-					<td class="flex-jc-c">
+					<td class="btn-info">
 						<button class="btn" type="submit">등록</button>
 						<button class="btn" type="button" onclick="history.back();">취소</button>
 					</td>

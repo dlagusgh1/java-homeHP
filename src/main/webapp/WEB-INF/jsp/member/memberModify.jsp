@@ -135,7 +135,7 @@
 				</tr>
 				<tr>
 					<th>회원정보 변경</th>
-					<td class="flex-jc-c">
+					<td class="btn-info">
 						<button class="btn" type="submit">회원정보 변경</button>
 						<button class="btn btn-info" type="button" onclick="history.back();">취소</button>
 					</td>

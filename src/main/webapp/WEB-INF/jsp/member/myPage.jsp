@@ -68,7 +68,7 @@
 				</tr>
 				<tr>
 					<th>회원정보 변경</th>
-					<td class="flex-jc-c">
+					<td class="btn-info">
 						<button class="btn" type="button"><a href="memberModify">회원정보 변경</a></button>
 						<button class="btn" type="button"><a href="memberModifyPw">비밀번호 변경</a></button>
 					</td>

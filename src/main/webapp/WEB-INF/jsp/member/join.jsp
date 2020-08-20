@@ -138,8 +138,8 @@
 	}
 </script>
 
-<div class="join-form-box con flex-jc-c">
-	<form method="POST" class="table-box con" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
+
+	<form method="POST" class="table-box con flex-jc-c" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
 		<input type="hidden" name="redirectUri" value="/member/login">
 		<input type="hidden" name="loginPwReal">
 		<table>
@@ -213,7 +213,7 @@
 				</tr>
 				<tr>
 					<th>회원가입</th>
-					<td class="flex-jc-c">
+					<td class="btn-info">
 						<button class="btn btn-primary" type="submit">가입</button>
 						<button class="btn btn-info" type="button" onclick="history.back();">취소</button>
 					</td>
@@ -221,6 +221,6 @@
 			</tbody>
 		</table>
 	</form>
-</div>
+
 
 <%@ include file="../part/foot.jspf"%>

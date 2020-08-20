@@ -50,7 +50,7 @@
 	}
 </script>
 
-<form method="POST" class="table-box modify-table-box con" action="${board.code}-doModify" onsubmit="ArticleModifyForm__submit(this); return false;">
+<form method="POST" class="modify-table-box con" action="${board.code}-doModify" onsubmit="ArticleModifyForm__submit(this); return false;">
 	<input type="hidden" name="redirectUri" value="/article/${board.code}-detail?id=${article.id}" /> 
 	<input type="hidden" name="id" value="${article.id}"/>
 	<table>
@@ -69,7 +69,7 @@
 			<tr>
 				<th>제목</th>
 				<td>
-					<div class="form-control-box">
+					<div class="form-control">
 						<input type="text" value="${article.title}" placeholder="제목을 입력해주세요." name="title" maxlength="100"/>
 					</div>
 				</td>
@@ -77,7 +77,7 @@
 			<tr>
 				<th>내용</th>
 				<td>
-					<div class="form-control-box">
+					<div class="form-control">
 						<input name="body" type="hidden">
 						<script type="text/x-template">${article.bodyForXTemplate}</script>
 						<div class="toast-editor"></div>
@@ -86,7 +86,7 @@
 			</tr>
 			<tr>
 				<th>수정</th>
-				<td>
+				<td class="btn-info">
 					<button class="btn" type="submit">수정</button> 
 					<a class="btn" href="${listUrl}">리스트</a>
 				</td>
