@@ -34,7 +34,7 @@
 						<tr>
 							<td>${article.id}</td>
 							<td>
-								<a href="${article.getDetailLink(nBoard.code)}">${article.forPrintTitle}</a>
+								<a href="${article.getDetailLink('notice')}">${article.forPrintTitle}</a>
 							</td>
 							<td>${article.regDate}</td>
 						</tr>
@@ -60,7 +60,7 @@
 						<tr>
 							<td>${article.id}</td>
 							<td>
-								<a href="${article.getDetailLink(fBoard.code)}">${article.forPrintTitle}</a>
+								<a href="${article.getDetailLink('free')}">${article.forPrintTitle}</a>
 							</td>
 							<td>${article.regDate}</td>
 						</tr>

@@ -295,14 +295,12 @@ h1, h2 {
 	height: 50px;
 	font-size: 1rem;
 	border: 0.5px solid #4BAF4B;
-	width: 100px;
-	overflow: hidden;
-  	text-overflow: ellipsis;
-  	white-space: nowrap;
 }
 .main-article-table-box td {
 	border: 0.5px solid #4BAF4B;
-	
+}
+.article-table-title {
+	width: 60%;
 }
 
 .main-article-table-box > table th {
