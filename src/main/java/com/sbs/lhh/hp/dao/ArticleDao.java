@@ -10,6 +10,7 @@ import com.sbs.lhh.hp.dto.AdCateItem;
 import com.sbs.lhh.hp.dto.Article;
 import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.dto.CateItem;
+import com.sbs.lhh.hp.dto.Organ;
 
 @Mapper
 public interface ArticleDao {
@@ -37,5 +38,7 @@ public interface ArticleDao {
 	void delete(Map<String, Object> param);
 	
 	List<Board> getBoards();
+
+	List<Organ> getOrgan();
 
 }

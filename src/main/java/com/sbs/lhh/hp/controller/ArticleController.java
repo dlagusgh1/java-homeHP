@@ -17,6 +17,7 @@ import com.sbs.lhh.hp.dto.Article;
 import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.dto.CateItem;
 import com.sbs.lhh.hp.dto.Member;
+import com.sbs.lhh.hp.dto.Organ;
 import com.sbs.lhh.hp.dto.ResultData;
 import com.sbs.lhh.hp.service.ArticleService;
 import com.sbs.lhh.hp.util.Util;
@@ -33,6 +34,10 @@ public class ArticleController {
 		List<AdCateItem> adCateItems = articleService.getAdCateItem();
 		
 		model.addAttribute("adCateItems", adCateItems);
+		
+		List<Organ> organes = articleService.getOrgan();
+		
+		model.addAttribute("organes", organes);
 		
 		return "article/kakaoMap";
 	}

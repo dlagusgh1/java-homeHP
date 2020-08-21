@@ -12,6 +12,7 @@ import com.sbs.lhh.hp.dto.Article;
 import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.dto.CateItem;
 import com.sbs.lhh.hp.dto.Member;
+import com.sbs.lhh.hp.dto.Organ;
 import com.sbs.lhh.hp.dto.ResultData;
 import com.sbs.lhh.hp.util.Util;
 
@@ -33,6 +34,11 @@ public class ArticleService {
 	// 행정주소 카테고리 가져오기
 	public List<AdCateItem> getAdCateItem() {
 		return articleDao.getAdCateItem();
+	}
+	
+	// 기관 정보 가져오기
+	public List<Organ> getOrgan() {
+		return articleDao.getOrgan();
 	}
 
 	// board 목록 가져오기
