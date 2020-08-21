@@ -19,7 +19,7 @@
 		margin-right: 10px;
 	}
 	.kakaoMap-info {
-		width:50%; 
+		width:100%; 
 		height:650px; 
 		overflow:auto; 
 		border: 2px solid green;
@@ -112,6 +112,11 @@
 <!-- 카카오맵 -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
 <script>
+	var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
+	contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+	markers = [], // 마커를 담을 배열입니다
+	currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(36.504171, 127.267834), // 지도의 중심좌표
@@ -121,7 +126,7 @@
     
 	// 지도를 생성한다 
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
-
+	
 	// 마커 클러스터러를 생성합니다 
     var clusterer = new kakao.maps.MarkerClusterer({
         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
@@ -151,7 +156,6 @@
 			[${organ.organLocation}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organName} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
 		</c:forEach>
 		];
-
 
 	// 마커들을 저장할 변수 생성
 	var markers = [];
