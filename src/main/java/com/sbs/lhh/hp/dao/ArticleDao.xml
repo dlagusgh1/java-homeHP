@@ -55,6 +55,7 @@
 		SELECT *
 		FROM article
 		WHERE boardId = #{boardCode}
+		AND displayStatus = 1
 		ORDER BY id DESC
 		LIMIT 0, #{limit}
 	</select>
