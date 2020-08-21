@@ -12,6 +12,23 @@
 <h1 class="con flex-jc-c">병원 찾기</h1>
 
 <style>
+	.kakaoMap {
+		width:100%; 
+		height:650px; 
+		border: 2px solid green; 
+		margin-right: 10px;
+	}
+	.kakaoMap-info {
+		width:50%; 
+		height:650px; 
+		overflow:auto; 
+		border: 2px solid green;
+		text-indent: 1rem;
+	}
+	.administrative-district div {
+		font-weight:bold; 
+		font-size: 1.5rem;
+	}
 	.administrative-district ul {
 		background-color: #4BAF4B;
 		border-radius: 10px;	
@@ -52,7 +69,7 @@
 <!-- 행정구역(동/면) 리스트 -->
 <div class="administrative-district con">
 	<nav>
-		<div style="font-weight:bold; font-size: 1.5rem;">
+		<div>
 			행정구역(동/읍/면)
 		</div>
 	</nav>
@@ -72,18 +89,18 @@
 -->
 <!-- 병원 목록 -->
 <div class="con flex-jc-c">
-	<div class="con" id="map" style="width:100%; height:650px; border: 2px solid green; margin-right: 10px;"></div>
-	<div class="con" style="width:50%; height:650px; overflow:auto; border: 2px solid green;text-indent: 1rem;">
+	<div class="kakaoMap con" id="map"></div>
+	<div class="kakaoMap-info con">
 		<ul>
 			<li>
 				<c:forEach items="${organes}" var="organ">
 					<ul>
-						<li><a href=""  style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
-						<li><a href="">주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
-						<li><a href="">전화 번호 : ${organ.organTel}</a></li>
-						<li><a href="">진료 시간 : ${organ.organTime}</a></li>
-						<li><a href="">주말 운영여부 : ${organ.organWeekend}</a></li>
-						<li><a href="">비고 : ${organ.organRemarks}</a></li>
+						<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
+						<li><a>주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
+						<li><a>전화 번호 : ${organ.organTel}</a></li>
+						<li><a>진료 시간 : ${organ.organTime}</a></li>
+						<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
+						<li><a>비고 : ${organ.organRemarks}</a></li>
 					</ul>		
 					<br>
 				</c:forEach>	
