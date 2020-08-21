@@ -301,8 +301,23 @@ h1, h2 {
 	font-size: 1rem;
 	border: 0.5px solid #4BAF4B;
 }
+
 .main-article-table-box td {
 	border: 0.5px solid #4BAF4B;
+	 
+}
+
+.main-article-table-box td > a {
+	width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	height: 20px;
+	display:block;
+}
+
+.main-article-table-box td > .tdaf {
+	width: 100px;
 }
 
 .main-article-table-box > table th {
@@ -313,7 +328,6 @@ h1, h2 {
 	font-size: 1.3rem;
 	border: 0.5px solid #4BAF4B;
 }
-
 
 /* organWrite (기관 등록) */
 .organWrite-form-box > .table-box input {

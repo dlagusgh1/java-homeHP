@@ -32,11 +32,11 @@
 			<tbody>
 				<c:forEach items="${nArticles}" var="article">
 						<tr>
-							<td>${article.id}</td>
+							<td><a class="tdaf">${article.id}</a></td>
 							<td>
 								<a href="${article.getDetailLink('notice')}">${article.forPrintTitle}</a>
 							</td>
-							<td>${article.regDate}</td>
+							<td><a>${article.regDate}</a></td>
 						</tr>
 				</c:forEach>
 			</tbody>
@@ -58,11 +58,11 @@
 			<tbody>
 				<c:forEach items="${fArticles}" var="article">
 						<tr>
-							<td>${article.id}</td>
+							<td><a class="tdaf">${article.id}</a></td>
 							<td>
 								<a href="${article.getDetailLink('free')}">${article.forPrintTitle}</a>
 							</td>
-							<td>${article.regDate}</td>
+							<td><a>${article.regDate}</a></td>
 						</tr>
 				</c:forEach>
 			</tbody>
