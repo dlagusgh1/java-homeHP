@@ -76,7 +76,7 @@
 				<th>작성</th>
 				<td class="btn-info">
 					<button class="btn" type="submit">작성</button> 
-					<a class="btn" href="${listUrl}" style="margin: 0;">리스트</a>
+					<button class="btn" ><a href="${listUrl}">리스트</a></button>
 				</td>
 			</tr>
 		</tbody>

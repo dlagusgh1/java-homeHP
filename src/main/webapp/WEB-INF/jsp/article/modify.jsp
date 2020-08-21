@@ -88,7 +88,7 @@
 				<th>수정</th>
 				<td class="btn-info">
 					<button class="btn" type="submit">수정</button> 
-					<a class="btn" href="${listUrl}">리스트</a>
+					<button class="btn" ><a href="${listUrl}">리스트</a></button>
 				</td>
 			</tr>
 		</tbody>

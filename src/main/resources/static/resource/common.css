@@ -171,11 +171,14 @@ label[for] {
 	margin-right: 10px;
 	text-align: center;
 }
+.btn a {
+	width: 100px;
+}
 
 .table-box {
 	background-color: #4BAF4B; 
 	color:white; 
-	width: 40%; 
+	width: 35%; 
 	padding: 20px;
 	margin-bottom: 20px;
 }
@@ -203,7 +206,7 @@ label[for] {
 .table-box input {
 	padding: 10px 0;
 	text-indent: 1rem;
-	width: 100%;
+	width: 95%;
 }
 
 .table-box select{
@@ -215,6 +218,7 @@ label[for] {
 body {
 	margin-bottom: 20px;
 }
+
 /* 기본 CSS 끝 */
 
 /* head */
@@ -246,6 +250,7 @@ h1, h2 {
 	display: flex;
 	justify-content: center;
 	margin: auto;
+	width: 100px;
 }
 /* join */
 
@@ -299,9 +304,6 @@ h1, h2 {
 .main-article-table-box td {
 	border: 0.5px solid #4BAF4B;
 }
-.article-table-title {
-	width: 60%;
-}
 
 .main-article-table-box > table th {
 	color: black;
@@ -332,12 +334,17 @@ h1, h2 {
 	width: 90%;
 }
 .write-table-box input, .modify-table-box input {
-	width: 100%;
+	width: 98%;
 	padding: 10px 0;	
 	text-indent: 1rem;
 }
 .write-table-box .toast-editor, .modify-table-box .toast-editor {
 	background-color: white;
+	width: 98%;
+}
+
+.write-table-box .form-control, .modify-table-box .form-control {
+	text-indent: 0;
 }
 
 /* list */
