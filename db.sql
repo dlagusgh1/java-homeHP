@@ -29,8 +29,8 @@ loginPw = SHA2('admin', 256),
 `name` = '관리자',
 `organName` = '관리병원',
 `organCode` = 'a12345',
-`email` = '',
-`phoneNo` = '';
+`email` = 'dlagusgh1@gmail.com',
+`phoneNo` = '010-0000-0000';
 
 # 카테고리 테이블 생성
 DROP TABLE IF EXISTS cateItem;
@@ -92,9 +92,11 @@ CREATE TABLE `organ` (
     `organTime` CHAR(100) NOT NULL,
     `organWeekend` CHAR(100) NOT NULL,
     `organRemarks` CHAR(100) NOT NULL,
-    `orgamLocation` CHAR(100),
+    `organLocation` CHAR(100),
     memberId INT(10) UNSIGNED NOT NULL 
 );
+
+LOAD DATA INFILE  "list.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
 
 # 게시판 테이블 추가
 CREATE TABLE `board` (

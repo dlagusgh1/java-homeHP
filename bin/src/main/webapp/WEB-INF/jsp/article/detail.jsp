@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- JSTL -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- JSTL 데이터 포맷 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="pageTitle" value="${board.name} 게시물 상세내용" />
 <%@ include file="../part/head.jspf"%>
+
+<!-- 토스트 UI -->
+<%@ include file="/WEB-INF/jsp/part/toastUiEditor.jspf"%>
 
 <h1 class="con flex-jc-c">${board.name} 게시물 상세내용</h1>
 	
@@ -27,7 +33,10 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td>${article.forPrintBody}</td>
+				<td class="toast-editor-box">
+					<script type="text/x-template">${article.bodyForXTemplate}</script>
+					<div class="toast-editor toast-editor-viewer"></div>
+				</td>
 			</tr>
 		</tbody>
 	</table>

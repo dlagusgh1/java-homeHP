@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- JSTL -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- JSTL 데이터 포맷 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="pageTitle" value="기관 정보 등록" />
 <%@ include file="../part/head.jspf"%>
-	
+
 <h1 class="con flex-jc-c">기관 정보 등록</h1>
 
 <script>
@@ -204,7 +207,7 @@
 				</tr>
 				<tr>
 					<th>등록하기</th>
-					<td class="flex-jc-c">
+					<td class="btn-info">
 						<button class="btn" type="submit">등록</button>
 						<button class="btn" type="button" onclick="history.back();">취소</button>
 					</td>

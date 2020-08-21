@@ -169,19 +169,56 @@ label[for] {
 	text-shadow: 1px 1px 20px #000000;
 	text-decoration: none;
 	margin-right: 10px;
+	text-align: center;
+}
+.btn a {
+	width: 100px;
 }
 
-.table-box th, .table-box input {
-	padding: 10px;
+.table-box {
+	background-color: #4BAF4B; 
+	color:white; 
+	width: 35%; 
+	padding: 20px;
+	margin-bottom: 20px;
 }
 
-.table-box td, .table-box select {
-	padding: 10px;
+.table-box .form-control-box {
+	width: 100%;
+}
+
+.table-box tr {
+	width: 100%;	
+}
+
+.table-box th {
+	padding: 10px 0;
+	text-indent: 1rem;
+	width: 30%;
+}
+
+.table-box td {
+	padding: 10px 0;
+	text-indent: 1rem;
+	width: 70%;
+}
+
+.table-box input {
+	padding: 10px 0;
+	text-indent: 1rem;
+	width: 95%;
+}
+
+.table-box select{
+	padding: 10px 0;
+	text-indent: 1rem;
+	width: 95%;
 }
 
 body {
 	margin-bottom: 20px;
 }
+
 /* 기본 CSS 끝 */
 
 /* head */
@@ -209,15 +246,12 @@ h1, h2 {
 	margin-bottom: 20px;
 }
 
-/* join, login, findId 테이블 관련 */
-.table-box {
-	background-color: #4BAF4B; 
-	color:white; 
-	width: 500px; 
-	padding: 20px;
-	margin-bottom: 20px;
+.btn-info {
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	width: 100px;
 }
-
 /* join */
 
 
@@ -226,13 +260,105 @@ h1, h2 {
 
 /* findId */
 
+/* main */
+.main-article-box {
+	margin-top: 10px;
+	width:100%;
+}
+.main-img-box {
+	width: 100%;
+}
+.main-img {
+	width:100%; 
+	height: 350px; 
+	background:url("https://cdn.pixabay.com/photo/2020/08/03/09/39/medical-5459633_960_720.png") no-repeat;
+	background-size: cover;
+}
+.main-article-h {
+	text-indent: 1rem;
+	margin: 0;
+	padding: 10px 0;
+}	
+.main-article-notice {
+	margin-right: 5px;
+}
+.main-article-table-box {
+	text-indent: 1rem;
+	width: 49.999%; 
+	height:350px; 
+	border:2px solid #168; 	
+	overflow: auto;
+}
+.main-article-table-box > table {
+	border-collapse: collapse;
+	border-top: 3px solid #4BAF4B;
+	width: 100%;
+	min-width: 500px;
+	text-align: center;
+}
+.main-article-table-box tr {
+	height: 50px;
+	font-size: 1rem;
+	border: 0.5px solid #4BAF4B;
+}
+
+.main-article-table-box td {
+	border: 0.5px solid #4BAF4B;
+	 
+}
+
+.main-article-table-box td > a {
+	width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	height: 20px;
+	display:block;
+}
+
+.main-article-table-box td > .tdaf {
+	width: 100px;
+}
+
+.main-article-table-box > table th {
+	color: black;
+	background: #f0f6f9;
+	margin: 10px 0px;
+	width: 33.3333%;
+	font-size: 1.3rem;
+	border: 0.5px solid #4BAF4B;
+}
+
 /* organWrite (기관 등록) */
 .organWrite-form-box > .table-box input {
 	width: 300px;
 }
 
-.table-box select {
-	width: 320px;
+/* write (게시물 작성) */
+.write-table-box, .modify-table-box {
+	background-color: #4BAF4B; 
+	color:white; 
+	margin-bottom: 20px;
+	width: 100%;
+	padding: 10px 0;
+}
+.write-table-box td, .modify-table-box td {
+	padding: 10px 0;
+	text-indent: 1rem;
+	width: 90%;
+}
+.write-table-box input, .modify-table-box input {
+	width: 98%;
+	padding: 10px 0;	
+	text-indent: 1rem;
+}
+.write-table-box .toast-editor, .modify-table-box .toast-editor {
+	background-color: white;
+	width: 98%;
+}
+
+.write-table-box .form-control, .modify-table-box .form-control {
+	text-indent: 0;
 }
 
 /* list */
@@ -254,6 +380,11 @@ h1, h2 {
 .article-table-box tr, .article-detail-box tr {
 	height: 50px;
 	font-size: 1.2rem;
+	border: 0.5px solid #4BAF4B;
+}
+
+.article-table-box td {
+	border: 0.5px solid #4BAF4B;
 }
 
 .article-table-box > table th, .article-detail-box > table th {
@@ -262,7 +393,19 @@ h1, h2 {
 	margin: 10px 0px;
 	width: 33.3333%;
 	font-size: 1.3rem;
+	border: 0.5px solid #4BAF4B;
 }
 
 /* detail */
+.article-detail-box .toast-editor-box {
+	overflow: auto;
+	width: 100%;
+}
 
+.article-detail-box .toast-editor-box >.toast-editor {
+	margin: auto;
+	border-collapse: collapse;
+	display: block;
+	width: 100%;
+	height: 400px;
+}

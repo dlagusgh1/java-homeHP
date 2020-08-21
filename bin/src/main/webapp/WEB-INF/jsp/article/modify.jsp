@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- JSTL -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- JSTL 데이터 포맷 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="pageTitle" value="${board.name} 게시물 상세내용" />
+<c:set var="pageTitle" value="${board.name} 게시물 수정" />
 <%@ include file="../part/head.jspf"%>
-	
+
+<!-- 토스트 UI -->
+<%@ include file="/WEB-INF/jsp/part/toastUiEditor.jspf"%>
 <h1 class="con flex-jc-c">게시물 수정</h1>
 
 <script>
@@ -24,26 +29,33 @@
 			return;
 		}
 
+		var editor = $(form).find('.toast-editor').data('data-toast-editor');
+
+		var body = editor.getMarkdown();
+		body = body.trim();
+		
 		form.body.value = form.body.value.trim();
 
-		if (form.body.value.length == 0) {
-			form.body.focus();
+		if (body.length == 0) {
+			editor.focus();
 			alert('내용을 입력해주세요.');
 
 			return;
 		}
 
+		form.body.value = body;
+		
 		form.submit();
 		ArticleModifyForm__submitDone = true;
 	}
 </script>
 
-<form class="table-box con" method="POST" action="${board.code}-doModify" onsubmit="ArticleModifyForm__submit(this); return false;">
+<form method="POST" class="modify-table-box con" action="${board.code}-doModify" onsubmit="ArticleModifyForm__submit(this); return false;">
 	<input type="hidden" name="redirectUri" value="/article/${board.code}-detail?id=${article.id}" /> 
 	<input type="hidden" name="id" value="${article.id}"/>
 	<table>
 	   <colgroup>
-            <col class="table-first-col">
+            <col class="table-first-col" width="250">
         </colgroup>
 		<tbody>
 			<tr>
@@ -57,26 +69,30 @@
 			<tr>
 				<th>제목</th>
 				<td>
-					<div class="form-control-box">
-						<input type="text" value="${article.title}" name="title"
-							placeholder="제목을 입력해주세요." />
+					<div class="form-control">
+						<input type="text" value="${article.title}" placeholder="제목을 입력해주세요." name="title" maxlength="100"/>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<th>내용</th>
 				<td>
-					<div class="form-control-box">
-						<textarea name="body" placeholder="내용을 입력해주세요.">${article.body}</textarea>
+					<div class="form-control">
+						<input name="body" type="hidden">
+						<script type="text/x-template">${article.bodyForXTemplate}</script>
+						<div class="toast-editor"></div>
 					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>수정</th>
+				<td class="btn-info">
+					<button class="btn" type="submit">수정</button> 
+					<button class="btn" ><a href="${listUrl}">리스트</a></button>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	<div class="btn-box margin-top-20">
-		<button type="submit" class="btn">수정</button>
-		<a class="btn" href="${listUrl}">리스트</a>
-	</div>
 </form>
 	
 <%@ include file="../part/foot.jspf"%>

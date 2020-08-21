@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- JSTL -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- JSTL 데이터 포맷 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="pageTitle" value="로그인" />
 <%@ include file="../part/head.jspf"%>
@@ -60,8 +63,8 @@
 	}
 </script>
 
-<div class="login-form-box con flex-jc-c">
-	<form method="POST" class="table-box con" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
+
+	<form method="POST" class="table-box con flex-jc-c" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
 		<input type="hidden" name="redirectUri" value="${param.redirectUri}">
 		<input type="hidden" name="loginPwReal">	
 		<table>
@@ -87,20 +90,20 @@
 				</tr>
 				<tr>
 					<th>로그인</th>
-					<td class="flex-jc-c">
+					<td class="btn-info">
 						<button class="btn" type="submit">로그인</button>
 						<button class="btn" onclick="history.back();" type="button">취소</button>
 					</td>
 				</tr>
 				<tr>
 					<th>회원정보 찾기</th>
-					<td class="flex-jc-c">
-						<button class="btn" type="button"><a href="findAccount">아이디 / 비밀번호 찾기</a></button>
+					<td class="btn-info">
+						<button class="btn" type="button"><a href="findAccount">아이디<br>비밀번호<br>찾기</a></button>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</form>
-</div>
+
 
 <%@ include file="../part/foot.jspf"%>

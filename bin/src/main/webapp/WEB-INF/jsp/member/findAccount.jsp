@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- JSTL -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- JSTL 데이터 포맷 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="pageTitle" value="아이디 찾기" />
 <%@ include file="../part/head.jspf"%>
@@ -70,8 +73,8 @@
 				</tr>
 				<tr>
 					<th>찾기</th>
-					<td class="flex-jc-c">
-						<button class="btn" type="submit">아이디 찾기</button>
+					<td class="flex-jc-c" style="margin: auto;">
+						<button class="btn" type="submit">아이디<br>찾기</button>
 						<button class="btn" onclick="history.back();" type="button">취소</button>
 					</td>
 				</tr>
@@ -163,8 +166,8 @@
 				</tr>
 				<tr>
 					<th>찾기</th>
-					<td class="flex-jc-c">
-						<button class="btn" type="submit">비밀번호 찾기</button>
+					<td class="btn-info">
+						<button class="btn" type="submit">비밀번호<br>찾기</button>
 						<button class="btn" onclick="history.back();" type="button">취소</button>
 					</td>
 				</tr>

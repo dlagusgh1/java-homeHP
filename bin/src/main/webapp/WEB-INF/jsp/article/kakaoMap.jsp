@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- JSTL -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<!-- JSTL 데이터 포맷 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="pageTitle" value="병원 찾기 카카오맵" />
 <%@ include file="../part/head.jspf"%>
@@ -8,6 +12,23 @@
 <h1 class="con flex-jc-c">병원 찾기</h1>
 
 <style>
+	.kakaoMap {
+		width:100%; 
+		height:650px; 
+		border: 2px solid green; 
+		margin-right: 10px;
+	}
+	.kakaoMap-info {
+		width:50%; 
+		height:650px; 
+		overflow:auto; 
+		border: 2px solid green;
+		text-indent: 1rem;
+	}
+	.administrative-district div {
+		font-weight:bold; 
+		font-size: 1.5rem;
+	}
 	.administrative-district ul {
 		background-color: #4BAF4B;
 		border-radius: 10px;	
@@ -31,15 +52,24 @@
 	}
 
 	.map_marker {
-		padding:5px; 
-		width: 400px;
+		padding:10px; 
+		width: 450px;
+		
+	}
+	.map_marker_header {
+		font-size: 1.2rem;
+		font-weight:bold;
+	}
+	.map_marker nav {
+		padding: 3px 0;
+		text-indent: 1rem;
 	}
 </style>
 
 <!-- 행정구역(동/면) 리스트 -->
 <div class="administrative-district con">
 	<nav>
-		<div style="font-weight:bold; font-size: 1.5rem;">
+		<div>
 			행정구역(동/읍/면)
 		</div>
 	</nav>
@@ -59,18 +89,21 @@
 -->
 <!-- 병원 목록 -->
 <div class="con flex-jc-c">
-	<div class="con" id="map" style="width:100%; height:650px; border: 2px solid green;"></div>
-	<div class="con" style="width:40%; height:700px; padding-left: 20px;">
+	<div class="kakaoMap con" id="map"></div>
+	<div class="kakaoMap-info con">
 		<ul>
 			<li>
-				<a href="">기관명</a>
-				<ul>
-					<li><a href="">	- 주소 : </a></li>
-					<li><a href="">	- 전화 번호 : </a></li>
-					<li><a href="">	- 진료 시간 : </a></li>
-					<li><a href="">	- 주말 운영여부 : </a></li>
-					<li><a href="">	- 비고 : </a></li>
-				</ul>			
+				<c:forEach items="${organes}" var="organ">
+					<ul>
+						<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
+						<li><a>주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
+						<li><a>전화 번호 : ${organ.organTel}</a></li>
+						<li><a>진료 시간 : ${organ.organTime}</a></li>
+						<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
+						<li><a>비고 : ${organ.organRemarks}</a></li>
+					</ul>		
+					<br>
+				</c:forEach>	
 			</li>
 		</ul>
 	</div>
@@ -110,19 +143,15 @@
 
 	// 다중 마커 생성
 	// [좌표, '<div class="map_marker">기관명<br>- 주소 : (동)<br>- 전화 : <br>- 진료시간 : <br>- 주말운영여부 : <br>- 비고 : </div>'],
+	
+	//for(var i = 1; i < ${fn:length(organes)}; i++ ) {
+	
 	var 데이터 = [
-		[36.479739, 127.262182, '<div class="map_marker">엔케이(NK) 세종 병원<br>- 주소 : 세종 한누리대로 161(나성동)<br>- 전화 : 044-850-7700<br>- 진료시간 : 24시간<br>- 주말운영여부 : 토요일 / 일요일 운영<br>- 비고 : 응급실 운영기관</div>'],
-		[36.502449, 127.248440, '<div class="map_marker">한사랑 의원<br>- 주소 : 세종 도움1로 106 (메가시티) 5층(종촌동)<br>- 전화 : 044-867-3569<br>- 진료시간 : 09:00 ~ 22:00<br>- 주말운영여부 : 토요일 / 일요일 운영<br>- 비고 : 내과</div>'],
-		[36.507817, 127.258666, '<div class="map_marker">매일연합 의원<br>- 주소 : 세종 절재로 154 (홈플러스 세종점)(어진동)<br>- 전화 : 044-864-7975<br>- 진료시간 : 10:00 ~ 21:00<br>- 주말운영여부 : 토요일 / 일요일 운영<br>- 비고 : 매월 2, 4째주 일요일 휴무</div>'],
-		[36.505392, 127.233847, '<div class="map_marker">365열린연합 의원<br>- 주소 : 세종 마음로 74 (그랜드 프라자) 3층(고운동)<br>- 전화 : 044-864-7757<br>- 진료시간 : 09:00 ~ 22:00 / 토요일 09:00 ~ 17:00<br>- 주말운영여부 : 토요일 운영<br>- 비고 : 가정의학과</div>'],
-		[36.503031, 127.249820, '<div class="map_marker">곰돌이 소아청소년과 의원<br>- 주소 : 세종 달빛로 47 (종촌파크 프라자) 3층(종촌동)<br>- 전화 : 044-866-0275<br>- 진료시간 : 09:00 ~ 21:00 / 주말 및 공휴일 09:00 ~ 16:00<br>- 주말운영여부 : 토요일 / 일요일 운영<br>- 비고 : 소아과</div>'],
-		[36.504356, 127.249962, '<div class="map_marker">세종 아이소아청소년과 의원<br>- 주소 : 세종 달빛로 59 (호만빌딩) 3층(종촌동)<br>- 전화 : 044-864-0800<br>- 진료시간 : 08:00 ~ 21:00 / 주말 및 공휴일 09:00 ~ 16:00<br>- 주말운영여부 : 토요일 / 일요일 운영<br>- 비고 : 소아과</div>'],
-		[36.511513, 127.248695, '<div class="map_marker">웰키즈 소아청소년과 의원<br>- 주소 : 세종 보듬3로 95 (해피라움3) 4층(아름동)<br>- 전화 : 044-868-4880<br>- 진료시간 : 08:00 ~ 22:00 / 주말 및 공휴일 09:00 ~ 21:00<br>- 주말운영여부 : 토요일 / 일요일 운영<br>- 비고 : 소아과</div>'],
-		[36.486285, 127.252042, '<div class="map_marker">라온 소아청소년과 의원<br>- 주소 : 세종 새롬중앙로 62-15 (해피라움W) 3층(새롬동)<br>- 전화 : 044-866-1350<br>- 진료시간 : 08:30 ~ 21:00 / 주말 및 공휴일 09:00 ~ 16:00<br>- 주말운영여부 : 토요일 / 일요일 운영<br>- 비고 : 소아과 </div>'],
-		[36.502456, 127.248438, '<div class="map_marker">세종 가톨릭 정형외과 의원<br>- 주소 : 세종 도움1로 106 (메가시티) 4층(종촌동)<br>- 전화 : 044-867-7171<br>- 진료시간 : 09:00 ~ 20:00 / 토요일 및 공휴일 09:00 ~ 13:00<br>- 주말운영여부 : 토요일 운영<br>- 비고 : 정형외과</div>'],
-		[36.504590, 127.249708, '<div class="map_marker">제일 한의원<br>- 주소 : 세종 도움3로 105-7 (메디케어빌딩)(종촌동)<br>- 전화 : 044-862-2555<br>- 진료시간 : 10:00 ~ 20:00 / 주말 및 공휴일 10:00 ~ 16:00<br>- 주말운영여부 : 토요일 / 일요일 운영<br>- 비고 : 한의원</div>'],
-		[36.471025, 127.250953, '<div class="map_marker">모드니 치과 의원<br>- 주소 : 세종 금송로 687 (이마트 세종점)(가람동)<br>- 전화 : 044-864-2876<br>- 진료시간 : 10:00 ~ 21:00 / 주말 10:00 ~ 18:00<br>- 주말운영여부 : 토요일 / 일요일 운영<br>- 비고 : 치과 / 수요일, 매월 2, 4째주 일요일 휴무</div>']
-	];
+		<c:forEach items="${organes}" var="organ">
+			[${organ.organLocation}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organName} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
+		</c:forEach>
+		];
+
 
 	// 마커들을 저장할 변수 생성
 	var markers = [];

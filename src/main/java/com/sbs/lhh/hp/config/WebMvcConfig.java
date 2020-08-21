@@ -37,7 +37,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 				.excludePathPatterns("/member/join").excludePathPatterns("/member/doJoin")
 				.excludePathPatterns("/article/*-list").excludePathPatterns("/article/*-detail")
 				.excludePathPatterns("/article/kakaoMap").excludePathPatterns("/member/findAccount")
-				.excludePathPatterns("/member/doFindId").excludePathPatterns("/member/doFindPw");
+				.excludePathPatterns("/member/doFindId").excludePathPatterns("/member/doFindPw")
+				.excludePathPatterns("/home/main");
 
 		// 로그인 상태에서 접속할 수 '없는' URI 전부 기술
 		registry.addInterceptor(needToLogoutInterceptor).addPathPatterns("/member/login")

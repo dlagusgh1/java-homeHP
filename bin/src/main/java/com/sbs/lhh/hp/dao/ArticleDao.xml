@@ -14,6 +14,11 @@
 		FROM `adCateItem`
 	</select>
 	
+	<select id="getOrgan" resultType="Organ">
+		SELECT *
+		FROM `organ`
+	</select>
+	
 	<insert id="organWrite">
 		INSERT
 		INTO `organ`
@@ -44,6 +49,15 @@
 		ON A.memberId = M.id
 		WHERE A.displayStatus = 1
 		ORDER BY A.id DESC
+	</select>
+	
+	<select id="getForPrintBoarCodeArticles" resultType="Article">
+		SELECT *
+		FROM article
+		WHERE boardId = #{boardCode}
+		AND displayStatus = 1
+		ORDER BY id DESC
+		LIMIT 0, #{limit}
 	</select>
 		
 	<select id="getForPrintArticleById" resultMap="article">

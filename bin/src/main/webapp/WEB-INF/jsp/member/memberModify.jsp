@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- JSTL -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- JSTL 데이터 포맷 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="pageTitle" value="회원정보 변경" />
 <%@ include file="../part/head.jspf"%>
@@ -132,9 +135,9 @@
 				</tr>
 				<tr>
 					<th>회원정보 변경</th>
-					<td class="flex-jc-c">
-						<button class="btn" type="submit">회원정보 변경</button>
-						<button class="btn btn-info" type="button" onclick="history.back();">취소</button>
+					<td class="btn-info">
+						<button class="btn" type="submit">회원정보<br>변경</button>
+						<button class="btn" type="button" onclick="history.back();">취소</button>
 					</td>
 				</tr>
 			</tbody>
