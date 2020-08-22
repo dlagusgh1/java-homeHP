@@ -8,7 +8,7 @@
 <c:set var="pageTitle" value="병원/약국 24시/주말" />
 <%@ include file="../part/head.jspf"%>
 
-<h1 class="con flex-jc-c">우리동네 24시 / 주말 운영 병원, 약국 찾기</h1>
+<h1 class="con flex-jc-c">우리동네 당직 의료기관(병원, 약국) 찾기</h1>
 
 <div class="main-img-box con flex-jc-c">
 	<div class="main-img">

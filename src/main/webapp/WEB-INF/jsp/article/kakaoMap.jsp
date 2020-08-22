@@ -6,7 +6,7 @@
 <!-- JSTL 데이터 포맷 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="pageTitle" value="병원 찾기 카카오맵" />
+<c:set var="pageTitle" value="병원/약국 찾기" />
 <%@ include file="../part/head.jspf"%>
 
 <h1 class="con flex-jc-c">병원 찾기</h1>

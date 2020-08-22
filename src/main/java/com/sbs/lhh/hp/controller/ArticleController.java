@@ -49,6 +49,13 @@ public class ArticleController {
 		return "article/kakaoMap_All";
 	}
 	
+	// 응급처치
+	@RequestMapping("/article/firstAid")
+	public String firstAid(Model model) {
+		
+		return "article/firstAid";
+	}
+	
 	// 기관(병원/약국) 추가 폼
 	@RequestMapping("/article/organWrite")
 	public String organWrite(Model model) {

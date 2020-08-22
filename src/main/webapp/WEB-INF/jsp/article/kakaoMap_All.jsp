@@ -8,8 +8,8 @@
 
 <%@ include file="../part/head.jspf"%>
 
-    <title>카테고리별 장소 검색하기</title>
-    <style>
+
+<style>
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap {position:relative;width:100%;height:350px;}
 #category {position:absolute;top:10px;left:10px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
@@ -39,49 +39,45 @@
 </style>
 </head>
 <body>
-<p style="margin-top:-12px">
-    <em class="link">
-        <a href="/web/documentation/#CategoryCode" target="_blank">카테고리 코드목록을 보시려면 여기를 클릭하세요!</a>
-    </em>
-</p>
-<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-    <ul id="category">
-        <li id="BK9" data-order="0"> 
-            <span class="category_bg bank"></span>
-            은행
-        </li>       
-        <li id="MT1" data-order="1"> 
-            <span class="category_bg mart"></span>
-            마트
-        </li>  
-        <li id="PM9" data-order="2"> 
-            <span class="category_bg pharmacy"></span>
-            약국
-        </li>  
-        <li id="OL7" data-order="3"> 
-            <span class="category_bg oil"></span>
-            주유소
-        </li>  
-        <li id="CE7" data-order="4"> 
-            <span class="category_bg cafe"></span>
-            카페
-        </li>  
-        <li id="CS2" data-order="5"> 
-            <span class="category_bg store"></span>
-            편의점
-        </li>   
-        <li id="HP8" data-order="6"> 
-            <span class="category_bg hospital"></span>
-            병원 
-        </li>   
-        <li id="PK6" data-order="7">
-         	<span class="category_bg parking"></span>
-            주차장 
-        </li>  
-    </ul>
+<div class="con flex-jc-c">
+	<div class="map_wrap" style="margin-top: 100px;">
+	    <div id="map" style="width:100%;height:650px;"></div>
+	    <ul id="category">
+	        <li id="BK9" data-order="0"> 
+	            <span class="category_bg bank"></span>
+	            은행
+	        </li>       
+	        <li id="MT1" data-order="1"> 
+	            <span class="category_bg mart"></span>
+	            마트
+	        </li>  
+	        <li id="PM9" data-order="2"> 
+	            <span class="category_bg pharmacy"></span>
+	            약국
+	        </li>  
+	        <li id="OL7" data-order="3"> 
+	            <span class="category_bg oil"></span>
+	            주유소
+	        </li>  
+	        <li id="CE7" data-order="4"> 
+	            <span class="category_bg cafe"></span>
+	            카페
+	        </li>  
+	        <li id="CS2" data-order="5"> 
+	            <span class="category_bg store"></span>
+	            편의점
+	        </li>   
+	        <li id="HP8" data-order="6"> 
+	            <span class="category_bg hospital"></span>
+	            병원 
+	        </li>   
+	        <li id="PK6" data-order="7">
+	         	<span class="category_bg parking"></span>
+	            주차장 
+	        </li>  
+	    </ul>
+	</div>
 </div>
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=services"></script>
 <script>
 // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
