@@ -24,4 +24,10 @@ public interface MemberDao {
 	void memberModify(Map<String, Object> param);
 
 	void memberModifyPw(Map<String, Object> param);
+
+	boolean isJoinableLoginId(String loginId);
+
+	boolean isJoinableOrganName(String organName);
+
+	boolean isJoinableEmail(String email);
 }

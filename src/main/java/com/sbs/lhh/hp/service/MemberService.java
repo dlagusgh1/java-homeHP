@@ -109,5 +109,20 @@ public class MemberService {
 	public void memberModifyPw(Map<String, Object> param) {
 		memberDao.memberModifyPw(param);
 	}
+
+	// 회원가입 진행 중 중복체크(AJAX)(아이디)
+	public boolean isJoinableLoginId(String loginId) {
+		return memberDao.isJoinableLoginId(loginId);
+	}
+
+	// 회원가입 진행 중 중복체크(AJAX)(아이디)
+	public boolean isJoinableOrganName(String organName) {
+		return memberDao.isJoinableOrganName(organName);
+	}
+
+	// 회원가입 진행 중 중복체크(AJAX)(아이디)
+	public boolean isJoinableEmail(String email) {
+		return memberDao.isJoinableEmail(email);
+	}
 	
 }

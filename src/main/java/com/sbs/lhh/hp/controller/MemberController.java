@@ -48,6 +48,60 @@ public class MemberController {
 
 		return "common/redirect";
 	}
+	
+	// 회원가입 진행 중 중복체크(AJAX)(아이디)
+	@RequestMapping("/member/getLoginIdDup")
+	public String getLoginIdDup(HttpServletRequest request) {
+		String loginId = request.getParameter("loginId");
+
+		boolean isJoinableLoginId = memberService.isJoinableLoginId(loginId);
+
+		if (isJoinableLoginId) {
+			if(loginId.length() <= 3) {
+				return "json:{\"msg\":\"아이디를 3자 이상 입력해주세요.\", \"resultCode\": \"F-1\", \"loginId\":\"" + loginId + "\"}";
+			} else {
+				return "json:{\"msg\":\"사용할 수 있는 아이디 입니다.\", \"resultCode\": \"S-1\", \"loginId\":\"" + loginId + "\"}";
+			}
+		} else {
+			return "json:{\"msg\":\"사용할 수 없는 아이디 입니다.\", \"resultCode\": \"F-1\", \"loginId\":\"" + loginId + "\"}";
+		}
+	}
+	
+	// 회원가입 진행 중 중복체크(AJAX)(기관명)
+	@RequestMapping("/member/getOrganNameDup")
+	public String getOrganNameDup(HttpServletRequest request) {
+		String organName = request.getParameter("organName");
+
+		boolean isJoinableOrganName = memberService.isJoinableOrganName(organName);
+
+		if (isJoinableOrganName) {
+			if(organName.length() <= 3) {
+				return "json:{\"msg\":\"아이디를 3자 이상 입력해주세요.\", \"resultCode\": \"F-1\", \"loginId\":\"" + organName + "\"}";
+			} else {
+				return "json:{\"msg\":\"사용할 수 있는 아이디 입니다.\", \"resultCode\": \"S-1\", \"loginId\":\"" + organName + "\"}";
+			}
+		} else {
+			return "json:{\"msg\":\"사용할 수 없는 아이디 입니다.\", \"resultCode\": \"F-1\", \"loginId\":\"" + organName + "\"}";
+		}
+	}
+	
+	// 회원가입 진행 중 중복체크(AJAX)(이메일)
+	@RequestMapping("/member/getEmailDup")
+	public String getEmailDup(HttpServletRequest request) {
+		String email = request.getParameter("email");
+
+		boolean isJoinableEmail = memberService.isJoinableEmail(email);
+
+		if (isJoinableEmail) {
+			if(email.length() <= 3) {
+				return "json:{\"msg\":\"아이디를 3자 이상 입력해주세요.\", \"resultCode\": \"F-1\", \"loginId\":\"" + email + "\"}";
+			} else {
+				return "json:{\"msg\":\"사용할 수 있는 아이디 입니다.\", \"resultCode\": \"S-1\", \"loginId\":\"" + email + "\"}";
+			}
+		} else {
+			return "json:{\"msg\":\"사용할 수 없는 아이디 입니다.\", \"resultCode\": \"F-1\", \"loginId\":\"" + email + "\"}";
+		}
+	}
 
 	// 로그인 폼
 	@RequestMapping("/member/login")
