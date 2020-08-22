@@ -108,6 +108,7 @@
 		form.submit();
 		OrganWriteForm__submitDone = true;
 	}
+
 </script>
 
 <!-- 
@@ -133,7 +134,7 @@
 					<th>기관 구분</th>
 					<td>
 						<div class="form-control-box">
-							<select name="organNumber">
+							<select name="organNumber" id="organNum">
 								<c:forEach items="${cateItems}" var="cateItem">
 									<option id="organNumber" value="${cateItem.id}">${cateItem.name}</option>
 								</c:forEach>

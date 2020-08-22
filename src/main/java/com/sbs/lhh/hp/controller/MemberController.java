@@ -2,6 +2,7 @@ package com.sbs.lhh.hp.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -206,6 +207,37 @@ public class MemberController {
 		session.removeAttribute("loginedMemberId");
 		
 		return "common/redirect";	
+	}
+	
+	// 비밀번호 확인 폼 연결(내정보/회원정보 변경/비밀번호 변경 전 확인)
+	@RequestMapping("/member/checkPassword")
+	public String checkPassword() {
+		return "member/passwordConfirm";
+	}
+	
+	// 비밀번호 확인 기능(내정보/회원정보 변경/비밀번호 변경 전 확인)
+	@RequestMapping("/member/doPasswordConfirm")
+	public String doPasswordConfirm(@RequestParam Map<String, Object> param, Model model, HttpServletRequest request, String redirectUri) {
+		String loginPw = (String) param.get("loginPwReal");
+		Member loginedMember = (Member) request.getAttribute("loginedMember");
+
+		if (loginedMember.getLoginPw().equals(loginPw) == false) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+			return "common/redirect";
+		}
+
+		//String authCode = memberService.genCheckPasswordAuthCode(loginedMember.getId());
+		
+		if (redirectUri == null || redirectUri.length() == 0) {
+			redirectUri = "/home/main";
+		}
+
+		//redirectUri = Util.getNewUri(redirectUri, "checkPasswordAuthCode", authCode);
+
+		model.addAttribute("redirectUri", redirectUri);
+
+		return "common/redirect";
 	}
 }
 

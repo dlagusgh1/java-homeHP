@@ -10,7 +10,7 @@
 <%@ include file="../part/head.jspf"%>
 
 <h1 class="con flex-jc-c">병원 찾기</h1>
-
+<h3 class="con flex-jc-c" style="margin:0;padding:0;"><a href="kakaoMap_All">전체</a></h3>
 <style>
 	.kakaoMap {
 		width:100%; 

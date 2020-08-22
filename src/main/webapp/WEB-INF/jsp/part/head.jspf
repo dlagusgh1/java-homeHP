@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import="com.sbs.lhh.hp.util.Util" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +49,7 @@
 				<li><a href="/member/login">로그인</a></li>
 			</c:if>
 			<c:if test="${isLogined}">
-				<li><a href="/member/myPage">내정보</a></li>
+				<li><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}">내정보</a></li>
 				<li><a href="/article/organWrite">정보등록</a></li>
 				<li><a href="/member/doLogout">로그아웃</a></li>
 			</c:if>	

@@ -29,7 +29,7 @@ public class ArticleController {
 	
 	// 카카오맵
 	@RequestMapping("/article/kakaoMap")
-	public String join(Model model) {
+	public String kakaoMap(Model model) {
 		
 		List<AdCateItem> adCateItems = articleService.getAdCateItem();
 		
@@ -40,6 +40,13 @@ public class ArticleController {
 		model.addAttribute("organes", organes);
 		
 		return "article/kakaoMap";
+	}
+	
+	// 카카오맵
+	@RequestMapping("/article/kakaoMap_All")
+	public String kakaoMap_All(Model model) {
+		
+		return "article/kakaoMap_All";
 	}
 	
 	// 기관(병원/약국) 추가 폼

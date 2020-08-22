@@ -6,8 +6,10 @@
 @import
 	url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
 
-html {
-	font-family: "Roboto", "Noto Sans KR", sans-serif;
+html, input, button, h1, h2, h3 {
+  /* 영문이면 roboto가 적용되고, 한글이면 Noto Sans KR가 적용되도록 아래와 같은 순서로 배치 */
+  font-family: "Roboto", "Noto Sans KR", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* 노말라이즈 */
@@ -41,16 +43,23 @@ label[for] {
 }
 
 /* PC/모바일 사이즈 관련 if 문 설정 */
-@media ( min-width : 800px) {
-	.visible-on-sm-down {
-		display: none;
-	}
+@media ( max-width :1210px ) and ( min-width :801px ) {
+  .con {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
-@media ( max-width : 799px) {
-	.visible-on-md-up {
-		display: none;
-	}
+@media ( min-width :801px ) {
+  .visible-on-sm-down {
+    display: none;
+  }
+}
+
+@media ( max-width :800px ) {
+  .visible-on-md-up {
+    display: none;
+  }
 }
 
 .con {
@@ -274,6 +283,7 @@ h1, h2 {
 	background:url("https://cdn.pixabay.com/photo/2020/08/03/09/39/medical-5459633_960_720.png") no-repeat;
 	background-size: cover;
 }
+
 .main-article-h {
 	text-indent: 1rem;
 	margin: 0;
