@@ -140,7 +140,7 @@
 		MemberJoinForm__submitDone = true;
 	}
 
-	<!-- 회원가입 아이디 중복 체크 -->
+	<!-- 회원가입 아이디 중복 체크(AJAX) -->
 	function JoinForm__checkLoginIdDup(input) {
 		var form = input.form;
 
@@ -166,7 +166,7 @@
 		}, 'json');
 	}
 
-	<!-- 회원가입 기관명 중복 체크 -->
+	<!-- 회원가입 기관명 중복 체크(AJAX)  -->
 	function JoinForm__checkOrganNameDup(input) {
 		var form = input.form;
 
@@ -192,7 +192,7 @@
 		}, 'json');
 	}
 	
-	<!-- 회원가입 이메일 중복 체크 -->
+	<!-- 회원가입 이메일 중복 체크(AJAX)  -->
 	function JoinForm__checkEmailDup(input) {
 		var form = input.form;
 
@@ -225,91 +225,91 @@
 </script>
 
 
-	<form method="POST" class="table-box con flex-jc-c" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
-		<input type="hidden" name="redirectUri" value="/member/login">
-		<input type="hidden" name="loginPwReal">
-		<table>
-			<colgroup>
-				<col width="250">
-			</colgroup>
-			<tbody>
-				<tr>
-					<th>로그인 아이디</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="로그인 아이디 입력해주세요." name="loginId"	maxlength="30" onkeyup="JoinForm__checkLoginIdDup(this);"/>
-							<div class="message-msg"></div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>로그인 비번</th>
-					<td>
-						<div class="form-control-box">
-							<input type="password" placeholder="로그인 비밀번호를 입력해주세요." name="loginPw" maxlength="30" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>로그인 비번 확인</th>
-					<td>
-						<div class="form-control-box">
-							<input type="password" placeholder="로그인 비밀번호 확인을 입력해주세요." name="loginPwConfirm" maxlength="30" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>이름</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="이름을 입력해주세요." name="name" maxlength="20" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>기관명</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="기관명 입력해주세요." name="organName" maxlength="20" onkeyup="JoinForm__checkOrganNameDup(this);"/>
-							<div class="message-msg"></div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>기관코드</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="기관코드명 입력해주세요." name="organCode" maxlength="20" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>이메일</th>
-					<td>
-						<div class="form-control-box">
-							<input type="email" placeholder="이메일 입력해주세요." name="email"	maxlength="50" onkeyup="JoinForm__checkEmailDup(this);"/>
-							<div class="message-msg"></div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>휴대폰</th>
-					<td>
-						<div class="form-control-box">
-							<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="cellphoneNo"	maxlength="12" onkeyup="JoinForm__checkCellPhoneNoDup(this);"/>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>회원가입</th>
-					<td class="btn-info">
-						<button class="btn btn-primary" type="submit">가입</button>
-						<button class="btn btn-info" type="button" onclick="history.back();">취소</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</form>
+<form method="POST" class="table-box con flex-jc-c" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
+	<input type="hidden" name="redirectUri" value="/member/login">
+	<input type="hidden" name="loginPwReal">
+	<table>
+		<colgroup>
+			<col width="250">
+		</colgroup>
+		<tbody>
+			<tr>
+				<th>로그인 아이디</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="로그인 아이디 입력해주세요." name="loginId"	maxlength="30" onkeyup="JoinForm__checkLoginIdDup(this);"/>
+						<div class="message-msg"></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>로그인 비번</th>
+				<td>
+					<div class="form-control-box">
+						<input type="password" placeholder="로그인 비밀번호를 입력해주세요." name="loginPw" maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>로그인 비번 확인</th>
+				<td>
+					<div class="form-control-box">
+						<input type="password" placeholder="로그인 비밀번호 확인을 입력해주세요." name="loginPwConfirm" maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="이름을 입력해주세요." name="name" maxlength="20" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>기관명</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="기관명 입력해주세요." name="organName" maxlength="20" onkeyup="JoinForm__checkOrganNameDup(this);"/>
+						<div class="message-msg"></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>기관코드</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="기관코드명 입력해주세요." name="organCode" maxlength="20" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>이메일</th>
+				<td>
+					<div class="form-control-box">
+						<input type="email" placeholder="이메일 입력해주세요." name="email"	maxlength="50" onkeyup="JoinForm__checkEmailDup(this);"/>
+						<div class="message-msg"></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>휴대폰</th>
+				<td>
+					<div class="form-control-box">
+						<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="cellphoneNo"	maxlength="12" onkeyup="JoinForm__checkCellPhoneNoDup(this);"/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>회원가입</th>
+				<td class="btn-info">
+					<button class="btn btn-primary" type="submit">가입</button>
+					<button class="btn btn-info" type="button" onclick="history.back();">취소</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>
 
 
 <%@ include file="../part/foot.jspf"%>
