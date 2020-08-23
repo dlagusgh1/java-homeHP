@@ -68,10 +68,10 @@
 
 <div class="cate con flex-jc-c">
 	<ul class="flex">
-		<li><a href="kakaoMap_All">여러개</a></li>
 		<li><a href="kakaoMap">전체</a></li>
 		<li><a href="kakaoMap_HP">병원</a></li>
 		<li><a href="kakaoMap_PM">약국</a></li>
+		<li><a href="kakaoMap_All">그외 작업중</a></li>
 	</ul>	
 </div>
 

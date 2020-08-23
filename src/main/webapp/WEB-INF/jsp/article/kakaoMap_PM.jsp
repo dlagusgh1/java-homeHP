@@ -68,10 +68,10 @@
 
 <div class="cate con flex-jc-c">
 	<ul class="flex">
-		<li><a href="kakaoMap_All">여러개</a></li>
 		<li><a href="kakaoMap">전체</a></li>
 		<li><a href="kakaoMap_HP">병원</a></li>
 		<li><a href="kakaoMap_PM">약국</a></li>
+		<li><a href="kakaoMap_All">그외 작업중</a></li>
 	</ul>	
 </div>
 
@@ -104,15 +104,21 @@
 		<ul>
 			<li>
 				<c:forEach items="${organes}" var="organ">
-					<ul>
-						<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
-						<li><a>주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
-						<li><a>전화 번호 : ${organ.organTel}</a></li>
-						<li><a>진료 시간 : ${organ.organTime}</a></li>
-						<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
-						<li><a>비고 : ${organ.organRemarks}</a></li>
-					</ul>		
-					<br>
+					<c:choose>
+						<c:when test="${organ.organNumber == 2}">
+							<ul>
+								<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
+								<li><a>주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
+								<li><a>전화 번호 : ${organ.organTel}</a></li>
+								<li><a>진료 시간 : ${organ.organTime}</a></li>
+								<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
+								<li><a>비고 : ${organ.organRemarks}</a></li>
+							</ul>		
+							<br>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>	
 			</li>
 		</ul>
@@ -163,7 +169,13 @@
 	
 	var 데이터 = [
 		<c:forEach items="${organes}" var="organ">
-			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organName} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
+			<c:choose>
+				<c:when test="${organ.organNumber == 2}">
+					[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organName} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
 		];
 

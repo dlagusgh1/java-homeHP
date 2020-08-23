@@ -68,10 +68,10 @@
 
 <div class="cate con flex-jc-c">
 	<ul class="flex">
-		<li><a href="kakaoMap_All">여러개</a></li>
 		<li><a href="kakaoMap">전체</a></li>
 		<li><a href="kakaoMap_HP">병원</a></li>
 		<li><a href="kakaoMap_PM">약국</a></li>
+		<li><a href="kakaoMap_All">그외 작업중</a></li>
 	</ul>	
 </div>
 
@@ -104,15 +104,21 @@
 		<ul>
 			<li>
 				<c:forEach items="${organes}" var="organ">
-					<ul>
-						<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
-						<li><a>주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
-						<li><a>전화 번호 : ${organ.organTel}</a></li>
-						<li><a>진료 시간 : ${organ.organTime}</a></li>
-						<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
-						<li><a>비고 : ${organ.organRemarks}</a></li>
-					</ul>		
-					<br>
+					<c:choose>
+						<c:when test="${organ.organNumber == 1}">
+							<ul>
+								<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
+								<li><a>주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
+								<li><a>전화 번호 : ${organ.organTel}</a></li>
+								<li><a>진료 시간 : ${organ.organTime}</a></li>
+								<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
+								<li><a>비고 : ${organ.organRemarks}</a></li>
+							</ul>		
+							<br>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>	
 			</li>
 		</ul>
@@ -160,7 +166,7 @@
 	// [좌표, '<div class="map_marker">기관명<br>- 주소 : (동)<br>- 전화 : <br>- 진료시간 : <br>- 주말운영여부 : <br>- 비고 : </div>'],
 	
 	//for(var i = 1; i < ${fn:length(organes)}; i++ ) {
-	var organNumber = 1;
+	
 	var 데이터 = [
 		<c:forEach items="${organes}" var="organ">
 			<c:choose>
