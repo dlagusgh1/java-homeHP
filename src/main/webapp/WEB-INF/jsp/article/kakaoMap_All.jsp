@@ -77,7 +77,7 @@
 
 	.map_marker {
 		padding:10px; 
-		width: 450px;
+		width: 550px;
 		
 	}
 	.map_marker_header {

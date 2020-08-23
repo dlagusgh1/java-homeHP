@@ -51,7 +51,7 @@
 
 	.map_marker {
 		padding:10px; 
-		width: 450px;
+		width: 550px;
 		
 	}
 	.map_marker_header {
@@ -109,6 +109,7 @@
 						<li><a>주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
 						<li><a>전화 번호 : ${organ.organTel}</a></li>
 						<li><a>진료 시간 : ${organ.organTime}</a></li>
+						<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
 						<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
 						<li><a>비고 : ${organ.organRemarks}</a></li>
 					</ul>		
