@@ -220,15 +220,13 @@
 		$('.toast-editor.toast-editor-viewer:not(.toast-editor-loaded)').each(function(index, el) {
 
 					var $el = $(this);
-					var initialValue = ToastEditor__getBodyFromXTemplate($el
-							.prev());
+					var initialValue = ToastEditor__getBodyFromXTemplate($el.prev());
 
 					var editor = new toastui.Editor.factory({
 						el : el,
 						viewer : true,
 						initialValue : initialValue,
-						plugins : [ toastui.Editor.plugin.codeSyntaxHighlight,
-								youtubePlugin, replPlugin, codepenPlugin ]
+						plugins : [ toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin, replPlugin, codepenPlugin ]
 					});
 
 					$el.addClass('toast-editor-loaded');
@@ -241,20 +239,16 @@
 					var $el = $(this);
 					var height = jq_attr($el, 'data-toast-editor-height', 500);
 					height = parseInt(height);
-					var initialEditType = jq_attr($el,
-							'data-toast-editor-initialEditType', "markdown");
-					var previewStyle = jq_attr($el,
-							'data-toast-editor-previewStyle', "vertical");
-					var initialValue = ToastEditor__getBodyFromXTemplate($el
-							.prev());
+					var initialEditType = jq_attr($el, 'data-toast-editor-initialEditType', "markdown");
+					var previewStyle = jq_attr($el, 'data-toast-editor-previewStyle', "vertical");
+					var initialValue = ToastEditor__getBodyFromXTemplate($el.prev());
 					var editor = new toastui.Editor({
 						el : el,
 						height : height,
 						initialEditType : initialEditType,
 						previewStyle : previewStyle,
 						initialValue : initialValue,
-						plugins : [ toastui.Editor.plugin.codeSyntaxHighlight,
-								youtubePlugin, replPlugin, codepenPlugin ]
+						plugins : [ toastui.Editor.plugin.codeSyntaxHighlight, youtubePlugin, replPlugin, codepenPlugin ]
 					});
 
 					$el.addClass('toast-editor-loaded');

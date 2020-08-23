@@ -31,11 +31,11 @@
 			<c:forEach items="${articles}" var="article">
 				<c:if test="${board.id == article.boardId}">
 					<tr>
-						<td>${article.id}</td>
+						<td><a>${article.id}</a></td>
 						<td>
 							<a href="${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
 						</td>
-						<td>${article.regDate}</td>
+						<td><a>${article.regDate}</a></td>
 					</tr>
 				</c:if>
 			</c:forEach>
