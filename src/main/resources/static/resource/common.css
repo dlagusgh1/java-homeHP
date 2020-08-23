@@ -187,7 +187,7 @@ label[for] {
 .table-box {
 	background-color: #4BAF4B; 
 	color:white; 
-	width: 35%; 
+	width: 45%; 
 	padding: 20px;
 	margin-bottom: 20px;
 }
@@ -221,7 +221,7 @@ label[for] {
 .table-box select{
 	padding: 10px 0;
 	text-indent: 1rem;
-	width: 95%;
+	width: 82%;
 }
 
 body {

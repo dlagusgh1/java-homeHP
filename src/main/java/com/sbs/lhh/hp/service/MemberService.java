@@ -140,7 +140,7 @@ public class MemberService {
 		return memberDao.isJoinableEmail(email);
 	}
 	
-	// 정보변경 등 진행 시 비밀번호 확인 attr 저장
+	// 정보변경(회원정보, 비밀번호) 등 진행 시 비밀번호 확인 attr 저장
 	public String genCheckPasswordAuthCode(int actorId) {
 		String authCode = UUID.randomUUID().toString();
 		attrService.setValue("member__" + actorId + "__extra__modifyPrivateAuthCode", authCode, Util.getDateStrLater(60 * 60));
@@ -148,7 +148,7 @@ public class MemberService {
 		return authCode;
 	}
 
-	// 정보변경 전 비밀번호 확인 되었는지, attr 확인
+	// 정보변경(회원정보, 비밀번호) 전 비밀번호 확인 되었는지, attr 확인
 	public ResultData checkValidCheckPasswordAuthCode(int actorId, String checkPasswordAuthCode) {
 		if (attrService.getValue("member__" + actorId + "__extra__modifyPrivateAuthCode").equals(checkPasswordAuthCode)) {
 			return new ResultData("S-1", "유효한 키 입니다.");

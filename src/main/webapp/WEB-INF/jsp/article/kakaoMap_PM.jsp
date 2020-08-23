@@ -64,7 +64,7 @@
 	}
 </style>
 
-<h1 class="con flex-jc-c">병원 / 약국 찾기</h1>
+<h1 class="con flex-jc-c">약국 찾기</h1>
 
 <div class="cate con flex-jc-c">
 	<ul class="flex">

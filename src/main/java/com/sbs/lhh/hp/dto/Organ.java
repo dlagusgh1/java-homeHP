@@ -19,8 +19,10 @@ public class Organ {
 	private String organAdmAddress;
 	private String organTel;
 	private String organTime;
+	private String organWeekendTime;
 	private String organWeekend;
 	private String organRemarks;
-	private String organLocation;
+	private String organLocation1;
+	private String organLocation2;
 	private int memberId;
 }

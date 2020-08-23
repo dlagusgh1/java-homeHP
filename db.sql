@@ -90,13 +90,16 @@ CREATE TABLE `organ` (
     `organAdmAddress` CHAR(100) NOT NULL,
     `organTel` CHAR(20) NOT NULL,
     `organTime` CHAR(100) NOT NULL,
+    `organWeekendTime` CHAR(100) NOT NULL,
     `organWeekend` CHAR(100) NOT NULL,
     `organRemarks` CHAR(100) NOT NULL,
-    `organLocation` CHAR(100),
+    `organLocation1` CHAR(100),
+    `organLocation2` CHAR(100),
     memberId INT(10) UNSIGNED NOT NULL 
 );
 
-LOAD DATA INFILE  "list.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
+LOAD DATA INFILE  "list1.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
+LOAD DATA INFILE  "list2.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
 
 # 게시판 테이블 추가
 CREATE TABLE `board` (

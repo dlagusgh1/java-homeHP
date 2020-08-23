@@ -6,7 +6,7 @@
 <!-- JSTL 데이터 포맷 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="pageTitle" value="병원/약국 찾기" />
+<c:set var="pageTitle" value="병원 찾기" />
 <%@ include file="../part/head.jspf"%>
 
 <style>
@@ -64,7 +64,7 @@
 	}
 </style>
 
-<h1 class="con flex-jc-c">병원 / 약국 찾기</h1>
+<h1 class="con flex-jc-c">병원 찾기</h1>
 
 <div class="cate con flex-jc-c">
 	<ul class="flex">
@@ -160,10 +160,16 @@
 	// [좌표, '<div class="map_marker">기관명<br>- 주소 : (동)<br>- 전화 : <br>- 진료시간 : <br>- 주말운영여부 : <br>- 비고 : </div>'],
 	
 	//for(var i = 1; i < ${fn:length(organes)}; i++ ) {
-	
+	var organNumber = 1;
 	var 데이터 = [
 		<c:forEach items="${organes}" var="organ">
-			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organName} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
+			<c:choose>
+				<c:when test="${organ.organNumber == 1}">
+					[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organName} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
 		];
 

@@ -46,7 +46,45 @@ public class ArticleController {
 	@RequestMapping("/article/kakaoMap_All")
 	public String kakaoMap_All(Model model) {
 		
+		List<AdCateItem> adCateItems = articleService.getAdCateItem();
+		
+		model.addAttribute("adCateItems", adCateItems);
+		
+		List<Organ> organes = articleService.getOrgan();
+		
+		model.addAttribute("organes", organes);
+		
 		return "article/kakaoMap_All";
+	}
+	
+	// 카카오맵
+	@RequestMapping("/article/kakaoMap_HP")
+	public String kakaoMap_HP(Model model) {
+		
+		List<AdCateItem> adCateItems = articleService.getAdCateItem();
+		
+		model.addAttribute("adCateItems", adCateItems);
+		
+		List<Organ> organes = articleService.getOrgan();
+		
+		model.addAttribute("organes", organes);
+		
+		return "article/kakaoMap_HP";
+	}
+	
+	// 카카오맵
+	@RequestMapping("/article/kakaoMap_PM")
+	public String kakaoMap_PM(Model model) {
+		
+		List<AdCateItem> adCateItems = articleService.getAdCateItem();
+		
+		model.addAttribute("adCateItems", adCateItems);
+		
+		List<Organ> organes = articleService.getOrgan();
+		
+		model.addAttribute("organes", organes);
+		
+		return "article/kakaoMap_PM";
 	}
 	
 	// 응급처치

@@ -40,5 +40,5 @@ public interface ArticleDao {
 	List<Board> getBoards();
 
 	List<Organ> getOrgan();
-
+	
 }

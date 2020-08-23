@@ -30,6 +30,7 @@
 		`organAdmAddress` = #{organAdmAddress},
 		`organTel` = #{organTel},
 		`organTime` = #{organTime},
+		`organWeekendTime` = #{organWeekendTime},
 		`organWeekend` = #{organWeekend},
 		`organRemarks` = #{organRemarks},
 		`organLocation` = #{organLocation},
