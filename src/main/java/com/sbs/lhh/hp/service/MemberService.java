@@ -1,6 +1,7 @@
 package com.sbs.lhh.hp.service;
 
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +18,8 @@ public class MemberService {
 	private MemberDao memberDao;
 	@Autowired
 	private MailService mailService;
+	@Autowired
+	private AttrService attrService;
 	@Value("${custom.siteMainUri}")
 	private String siteMainUri;
 	@Value("${custom.siteName}")
@@ -123,6 +126,23 @@ public class MemberService {
 	// 회원가입 진행 중 중복체크(AJAX)(아이디)
 	public boolean isJoinableEmail(String email) {
 		return memberDao.isJoinableEmail(email);
+	}
+	
+	// 정보변경 등 진행 시 비밀번호 확인 attr 저장
+	public String genCheckPasswordAuthCode(int actorId) {
+		String authCode = UUID.randomUUID().toString();
+		attrService.setValue("member__" + actorId + "__extra__modifyPrivateAuthCode", authCode, Util.getDateStrLater(60 * 60));
+
+		return authCode;
+	}
+
+	// 정보변경 전 비밀번호 확인 되었는지, attr 확인
+	public ResultData checkValidCheckPasswordAuthCode(int actorId, String checkPasswordAuthCode) {
+		if (attrService.getValue("member__" + actorId + "__extra__modifyPrivateAuthCode").equals(checkPasswordAuthCode)) {
+			return new ResultData("S-1", "유효한 키 입니다.");
+		}
+
+		return new ResultData("F-1", "유효하지 않은 키 입니다.");
 	}
 	
 }

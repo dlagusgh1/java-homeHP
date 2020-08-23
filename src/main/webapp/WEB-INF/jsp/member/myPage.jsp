@@ -59,6 +59,21 @@
 					</td>
 				</tr>
 				<tr>
+					<th>이메일 인증여부</th>
+					<td>
+						<div class="form-control-box">
+							<c:choose>
+								<c:when test="${loginedMember.email != null}">
+									인증
+								</c:when>
+								<c:otherwise>
+									비 인증
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</td>
+				</tr>
+				<tr>
 					<th>휴대폰</th>
 					<td>
 						<div class="form-control-box">

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +14,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbs.lhh.hp.dto.Member;
 import com.sbs.lhh.hp.dto.ResultData;
-import com.sbs.lhh.hp.util.Util;
+import com.sbs.lhh.hp.service.AttrService;
+import com.sbs.lhh.hp.service.MailService;
 import com.sbs.lhh.hp.service.MemberService;
+import com.sbs.lhh.hp.util.Util;
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private AttrService attrService;
+	@Autowired
+	private MailService mailService;
+	@Value("${custom.siteMainUri}")
+	private String siteMainUri;
+	@Value("${custom.siteName}")
+	private String siteName;
 
 	// 회원가입
 	@RequestMapping("/member/join")
@@ -111,10 +122,10 @@ public class MemberController {
 
 	// 로그인 기능
 	@RequestMapping("/member/doLogin")
-	public String doLogin(String loginId, String loginPwReal, String redirectUri, Model model, HttpSession session) {
+	public String doLogin(String loginId, String loginPwReal, String redirectUri, Model model, HttpSession session, HttpServletRequest request) {
 		String loginPw = loginPwReal;
 		Member member = memberService.getMemberByLoginId(loginId);
-
+		
 		if (member == null) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
@@ -209,12 +220,32 @@ public class MemberController {
 	// 마이페이지
 	@RequestMapping("member/myPage")
 	public String myPage() {
+		
+		// 이메일 인증/비인증 노출 기능 추가하기
+		
+		
 		return "member/myPage";
 	}
 	
 	// 회원정보 수정 폼
 	@RequestMapping("member/memberModify")
-	public String memberModify() {
+	public String memberModify(HttpSession session, Model model, HttpServletRequest req, String checkPasswordAuthCode) {
+		
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		ResultData checkValidCheckPasswordAuthCodeResultData = memberService.checkValidCheckPasswordAuthCode(loginedMemberId, checkPasswordAuthCode);
+
+		if (checkPasswordAuthCode == null || checkPasswordAuthCode.length() == 0) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "비밀번호 체크 인증코드가 없습니다.");
+			return "common/redirect";
+		}
+
+		if (checkValidCheckPasswordAuthCodeResultData.isFail()) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", checkValidCheckPasswordAuthCodeResultData.getMsg());
+			return "common/redirect";
+		}
+		
 		return "member/memberModify";
 	}
 	
@@ -241,17 +272,8 @@ public class MemberController {
 	// 비밀번호 수정 기능
 	@RequestMapping("member/doMemberModifyPw")
 	public String doMemberModifyPw(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUri) {
-
-		System.out.println("비밀번호 변경 출력 loginPwReal : " + param.get("loginPwReal"));
-		System.out.println("비밀번호 변경 출력 loginPw : " + param.get("loginPw"));
-		System.out.println("비밀번호 변경 출력 loginPwConfirm : " + param.get("loginPwConfirm"));
-		
+	
 		Util.changeMapKey(param, "loginPwReal", "loginPw");
-		
-		System.out.println("비밀번호 변경 후 출력 loginPwReal : " + param.get("loginPwReal"));
-		System.out.println("비밀번호 변경 후 출력 loginPw : " + param.get("loginPw"));
-		System.out.println("비밀번호 변경 후 출력 loginPwConfirm : " + param.get("loginPwConfirm"));
-		
 		
 		memberService.memberModifyPw(param);
 		
@@ -281,13 +303,13 @@ public class MemberController {
 			return "common/redirect";
 		}
 
-		//String authCode = memberService.genCheckPasswordAuthCode(loginedMember.getId());
+		String authCode = memberService.genCheckPasswordAuthCode(loginedMember.getId());
 		
 		if (redirectUri == null || redirectUri.length() == 0) {
 			redirectUri = "/home/main";
 		}
 
-		//redirectUri = Util.getNewUri(redirectUri, "checkPasswordAuthCode", authCode);
+		redirectUri = Util.getNewUri(redirectUri, "checkPasswordAuthCode", authCode);
 
 		model.addAttribute("redirectUri", redirectUri);
 

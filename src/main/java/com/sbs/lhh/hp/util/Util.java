@@ -1,31 +1,22 @@
 package com.sbs.lhh.hp.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
-import java.sql.Blob;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.cache.LoadingCache;
 
 public class Util {
 	public static int getAsInt(Object object) {
@@ -315,5 +306,37 @@ public class Util {
 		}
 
 		return (int) ((new Date().getTime() - n.getTime()) / 1000);
+	}
+
+	public static Object ifNull(Object value, Object elseValue) {
+		if (value == null) {
+			return elseValue;
+		}
+
+		return value;
+	}
+
+	public static String ifNull(Object value, String elseValue) {
+		if (value == null || ((String) value).length() == 0) {
+			return elseValue;
+		}
+
+		return (String) value;
+	}
+
+	public static String getNowDateStr() {
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		String dateStr = format1.format(System.currentTimeMillis());
+
+		return dateStr;
+	}
+
+	public static String getDateStrLater(int seconds) {
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		String dateStr = format1.format(System.currentTimeMillis() + seconds * 1000);
+
+		return dateStr;
 	}
 }
