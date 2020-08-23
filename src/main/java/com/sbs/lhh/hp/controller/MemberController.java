@@ -139,7 +139,18 @@ public class MemberController {
 		}
 
 		session.setAttribute("loginedMemberId", member.getId());
-
+		
+		ResultData useTempPassword = memberService.useTempPassword(member.getId());
+		
+		if (useTempPassword.isSuccess()) {
+			model.addAttribute("alertMsg", "현재 임시 비밀번호를 사용 중 입니다.\\n비밀번호 변경 부탁드립니다.");
+			
+			redirectUri = "/member/checkPassword?redirectUri=%2Fmember%2FmemberModifyPw";
+			model.addAttribute("redirectUri", redirectUri);
+			
+			return "common/redirect";
+		}
+		
 		if (redirectUri == null || redirectUri.length() == 0) {
 			redirectUri = "/home/main";
 		}
@@ -271,11 +282,13 @@ public class MemberController {
 	
 	// 비밀번호 수정 기능
 	@RequestMapping("member/doMemberModifyPw")
-	public String doMemberModifyPw(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUri) {
+	public String doMemberModifyPw(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUri, HttpServletRequest request) {
 	
+		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
+		
 		Util.changeMapKey(param, "loginPwReal", "loginPw");
 		
-		memberService.memberModifyPw(param);
+		memberService.memberModifyPw(param, loginedMemberId);
 		
 		model.addAttribute("alertMsg", "비밀번호가 정상적으로 수정되었습니다.\\n다시 로그인 해주세요.");
 		model.addAttribute("redirectUri", redirectUri);
@@ -299,7 +312,7 @@ public class MemberController {
 
 		if (loginedMember.getLoginPw().equals(loginPw) == false) {
 			model.addAttribute("historyBack", true);
-			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+			model.addAttribute("alertMsg", "비밀번호가 일치하지 않습니다.");
 			return "common/redirect";
 		}
 

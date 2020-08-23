@@ -87,6 +87,10 @@ public class MemberService {
 		String tempPw = Util.getTempPassword(8);
 		String shaPw = Util.sha256(tempPw);	
 		
+		String authCode = UUID.randomUUID().toString();
+		
+		attrService.setValue("member__" + member.getId() + "__extra__useTempPassword", authCode, Util.getDateStrLater(60 * 60));
+		
 		memberModifyShaPw(member.getLoginId(), member.getOrganName(), shaPw);
 		
 		String mailTitle = String.format("[%s] 비밀번호 찾기 결과", siteName);
@@ -109,8 +113,16 @@ public class MemberService {
 	}
 
 	// 비밀번호 수정
-	public void memberModifyPw(Map<String, Object> param) {
+	public void memberModifyPw(Map<String, Object> param, int actorId) {
+			
+		ResultData checkValidCheckTemporaryPasswordAuthCodeResultData = useTempPassword(actorId);
+		
+		if (checkValidCheckTemporaryPasswordAuthCodeResultData != null) {
+			attrService.remove("member__" + actorId + "__extra__useTempPassword");
+		}
+		
 		memberDao.memberModifyPw(param);
+		
 	}
 
 	// 회원가입 진행 중 중복체크(AJAX)(아이디)
@@ -143,6 +155,20 @@ public class MemberService {
 		}
 
 		return new ResultData("F-1", "유효하지 않은 키 입니다.");
+	}
+
+	// 로그인 시 임시 패스워드 사용여부 확인
+	public ResultData useTempPassword(int actorId) {
+		
+		String useTempPassword = attrService.getValue("member__" + actorId + "__extra__useTempPassword");
+		
+		if (useTempPassword.equals("")) {
+			System.out.println("F-1 일때 : " + useTempPassword);
+			return new ResultData("F-1", "임시 패스워드를 사용하고 있지 않습니다.");
+		}
+		System.out.println("에스-1 일때 : " + useTempPassword);
+		return new ResultData("S-1", "임시 패스워드를 사용 중 입니다.");
+	
 	}
 	
 }
