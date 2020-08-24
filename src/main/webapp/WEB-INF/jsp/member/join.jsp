@@ -17,6 +17,7 @@
 
 <script>
 	var MemberJoinForm__submitDone = false;
+	
 	function MemberJoinForm__submit(form) {
 		if (MemberJoinForm__submitDone) {
 			alert('처리중입니다.');
@@ -35,7 +36,7 @@
 			return;
 		}
 
-		if (form.loginId.value.length < 4) {
+		if (form.loginId.value.length <= 4) {
 			form.loginId.focus();
 			alert('로그인 아이디 4자 이상 입력해주세요.');
 
@@ -144,8 +145,9 @@
 	function JoinForm__checkLoginIdDup(input) {
 		var form = input.form;
 
-		form.loginId.value = form.loginId.value.trim();
 
+		form.loginId.value = form.loginId.value.trim();
+		
 		if (form.loginId.value.length == 0) {
 			return;
 		}
@@ -154,7 +156,6 @@
 			loginId : form.loginId.value
 		}, function(data) {
 			var $message = $(form.loginId).next();
-
 			// resultCode : 중복 체크 값 S- 중복 아님 / F- 중복
 			if (data.resultCode.substr(0, 2) == 'S-') {
 				$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
@@ -180,7 +181,7 @@
 			organName : form.organName.value
 		}, function(data) {
 			var $message = $(form.organName).next();
-
+	
 			// resultCode : 중복 체크 값 S- 중복 아님 / F- 중복
 			if (data.resultCode.substr(0, 2) == 'S-') {
 				$message.empty().append('<div style="color:green;">' + data.msg + '</div>');

@@ -11,11 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.lhh.hp.dto.Member;
 import com.sbs.lhh.hp.dto.ResultData;
-import com.sbs.lhh.hp.service.AttrService;
-import com.sbs.lhh.hp.service.MailService;
 import com.sbs.lhh.hp.service.MemberService;
 import com.sbs.lhh.hp.util.Util;
 
@@ -23,10 +22,6 @@ import com.sbs.lhh.hp.util.Util;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
-	@Autowired
-	private AttrService attrService;
-	@Autowired
-	private MailService mailService;
 	@Value("${custom.siteMainUri}")
 	private String siteMainUri;
 	@Value("${custom.siteName}")
@@ -62,55 +57,58 @@ public class MemberController {
 	
 	// 회원가입 진행 중 중복체크(AJAX)(아이디)
 	@RequestMapping("/member/getLoginIdDup")
-	public String getLoginIdDup(HttpServletRequest request) {
+	@ResponseBody
+	public ResultData getLoginIdDup(HttpServletRequest request) {
 		String loginId = request.getParameter("loginId");
 
-		boolean isJoinableLoginId = memberService.isJoinableLoginId(loginId);
-
-		if (isJoinableLoginId) {
+		boolean isJoinableLoginId = memberService.isJoinableLoginId(loginId);	
+		
+		if (isJoinableLoginId == false) {
 			if(loginId.length() <= 3) {
-				return "json:{\"msg\":\"아이디를 3자 이상 입력해주세요.\", \"resultCode\": \"F-1\", \"loginId\":\"" + loginId + "\"}";
+				return new ResultData("F-1", "아이디 3자 이상 입력", "loginId", loginId);
 			} else {
-				return "json:{\"msg\":\"사용할 수 있는 아이디 입니다.\", \"resultCode\": \"S-1\", \"loginId\":\"" + loginId + "\"}";
+				return new ResultData("S-1", "아이디 사용 가능", "loginId", loginId);
 			}
 		} else {
-			return "json:{\"msg\":\"사용할 수 없는 아이디 입니다.\", \"resultCode\": \"F-1\", \"loginId\":\"" + loginId + "\"}";
+			return new ResultData("F-1", "중복된 아이디가 존재합니다.", "loginId", loginId);
 		}
 	}
 	
 	// 회원가입 진행 중 중복체크(AJAX)(기관명)
 	@RequestMapping("/member/getOrganNameDup")
-	public String getOrganNameDup(HttpServletRequest request) {
+	@ResponseBody
+	public ResultData getOrganNameDup(HttpServletRequest request) {
 		String organName = request.getParameter("organName");
 
 		boolean isJoinableOrganName = memberService.isJoinableOrganName(organName);
 
-		if (isJoinableOrganName) {
-			if(organName.length() <= 3) {
-				return "json:{\"msg\":\"아이디를 3자 이상 입력해주세요.\", \"resultCode\": \"F-1\", \"loginId\":\"" + organName + "\"}";
+		if (isJoinableOrganName == false) {
+			if(organName.length() <= 2) {
+				return new ResultData("F-1", "기관명을 2자 이상 입력", "organName", organName);
 			} else {
-				return "json:{\"msg\":\"사용할 수 있는 아이디 입니다.\", \"resultCode\": \"S-1\", \"loginId\":\"" + organName + "\"}";
+				return new ResultData("S-1", "기관명 사용 가능", "organName", organName);
 			}
 		} else {
-			return "json:{\"msg\":\"사용할 수 없는 아이디 입니다.\", \"resultCode\": \"F-1\", \"loginId\":\"" + organName + "\"}";
+			return new ResultData("F-1", "중복된 기관명이 존재합니다.", "organName", organName);
 		}
 	}
 	
 	// 회원가입 진행 중 중복체크(AJAX)(이메일)
 	@RequestMapping("/member/getEmailDup")
-	public String getEmailDup(HttpServletRequest request) {
+	@ResponseBody
+	public ResultData getEmailDup(HttpServletRequest request) {
 		String email = request.getParameter("email");
 
 		boolean isJoinableEmail = memberService.isJoinableEmail(email);
 
 		if (isJoinableEmail) {
-			if(email.length() <= 3) {
-				return "json:{\"msg\":\"아이디를 3자 이상 입력해주세요.\", \"resultCode\": \"F-1\", \"loginId\":\"" + email + "\"}";
+			if(email.length() == 0) {
+				return new ResultData("F-1", "이메일을 입력해주세요.", "email", email);
 			} else {
-				return "json:{\"msg\":\"사용할 수 있는 아이디 입니다.\", \"resultCode\": \"S-1\", \"loginId\":\"" + email + "\"}";
+				return new ResultData("S-1", "이메일 사용 가능", "email", email);
 			}
 		} else {
-			return "json:{\"msg\":\"사용할 수 없는 아이디 입니다.\", \"resultCode\": \"F-1\", \"loginId\":\"" + email + "\"}";
+			return new ResultData("F-1", "중복된 이메일이 존재합니다.", "email", email);
 		}
 	}
 
