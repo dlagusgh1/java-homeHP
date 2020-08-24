@@ -69,9 +69,9 @@
 <div class="cate con flex-jc-c">
 	<ul class="flex">
 		<li><a href="kakaoMap">전체(${organ_ALLCount})</a></li>
-		<li><a href="kakaoMap_HP">병원(${organ_HPCount})</a></li>
-		<li><a href="kakaoMap_PM">약국(${organ_PMCount})</a></li>
-		<li><a href="kakaoMap_All">그외 작업중</a></li>
+		<li><a href="kakaoMap_HP">당직 병원(${organ_HPCount})</a></li>
+		<li><a href="kakaoMap_PM">당직 약국(${organ_PMCount})</a></li>
+		<li><a href="kakaoMap_All">일반</a></li>
 	</ul>	
 </div>
 
@@ -162,6 +162,7 @@
 	
 	//for(var i = 1; i < ${fn:length(organes)}; i++ ) {
 	
+	var name = "";
 	var 데이터 = [
 		<c:forEach items="${organes}" var="organ">
 			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organName} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
