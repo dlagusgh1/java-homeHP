@@ -172,7 +172,7 @@
 		<c:forEach items="${organes}" var="organ">
 			<c:choose>
 				<c:when test="${organ.organNumber == 2}">
-					[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organName} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
+					[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>
@@ -183,7 +183,7 @@
 
 		// 마커 이미지
 		var imageSrc = 'https://img.icons8.com/cotton/64/000000/hand-with-a-pill.png', // 마커이미지의 주소입니다    
-	    imageSize = new kakao.maps.Size(50, 50), // 마커이미지의 크기입니다
+	    imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
 	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 	      
 		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다

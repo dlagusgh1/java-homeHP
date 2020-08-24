@@ -26,6 +26,65 @@ public class MemberController {
 	private String siteMainUri;
 	@Value("${custom.siteName}")
 	private String siteName;
+	
+	// 이메일 인증 재 발송 기능
+	@RequestMapping("/member/reAuthEmail")
+	private String reAuthEmail(HttpServletRequest request, Model model) {
+		Member loginedMember = (Member) request.getAttribute("loginedMember");
+		
+		memberService.reSendEmailAuthCode(loginedMember.getId(), loginedMember.getEmail());
+		
+		String redirectUri = "/member/checkPassword?redirectUri=%2Fmember%2FmyPage";
+		model.addAttribute("redirectUri", redirectUri);
+		model.addAttribute("alertMsg", "인증 메일이 재 발송 되었습니다.\\n확인 후 이메일 인증 부탁드립니다.");
+
+		return "common/redirect";
+	}
+	
+	// 이메일 인증 기능
+	@RequestMapping("/member/authEmail")
+	private String authCodeEmail(@RequestParam Map<String, Object> param, HttpServletRequest request, Model model) {
+		
+		String email = (String) param.get("email"); 
+		String authCode = (String) param.get("authCode");
+		String memberId = (String) param.get("memberId");
+
+		// 이메일이 인증되었는지 attr에서 인증된 메일정보 가져오기
+		String emailAuthed = memberService.getAuthCodeEmail(Integer.parseInt(memberId)); 
+		
+		// 이메일 인증 중복 방지
+		if ( emailAuthed != "" ) {
+			String redirectUri = "/home/main";
+			model.addAttribute("redirectUri", redirectUri);
+			model.addAttribute("alertMsg", "이미 이메일 인증이 완료되었습니다.");
+
+			return "common/redirect";
+		}
+			
+		Member member = memberService.getMemberById(Integer.parseInt(memberId));
+		
+		boolean isExistMemberId = Integer.parseInt(memberId) == member.getId();
+		boolean isExistMemberEmail = email.equals(member.getEmail());
+		
+		String mailAuthCode = memberService.getAuthCode(Integer.parseInt(memberId)); 
+		
+		if (isExistMemberId == false || isExistMemberEmail == false || mailAuthCode == null ) {
+			String redirectUri = "/member/checkPassword?redirectUri=%2Fmember%2FmyPage";
+			model.addAttribute("redirectUri", redirectUri);
+			model.addAttribute("alertMsg", "이메일 인증에 사용되는 정보가 잘못되었습니다.");
+
+			return "common/redirect";
+		}
+	
+		memberService.setEmailAuthed(Integer.parseInt(memberId), email);
+		
+		String redirectUri = "/member/login";
+		model.addAttribute("redirectUri", redirectUri);
+		model.addAttribute("alertMsg", "이메일 인증이 완료되었습니다.");
+
+		return "common/redirect";
+		
+	}
 
 	// 회원가입
 	@RequestMapping("/member/join")
@@ -47,7 +106,9 @@ public class MemberController {
 		}
 		
 		int newMemberId = memberService.join(param);
-
+		
+		memberService.sendEmailAuthCode(newMemberId, (String) param.get("email"));
+		
 		String redirectUri = (String) param.get("redirectUri");
 		model.addAttribute("redirectUri", redirectUri);
 		model.addAttribute("alertMsg", "가입을 환영합니다^^");
@@ -228,9 +289,22 @@ public class MemberController {
 	
 	// 마이페이지
 	@RequestMapping("member/myPage")
-	public String myPage() {
+	public String myPage(Model model, HttpServletRequest request) {
+		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
 		
 		// 이메일 인증/비인증 노출 기능 추가하기
+		String emailAuthed = memberService.getAuthCodeEmail(loginedMemberId); 
+		
+		model.addAttribute("emailAuthed", emailAuthed);
+		
+//		// 이메일 인증 중복 방지
+//		if ( emailAuthed != "" ) {
+//			String redirectUri = "/home/main";
+//			model.addAttribute("redirectUri", redirectUri);
+//			model.addAttribute("alertMsg", "이미 이메일 인증이 완료되었습니다.");
+//
+//			return "common/redirect";
+//		}
 		
 		
 		return "member/myPage";
@@ -238,9 +312,9 @@ public class MemberController {
 	
 	// 회원정보 수정 폼
 	@RequestMapping("member/memberModify")
-	public String memberModify(HttpSession session, Model model, HttpServletRequest req, String checkPasswordAuthCode) {
+	public String memberModify(HttpSession session, Model model, HttpServletRequest request, String checkPasswordAuthCode) {
 		
-		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
 		ResultData checkValidCheckPasswordAuthCodeResultData = memberService.checkValidCheckPasswordAuthCode(loginedMemberId, checkPasswordAuthCode);
 
 		if (checkPasswordAuthCode == null || checkPasswordAuthCode.length() == 0) {

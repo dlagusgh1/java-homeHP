@@ -6,7 +6,7 @@
 <!-- JSTL 데이터 포맷 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="pageTitle" value="병원/약국 찾기" />
+<c:set var="pageTitle" value="병원 찾기" />
 <%@ include file="../part/head.jspf"%>
 
 <style>
@@ -64,7 +64,7 @@
 	}
 </style>
 
-<h1 class="con flex-jc-c">병원 / 약국 찾기</h1>
+<h1 class="con flex-jc-c">병원 찾기</h1>
 
 <div class="cate con flex-jc-c">
 	<ul class="flex">
@@ -104,16 +104,22 @@
 		<ul>
 			<li>
 				<c:forEach items="${organes}" var="organ">
-					<ul>
-						<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
-						<li><a>주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
-						<li><a>전화 번호 : ${organ.organTel}</a></li>
-						<li><a>진료 시간 : ${organ.organTime}</a></li>
-						<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
-						<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
-						<li><a>비고 : ${organ.organRemarks}</a></li>
-					</ul>		
-					<br>
+					<c:choose>
+						<c:when test="${organ.organNumber == 1}">
+							<ul>
+								<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
+								<li><a>주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
+								<li><a>전화 번호 : ${organ.organTel}</a></li>
+								<li><a>진료 시간 : ${organ.organTime}</a></li>
+								<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
+								<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
+								<li><a>비고 : ${organ.organRemarks}</a></li>
+							</ul>		
+							<br>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>	
 			</li>
 		</ul>
@@ -162,10 +168,15 @@
 	
 	//for(var i = 1; i < ${fn:length(organes)}; i++ ) {
 	
-	var name = "";
 	var 데이터 = [
 		<c:forEach items="${organes}" var="organ">
-			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
+			<c:choose>
+				<c:when test="${organ.organNumber == 1}">
+					[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organName} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
 		];
 
@@ -214,7 +225,6 @@
     	    'mouseout', 
     	    makeOutListener(infowindow)
    	    );
-   	   
 	}	
 
 	// 클러스터러에 마커들을 추가합니다

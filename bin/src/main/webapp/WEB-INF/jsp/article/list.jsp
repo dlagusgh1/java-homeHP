@@ -5,7 +5,7 @@
 <!-- JSTL 데이터 포맷 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="pageTitle" value="${board.name} 게시물 리스트" />
+<c:set var="pageTitle" value="${board.name} 게시판" />
 <%@ include file="../part/head.jspf"%>
 
 <h1 class="con flex-jc-c">${board.name} 게시물 리스트</h1>
@@ -31,11 +31,11 @@
 			<c:forEach items="${articles}" var="article">
 				<c:if test="${board.id == article.boardId}">
 					<tr>
-						<td>${article.id}</td>
+						<td><a>${article.id}</a></td>
 						<td>
 							<a href="${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
 						</td>
-						<td>${article.regDate}</td>
+						<td><a>${article.regDate}</a></td>
 					</tr>
 				</c:if>
 			</c:forEach>
@@ -44,7 +44,16 @@
 </div>
 
 <div class="btn-box con margin-top-20">
-	<a class="btn" href="./${board.code}-write">글쓰기</a>
+	<c:choose>
+		<c:when test="${board.code.equals('notice')}">
+			<c:if test="${loginedMember.level == 10}">
+				<a class="btn" href="./${board.code}-write">글쓰기</a>
+			</c:if>
+		</c:when>
+		<c:otherwise>
+			<a class="btn" href="./${board.code}-write">글쓰기</a>
+		</c:otherwise>
+	</c:choose>
 </div>
 	
 	

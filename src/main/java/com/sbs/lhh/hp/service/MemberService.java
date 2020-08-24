@@ -33,18 +33,67 @@ public class MemberService {
 	public int join(Map<String, Object> param) {
 		memberDao.join(param);
 
+		// 회원가입 완료 시 대상에게 환영메일 발송
 		sendJoinCompleteMail((String) param.get("email"));
-
+		
 		return Util.getAsInt(param.get("id"));
 	}
+	
+	// 이메일 인증관련 고유 코드 재 발송 기능
+	public void reSendEmailAuthCode(int actorId, String email) {
 
-	// 가입완료 대상에게 환영메일
+		String authCode = getAuthCodeEmail(actorId);
+		
+		String mailTitle = String.format("[%s] 가입이 완료되었습니다. 이메일 인증 부탁드립니다.", siteName);
+		
+		StringBuilder mailBodySb = new StringBuilder();
+		mailBodySb.append("<h1>이메일 인증</h1>");
+		mailBodySb.append(String.format("<p>담당자님의 가입을 진심으로 환영합니다.<br><br>아래 링크로 접속하여 이메일 인증을 해주세요.<br><br><a href=\"http://localhost:8085/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
+		
+		mailService.send(email, mailTitle, mailBodySb.toString());
+	}
+	
+	// 회원가입 완료 시 대상에게 이메일 인증관련 고유 코드 등록 후 인증 안내 발송
+	public void sendEmailAuthCode(int actorId, String email) {
+		String authCode = UUID.randomUUID().toString();
+		
+		attrService.setValue("member__" + actorId + "__extra__emailAuthCode", authCode, Util.getDateStrLater(60 * 60));	
+		
+		String mailTitle = String.format("[%s] 이메일 인증", siteName);
+		
+		StringBuilder mailBodySb = new StringBuilder();
+		mailBodySb.append("<h1>이메일 인증</h1>");
+		mailBodySb.append(String.format("<p>가입을 진심으로 축하드립니다.<br><br>아래 링크를 클릭하여 이메일 인증을 진행해주세요.<br><br><a href=\"http://localhost:8085/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
+		
+		mailService.send(email, mailTitle, mailBodySb.toString());
+	}
+	
+	// 이메일이 인증되었는지 attr에서 인증된 메일정보 가져오기
+	public String getAuthCodeEmail(int memberId) {
+		String authCodeEmail = attrService.getValue("member__" + memberId + "__extra__emailAuthed");
+		
+		return authCodeEmail;
+	}
+	
+	// attr에서 회원가입 시 등록된 고유 인증 코드 가져오기
+	public String getAuthCode(int memberId) {
+		String authCode = attrService.getValue("member__" + memberId + "__extra__emailAuthCode");
+		
+		return authCode;
+	}
+	
+	// 이메일 인증 완료 시 attr에 인증된 메일 정보 등록
+	public void setEmailAuthed(int actorId, String email) {
+		attrService.setValue("member__" + actorId + "__extra__emailAuthed", email, Util.getDateStrLater(60 * 60));
+	}
+
+	// 회원가입 완료 시 대상에게 환영메일
 	private void sendJoinCompleteMail(String email) {
 		String mailTitle = String.format("[%s] 가입이 완료되었습니다.", siteName);
 
 		StringBuilder mailBodySb = new StringBuilder();
-		mailBodySb.append("<h1>가입이 완료되었습니다.</h1>");
-		mailBodySb.append(String.format("<p>담당자님의 가입을 진심으로 환영합니다.<br><br><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", siteMainUri, siteName));
+		mailBodySb.append("<h1>환영합니다!</h1>");
+		mailBodySb.append(String.format("<p>가입을 진심으로 축하드립니다.<br><br><a href=\"http://localhost:8085/home/main\" target=\"_blank\">%s 사이트로 이동하기</a></p>", siteName));
 
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
@@ -170,5 +219,5 @@ public class MemberService {
 		return new ResultData("S-1", "임시 패스워드를 사용 중 입니다.");
 	
 	}
-	
+
 }

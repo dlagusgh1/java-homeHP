@@ -8,7 +8,11 @@
 <c:set var="pageTitle" value="기관 정보 등록" />
 <%@ include file="../part/head.jspf"%>
 
+
 <h1 class="con flex-jc-c">기관 정보 등록</h1>
+<div class="con flex-jc-c" style="margin-bottom: 5px; font-size: 1rem;">
+	<a href="/article/searchMap" style="background-color: #4BAF4B; color: white; padding: 5px; border-radius: 10px;" onclick="window.open(this.href,'지도 검색', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">지도 검색하기</a>
+</div>
 
 <script>
 	var OrganWriteForm__submitDone = false;
@@ -87,7 +91,7 @@
 			
 		}
 
-		form.organTime.avlue = form.organTime.value.trim();
+		form.organTime.value = form.organTime.value.trim();
 		
 		if (form.organTime.value.length == 0) {
 			form.organTime.focus();
@@ -96,7 +100,16 @@
 			return;
 		}
 
-		form.organWeekend.avlue = form.organWeekend.value.trim();
+		form.organWeekendTime.value = form.organWeekendTime.value.trim();
+		
+		if (form.organWeekendTime.value.length == 0) {
+			form.organWeekendTime.focus();
+			alert('주말 진료 시간을 입력해주세요.');
+
+			return;
+		}
+
+		form.organWeekend.value = form.organWeekend.value.trim();
 		
 		if (form.organWeekend.value.length == 0) {
 			form.organWeekend.focus();
@@ -108,6 +121,7 @@
 		form.submit();
 		OrganWriteForm__submitDone = true;
 	}
+
 </script>
 
 <!-- 
@@ -133,7 +147,7 @@
 					<th>기관 구분</th>
 					<td>
 						<div class="form-control-box">
-							<select name="organNumber">
+							<select name="organNumber" id="organNum">
 								<c:forEach items="${cateItems}" var="cateItem">
 									<option id="organNumber" value="${cateItem.id}">${cateItem.name}</option>
 								</c:forEach>
@@ -166,7 +180,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>행정 주소(동/면)</th>
+					<th>행정 주소 (동/면)</th>
 					<td>
 						<div class="form-control-box">
 							<input type="text" placeholder="행정 주소 입력 예) 도담동" name="organAdmAddress" maxlength="30" />
@@ -190,10 +204,18 @@
 					</td>
 				</tr>
 				<tr>
+					<th>진료 시간 (주말)</th>
+					<td>
+						<div class="form-control-box">
+							<input type="text" placeholder="주말 진료 시간을 입력해 주세요." name="organWeekendTime" maxlength="30" />
+						</div>
+					</td>
+				</tr>
+				<tr>
 					<th>주말 운영여부</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="주말 운영 입력 예) 미 운영, 토요일, 일요일" name="organWeekend" maxlength="30" />
+							<input type="text" placeholder="주말 운영 입력 예) 미 운영, 토요일, 일요일 운영" name="organWeekend" maxlength="30" />
 						</div>
 					</td>
 				</tr>

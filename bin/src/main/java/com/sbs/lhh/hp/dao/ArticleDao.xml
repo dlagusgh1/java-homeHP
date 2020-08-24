@@ -30,6 +30,7 @@
 		`organAdmAddress` = #{organAdmAddress},
 		`organTel` = #{organTel},
 		`organTime` = #{organTime},
+		`organWeekendTime` = #{organWeekendTime},
 		`organWeekend` = #{organWeekend},
 		`organRemarks` = #{organRemarks},
 		`organLocation` = #{organLocation},
@@ -114,6 +115,17 @@
 	<select id="getBoards" resultType="Board">
 		SELECT *
 		FROM `board`
+	</select>
+	
+	<select id="organsCount" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM `organ`
+	</select>
+	
+	<select id="organCount" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM `organ`
+		WHERE organNumber = #{organNumber}
 	</select>
 	
 	<resultMap type="Article" id="article">

@@ -167,7 +167,7 @@
 					<th>좌표</th>
 					<td>
 						<div class="form-control-box">
-							<input type="text" placeholder="좌표를 입력해주세요." name="orgamLocation" maxlength="30" />
+							<input type="text" placeholder="위도, 경도(좌표)를 입력해주세요. " name="orgamLocation" maxlength="30" />
 						</div>
 					</td>
 				</tr>

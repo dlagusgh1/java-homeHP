@@ -1,18 +1,10 @@
 package com.sbs.lhh.hp.service;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.sbs.lhh.hp.dao.ArticleDao;
 import com.sbs.lhh.hp.dao.AttrDao;
-import com.sbs.lhh.hp.dao.MemberDao;
 import com.sbs.lhh.hp.dto.Attr;
-import com.sbs.lhh.hp.dto.Member;
-import com.sbs.lhh.hp.dto.ResultData;
-import com.sbs.lhh.hp.util.Util;
 
 @Service
 public class AttrService {

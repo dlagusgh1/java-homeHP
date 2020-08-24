@@ -6,10 +6,8 @@
 <!-- JSTL 데이터 포맷 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="pageTitle" value="병원 찾기 카카오맵" />
+<c:set var="pageTitle" value="병원/약국 찾기" />
 <%@ include file="../part/head.jspf"%>
-
-<h1 class="con flex-jc-c">병원 찾기</h1>
 
 <style>
 	.kakaoMap {
@@ -19,7 +17,7 @@
 		margin-right: 10px;
 	}
 	.kakaoMap-info {
-		width:50%; 
+		width:100%; 
 		height:650px; 
 		overflow:auto; 
 		border: 2px solid green;
@@ -45,7 +43,7 @@
 		color: black;
 	}
 	
-	.administrative-district ul li a {
+	.administrative-district ul li a , .cate ul li a{
 		padding:10px 5px;
 		font-size: 1rem;
 		margin-left: 5px;
@@ -53,7 +51,7 @@
 
 	.map_marker {
 		padding:10px; 
-		width: 450px;
+		width: 550px;
 		
 	}
 	.map_marker_header {
@@ -65,6 +63,18 @@
 		text-indent: 1rem;
 	}
 </style>
+
+<h1 class="con flex-jc-c">병원 / 약국 찾기</h1>
+
+<div class="cate con flex-jc-c">
+	<ul class="flex">
+		<li><a href="kakaoMap">전체(${organ_ALLCount})</a></li>
+		<li><a href="kakaoMap_HP">당직 병원(${organ_HPCount})</a></li>
+		<li><a href="kakaoMap_PM">당직 약국(${organ_PMCount})</a></li>
+		<li><a href="kakaoMap_All">일반</a></li>
+	</ul>	
+</div>
+
 
 <!-- 행정구역(동/면) 리스트 -->
 <div class="administrative-district con">
@@ -99,6 +109,7 @@
 						<li><a>주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
 						<li><a>전화 번호 : ${organ.organTel}</a></li>
 						<li><a>진료 시간 : ${organ.organTime}</a></li>
+						<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
 						<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
 						<li><a>비고 : ${organ.organRemarks}</a></li>
 					</ul>		
@@ -112,6 +123,11 @@
 <!-- 카카오맵 -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
 <script>
+	var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
+	contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+	markers = [], // 마커를 담을 배열입니다
+	currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(36.504171, 127.267834), // 지도의 중심좌표
@@ -121,7 +137,7 @@
     
 	// 지도를 생성한다 
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
-
+	
 	// 마커 클러스터러를 생성합니다 
     var clusterer = new kakao.maps.MarkerClusterer({
         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
@@ -146,12 +162,20 @@
 	
 	//for(var i = 1; i < ${fn:length(organes)}; i++ ) {
 	
+	var name = "";
 	var 데이터 = [
 		<c:forEach items="${organes}" var="organ">
-			[${organ.organLocation}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organName} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
+			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organName} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
 		</c:forEach>
 		];
 
+	// 마커 이미지
+	var imageSrc = 'https://img.icons8.com/clouds/100/000000/hospital.png', // 마커이미지의 주소입니다    
+    imageSize = new kakao.maps.Size(70, 70), // 마커이미지의 크기입니다
+    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 
 	// 마커들을 저장할 변수 생성
 	var markers = [];
@@ -159,7 +183,8 @@
 		// 지도에 마커를 생성하고 표시한다.
 		var marker = new kakao.maps.Marker({
 			position: new kakao.maps.LatLng(데이터[i][0], 데이터[i][1]), // 마커의 좌표
-			map: map // 마커를 표시할 지도 객체
+			map: map, // 마커를 표시할 지도 객체
+			image: markerImage // 마커에 이미지 추가
 		});
 
 		iwPosition = new kakao.maps.LatLng(데이터[i][0], 데이터[i][1]),
@@ -189,6 +214,7 @@
     	    'mouseout', 
     	    makeOutListener(infowindow)
    	    );
+   	   
 	}	
 
 	// 클러스터러에 마커들을 추가합니다

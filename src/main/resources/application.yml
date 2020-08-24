@@ -5,7 +5,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: dlagusgh1@gmail.com
-    password: 
+    password:
     properties:
       mail:
         smtp:
@@ -25,8 +25,8 @@ spring:
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:mysql://127.0.0.1:3306/hp?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
-    username: sbsst
-    password: sbs123414
+    username: root
+    password: dlagusgh
 mybatis:
   type-aliases-package: com.sbs.lhh.hp.dto
 server:
