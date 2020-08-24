@@ -101,7 +101,7 @@ public class MemberController {
 
 		boolean isJoinableEmail = memberService.isJoinableEmail(email);
 
-		if (isJoinableEmail) {
+		if (isJoinableEmail == false) {
 			if(email.length() == 0) {
 				return new ResultData("F-1", "이메일을 입력해주세요.", "email", email);
 			} else {

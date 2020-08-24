@@ -127,10 +127,11 @@
 			return;
 		}
 
-		if (isCellphoneNo(form.cellphoneNo.value)) {
+		if (isCellphoneNo(form.cellphoneNo.value) == false) {
 			form.cellphoneNo.focus();
 			alert('휴대전화번호를 정확히 입력해주세요.');
-			
+
+			return;
 		}
 
 		form.loginPwReal.value = sha256(form.loginPw.value);
