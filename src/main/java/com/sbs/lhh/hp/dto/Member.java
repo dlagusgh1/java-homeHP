@@ -21,4 +21,5 @@ public class Member {
 	private String organCode;
 	private String email;
 	private String phoneNo;
+	private int level;
 }

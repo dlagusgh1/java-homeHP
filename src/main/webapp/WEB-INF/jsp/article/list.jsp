@@ -44,7 +44,16 @@
 </div>
 
 <div class="btn-box con margin-top-20">
-	<a class="btn" href="./${board.code}-write">글쓰기</a>
+	<c:choose>
+		<c:when test="${board.code.equals('notice')}">
+			<c:if test="${loginedMember.level == 10}">
+				<a class="btn" href="./${board.code}-write">글쓰기</a>
+			</c:if>
+		</c:when>
+		<c:otherwise>
+			<a class="btn" href="./${board.code}-write">글쓰기</a>
+		</c:otherwise>
+	</c:choose>
 </div>
 	
 	

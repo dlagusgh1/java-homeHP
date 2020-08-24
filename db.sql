@@ -17,7 +17,8 @@ CREATE TABLE `member` (
     `organName` CHAR(20) NOT NULL,
     `organCode` CHAR(20) NOT NULL,
     `email` CHAR(100) NOT NULL,
-    `phoneNo` CHAR(20) NOT NULL
+    `phoneNo` CHAR(20) NOT NULL,
+    `level` INT(1) UNSIGNED DEFAULT 0 NOT NULL
 );
 
 # member 테이블에 테스트 데이터 삽입
@@ -30,7 +31,8 @@ loginPw = SHA2('admin', 256),
 `organName` = '관리병원',
 `organCode` = 'a12345',
 `email` = 'dlagusgh1@gmail.com',
-`phoneNo` = '010-0000-0000';
+`phoneNo` = '010-0000-0000',
+`level` = '10';
 
 # 카테고리 테이블 생성
 DROP TABLE IF EXISTS cateItem;
@@ -98,8 +100,8 @@ CREATE TABLE `organ` (
     memberId INT(10) UNSIGNED NOT NULL 
 );
 
-LOAD DATA INFILE  "list1.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
-LOAD DATA INFILE  "list2.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
+LOAD DATA INFILE  "hp/list1.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
+LOAD DATA INFILE  "hp/list2.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
 
 # 게시판 테이블 추가
 CREATE TABLE `board` (
