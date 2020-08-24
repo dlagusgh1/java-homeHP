@@ -142,5 +142,15 @@ public class ArticleService {
 	public void delete(Map<String, Object> param) {
 		articleDao.delete(param);
 	}
+
+	// organ 전체 수 출력
+	public int organsCount() {
+		return articleDao.organsCount();
+	}
+
+	// 특정 organ 수 출력
+	public int organCount(int organNumber) {
+		return articleDao.organCount(organNumber);
+	}
 	
 }

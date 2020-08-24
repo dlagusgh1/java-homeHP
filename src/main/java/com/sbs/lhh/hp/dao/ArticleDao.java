@@ -40,5 +40,9 @@ public interface ArticleDao {
 	List<Board> getBoards();
 
 	List<Organ> getOrgan();
+
+	int organsCount();
+
+	int organCount(int organNumber);
 	
 }

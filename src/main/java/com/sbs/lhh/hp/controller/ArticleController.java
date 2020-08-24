@@ -35,6 +35,14 @@ public class ArticleController {
 		
 		model.addAttribute("adCateItems", adCateItems);
 		
+		int organ_ALLCount = articleService.organsCount();
+		int organ_HPCount = articleService.organCount(1);
+		int organ_PMCount = articleService.organCount(2);
+		
+		model.addAttribute("organ_ALLCount", organ_ALLCount);
+		model.addAttribute("organ_HPCount", organ_HPCount);
+		model.addAttribute("organ_PMCount", organ_PMCount);
+		
 		List<Organ> organes = articleService.getOrgan();
 		
 		model.addAttribute("organes", organes);
@@ -49,6 +57,14 @@ public class ArticleController {
 		List<AdCateItem> adCateItems = articleService.getAdCateItem();
 		
 		model.addAttribute("adCateItems", adCateItems);
+		
+		int organ_ALLCount = articleService.organsCount();
+		int organ_HPCount = articleService.organCount(1);
+		int organ_PMCount = articleService.organCount(2);
+		
+		model.addAttribute("organ_ALLCount", organ_ALLCount);
+		model.addAttribute("organ_HPCount", organ_HPCount);
+		model.addAttribute("organ_PMCount", organ_PMCount);
 		
 		List<Organ> organes = articleService.getOrgan();
 		
@@ -65,6 +81,14 @@ public class ArticleController {
 		
 		model.addAttribute("adCateItems", adCateItems);
 		
+		int organ_ALLCount = articleService.organsCount();
+		int organ_HPCount = articleService.organCount(1);
+		int organ_PMCount = articleService.organCount(2);
+		
+		model.addAttribute("organ_ALLCount", organ_ALLCount);
+		model.addAttribute("organ_HPCount", organ_HPCount);
+		model.addAttribute("organ_PMCount", organ_PMCount);
+		
 		List<Organ> organes = articleService.getOrgan();
 		
 		model.addAttribute("organes", organes);
@@ -79,6 +103,14 @@ public class ArticleController {
 		List<AdCateItem> adCateItems = articleService.getAdCateItem();
 		
 		model.addAttribute("adCateItems", adCateItems);
+		
+		int organ_ALLCount = articleService.organsCount();
+		int organ_HPCount = articleService.organCount(1);
+		int organ_PMCount = articleService.organCount(2);
+		
+		model.addAttribute("organ_ALLCount", organ_ALLCount);
+		model.addAttribute("organ_HPCount", organ_HPCount);
+		model.addAttribute("organ_PMCount", organ_PMCount);
 		
 		List<Organ> organes = articleService.getOrgan();
 		

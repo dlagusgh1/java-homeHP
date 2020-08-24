@@ -68,9 +68,9 @@
 
 <div class="cate con flex-jc-c">
 	<ul class="flex">
-		<li><a href="kakaoMap">전체</a></li>
-		<li><a href="kakaoMap_HP">병원</a></li>
-		<li><a href="kakaoMap_PM">약국</a></li>
+		<li><a href="kakaoMap">전체(${organ_ALLCount})</a></li>
+		<li><a href="kakaoMap_HP">병원(${organ_HPCount})</a></li>
+		<li><a href="kakaoMap_PM">약국(${organ_PMCount})</a></li>
 		<li><a href="kakaoMap_All">그외 작업중</a></li>
 	</ul>	
 </div>

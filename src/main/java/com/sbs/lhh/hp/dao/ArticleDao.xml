@@ -117,6 +117,17 @@
 		FROM `board`
 	</select>
 	
+	<select id="organsCount" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM `organ`
+	</select>
+	
+	<select id="organCount" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM `organ`
+		WHERE organNumber = #{organNumber}
+	</select>
+	
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />
