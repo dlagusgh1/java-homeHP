@@ -313,5 +313,4 @@
 	</table>
 </form>
 
-
 <%@ include file="../part/foot.jspf"%>

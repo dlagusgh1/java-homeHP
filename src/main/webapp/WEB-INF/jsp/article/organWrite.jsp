@@ -8,7 +8,11 @@
 <c:set var="pageTitle" value="기관 정보 등록" />
 <%@ include file="../part/head.jspf"%>
 
+
 <h1 class="con flex-jc-c">기관 정보 등록</h1>
+<div class="con flex-jc-c" style="margin-bottom: 5px; font-size: 1rem;">
+	<a href="/article/searchMap" style="background-color: #4BAF4B; color: white; padding: 5px; border-radius: 10px;" onclick="window.open(this.href,'지도 검색', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">지도 검색하기</a>
+</div>
 
 <script>
 	var OrganWriteForm__submitDone = false;

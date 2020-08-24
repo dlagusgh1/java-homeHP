@@ -119,6 +119,14 @@ public class ArticleController {
 		return "article/kakaoMap_PM";
 	}
 	
+	// 카카오맵 검색
+	@RequestMapping("/article/searchMap")
+	public String searchMap(Model model) {
+	
+		
+		return "article/searchMap";
+	}
+	
 	// 응급처치
 	@RequestMapping("/article/firstAid")
 	public String firstAid(Model model) {
