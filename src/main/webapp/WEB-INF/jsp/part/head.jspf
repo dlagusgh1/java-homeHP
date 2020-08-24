@@ -60,6 +60,6 @@
 <!-- 로그인 대상 표시 -->
 <c:if test="${isLogined}">
 	<div class="con flex-jc-end">
-			<div><a href="/member/myPage" style="color: blue; font-weight:bold;">${loginedMember.organName}</a> 님</div>	
+			<div><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}" style="color: blue; font-weight:bold;">${loginedMember.organName}</a> 님</div>	
 	</div>
 </c:if>
