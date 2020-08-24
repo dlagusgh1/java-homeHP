@@ -169,8 +169,9 @@
 		</c:forEach>
 		];
 
-	var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(50, 50), // 마커이미지의 크기입니다
+	// 마커 이미지
+	var imageSrc = 'https://img.icons8.com/clouds/100/000000/hospital.png', // 마커이미지의 주소입니다    
+    imageSize = new kakao.maps.Size(70, 70), // 마커이미지의 크기입니다
     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       
 	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
@@ -183,7 +184,7 @@
 		var marker = new kakao.maps.Marker({
 			position: new kakao.maps.LatLng(데이터[i][0], 데이터[i][1]), // 마커의 좌표
 			map: map, // 마커를 표시할 지도 객체
-			image: markerImage
+			image: markerImage // 마커에 이미지 추가
 		});
 
 		iwPosition = new kakao.maps.LatLng(데이터[i][0], 데이터[i][1]),
