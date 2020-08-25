@@ -16,6 +16,7 @@ import com.sbs.lhh.hp.dto.Member;
 import com.sbs.lhh.hp.service.MemberService;
 import com.sbs.lhh.hp.util.Util;
 
+
 @Component("beforeActionInterceptor") // 컴포넌트 이름 설정
 public class BeforeActionInterceptor implements HandlerInterceptor {
 	@Autowired
@@ -26,13 +27,12 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private AppConfig appConfig;
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
 		// 기타 유용한 정보를 request에 담는다.
 		Map<String, Object> param = Util.getParamMap(request);
@@ -52,7 +52,8 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 
 		String afterLoginUri = requestUri;
 
-		// 현재 페이지가 이미 로그인 페이지라면, 이 상태에서 로그인 버튼을 눌렀을 때 기존 param의 redirectUri가 계속 유지되도록 한다.
+		// 현재 페이지가 이미 로그인 페이지라면, 이 상태에서 로그인 버튼을 눌렀을 때 기존 param의 redirectUri가 계속 유지되도록
+		// 한다.
 		if (requestUri.contains("/member/login")) {
 			afterLoginUri = Util.getString(request, "redirectUri", "");
 		}
@@ -101,7 +102,7 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 		request.setAttribute("loginedMember", loginedMember);
 
 		request.setAttribute("activeProfile", activeProfile);
-		
+
 		request.setAttribute("appConfig", appConfig);
 
 		return HandlerInterceptor.super.preHandle(request, response, handler);

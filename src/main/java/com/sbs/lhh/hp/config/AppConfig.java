@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.sbs.lhh.hp.dto.Member;
 
+
 @Component
 public class AppConfig {
 	public int getMaxAttachmentFileNo(String relTypeCode) {

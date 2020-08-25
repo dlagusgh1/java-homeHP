@@ -6,11 +6,12 @@ import org.springframework.stereotype.Service;
 import com.sbs.lhh.hp.dao.AttrDao;
 import com.sbs.lhh.hp.dto.Attr;
 
+
 @Service
 public class AttrService {
 	@Autowired
 	private AttrDao attrDao;
-	
+
 	public Attr get(String name) {
 		String[] nameBits = name.split("__");
 		String relTypeCode = nameBits[0];
@@ -86,5 +87,4 @@ public class AttrService {
 
 		return -1;
 	}
-
 }

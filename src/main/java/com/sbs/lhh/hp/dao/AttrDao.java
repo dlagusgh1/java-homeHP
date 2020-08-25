@@ -7,7 +7,6 @@ import com.sbs.lhh.hp.dto.Attr;
 
 @Mapper
 public interface AttrDao {
-	
 	Attr get(@Param("relTypeCode") String relTypeCode, @Param("relId") int relId, @Param("typeCode") String typeCode, @Param("type2Code") String type2Code);
 
 	int remove(@Param("relTypeCode") String relTypeCode, @Param("relId") int relId, @Param("typeCode") String typeCode, @Param("type2Code") String type2Code);
