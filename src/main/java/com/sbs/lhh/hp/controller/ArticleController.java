@@ -253,16 +253,9 @@ public class ArticleController {
 	public String doModify(@RequestParam Map<String, Object> param, HttpServletRequest req, int id, @PathVariable("boardCode") String boardCode, Model model) {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
-		
-		System.out.println("ㅂㅂparam " + param);
-		//fileIdsStr=, body=, redirectUri=/article/notice-detail?id=12, id=12, title=테스트ㅋ, 
-		// file__article__12__common__attachment__1=, deleteFile__article__12__common__attachment__1=Y, 
-		// file__article__12__common__attachment__2=, deleteFile__article__12__common__attachment__2=Y, 
-		// file__article__12__common__attachment__3=, deleteFile__article__12__common__attachment__3=Y
 		Map<String, Object> newParam = Util.getNewMapOf(param, "title", "body", "fileIdsStr", "articleId", "id");
 		Member loginedMember = (Member)req.getAttribute("loginedMember");
-		System.out.println("ㅋㅋnewParam " + newParam);
-		//fileIdsStr=, articleId=null, id=12, title=테스트ㅋㅁㄴㅇㄴㅁㅇㅁㅁㅁ, body=
+		
 		ResultData checkActorCanModifyResultData = articleService.checkActorCanModify(loginedMember, id);
 		
 		if (checkActorCanModifyResultData.isFail() ) {

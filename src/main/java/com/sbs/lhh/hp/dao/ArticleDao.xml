@@ -90,12 +90,8 @@
 		UPDATE article
 		<set>
 			updateDate = NOW(),
-			<if test="title != null">
-				title = #{title},
-			</if>
-			<if test="body != null">
-				body = #{body},
-			</if>
+			<if test="title != null">title = #{title},</if>
+			<if test="body != null">body = #{body},</if>
 		</set>
 		WHERE id = #{id}
 	</update>

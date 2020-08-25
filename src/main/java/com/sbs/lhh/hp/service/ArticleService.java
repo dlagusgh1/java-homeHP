@@ -180,13 +180,19 @@ public class ArticleService {
 	// 게시물 수정 기능
 	public void modify(Map<String, Object> param) {
 		articleDao.modify(param);
-		
+
 		int id = Util.getAsInt(param.get("id"));
 
 		String fileIdsStr = (String) param.get("fileIdsStr");
-		System.out.println("ㅋㅇid " + id);
-		System.out.println("ㅇㅇparam " + param); // fileIdsStr=, articleId=null, id=12, title=테스트, body=
-		System.out.println("ㅋㅋfileIdsStr " + fileIdsStr);
+
+		if (fileIdsStr != null && fileIdsStr.length() > 0) {
+			fileIdsStr = fileIdsStr.trim();
+
+			if (fileIdsStr.startsWith(",")) {
+				fileIdsStr = fileIdsStr.substring(1);
+			}
+		}
+
 		if (fileIdsStr != null && fileIdsStr.length() > 0) {
 			List<Integer> fileIds = Arrays.asList(fileIdsStr.split(",")).stream().map(s -> Integer.parseInt(s.trim())).collect(Collectors.toList());
 
