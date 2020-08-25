@@ -35,6 +35,7 @@ import com.sbs.lhh.hp.service.FileService;
 import com.sbs.lhh.hp.service.VideoStreamService;
 import com.sbs.lhh.hp.util.Util;
 
+
 @Controller
 public class FileController {
 	@Autowired
@@ -157,7 +158,7 @@ public class FileController {
 	@RequestMapping("/file/doUploadAjax")
 	@ResponseBody
 	public ResultData uploadAjax(@RequestParam Map<String, Object> param, HttpServletRequest req, MultipartRequest multipartRequest) {
-		
+
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 
 		List<Integer> fileIds = new ArrayList<>();

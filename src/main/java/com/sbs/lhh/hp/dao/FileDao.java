@@ -11,7 +11,7 @@ import com.sbs.lhh.hp.dto.File;
 @Mapper
 public interface FileDao {
 
-void save(Map<String, Object> param);
+	void save(Map<String, Object> param);
 	
 	void update(Map<String, Object> param);
 
