@@ -55,22 +55,19 @@
 			return;
 		}
 
-		var editor = $(form).find('.toast-editor').data('data-toast-editor');
-
-		var body = editor.getMarkdown();
-		body = body.trim();
+		var bodyEditor = $(form).find('.toast-editor.input-body').data('data-toast-editor');
 		
-		form.body.value = form.body.value.trim();
-
+		var body = bodyEditor.getMarkdown().trim();
+	
 		if (body.length == 0) {
-			editor.focus();
+			bodyEditor.focus();
 			alert('내용을 입력해주세요.');
 
 			return;
 		}
 
 		form.body.value = body;
-
+		
 		var maxSizeMb = 50;
 		var maxSize = maxSizeMb * 1024 * 1024 //50MB
 
@@ -151,6 +148,10 @@
 			}
 	
 			form.fileIdsStr.value = fileIdsStr;
+
+			if (bodyEditor.inBodyFileIdsStr) {
+				form.fileIdsStr.value += bodyEditor.inBodyFileIdsStr;
+			}
 			
 			if (fileInput1) {
 				fileInput1.value = '';
@@ -171,6 +172,8 @@
 </script>
 
 <form method="POST" class="modify-table-box con" action="${board.code}-doModify" onsubmit="ArticleModifyForm__submit(this); return false;">
+	<input type="hidden" name="fileIdsStr" />
+	<input type="hidden" name="body" />
 	<input type="hidden" name="redirectUri" value="/article/${board.code}-detail?id=${article.id}" /> 
 	<input type="hidden" name="id" value="${article.id}"/>
 	<table>
@@ -197,10 +200,9 @@
 			<tr>
 				<th>내용</th>
 				<td>
-					<div class="form-control">
-						<input name="body" type="hidden">
-						<script type="text/x-template">${article.bodyForXTemplate}</script>
-						<div class="toast-editor"></div>
+					<div class="form-control-box">
+						<script type="text/x-template">${article.body}</script>
+						<div data-relTypeCode="article" data-relId="${article.id}" class="toast-editor input-body"></div>
 					</div>
 				</td>
 			</tr>
@@ -229,7 +231,10 @@
 					<th>첨부파일 ${fileNo} 삭제</th>
 					<td>
 						<div class="form-control-box">
-							<label><input type="checkbox" name="deleteFile__article__${article.id}__common__attachment__${fileNo}" value="Y" />삭제</label>
+							<label>
+								<input type="checkbox" name="deleteFile__article__${article.id}__common__attachment__${fileNo}" value="Y" />
+								삭제
+							</label>
 						</div>
 					</td>
 				</tr>

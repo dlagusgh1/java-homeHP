@@ -63,8 +63,8 @@
 					<td>
 						<div class="form-control-box">
 							<c:choose>
-								<c:when test="${loginedMember.email != null}">
-									인증
+								<c:when test="${emailAuthed != \"\"}">
+									인증 완료
 								</c:when>
 								<c:otherwise>
 									비 인증
@@ -73,6 +73,14 @@
 						</div>
 					</td>
 				</tr>
+				<c:if test="${emailAuthed == \"\"}">
+					<tr>
+						<th>인증 메일 발송</th>
+						<td>
+							<button class="btn"><a href="/member/reAuthEmail" style="width:120px;">인증메일 재 발송</a></button>
+						</td>
+					</tr>
+				</c:if>
 				<tr>
 					<th>휴대폰</th>
 					<td>

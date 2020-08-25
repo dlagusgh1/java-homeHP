@@ -354,7 +354,7 @@ h1, h2 {
 .write-table-box td, .modify-table-box td {
 	padding: 10px 0;
 	text-indent: 1rem;
-	width: 90%;
+	width: 85%;
 }
 .write-table-box input, .modify-table-box input {
 	width: 98%;
