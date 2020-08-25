@@ -42,6 +42,7 @@
 		position: relative;
 		overflow: hidden;
 		background-color: #4BAF4B;
+		border-radius:10px;
 	}
 	.firstAidList > ul > li > a .screen .top {
 		position: absolute;
