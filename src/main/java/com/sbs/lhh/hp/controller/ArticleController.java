@@ -119,7 +119,7 @@ public class ArticleController {
 		return "article/kakaoMap_PM";
 	}
 	
-	// 카카오맵 검색
+	// 기관 등록 시 카카오맵 검색 기능
 	@RequestMapping("/article/searchMap")
 	public String searchMap(Model model) {
 	
