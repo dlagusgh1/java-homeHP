@@ -39,21 +39,22 @@ public class MemberService {
 		return Util.getAsInt(param.get("id"));
 	}
 	
-	// 이메일 인증관련 고유 코드 재 발송 기능
+	// 이메일 인증관련 고유 코드 재 발송 기능( 이메일 인증 안내 재 발송 )
 	public void reSendEmailAuthCode(int actorId, String email) {
 
 		String authCode = getAuthCodeEmail(actorId);
 		
-		String mailTitle = String.format("[%s] 가입이 완료되었습니다. 이메일 인증 부탁드립니다.", siteName);
+		String mailTitle = String.format("[%s] 이메일 인증", siteName);
 		
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>이메일 인증</h1>");
-		mailBodySb.append(String.format("<p>담당자님의 가입을 진심으로 환영합니다.<br><br>아래 링크로 접속하여 이메일 인증을 해주세요.<br><br><a href=\"http://localhost:8085/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
+		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
+		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>아래 링크로 접속하여 이메일 인증을 해주세요.<br><br><a href=\"http://localhost:8085/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
 		
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
 	
-	// 회원가입 완료 시 대상에게 이메일 인증관련 고유 코드 등록 후 인증 안내 발송
+	// 회원가입 완료 시 대상에게 이메일 인증관련 고유 코드 등록 후 인증 안내 발송( 이메일 인증 안내 발송)
 	public void sendEmailAuthCode(int actorId, String email) {
 		String authCode = UUID.randomUUID().toString();
 		
@@ -63,7 +64,8 @@ public class MemberService {
 		
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>이메일 인증</h1>");
-		mailBodySb.append(String.format("<p>가입을 진심으로 축하드립니다.<br><br>아래 링크를 클릭하여 이메일 인증을 진행해주세요.<br><br><a href=\"http://localhost:8085/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
+		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
+		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>가입을 진심으로 축하드립니다.<br><br>아래 링크를 클릭하여 이메일 인증을 진행해주세요.<br><br><a href=\"http://localhost:8085/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
 		
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
@@ -87,13 +89,14 @@ public class MemberService {
 		attrService.setValue("member__" + actorId + "__extra__emailAuthed", email, Util.getDateStrLater(60 * 60));
 	}
 
-	// 회원가입 완료 시 대상에게 환영메일
+	// 회원가입 완료 시 대상에게 환영메일(축하 메일 발송)
 	private void sendJoinCompleteMail(String email) {
 		String mailTitle = String.format("[%s] 가입이 완료되었습니다.", siteName);
 
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>환영합니다!</h1>");
-		mailBodySb.append(String.format("<p>가입을 진심으로 축하드립니다.<br><br><a href=\"http://localhost:8085/home/main\" target=\"_blank\">%s 사이트로 이동하기</a></p>", siteName));
+		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
+		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>가입을 진심으로 축하드립니다.<br><br><a href=\"http://localhost:8085/home/main\" target=\"_blank\">%s 사이트로 이동하기</a></p>", siteName));
 
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
