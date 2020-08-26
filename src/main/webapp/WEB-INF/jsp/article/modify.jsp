@@ -12,7 +12,7 @@
 <%@ include file="/WEB-INF/jsp/part/toastUiEditor.jspf"%>
 <h1 class="con flex-jc-c">게시물 수정</h1>
 
-<script>
+<script>	
 	function ArticleModifyForm__submit(form) {
 		if (isNowLoading()) {
 			alert('처리중입니다.');
@@ -55,12 +55,12 @@
 		}
 
 		var bodyEditor = $(form).find('.toast-editor.input-body').data('data-toast-editor');
-
+		
 		var body = bodyEditor.getMarkdown().trim();
 
 		if (body.length == 0) {
 			bodyEditor.focus();
-			alert('특이사항을 입력해주세요.');
+			alert('내용을 입력해주세요.');
 
 			return;
 		}
@@ -134,6 +134,7 @@
 				type : 'POST',
 				success : onSuccess
 			});
+		
 		}
 
 		startLoading();

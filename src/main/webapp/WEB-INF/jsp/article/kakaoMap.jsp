@@ -85,7 +85,7 @@
 	</nav>
 	<ul class="flex">
 		<c:forEach items="${adCateItems}" var="adCateItem">
-			<li><a href="">${adCateItem.name}</a></li>
+			<li><a id="${adCateItem.name}" onClick="administrative(this.id)" style="cursor: pointer;">${adCateItem.name}</a></li>
 		</c:forEach>
 	</ul>
 </div>
@@ -123,6 +123,13 @@
 <!-- 카카오맵 -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
 <script>
+	var name = '';
+	function administrative(clicked_id)
+	{
+	    name = clicked_id;
+	    alert(name);
+	}
+
 	var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
 	contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
 	markers = [], // 마커를 담을 배열입니다
@@ -161,12 +168,12 @@
 	// [좌표, '<div class="map_marker">기관명<br>- 주소 : (동)<br>- 전화 : <br>- 진료시간 : <br>- 주말운영여부 : <br>- 비고 : </div>'],
 	
 	//for(var i = 1; i < ${fn:length(organes)}; i++ ) {
-	
-	var name = "";
 	var 데이터 = [
+		
 		<c:forEach items="${organes}" var="organ">
 			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
 		</c:forEach>
+			
 		];
 
 	// 마커 이미지

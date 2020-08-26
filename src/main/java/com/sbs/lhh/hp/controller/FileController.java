@@ -158,7 +158,7 @@ public class FileController {
 	@RequestMapping("/file/doUploadAjax")
 	@ResponseBody
 	public ResultData uploadAjax(@RequestParam Map<String, Object> param, HttpServletRequest req, MultipartRequest multipartRequest) {
-
+		
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 
 		List<Integer> fileIds = new ArrayList<>();
