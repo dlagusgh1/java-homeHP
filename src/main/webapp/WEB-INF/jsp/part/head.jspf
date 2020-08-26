@@ -28,10 +28,14 @@
 <!-- 공통(라이브러리) JS -->
 <script src="/resource/common.js"></script>
 <!-- 공통 CSS -->
-<link rel="stylesheet" href="/resource/app.css" />
 <link rel="stylesheet" href="/resource/keyframes.css" />
 <!-- 공통 JS -->
 <script src="/resource/app.js"></script>
+
+<!-- 부트스트랩 css 사용 -->
+<link rel="stylesheet" href="/resource/boostrap/css/bootstrap.css">
+<!--  부트스트랩 js 사용 -->
+<script type="text/javascript" src="/resource/boostrap/js/bootstrap.js"></script>
 
 <!-- 파비콘 -->
 <link rel="shortcut icon" href="/resource/img/logo3B.ico">

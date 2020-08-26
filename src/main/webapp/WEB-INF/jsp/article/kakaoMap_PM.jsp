@@ -16,6 +16,7 @@
 		border: 2px solid green; 
 		margin-right: 10px;
 	}
+	
 	.kakaoMap-info {
 		width:100%; 
 		height:650px; 
@@ -23,13 +24,16 @@
 		border: 2px solid green;
 		text-indent: 1rem;
 	}
+	
 	.administrative-district {
 		margin-bottom: 20px;
 	}
+	
 	.administrative-district div {
 		font-weight:bold; 
 		font-size: 1.5rem;
 	}
+	
 	.administrative-district ul {
 		background-color: #4BAF4B;
 		border-radius: 10px;	
@@ -37,6 +41,10 @@
 		padding: 10px 0px;
 		margin: 5px 0 7px 0;
 		text-align: center;
+	}
+	
+	.administrative-district select {
+		padding: 5px;
 	}
 	
 	.cate ul li a{
