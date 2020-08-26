@@ -76,9 +76,9 @@
 	<nav>
 		<div>
 			행정구역(동/읍/면)&nbsp&nbsp
-			<select name="" id="">
+			<select name="adCateItemName" id="adCateItem">
 				<c:forEach items="${adCateItems}" var="adCateItem">
-					<option value="${adCateItem.name}" onClick="administrative(this.value)" >${adCateItem.name}</option>
+					<option id="adCateItemName" value="${adCateItem.name}" onClick="administrative(this.value)" >${adCateItem.name}</option>
 				</c:forEach>
 			</select>
 		</div>
