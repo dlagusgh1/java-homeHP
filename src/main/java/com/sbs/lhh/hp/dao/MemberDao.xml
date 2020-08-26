@@ -87,4 +87,10 @@
 		WHERE email = #{email}
 	</select>
 	
+	<update id="meberDelete">
+		UPDATE `member`
+		SET delStatus = 1
+		WHERE loginId = #{loginId}
+	</update>
+	
 </mapper>

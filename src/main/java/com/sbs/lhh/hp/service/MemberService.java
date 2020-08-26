@@ -223,4 +223,8 @@ public class MemberService {
 	
 	}
 
+	public void memberDelete(String loginId) {
+		memberDao.meberDelete(loginId);
+	}
+
 }

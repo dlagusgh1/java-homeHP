@@ -190,6 +190,12 @@ public class MemberController {
 			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
 			return "common/redirect";
 		}
+		
+		if (member.isDelStatus()) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", "탈퇴한 회원입니다.");
+			return "common/redirect";
+		}
 
 		if (member.getLoginPw().equals(loginPw) == false) {
 			model.addAttribute("historyBack", true);
@@ -295,17 +301,7 @@ public class MemberController {
 		// 이메일 인증/비인증 노출 기능 추가하기
 		String emailAuthed = memberService.getAuthCodeEmail(loginedMemberId); 
 		
-		model.addAttribute("emailAuthed", emailAuthed);
-		
-//		// 이메일 인증 중복 방지
-//		if ( emailAuthed != "" ) {
-//			String redirectUri = "/home/main";
-//			model.addAttribute("redirectUri", redirectUri);
-//			model.addAttribute("alertMsg", "이미 이메일 인증이 완료되었습니다.");
-//
-//			return "common/redirect";
-//		}
-		
+		model.addAttribute("emailAuthed", emailAuthed);		
 		
 		return "member/myPage";
 	}
@@ -399,6 +395,27 @@ public class MemberController {
 		model.addAttribute("redirectUri", redirectUri);
 
 		return "common/redirect";
+	}
+	
+	// 회원 탈퇴 폼
+	@RequestMapping("member/memberDelete")
+	public String memberDelete() {		
+		return "member/memberDelete";
+	}
+	
+	// 회원 탈퇴 기능
+	@RequestMapping("member/doMemberDelete")
+	public String doMemberDelete(@RequestParam Map<String, Object> param, HttpSession session, Model model, HttpServletRequest request, String redirectUri) {
+		Member loginedMember = (Member) request.getAttribute("loginedMember");	
+		
+		memberService.memberDelete(loginedMember.getLoginId());
+		
+		model.addAttribute("alertMsg", "탈퇴가 정상적으로 처리되었습니다.\\n감사합니다.");
+		model.addAttribute("redirectUri", redirectUri);
+		
+		session.removeAttribute("loginedMemberId");
+		
+		return "common/redirect";	
 	}
 }
 
