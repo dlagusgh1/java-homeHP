@@ -6,6 +6,7 @@
 <!-- JSTL 데이터 포맷 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<c:set var="pageTitle" value="모든 병원/약국 찾기"/>
 <%@ include file="../part/head.jspf"%>
 
 
@@ -87,7 +88,7 @@
 	}
 </style>
 
-<h1 class="con flex-jc-c">일반 병원/약국</h1>
+<h1 class="con flex-jc-c">모든 병원/약국</h1>
 
 <div class="cate con flex-jc-c">
 	<ul class="flex">
@@ -101,13 +102,11 @@
 <div class="administrative-district con">
 	<nav>
 		<div>
-			행정구역(동/읍/면)
+			모든 병원/약국
 		</div>
 	</nav>
 	<ul class="flex">
-		<c:forEach items="${adCateItems}" var="adCateItem">
-			<li><a href="">${adCateItem.name}</a></li>
-		</c:forEach>
+		<li><a><i class="far fa-hand-point-down"></i> 아래 지도에서 병원/약국 항목을 클릭하여 세부내용을 확인하실 수 있습니다.</a></li>
 	</ul>
 </div>
 

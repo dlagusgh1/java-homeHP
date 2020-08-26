@@ -23,6 +23,9 @@
 		border: 2px solid green;
 		text-indent: 1rem;
 	}
+	.administrative-district {
+		margin-bottom: 20px;
+	}
 	.administrative-district div {
 		font-weight:bold; 
 		font-size: 1.5rem;
@@ -35,15 +38,8 @@
 		margin: 5px 0 7px 0;
 		text-align: center;
 	}
-	.administrative-district ul li {
-		color: white;
-		text-align: center;
-	}
-	.administrative-district ul li:hover {
-		color: black;
-	}
 	
-	.administrative-district ul li a , .cate ul li a{
+	.cate ul li a{
 		padding:10px 5px;
 		font-size: 1rem;
 		margin-left: 5px;
@@ -80,14 +76,14 @@
 <div class="administrative-district con">
 	<nav>
 		<div>
-			행정구역(동/읍/면)
+			행정구역(동/읍/면)&nbsp&nbsp
+			<select name="" id="">
+				<c:forEach items="${adCateItems}" var="adCateItem">
+					<option value="${adCateItem.name}" onClick="administrative(this.value)" >${adCateItem.name}</option>
+				</c:forEach>
+			</select>
 		</div>
 	</nav>
-	<ul class="flex">
-		<c:forEach items="${adCateItems}" var="adCateItem">
-			<li><a id="${adCateItem.name}" onClick="administrative(this.id)" style="cursor: pointer;">${adCateItem.name}</a></li>
-		</c:forEach>
-	</ul>
 </div>
 <!--  
  기관명 : 엔케이(NK) 세종 병원
@@ -163,6 +159,7 @@
 
 	// 지도의 우측에 확대 축소 컨트롤을 추가한다
 	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		
 
 	// 다중 마커 생성
 	// [좌표, '<div class="map_marker">기관명<br>- 주소 : (동)<br>- 전화 : <br>- 진료시간 : <br>- 주말운영여부 : <br>- 비고 : </div>'],

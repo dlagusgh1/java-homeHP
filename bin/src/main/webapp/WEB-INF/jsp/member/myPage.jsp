@@ -96,6 +96,12 @@
 						<button class="btn" type="button"><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/memberModifyPw')}">비밀번호<br>변경</a></button>
 					</td>
 				</tr>
+				<tr>
+					<th>회원 탈퇴</th>
+					<td class="btn-info">
+						<button class="btn" type="button"><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/memberDelete')}">회원탈퇴</a></button>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 	</form>

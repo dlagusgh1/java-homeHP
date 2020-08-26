@@ -8,7 +8,8 @@
 		INSERT INTO `file`
 		SET regDate = NOW(),
 		updateDate = NOW(),
-		relTypeCode = #{relTypeCode},
+		relTypeCode =
+		#{relTypeCode},
 		relId = #{relId},
 		originFileName = #{originFileName},
 		fileExt = #{fileExt},
@@ -41,7 +42,7 @@
 		SELECT id, regDate, updateDate, relTypeCode, relId, originFileName,
 		fileExt, typeCode, type2Code, fileExtTypeCode, fileExtType2Code,
 		fileNo, fileSize
-		FROM file
+		FROM `file`
 		WHERE 1
 		AND relId IN
 		<foreach item="relId" index="index" collection="relIds"
@@ -78,9 +79,8 @@
 		SELECT id, regDate, updateDate, relTypeCode, relId,
 		originFileName,
 		fileExt, typeCode, type2Code, fileExtTypeCode,
-		fileExtType2Code,
-		fileNo, fileSize
-		FROM file
+		fileExtType2Code, fileNo, fileSize
+		FROM `file`
 		WHERE 1
 		AND relId = #{relId}
 		AND relTypeCode = #{relTypeCode}
@@ -92,10 +92,9 @@
 	<select id="getFileById" resultType="File">
 		SELECT id, regDate,
 		updateDate, relTypeCode, relId, originFileName, fileExt,
-		typeCode,
-		type2Code, fileExtTypeCode, fileExtType2Code, fileNo, body,
+		typeCode, type2Code, fileExtTypeCode, fileExtType2Code, fileNo, body,
 		fileSize
-		FROM file
+		FROM `file`
 		WHERE 1
 		AND id = #{id}
 	</select>
@@ -110,24 +109,24 @@
 	</update>
 
 	<delete id="deleteFiles">
-		DELETE FROM file
+		DELETE FROM `file`
 		WHERE relId = #{relId}
 		AND relTypeCode	= #{relTypeCode}
 	</delete>
 
 	<delete id="deleteFile">
-		DELETE FROM file
+		DELETE FROM `file`
 		WHERE id = #{id}
 	</delete>
 
 	<select id="getFileId" resultType="int">
 		SELECT id
-		FROM file
-		WHERE relTypeCode = #{relTypeCode}
+		FROM `file`
+		WHERE
+		relTypeCode = #{relTypeCode}
 		AND relId = #{relId}
 		AND typeCode = #{typeCode}
 		AND type2Code = #{type2Code}
 		AND fileNo = #{fileNo}
 	</select>
-
 </mapper>

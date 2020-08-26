@@ -20,8 +20,7 @@
 	</select>
 	
 	<insert id="organWrite">
-		INSERT
-		INTO `organ`
+		INSERT INTO `organ`
 		SET regDate = NOW(),
 		updateDate = NOW(),
 		`organNumber` = #{organNumber},
@@ -77,8 +76,7 @@
 	</select>
 	
 	<insert id="write" useGeneratedKeys="true" keyProperty="id">
-		INSERT
-		INTO article
+		INSERT INTO article
 		SET regDate = NOW(),
 		updateDate = NOW(),
 		title = #{title},
@@ -92,12 +90,8 @@
 		UPDATE article
 		<set>
 			updateDate = NOW(),
-			<if test="title != null">
-				title = #{title},
-			</if>
-			<if test="body != null">
-				body = #{body},
-			</if>
+			<if test="title != null">title = #{title},</if>
+			<if test="body != null">body = #{body},</if>
 		</set>
 		WHERE id = #{id}
 	</update>
