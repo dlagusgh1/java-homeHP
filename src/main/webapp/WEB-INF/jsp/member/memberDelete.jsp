@@ -33,7 +33,7 @@
 
 		if ( form.deleteConfirm.value != form.deleteRealConfirm.value ) {
 			form.deleteRealConfirm.focus();
-			alert('입력하신 정보가 잘못되었습니다.\n' + form.deleteConfirm.value + '\n' + form.deleteRealConfirm.value );
+			alert('입력하신 정보가 잘못되었습니다.\n'+ '입력하신 정보 : ' + form.deleteRealConfirm.value );
 
 			return;
 		}
