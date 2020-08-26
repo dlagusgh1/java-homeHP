@@ -6,7 +6,7 @@
 <!-- JSTL 데이터 포맷 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="pageTitle" value="일반 병원/약국 찾기"/>
+<c:set var="pageTitle" value="모든 병원/약국 찾기"/>
 <%@ include file="../part/head.jspf"%>
 
 
@@ -88,7 +88,7 @@
 	}
 </style>
 
-<h1 class="con flex-jc-c">일반 병원/약국</h1>
+<h1 class="con flex-jc-c">모든 병원/약국</h1>
 
 <div class="cate con flex-jc-c">
 	<ul class="flex">
@@ -102,7 +102,7 @@
 <div class="administrative-district con">
 	<nav>
 		<div>
-			일반 전체 병원/약국
+			모든 병원/약국
 		</div>
 	</nav>
 	<ul class="flex">
