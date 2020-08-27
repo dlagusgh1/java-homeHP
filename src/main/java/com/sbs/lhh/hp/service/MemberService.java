@@ -215,10 +215,8 @@ public class MemberService {
 		String useTempPassword = attrService.getValue("member__" + actorId + "__extra__useTempPassword");
 		
 		if (useTempPassword.equals("")) {
-			System.out.println("F-1 일때 : " + useTempPassword);
 			return new ResultData("F-1", "임시 패스워드를 사용하고 있지 않습니다.");
 		}
-		System.out.println("에스-1 일때 : " + useTempPassword);
 		return new ResultData("S-1", "임시 패스워드를 사용 중 입니다.");
 	
 	}

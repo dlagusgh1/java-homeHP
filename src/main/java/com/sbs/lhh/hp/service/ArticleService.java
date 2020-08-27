@@ -172,7 +172,6 @@ public class ArticleService {
 		int id = Util.getAsInt(param.get("id"));
 		
 		String fileIdsStr = (String) param.get("fileIdsStr");
-		System.out.println("fileIdsStr" + fileIdsStr);
 		if (fileIdsStr != null && fileIdsStr.length() > 0) {
 			fileIdsStr = fileIdsStr.trim();
 

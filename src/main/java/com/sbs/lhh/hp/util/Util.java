@@ -55,10 +55,7 @@ public class Util {
 
 		for (String key : keys) {
 			newMap.put(key, oldMap.get(key));
-			System.out.println("oldMap : " + oldMap);
-			System.out.println("key : " + key);
 		}
-		System.out.println("newMap : " + newMap);
 		return newMap;
 	}
 
