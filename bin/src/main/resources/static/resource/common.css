@@ -301,7 +301,7 @@ h1, h2 {
 }
 .main-article-table-box {
 	text-indent: 1rem;
-	width: 49.999%; 
+	width: 50%; 
 	height:350px; 
 	border:2px solid #4BAF4B; 	
 	overflow: auto;

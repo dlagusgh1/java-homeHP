@@ -57,8 +57,16 @@ CREATE TABLE adCateItem (
 # 행정구역 구분 카테고리 추가
 # 세종시 행정구역(동)
 INSERT INTO adCateItem SET regDate = NOW(), `name` = '한솔동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '가람동';
 INSERT INTO adCateItem SET regDate = NOW(), `name` = '도담동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '어진동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '해밀동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '산울동';
 INSERT INTO adCateItem SET regDate = NOW(), `name` = '소담동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '반곡동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '집현동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '합강동';
+INSERT INTO adCateItem SET regDate = NOW(), `name` = '나성동';
 INSERT INTO adCateItem SET regDate = NOW(), `name` = '새롬동';
 INSERT INTO adCateItem SET regDate = NOW(), `name` = '보람동';
 INSERT INTO adCateItem SET regDate = NOW(), `name` = '다정동';
