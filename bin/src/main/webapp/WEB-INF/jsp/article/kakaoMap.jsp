@@ -23,10 +23,16 @@
 		border: 2px solid green;
 		text-indent: 1rem;
 	}
+	
+	.administrative-district {
+		margin-bottom: 20px;
+	}
+	
 	.administrative-district div {
 		font-weight:bold; 
 		font-size: 1.5rem;
 	}
+	
 	.administrative-district ul {
 		background-color: #4BAF4B;
 		border-radius: 10px;	
@@ -35,15 +41,12 @@
 		margin: 5px 0 7px 0;
 		text-align: center;
 	}
-	.administrative-district ul li {
-		color: white;
-		text-align: center;
-	}
-	.administrative-district ul li:hover {
-		color: black;
+	
+	.administrative-district select {
+		padding: 5px;
 	}
 	
-	.administrative-district ul li a , .cate ul li a{
+	.cate ul li a{
 		padding:10px 5px;
 		font-size: 1rem;
 		margin-left: 5px;
@@ -80,23 +83,16 @@
 <div class="administrative-district con">
 	<nav>
 		<div>
-			행정구역(동/읍/면)
+			행정구역(동/읍/면)&nbsp&nbsp
+			<select name="adCateItemName" id="adCateItem" onchange="administrative(this.value)">
+				<c:forEach items="${adCateItems}" var="adCateItem">
+					<option value="${adCateItem.name}" style="height: 50px;">${adCateItem.name}</option>
+				</c:forEach>
+			</select>
 		</div>
 	</nav>
-	<ul class="flex">
-		<c:forEach items="${adCateItems}" var="adCateItem">
-			<li><a id="${adCateItem.name}" onClick="administrative(this.id)" style="cursor: pointer;">${adCateItem.name}</a></li>
-		</c:forEach>
-	</ul>
 </div>
-<!--  
- 기관명 : 엔케이(NK) 세종 병원
- 기관주소 : 세종 한누리대로 161
- 전화번호 : 044-850-7700
- 진료시간 : 24시간
- 주말운영여부 : 토요일 / 일요일 운영
- 비고 : 응급실 운영기관
--->
+
 <!-- 병원 목록 -->
 <div class="con flex-jc-c">
 	<div class="kakaoMap con" id="map"></div>
@@ -123,11 +119,11 @@
 <!-- 카카오맵 -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
 <script>
-	var name = '';
-	function administrative(clicked_id)
+
+	function administrative(adCateItemName)
 	{
-	    name = clicked_id;
-	    alert(name);
+		temp = adCateItemName;
+	
 	}
 
 	var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
@@ -163,15 +159,22 @@
 
 	// 지도의 우측에 확대 축소 컨트롤을 추가한다
 	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		
 
 	// 다중 마커 생성
 	// [좌표, '<div class="map_marker">기관명<br>- 주소 : (동)<br>- 전화 : <br>- 진료시간 : <br>- 주말운영여부 : <br>- 비고 : </div>'],
 	
 	//for(var i = 1; i < ${fn:length(organes)}; i++ ) {
-	var 데이터 = [
+
 		
+	var 데이터 = [
+
+
 		<c:forEach items="${organes}" var="organ">
+			
 			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
+
+
 		</c:forEach>
 			
 		];

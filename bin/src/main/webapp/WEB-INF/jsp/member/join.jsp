@@ -145,12 +145,11 @@
 	<!-- 회원가입 아이디 중복 체크(AJAX) -->
 	function JoinForm__checkLoginIdDup(input) {
 		var form = input.form;
-
-
+		
 		form.loginId.value = form.loginId.value.trim();
 		
 		if (form.loginId.value.length == 0) {
-			return;
+		
 		}
 
 		$.get('getLoginIdDup', {
@@ -161,11 +160,17 @@
 			if (data.resultCode.substr(0, 2) == 'S-') {
 				$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
 				JoinForm__validLoginId = data.loginId;
-			} else {
+			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validLoginId = '';
+			} else if (data.resultCode.substr(0, 2) == 'M-') {
+				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
+				JoinForm__validLoginId = '';
+			} else if (data.resultCode.substr(0, 2) == 'E-') {
+				$message.empty();
 			}
 		}, 'json');
+
 	}
 
 	<!-- 회원가입 기관명 중복 체크(AJAX)  -->
@@ -175,7 +180,7 @@
 		form.organName.value = form.organName.value.trim();
 
 		if (form.organName.value.length == 0) {
-			return;
+
 		}
 
 		$.get('getOrganNameDup', {
@@ -187,9 +192,11 @@
 			if (data.resultCode.substr(0, 2) == 'S-') {
 				$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
 				JoinForm__validOrganName = data.organName;
-			} else {
+			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validOrganName = '';
+			} else if (data.resultCode.substr(0, 2) == 'E-') {
+				$message.empty();
 			}
 		}, 'json');
 	}
@@ -201,7 +208,7 @@
 		form.email.value = form.email.value.trim();
 
 		if (form.email.value.length == 0) {
-			return;
+
 		}
 
 		$.get('getEmailDup', {
@@ -213,17 +220,58 @@
 			if (data.resultCode.substr(0, 2) == 'S-') {
 				$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
 				JoinForm__validEmail = data.email;
-			} else {
+			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validEmail = '';
+			} else if (data.resultCode.substr(0, 2) == 'A-') {
+				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
+				JoinForm__validEmail = '';
+			} else if (data.resultCode.substr(0, 2) == 'E-') {
+				$message.empty();
 			}
 		}, 'json');
-	}	
+	}
+
+	<!-- 회원가입 휴대전화번호 중복 체크(AJAX)  -->
+	function JoinForm__checkCellPhoneNoDup(input) {
+		var form = input.form;
+
+		form.cellphoneNo.value = form.cellphoneNo.value.trim();
+		form.cellphoneNo.value = form.cellphoneNo.value.replaceAll('-', '');
+		form.cellphoneNo.value = form.cellphoneNo.value.replaceAll(' ', '');
+
+		if (form.cellphoneNo.value.length == 0) {
+
+		}
+
+		$.get('getCellPhoneNoDup', {
+			cellphoneNo : form.cellphoneNo.value
+		}, function(data) {
+			var $message = $(form.cellphoneNo).next();
+	
+			// resultCode : 중복 체크 값 S- 중복 아님 / F- 중복
+			if (data.resultCode.substr(0, 2) == 'S-') {
+				$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
+				JoinForm__validCellPhoneNo = data.cellphoneNo;
+			} else if (data.resultCode.substr(0, 2) == 'F-') {
+				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
+				JoinForm__validCellPhoneNo = '';
+			} else if (data.resultCode.substr(0, 2) == 'N-') {
+				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
+				JoinForm__validCellPhoneNo = '';
+			} else if (data.resultCode.substr(0, 2) == 'E-') {
+				$message.empty();
+			} 
+		}, 'json');
+	}
+
+			
 
 	<!-- lodash 라이브러리 (debounce) 를 이용한 딜레이 설정  -->
 	JoinForm__checkLoginIdDup = _.debounce(JoinForm__checkLoginIdDup, 700);
 	JoinForm__checkOrganNameDup = _.debounce(JoinForm__checkOrganNameDup, 700);
 	JoinForm__checkEmailDup = _.debounce(JoinForm__checkEmailDup, 700);
+	JoinForm__checkCellPhoneNoDup = _.debounce(JoinForm__checkCellPhoneNoDup, 700);
 </script>
 
 
@@ -298,7 +346,8 @@
 				<th>휴대폰</th>
 				<td>
 					<div class="form-control-box">
-						<input type="tel" placeholder="휴대전화번호를 입력해주세요." name="cellphoneNo"	maxlength="12" onkeyup="JoinForm__checkCellPhoneNoDup(this);"/>
+						<input type="tel" placeholder="휴대전화번호를 입력해주세요.(- 없이)" name="cellphoneNo"	maxlength="12" onkeyup="JoinForm__checkCellPhoneNoDup(this);"/>
+						<div class="message-msg"></div>
 					</div>
 				</td>
 			</tr>

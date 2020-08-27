@@ -16,6 +16,7 @@
 		border: 2px solid green; 
 		margin-right: 10px;
 	}
+	
 	.kakaoMap-info {
 		width:100%; 
 		height:650px; 
@@ -23,10 +24,16 @@
 		border: 2px solid green;
 		text-indent: 1rem;
 	}
+	
+	.administrative-district {
+		margin-bottom: 20px;
+	}
+	
 	.administrative-district div {
 		font-weight:bold; 
 		font-size: 1.5rem;
 	}
+	
 	.administrative-district ul {
 		background-color: #4BAF4B;
 		border-radius: 10px;	
@@ -35,20 +42,16 @@
 		margin: 5px 0 7px 0;
 		text-align: center;
 	}
-	.administrative-district ul li {
-		color: white;
-		text-align: center;
-	}
-	.administrative-district ul li:hover {
-		color: black;
+	
+	.administrative-district select {
+		padding: 5px;
 	}
 	
-	.administrative-district ul li a , .cate ul li a{
+	.cate ul li a{
 		padding:10px 5px;
 		font-size: 1rem;
 		margin-left: 5px;
 	}
-
 	.map_marker {
 		padding:10px; 
 		width: 550px;
@@ -80,14 +83,14 @@
 <div class="administrative-district con">
 	<nav>
 		<div>
-			행정구역(동/읍/면)
+			행정구역(동/읍/면)&nbsp&nbsp
+			<select name="adCateItemName" id="adCateItem">
+				<c:forEach items="${adCateItems}" var="adCateItem">
+					<option id="adCateItemName" value="${adCateItem.name}" onClick="administrative(this.value)" >${adCateItem.name}</option>
+				</c:forEach>
+			</select>
 		</div>
 	</nav>
-	<ul class="flex">
-		<c:forEach items="${adCateItems}" var="adCateItem">
-			<li><a href="">${adCateItem.name}</a></li>
-		</c:forEach>
-	</ul>
 </div>
 <!--  
  기관명 : 엔케이(NK) 세종 병원

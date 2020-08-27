@@ -55,7 +55,7 @@
 		background-color: #4BAF4B;
 		border-radius: 10px;	
 		width: 100%;
-		padding: 10px 0px;
+		padding: 6px 0px;
 		margin: 5px 0 7px 0;
 		text-align: center;
 	}
@@ -100,13 +100,9 @@
 </div>
 
 <div class="administrative-district con">
-	<nav>
-		<div>
-			모든 병원/약국
-		</div>
-	</nav>
+
 	<ul class="flex">
-		<li><a><i class="far fa-hand-point-down"></i> 아래 지도에서 병원/약국 항목을 클릭하여 세부내용을 확인하실 수 있습니다.</a></li>
+		<li><a><i class="far fa-hand-point-down"></i> 아래 지도에서 병원/약국 항목을 클릭하여 세부 위치/내용을 확인하실 수 있습니다.</a></li>
 	</ul>
 </div>
 

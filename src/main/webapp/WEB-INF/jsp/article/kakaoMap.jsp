@@ -120,12 +120,11 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
 <script>
 
-	function administrative(adCateItemName)
-	{
-		temp = adCateItemName;
-	
+	// select onchange로 넘겨받은 값
+	var administrative = function (adCateItemName) {
+		return adCateItemName;
 	}
-
+	
 	var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
 	contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
 	markers = [], // 마커를 담을 배열입니다
@@ -168,7 +167,6 @@
 
 		
 	var 데이터 = [
-
 
 		<c:forEach items="${organes}" var="organ">
 			
