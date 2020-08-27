@@ -192,6 +192,11 @@ public class MemberService {
 		return memberDao.isJoinableEmail(email);
 	}
 	
+	// 회원가입 진행 중 중복체크(AJAX)(휴대전화 번호)
+	public boolean isJoinableCellPhoneNo(String cellphoneNo) {
+		return memberDao.isJoinableCellPhoneNo(cellphoneNo);
+	}
+	
 	// 정보변경(회원정보, 비밀번호) 등 진행 시 비밀번호 확인 attr 저장
 	public String genCheckPasswordAuthCode(int actorId) {
 		String authCode = UUID.randomUUID().toString();

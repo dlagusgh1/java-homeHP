@@ -180,6 +180,29 @@ public class MemberController {
 			return new ResultData("F-1", "중복된 이메일이 존재합니다.", "email", email);
 		}
 	}
+	
+	// 회원가입 진행 중 중복체크(AJAX)(휴대전화번호)
+	@RequestMapping("/member/getCellPhoneNoDup")
+	@ResponseBody
+	public ResultData getCellPhoneNoDup(HttpServletRequest request) {
+		String cellphoneNo = request.getParameter("cellphoneNo");
+		
+		System.out.println("ㄴㅇㅁㄴㅇㅁㄴㅇ" + cellphoneNo);
+		
+		boolean isJoinableCellPhoneNo = memberService.isJoinableCellPhoneNo(cellphoneNo);
+
+		if (isJoinableCellPhoneNo == false) {
+			if (cellphoneNo.equals("") ) {
+				return new ResultData("E-1", "");
+			} else if(cellphoneNo.length() == 0) {
+				return new ResultData("F-1", "휴대전화 번호를 입력해주세요.", "cellphoneNo", cellphoneNo);
+			} else {
+				return new ResultData("S-1", "사용 가능한 번호입니다.", "cellphoneNo", cellphoneNo);
+			}
+		} else {
+			return new ResultData("F-1", "중복된 번호가 존재합니다.", "cellphoneNo", cellphoneNo);
+		}
+	}
 
 	// 로그인 폼
 	@RequestMapping("/member/login")

@@ -87,6 +87,12 @@
 		WHERE email = #{email}
 	</select>
 	
+	<select id="isJoinableCellPhoneNo" resultType="boolean">
+		SELECT COUNT(*) AS cnt
+		FROM `member`
+		WHERE phoneNo = #{cellphoneNo}
+	</select>
+	
 	<update id="meberDelete">
 		UPDATE `member`
 		SET delStatus = 1

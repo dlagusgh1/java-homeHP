@@ -30,6 +30,9 @@ public interface MemberDao {
 	boolean isJoinableOrganName(String organName);
 
 	boolean isJoinableEmail(String email);
+	
+	boolean isJoinableCellPhoneNo(String cellphoneNo);
 
 	void meberDelete(String loginId);
+
 }
