@@ -145,12 +145,11 @@
 	<!-- 회원가입 아이디 중복 체크(AJAX) -->
 	function JoinForm__checkLoginIdDup(input) {
 		var form = input.form;
-
-
+		
 		form.loginId.value = form.loginId.value.trim();
 		
 		if (form.loginId.value.length == 0) {
-			return;
+		
 		}
 
 		$.get('getLoginIdDup', {
@@ -161,11 +160,14 @@
 			if (data.resultCode.substr(0, 2) == 'S-') {
 				$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
 				JoinForm__validLoginId = data.loginId;
-			} else {
+			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validLoginId = '';
+			} else if (data.resultCode.substr(0, 2) == 'E-') {
+				$message.empty();
 			}
 		}, 'json');
+
 	}
 
 	<!-- 회원가입 기관명 중복 체크(AJAX)  -->
@@ -175,7 +177,7 @@
 		form.organName.value = form.organName.value.trim();
 
 		if (form.organName.value.length == 0) {
-			return;
+
 		}
 
 		$.get('getOrganNameDup', {
@@ -187,9 +189,11 @@
 			if (data.resultCode.substr(0, 2) == 'S-') {
 				$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
 				JoinForm__validOrganName = data.organName;
-			} else {
+			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validOrganName = '';
+			} else if (data.resultCode.substr(0, 2) == 'E-') {
+				$message.empty();
 			}
 		}, 'json');
 	}
@@ -201,7 +205,7 @@
 		form.email.value = form.email.value.trim();
 
 		if (form.email.value.length == 0) {
-			return;
+
 		}
 
 		$.get('getEmailDup', {
@@ -213,9 +217,11 @@
 			if (data.resultCode.substr(0, 2) == 'S-') {
 				$message.empty().append('<div style="color:green;">' + data.msg + '</div>');
 				JoinForm__validEmail = data.email;
-			} else {
+			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
-				JoinForm__validEmail = '';
+				JoinForm__validOrganName = '';
+			} else if (data.resultCode.substr(0, 2) == 'E-') {
+				$message.empty();
 			}
 		}, 'json');
 	}	

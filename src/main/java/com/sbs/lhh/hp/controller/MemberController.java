@@ -125,9 +125,11 @@ public class MemberController {
 		boolean isJoinableLoginId = memberService.isJoinableLoginId(loginId);	
 		
 		if (isJoinableLoginId == false) {
-			if(loginId.length() <= 3) {
-				return new ResultData("F-1", "아이디 3자 이상 입력", "loginId", loginId);
-			} else {
+			if (loginId.equals("") ) {
+				return new ResultData("E-1", "");
+			} else if(loginId.length() <= 3) {
+				return new ResultData("F-1", "아이디를 3자 이상 입력해주세요.", "loginId", loginId);
+			}  else {
 				return new ResultData("S-1", "아이디 사용 가능", "loginId", loginId);
 			}
 		} else {
@@ -144,8 +146,10 @@ public class MemberController {
 		boolean isJoinableOrganName = memberService.isJoinableOrganName(organName);
 
 		if (isJoinableOrganName == false) {
-			if(organName.length() <= 2) {
-				return new ResultData("F-1", "기관명을 2자 이상 입력", "organName", organName);
+			if (organName.equals("") ) {
+				return new ResultData("E-1", "");
+			} else if(organName.length() <= 2) {
+				return new ResultData("F-1", "기관명을 2자 이상 입력해주세요.", "organName", organName);
 			} else {
 				return new ResultData("S-1", "기관명 사용 가능", "organName", organName);
 			}
@@ -163,7 +167,9 @@ public class MemberController {
 		boolean isJoinableEmail = memberService.isJoinableEmail(email);
 
 		if (isJoinableEmail == false) {
-			if(email.length() == 0) {
+			if (email.equals("") ) {
+				return new ResultData("E-1", "");
+			} else if(email.length() == 0) {
 				return new ResultData("F-1", "이메일을 입력해주세요.", "email", email);
 			} else {
 				return new ResultData("S-1", "이메일 사용 가능", "email", email);
