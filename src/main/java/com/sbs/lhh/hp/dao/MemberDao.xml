@@ -68,29 +68,15 @@
 		SET loginPw = #{loginPw}
 		WHERE loginId = #{loginId}
 	</update>
-		
-	<select id="isJoinableLoginId" resultType="boolean">
-		SELECT COUNT(*) AS cnt
-		FROM `member`
-		WHERE loginId = #{loginId}
-	</select>
 	
-	<select id="isJoinableOrganName" resultType="boolean">
+	<select id="checkMemberDataJoinable" resultType="boolean">
 		SELECT COUNT(*) AS cnt
 		FROM `member`
-		WHERE organName = #{organName}
-	</select>
-	
-	<select id="isJoinableEmail" resultType="boolean">
-		SELECT COUNT(*) AS cnt
-		FROM `member`
-		WHERE email = #{email}
-	</select>
-	
-	<select id="isJoinableCellPhoneNo" resultType="boolean">
-		SELECT COUNT(*) AS cnt
-		FROM `member`
-		WHERE phoneNo = #{cellphoneNo}
+		WHERE 
+		<if test="loginId != null">loginId = #{loginId}</if>
+		<if test="organName != null">organName = #{organName}</if>
+		<if test="email != null">email = #{email}</if>
+		<if test="cellphoneNo != null">phoneNo = #{cellphoneNo}</if>
 	</select>
 	
 	<update id="meberDelete">

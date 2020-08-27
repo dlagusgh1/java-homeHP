@@ -220,13 +220,16 @@
 			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validEmail = '';
+			} else if (data.resultCode.substr(0, 2) == 'A-') {
+				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
+				JoinForm__validEmail = '';
 			} else if (data.resultCode.substr(0, 2) == 'E-') {
 				$message.empty();
 			}
 		}, 'json');
 	}
 
-	<!-- 회원가입 후대전화번호 중복 체크(AJAX)  -->
+	<!-- 회원가입 휴대전화번호 중복 체크(AJAX)  -->
 	function JoinForm__checkCellPhoneNoDup(input) {
 		var form = input.form;
 

@@ -119,10 +119,11 @@ public class MemberController {
 	// 회원가입 진행 중 중복체크(AJAX)(아이디)
 	@RequestMapping("/member/getLoginIdDup")
 	@ResponseBody
-	public ResultData getLoginIdDup(HttpServletRequest request) {
-		String loginId = request.getParameter("loginId");
+	public ResultData getLoginIdDup(@RequestParam Map<String, Object> param) {
+		
+		String loginId = (String) param.get("loginId");
 
-		boolean isJoinableLoginId = memberService.isJoinableLoginId(loginId);	
+		boolean isJoinableLoginId = memberService.checkMemberDataJoinable(param);
 		
 		if (isJoinableLoginId == false) {
 			if (loginId.equals("") ) {
@@ -135,15 +136,17 @@ public class MemberController {
 		} else {
 			return new ResultData("F-1", "중복된 아이디가 존재합니다.", "loginId", loginId);
 		}
+		
 	}
 	
 	// 회원가입 진행 중 중복체크(AJAX)(기관명)
 	@RequestMapping("/member/getOrganNameDup")
 	@ResponseBody
-	public ResultData getOrganNameDup(HttpServletRequest request) {
-		String organName = request.getParameter("organName");
+	public ResultData getOrganNameDup(@RequestParam Map<String, Object> param) {
+		
+		String organName = (String) param.get("organName");
 
-		boolean isJoinableOrganName = memberService.isJoinableOrganName(organName);
+		boolean isJoinableOrganName = memberService.checkMemberDataJoinable(param);
 
 		if (isJoinableOrganName == false) {
 			if (organName.equals("") ) {
@@ -161,18 +164,19 @@ public class MemberController {
 	// 회원가입 진행 중 중복체크(AJAX)(이메일)
 	@RequestMapping("/member/getEmailDup")
 	@ResponseBody
-	public ResultData getEmailDup(HttpServletRequest request) {
-		String email = request.getParameter("email");
+	public ResultData getEmailDup(@RequestParam Map<String, Object> param) {
+		
+		String email = (String) param.get("email");
 
-		boolean isJoinableEmail = memberService.isJoinableEmail(email);
+		boolean isJoinableEmail = memberService.checkMemberDataJoinable(param);
 
 		if (isJoinableEmail == false) {
-			if (email.contains("@") == false) {
-				return new ResultData("F-1", "이메일 주소를 정확히 입력해주세요.", "email", email);
-			} else if (email.equals("") ) {
+			if (email.equals("") ) {
 				return new ResultData("E-1", "");
+			} else if (email.contains("@") == false) {
+				return new ResultData("A-1", "이메일 주소를 정확히 입력해주세요.", "email", email);
 			} else if(email.length() == 0) {
-				return new ResultData("F-1", "이메일을 입력해주세요.", "email", email);
+				return new ResultData("F-1", "이메일 주소를 입력해주세요.", "email", email);
 			} else {
 				return new ResultData("S-1", "이메일 사용 가능", "email", email);
 			}
@@ -184,12 +188,11 @@ public class MemberController {
 	// 회원가입 진행 중 중복체크(AJAX)(휴대전화번호)
 	@RequestMapping("/member/getCellPhoneNoDup")
 	@ResponseBody
-	public ResultData getCellPhoneNoDup(HttpServletRequest request) {
-		String cellphoneNo = request.getParameter("cellphoneNo");
+	public ResultData getCellPhoneNoDup(@RequestParam Map<String, Object> param) {
 		
-		System.out.println("ㄴㅇㅁㄴㅇㅁㄴㅇ" + cellphoneNo);
+		String cellphoneNo = (String) param.get("cellphoneNo");
 		
-		boolean isJoinableCellPhoneNo = memberService.isJoinableCellPhoneNo(cellphoneNo);
+		boolean isJoinableCellPhoneNo = memberService.checkMemberDataJoinable(param);
 
 		if (isJoinableCellPhoneNo == false) {
 			if (cellphoneNo.equals("") ) {

@@ -25,14 +25,8 @@ public interface MemberDao {
 
 	void memberModifyPw(Map<String, Object> param);
 
-	boolean isJoinableLoginId(String loginId);
-
-	boolean isJoinableOrganName(String organName);
-
-	boolean isJoinableEmail(String email);
+	boolean checkMemberDataJoinable(Map<String, Object> param);
 	
-	boolean isJoinableCellPhoneNo(String cellphoneNo);
-
 	void meberDelete(String loginId);
 
 }

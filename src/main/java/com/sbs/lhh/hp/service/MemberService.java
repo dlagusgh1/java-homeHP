@@ -177,25 +177,12 @@ public class MemberService {
 		
 	}
 
-	// 회원가입 진행 중 중복체크(AJAX)(아이디)
-	public boolean isJoinableLoginId(String loginId) {
-		return memberDao.isJoinableLoginId(loginId);
+	// 회원가입 진행 중 입력 값 중복체크(AJAX)
+	public boolean checkMemberDataJoinable(Map<String, Object> param) {
+		
+		return memberDao.checkMemberDataJoinable(param);
 	}
 
-	// 회원가입 진행 중 중복체크(AJAX)(아이디)
-	public boolean isJoinableOrganName(String organName) {
-		return memberDao.isJoinableOrganName(organName);
-	}
-
-	// 회원가입 진행 중 중복체크(AJAX)(아이디)
-	public boolean isJoinableEmail(String email) {
-		return memberDao.isJoinableEmail(email);
-	}
-	
-	// 회원가입 진행 중 중복체크(AJAX)(휴대전화 번호)
-	public boolean isJoinableCellPhoneNo(String cellphoneNo) {
-		return memberDao.isJoinableCellPhoneNo(cellphoneNo);
-	}
 	
 	// 정보변경(회원정보, 비밀번호) 등 진행 시 비밀번호 확인 attr 저장
 	public String genCheckPasswordAuthCode(int actorId) {
@@ -225,7 +212,8 @@ public class MemberService {
 		return new ResultData("S-1", "임시 패스워드를 사용 중 입니다.");
 	
 	}
-
+	
+	// 회원탈퇴
 	public void memberDelete(String loginId) {
 		memberDao.meberDelete(loginId);
 	}
