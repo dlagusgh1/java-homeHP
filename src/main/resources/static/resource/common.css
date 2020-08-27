@@ -218,6 +218,13 @@ label[for] {
 	width: 95%;
 }
 
+.table-box textarea {
+	padding: 10px 5px;
+	width: 79%;
+	height: 200px;
+	resize: none;
+}
+
 .table-box select{
 	padding: 10px 0;
 	text-indent: 1rem;
@@ -296,7 +303,7 @@ h1, h2 {
 	text-indent: 1rem;
 	width: 49.999%; 
 	height:350px; 
-	border:2px solid #168; 	
+	border:2px solid #4BAF4B; 	
 	overflow: auto;
 }
 .main-article-table-box > table {

@@ -132,6 +132,29 @@ public class ArticleController {
 
 		return "article/firstAid";
 	}
+	
+	// 기관(병원/약국) 정보 수정요청 폼
+	@RequestMapping("/article/organModify")
+	public String organModify(Model model) {
+
+		List<CateItem> cateItems = articleService.getCateItem();
+
+		model.addAttribute("cateItems", cateItems);
+
+		return "article/organModify";
+	}
+	
+	// 기관(병원/약국) 정보 수정 기능
+	@RequestMapping("/article/doOrganModify")
+	public String doOrganModify(@RequestParam Map<String, Object> param, Model model, String redirectUri) {
+
+		articleService.organModify(param);
+		
+		model.addAttribute("redirectUri", redirectUri);
+		model.addAttribute("alertMsg", "수정 요청이 완료되었습니다.\\n결과는 등록된 이메일 주소로 회신됩니다.\\n감사합니다.");
+
+		return "common/redirect";
+	}
 
 	// 기관(병원/약국) 추가 폼
 	@RequestMapping("/article/organWrite")

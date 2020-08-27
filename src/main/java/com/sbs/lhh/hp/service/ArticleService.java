@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sbs.lhh.hp.dao.ArticleDao;
@@ -26,6 +27,12 @@ public class ArticleService {
 	private ArticleDao articleDao;
 	@Autowired
 	private FileService fileService;
+	@Autowired
+	private MailService mailService;
+	@Value("${custom.siteMainUri}")
+	private String siteMainUri;
+	@Value("${custom.siteName}")
+	private String siteName;
 
 	// 병원/약국 카테고리 가져오기
 	public List<CateItem> getCateItem() {
@@ -35,6 +42,24 @@ public class ArticleService {
 	// 기관 등록
 	public void organWrite(Map<String, Object> param) {
 		articleDao.organWrite(param);
+	}
+	
+	// 기관 정보 수정 요청
+	public void organModify(Map<String, Object> param) {
+		
+		String organNumber = (String) param.get("organNumber");
+		String organName = (String) param.get("organName");
+		String organEmail = (String) param.get("organEmail");
+		String modifyRequests = (String) param.get("modifyRequests");
+
+		String mailTitle = String.format("[%s] 정보 수정 요청이 들어왔습니다.", siteName);
+		
+		StringBuilder mailBodySb = new StringBuilder();
+		mailBodySb.append("<h1>정보 수정 요청</h1>");
+		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
+		mailBodySb.append(String.format("<p>기관 구분 : %s<br><br>기관명 : %s<br><br> 기관 이메일 주소 : %s<br><br>수정 요청사항 : %s</p>", organNumber, organName, organEmail, modifyRequests));
+		
+		mailService.send("dlagusgh1@gmail.com", mailTitle, mailBodySb.toString());
 	}
 
 	// 행정주소 카테고리 가져오기
