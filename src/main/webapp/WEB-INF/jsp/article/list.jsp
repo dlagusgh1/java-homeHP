@@ -5,10 +5,26 @@
 <!-- JSTL 데이터 포맷 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="pageTitle" value="${board.name} 게시판" />
+<c:choose>
+	<c:when test="${board.name == \"공지\"}">
+		<c:set var="pageTitle" value="${board.name} 사항" />
+	</c:when>
+	<c:otherwise>
+		<c:set var="pageTitle" value="${board.name} 게시판" />
+	</c:otherwise>
+</c:choose>
+
 <%@ include file="../part/head.jspf"%>
 
-<h1 class="con flex-jc-c">${board.name} 게시물 리스트</h1>
+<c:choose>
+	<c:when test="${board.name == \"공지\"}">
+		<h1 class="con flex-jc-c">${board.name} 사항</h1>
+	</c:when>
+	<c:otherwise>
+		<h1 class="con flex-jc-c">${board.name} 게시물 리스트</h1>
+	</c:otherwise>
+</c:choose>
+
 
 <!-- 
 	boardId
