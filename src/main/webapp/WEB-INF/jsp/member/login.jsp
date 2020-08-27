@@ -64,7 +64,7 @@
 </script>
 
 
-	<form method="POST" class="table-box con flex-jc-c" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
+	<form method="POST" class="table-box login-box con flex-jc-c" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
 		<input type="hidden" name="redirectUri" value="${param.redirectUri}">
 		<input type="hidden" name="loginPwReal">	
 		<table>

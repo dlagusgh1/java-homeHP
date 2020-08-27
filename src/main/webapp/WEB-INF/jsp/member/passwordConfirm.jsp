@@ -45,7 +45,7 @@
 </script>
 
 
-<form method="POST" class="table-box con flex-jc-c" action="doPasswordConfirm" onsubmit="MemberPasswordConfirmForm__submit(this); return false;">
+<form method="POST" class="table-box passwordConfirm-box con flex-jc-c" action="doPasswordConfirm" onsubmit="MemberPasswordConfirmForm__submit(this); return false;">
 	<input type="hidden" name="redirectUri" value="${param.redirectUri}">
 	<input type="hidden" name="loginPwReal">	
 	<table>

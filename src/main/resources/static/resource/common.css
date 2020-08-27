@@ -259,7 +259,7 @@ body {
 }
 
 h1, h2 {
-	margin-bottom: 20px;
+	margin: 12px 0 20px 0;
 }
 
 .btn-info {
@@ -269,10 +269,19 @@ h1, h2 {
 	width: 100px;
 }
 /* join */
-
+.join-box {
+	width: 30%; 
+}
 
 /* login */
+.login-box {
+	width: 30%; 
+}
 
+/*passwordConfirm*/
+.passwordConfirm-box {
+	width: 25%;
+}
 
 /* findId */
 
@@ -289,6 +298,7 @@ h1, h2 {
 	height: 350px; 
 	background:url("https://cdn.pixabay.com/photo/2016/07/06/20/31/ambulance-1501264_960_720.png") no-repeat;
 	background-size: cover;
+	border: none;
 }
 
 .main-article-h {

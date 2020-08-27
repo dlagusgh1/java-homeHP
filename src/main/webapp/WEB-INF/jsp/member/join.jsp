@@ -275,7 +275,7 @@
 </script>
 
 
-<form method="POST" class="table-box con flex-jc-c" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
+<form method="POST" class="table-box join-box con flex-jc-c" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
 	<input type="hidden" name="redirectUri" value="/member/login">
 	<input type="hidden" name="loginPwReal">
 	<table>
