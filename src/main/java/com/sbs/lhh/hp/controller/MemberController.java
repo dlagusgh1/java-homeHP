@@ -167,7 +167,9 @@ public class MemberController {
 		boolean isJoinableEmail = memberService.isJoinableEmail(email);
 
 		if (isJoinableEmail == false) {
-			if (email.equals("") ) {
+			if (email.contains("@") == false) {
+				return new ResultData("F-1", "이메일 주소를 정확히 입력해주세요.", "email", email);
+			} else if (email.equals("") ) {
 				return new ResultData("E-1", "");
 			} else if(email.length() == 0) {
 				return new ResultData("F-1", "이메일을 입력해주세요.", "email", email);
