@@ -130,7 +130,9 @@ public class MemberController {
 				return new ResultData("E-1", "");
 			} else if(loginId.length() <= 3) {
 				return new ResultData("F-1", "아이디를 3자 이상 입력해주세요.", "loginId", loginId);
-			}  else {
+			} else if(loginId.matches("^[a-zA-Z0-9]*$") == false) {
+				return new ResultData("M-1", "아이디를 영문자 또는 숫자로 입력해주세요.", "loginId", loginId);
+			} else {
 				return new ResultData("S-1", "아이디 사용 가능", "loginId", loginId);
 			}
 		} else {
@@ -199,6 +201,8 @@ public class MemberController {
 				return new ResultData("E-1", "");
 			} else if(cellphoneNo.length() == 0) {
 				return new ResultData("F-1", "휴대전화 번호를 입력해주세요.", "cellphoneNo", cellphoneNo);
+			} else if (cellphoneNo.matches("^[0-9]*$") == false) {
+				return new ResultData("N-1", "번호에는 숫자만 입력 가능합니다.", "cellphoneNo", cellphoneNo);
 			} else {
 				return new ResultData("S-1", "사용 가능한 번호입니다.", "cellphoneNo", cellphoneNo);
 			}

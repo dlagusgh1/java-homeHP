@@ -163,6 +163,9 @@
 			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validLoginId = '';
+			} else if (data.resultCode.substr(0, 2) == 'M-') {
+				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
+				JoinForm__validLoginId = '';
 			} else if (data.resultCode.substr(0, 2) == 'E-') {
 				$message.empty();
 			}
@@ -253,9 +256,12 @@
 			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validCellPhoneNo = '';
+			} else if (data.resultCode.substr(0, 2) == 'N-') {
+				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
+				JoinForm__validCellPhoneNo = '';
 			} else if (data.resultCode.substr(0, 2) == 'E-') {
 				$message.empty();
-			}
+			} 
 		}, 'json');
 	}
 
