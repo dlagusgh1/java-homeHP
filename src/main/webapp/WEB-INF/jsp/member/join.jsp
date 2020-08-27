@@ -219,7 +219,7 @@
 				JoinForm__validEmail = data.email;
 			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
-				JoinForm__validOrganName = '';
+				JoinForm__validEmail = '';
 			} else if (data.resultCode.substr(0, 2) == 'E-') {
 				$message.empty();
 			}
