@@ -106,7 +106,7 @@
 	</ul>
 </div>
 
-<div class="con flex-jc-c">
+<div class="con flex-jc-c margin-bottom-20">
 	<div class="map_wrap">
 	    <div class="kakaoMap con" id="map"></div>
 	    <ul id="category"> 

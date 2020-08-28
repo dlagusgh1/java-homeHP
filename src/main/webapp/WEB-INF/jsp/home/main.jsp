@@ -68,12 +68,6 @@
 			</tbody>
 		</table>
 	</div>
-	
-</div>
-<div class="con" style="margin-top: 10px;">
-	<a href="https://donaricano.com/mypage/1461113623_Oh2ISH" target="_blank">
-		<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="height:50px !important;width: 200px !important;" />
- 	</a>
 </div>
 
 <%@ include file="../part/foot.jspf"%>

@@ -87,9 +87,9 @@
 				</tr>
 				<tr>
 					<th>비밀번호 변경</th>
-					<td class="btn-info">
-						<button class="btn" type="submit">비밀번호<br>변경</button>
-						<button class="btn" type="button" onclick="history.back();">취소</button>
+					<td>
+						<button class="btn btn-primary" type="submit">비밀번호 변경</button>
+						<button class="btn btn-info" type="button" onclick="history.back();">취소</button>
 					</td>
 				</tr>
 			</tbody>

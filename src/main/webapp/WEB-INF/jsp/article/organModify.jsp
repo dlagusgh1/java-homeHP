@@ -100,9 +100,9 @@
 			</tr>
 			<tr>
 				<th>요청</th>
-				<td class="btn-info">
-					<button class="btn" type="submit">요청하기</button>
-					<button class="btn" type="button" onclick="history.back();">취소</button>
+				<td>
+					<button class="btn btn-primary" type="submit">요청하기</button>
+					<button class="btn btn-info" type="button" onclick="history.back();">취소</button>
 				</td>
 			</tr>
 		</tbody>

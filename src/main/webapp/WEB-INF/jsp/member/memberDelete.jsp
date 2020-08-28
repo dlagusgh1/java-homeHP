@@ -71,8 +71,8 @@
 			<tr>
 				<th>탈퇴</th>
 				<td class="flex-jc-c" style="margin: auto;">
-					<button class="btn" type="submit">탈퇴하기</button>
-					<button class="btn" onclick="history.back();" type="button">취소</button>
+					<button class="btn btn-primary" type="submit">탈퇴하기</button>
+					<button class="btn btn-info" onclick="history.back();" type="button">취소</button>
 				</td>
 			</tr>
 		</tbody>

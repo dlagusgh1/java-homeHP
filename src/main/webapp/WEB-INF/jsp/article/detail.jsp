@@ -63,12 +63,12 @@
 	</table>
 </div>
 
-<div class="btn-box con margin-top-20">
+<div class="btn-box con margin-top-20 margin-bottom-20">
 	<c:if test="${article.extra.actorCanModify}">
-		<a class="btn"	href="${board.code}-modify?id=${article.id}&listUrl=${Util.getUriEncoded(listUrl)}">수정</a>
+		<a class="btn btn-primary"	href="${board.code}-modify?id=${article.id}&listUrl=${Util.getUriEncoded(listUrl)}">수정</a>
 	</c:if>
 	<c:if test="${article.extra.actorCanDelete}">
-		<a class="btn" href="${board.code}-doDelete?id=${article.id}" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;">삭제</a>
+		<a class="btn btn-onfo" href="${board.code}-doDelete?id=${article.id}" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;">삭제</a>
 	</c:if>
 	<a href="${listUrl}" class="btn">리스트</a>
 </div>

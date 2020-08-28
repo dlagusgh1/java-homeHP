@@ -59,7 +59,7 @@
 	</table>
 </div>
 
-<div class="btn-box con margin-top-20">
+<div class="btn-box con margin-top-20 margin-bottom-20">
 	<c:choose>
 		<c:when test="${board.code.equals('notice')}">
 			<c:if test="${loginedMember.level == 10}">
@@ -67,7 +67,7 @@
 			</c:if>
 		</c:when>
 		<c:otherwise>
-			<a class="btn" href="./${board.code}-write">글쓰기</a>
+			<a class="btn btn-primary" href="./${board.code}-write">글쓰기</a>
 		</c:otherwise>
 	</c:choose>
 </div>

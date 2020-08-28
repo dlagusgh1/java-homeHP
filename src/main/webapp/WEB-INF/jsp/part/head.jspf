@@ -112,6 +112,11 @@ var param = ${paramJson};
 <!-- 로그인 대상 표시 -->
 <c:if test="${isLogined}">
 	<div class="con flex-jc-end">
+		<div>
+			<a href="https://donaricano.com/mypage/1461113623_Oh2ISH" target="_blank">
+				<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="margin-right:10px; height:25px !important; width: 100px !important;" />
+		 	</a>
+		</div>
 		<c:if test="${loginedMember.level == 10}">
 			<div><a href="/article/organWrite" style="color: red; font-weight:bold; margin-right: 10px;">관리자 메뉴</a></div>
 		</c:if>

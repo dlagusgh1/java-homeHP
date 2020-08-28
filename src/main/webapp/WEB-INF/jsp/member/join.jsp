@@ -352,7 +352,7 @@
 			</tr>
 			<tr>
 				<th>회원가입</th>
-				<td class="btn-info">
+				<td>
 					<button class="btn btn-primary" type="submit">가입</button>
 					<button class="btn btn-info" type="button" onclick="history.back();">취소</button>
 				</td>

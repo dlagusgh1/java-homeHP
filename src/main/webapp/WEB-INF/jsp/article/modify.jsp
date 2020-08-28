@@ -238,9 +238,9 @@
 			</c:forEach>
 			<tr>
 				<th>수정</th>
-				<td class="btn-info">
-					<button class="btn" type="submit">수정</button> 
-					<button class="btn" ><a href="${listUrl}">리스트</a></button>
+				<td>
+					<button class="btn btn-primary" type="submit">수정</button> 
+					<button class="btn btn-info" ><a href="${listUrl}">리스트</a></button>
 				</td>
 			</tr>
 		</tbody>

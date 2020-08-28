@@ -168,9 +168,9 @@ https://www.youtube.com/watch?v=LmgWxezH7cc
 			</c:forEach>
 			<tr>
 				<th>작성</th>
-				<td class="btn-info">
-					<button class="btn" type="submit">작성</button> 
-					<button class="btn" ><a href="${listUrl}">리스트</a></button>
+				<td>
+					<button class="btn btn-primary" type="submit">작성</button> 
+					<button class="btn btn-info" ><a href="${listUrl}">리스트</a></button>
 				</td>
 			</tr>
 		</tbody>

@@ -11,7 +11,9 @@
 
 <h1 class="con flex-jc-c">기관 정보 등록</h1>
 <div class="con flex-jc-c" style="margin-bottom: 5px; font-size: 1rem;">
-	<a href="/article/searchMap" style="background-color: #4BAF4B; color: white; padding: 5px; border-radius: 10px;" onclick="window.open(this.href,'지도 검색', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">지도 검색하기</a>
+	<button class="btn btn-primary">
+		<a href="/article/searchMap" onclick="window.open(this.href,'지도 검색', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">지도 검색하기</a>
+	</button>
 </div>
 
 <script>
@@ -229,9 +231,9 @@
 			</tr>
 			<tr>
 				<th>등록하기</th>
-				<td class="btn-info">
-					<button class="btn" type="submit">등록</button>
-					<button class="btn" type="button" onclick="history.back();">취소</button>
+				<td>
+					<button class="btn btn-primary" type="submit">등록</button>
+					<button class="btn btn-info" type="button" onclick="history.back();">취소</button>
 				</td>
 			</tr>
 		</tbody>

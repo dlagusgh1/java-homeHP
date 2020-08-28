@@ -125,6 +125,18 @@ label[for] {
   margin-top: 30px;
 }
 
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
+
 .padding-left-10 {
   padding-left: 10px;
 }
@@ -388,7 +400,7 @@ label[for] {
   outline: 0;
   border: 0;
   cursor: pointer;
-  background-color: #3D94F6;
+  background-color: #4BAF4B;
   color: #FFFFFF;
   text-shadow: 1px 1px 20px #000000;
   text-decoration: none;
@@ -397,12 +409,16 @@ label[for] {
   text-align: center;
 }
 
+.btn:hover {
+	color: black;
+}
+
 .btn-success {
   background-color: #28a745;
 }
 
 .btn-info {
-  background-color: #17a2b8;
+  background-color: #4BAF4B;
 }
 
 .btn-danger {
