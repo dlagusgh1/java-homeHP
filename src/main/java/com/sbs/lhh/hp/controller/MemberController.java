@@ -222,7 +222,7 @@ public class MemberController {
 	public String doLogin(String loginId, String loginPwReal, String redirectUri, Model model, HttpSession session, HttpServletRequest request) {
 		String loginPw = loginPwReal;
 		Member member = memberService.getMemberByLoginId(loginId);
-		
+
 		if (member == null) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");

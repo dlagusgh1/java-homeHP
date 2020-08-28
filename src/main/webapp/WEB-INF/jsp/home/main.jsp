@@ -12,6 +12,16 @@
 
 <div class="main-img-box con flex-jc-c">
 	<div class="main-img">
+		<h1>ㅇㄹㄷㄴ</h1>
+		<div>
+			- 우리동네 당직 의료기관 찾기
+		</div>
+		<div>
+			- 우리동네란? 주말, 야간 당직 의료기관(병원/약국)을 찾는 서비스
+		</div>
+		<div>
+			- 운영지역? 현재 세종시만 한정하여 운영 중 입니다.
+		</div>
 	</div>
 </div>
 
