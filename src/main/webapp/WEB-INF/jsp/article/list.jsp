@@ -31,7 +31,7 @@
 	1번 : 자유 게시판
 	2번 : 공지 게시판
  -->
-<div class="article-table-box con visible-on-md-up">
+<div class="article-table-box table-box-data con">
 	<table>
 		<colgroup>
 			<col class="table-first-col">

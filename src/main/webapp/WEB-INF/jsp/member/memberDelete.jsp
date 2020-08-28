@@ -45,40 +45,38 @@
 </script>
 
 <!-- 회원 탈퇴 -->
-<div class="findId-form-box con flex-jc-c">
-	<form method="POST" class="table-box con" action="doMemberDelete" onsubmit="MemberDeleteForm__submit(this); return false;">
-		<input type="hidden" name="redirectUri" value="/home/main">
-		<table>
-			<colgroup>
-				<col width="250">
-			</colgroup>
-			<tbody>
-				<tr>
-					<th>탈퇴 문구</th>
-					<td>
-						<div class="form-control-box">
-							<input type="hidden" name="deleteConfirm" value="우리동네 회원 탈퇴를 희망합니다"/> 우리동네 회원 탈퇴를 희망합니다
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>탈퇴 문구 입력</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text"  name="deleteRealConfirm" placeholder="탈퇴를 위해 탈퇴 문구를 입력해주세요." maxlength="30" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>탈퇴</th>
-					<td class="flex-jc-c" style="margin: auto;">
-						<button class="btn" type="submit">탈퇴하기</button>
-						<button class="btn" onclick="history.back();" type="button">취소</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</form>
-</div>
+<form method="POST" class="table-box table-box-vertical  con form1" action="doMemberDelete" onsubmit="MemberDeleteForm__submit(this); return false;">
+	<input type="hidden" name="redirectUri" value="/home/main">
+	<table>
+		<colgroup>
+			<col width="250">
+		</colgroup>
+		<tbody>
+			<tr>
+				<th>탈퇴 문구</th>
+				<td>
+					<div class="form-control-box">
+						<input type="hidden" name="deleteConfirm" value="우리동네 회원 탈퇴를 희망합니다"/> 우리동네 회원 탈퇴를 희망합니다
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>탈퇴 문구 입력</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text"  name="deleteRealConfirm" placeholder="탈퇴를 위해 탈퇴 문구를 입력해주세요." maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>탈퇴</th>
+				<td class="flex-jc-c" style="margin: auto;">
+					<button class="btn" type="submit">탈퇴하기</button>
+					<button class="btn" onclick="history.back();" type="button">취소</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>
 
 <%@ include file="../part/foot.jspf"%>

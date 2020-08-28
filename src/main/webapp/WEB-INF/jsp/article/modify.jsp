@@ -167,14 +167,15 @@
 		});
 	}
 </script>
-<form class="table-box table-box-vertical con form1" method="POST" action="${board.code}-doModify" onsubmit="ArticleModifyForm__submit(this); return false;">
+
+<form method="POST" class="table-box table-box-vertical con form1" action="${board.code}-doModify" onsubmit="ArticleModifyForm__submit(this); return false;">
 	<input type="hidden" name="fileIdsStr" />
 	<input type="hidden" name="body" />
 	<input type="hidden" name="redirectUri" value="/article/${board.code}-detail?id=${article.id}" />
 	<input type="hidden" name="id" value="${article.id}" />
 	<table>
 		<colgroup>
-			<col class="table-first-col">
+			<col class="table-first-col" width="250">
 		</colgroup>
 		<tbody>
 			<tr>
@@ -235,13 +236,15 @@
 					</td>
 				</tr>
 			</c:forEach>
+			<tr>
+				<th>수정</th>
+				<td class="btn-info">
+					<button class="btn" type="submit">수정</button> 
+					<button class="btn" ><a href="${listUrl}">리스트</a></button>
+				</td>
+			</tr>
 		</tbody>
 	</table>
-
-	<div class="btn-box margin-top-20">
-		<button type="submit" class="btn btn-primary">수정</button>
-		<a class="btn btn-info" href="${listUrl}">리스트</a>
-	</div>
 </form>
 	
 <%@ include file="../part/foot.jspf"%>

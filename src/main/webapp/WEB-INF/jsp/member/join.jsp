@@ -265,7 +265,6 @@
 		}, 'json');
 	}
 
-			
 
 	<!-- lodash 라이브러리 (debounce) 를 이용한 딜레이 설정  -->
 	JoinForm__checkLoginIdDup = _.debounce(JoinForm__checkLoginIdDup, 700);
@@ -275,7 +274,7 @@
 </script>
 
 
-<form method="POST" class="table-box join-box con flex-jc-c" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
+<form method="POST" class="table-box table-box-vertical con form1" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
 	<input type="hidden" name="redirectUri" value="/member/login">
 	<input type="hidden" name="loginPwReal">
 	<table>

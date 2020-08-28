@@ -77,72 +77,71 @@
 	}
 </script>
 
-<div class="memeberModify-box con flex-jc-c">
-	<form method="POST" class="table-box con" action="doMemberModify" onsubmit="MemberMemberModifyForm__submit(this); return false;">
-		<input type="hidden" name="redirectUri" value="/member/login">
-		<table>
-			<colgroup>
-				<col width="250">
-			</colgroup>
-			<tbody>
-				<tr>
-					<th>회원 아이디</th>
-					<td>
-						<div class="form-control-box">
-							<input type="hidden" name="loginId"	maxlength="30" value="${loginedMember.loginId}"/>${loginedMember.loginId}
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>이름</th>
-					<td>
-						<div class="form-control-box">
-							<input type="hidden" name="name" maxlength="20" value="${loginedMember.name}"/>${loginedMember.name}
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>기관명</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" name="organName" maxlength="20" value="${loginedMember.organName}"/>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>기관 코드</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" name="organCode" maxlength="20" value="${loginedMember.organCode}"/>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>이메일</th>
-					<td>
-						<div class="form-control-box">
-							<input type="email" name="email" maxlength="50" value="${loginedMember.email}"/>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>휴대폰</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" name="cellphoneNo" maxlength="12" value="${loginedMember.phoneNo}"/>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>회원정보 변경</th>
-					<td class="btn-info">
-						<button class="btn" type="submit">회원정보<br>변경</button>
-						<button class="btn" type="button" onclick="history.back();">취소</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</form>
-</div>
+<!-- 회원 정보 변경 -->
+<form method="POST" class="table-box table-box-vertical  con form1" action="doMemberModify" onsubmit="MemberMemberModifyForm__submit(this); return false;">
+	<input type="hidden" name="redirectUri" value="/member/login">
+	<table>
+		<colgroup>
+			<col width="250">
+		</colgroup>
+		<tbody>
+			<tr>
+				<th>회원 아이디</th>
+				<td>
+					<div class="form-control-box">
+						<input type="hidden" name="loginId"	maxlength="30" value="${loginedMember.loginId}"/>${loginedMember.loginId}
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td>
+					<div class="form-control-box">
+						<input type="hidden" name="name" maxlength="20" value="${loginedMember.name}"/>${loginedMember.name}
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>기관명</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" name="organName" maxlength="20" value="${loginedMember.organName}"/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>기관 코드</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" name="organCode" maxlength="20" value="${loginedMember.organCode}"/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>이메일</th>
+				<td>
+					<div class="form-control-box">
+						<input type="email" name="email" maxlength="50" value="${loginedMember.email}"/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>휴대폰</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" name="cellphoneNo" maxlength="12" value="${loginedMember.phoneNo}"/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>회원정보 변경</th>
+				<td class="btn-info">
+					<button class="btn" type="submit">회원정보<br>변경</button>
+					<button class="btn" type="button" onclick="history.back();">취소</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>
 
 <%@ include file="../part/foot.jspf"%>

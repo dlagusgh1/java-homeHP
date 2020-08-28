@@ -118,7 +118,7 @@
 	}
 </script>
 
-<form method="POST" class="write-table-box con" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
+<form method="POST" class="table-box table-box-vertical con form1" action="${board.code}-doWrite" onsubmit="ArticleWriteForm__submit(this); return false;">
 	<input type="hidden" name="fileIdsStr" />
 	<input type="hidden" name="body" />
 	<input type="hidden" name="redirectUri" value="/article/${board.code}-detail?id=#id">
@@ -130,7 +130,7 @@
 			<tr>
 				<th>제목</th>
 				<td>
-					<div class="form-control">
+					<div class="form-control-box">
 						<input type="text" placeholder="제목을 입력해주세요." name="title" maxlength="100" />
 					</div>
 				</td>
