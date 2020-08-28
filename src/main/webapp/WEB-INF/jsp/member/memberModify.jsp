@@ -78,7 +78,7 @@
 </script>
 
 <!-- 회원 정보 변경 -->
-<form method="POST" class="table-box table-box-vertical  con form1" action="doMemberModify" onsubmit="MemberMemberModifyForm__submit(this); return false;">
+<form method="POST" class="table-box table-box-vertical con form1" action="doMemberModify" onsubmit="MemberMemberModifyForm__submit(this); return false;">
 	<input type="hidden" name="redirectUri" value="/member/login">
 	<table>
 		<colgroup>

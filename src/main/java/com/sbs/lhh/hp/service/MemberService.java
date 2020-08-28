@@ -149,6 +149,7 @@ public class MemberService {
 
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>비밀번호 찾기 결과</h1>");
+		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
 		mailBodySb.append(String.format("<p>임시패스워드 : %s <br><br><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", tempPw, siteMainUri, siteName));
 
 		mailService.send(member.getEmail(), mailTitle, mailBodySb.toString());	
