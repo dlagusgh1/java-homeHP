@@ -1,5 +1,11 @@
 package com.sbs.lhh.hp.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -240,7 +246,26 @@ public class MemberController {
 			model.addAttribute("alertMsg", "비밀번호가 일치하지 않습니다.");
 			return "common/redirect";
 		}
-
+		
+		long systemTime = System.currentTimeMillis();
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);	
+		
+		String nowDateTime = dateFormat.format(systemTime);	
+		String lastPwChangeDateTime = dateFormat.format(member.getUpdateDate());
+		System.out.println("nowDateTime : " + nowDateTime);
+		System.out.println("lastPwChangeDateTime : " + lastPwChangeDateTime);
+//		Calendar baseCal = new GregorianCalendar(lastPwChangeDateTime);
+//		Calendar targetCal = new GregorianCalendar(nowDateTime);
+//		
+//		long diffSec = (targetCal.getTimeInMillis() - baseCal.getTimeInMillis())/1000;
+//		long diffDays = diffSec / (24*60*60);
+//		
+//		System.out.println("두 날짜간의 일수 차 : " + diffDays + "일");		
+		
+		
+	
+		
 		session.setAttribute("loginedMemberId", member.getId());
 		
 		ResultData useTempPassword = memberService.useTempPassword(member.getId());
