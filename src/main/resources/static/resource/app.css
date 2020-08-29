@@ -14,6 +14,13 @@ html, input, button {
 
 h1, h2, h3 {
     letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+@media (max-width :801px) {
+    h1, h2, h3 {
+        font-size: 1.5rem;
+    }
 }
 
 /* 커스텀 */
@@ -343,24 +350,42 @@ h1, h2, h3 {
     left: 12px;
 }
 
-
 /* main */
 .main-article-box {
 	margin-top: 10px;
+	margin-bottom: 20px;
 	width:100%;
 }
+
+@media (max-width :801px) {
+    .main-article-box {
+        display: block;
+    }
+    .main-article-box .main-article-table-box {
+    	width:100%;
+    	margin-bottom: 10px;
+    }
+}
+
 .main-img-box {
 	width: 100%;
 }
+
 .main-img {
 	width:100%; 
 	height: 350px; 
 	font-size: 1.5rem;
 	font-weight: bold;
 	background-color: #4BAF4B;
-	text-indent: 1rem;
 	margin: auto;
 	padding: 5px 20px;
+}
+
+@media (max-width :801px) {
+    .main-img {
+        font-size: 1rem;
+        height: 250px;
+    }
 }
 
 .main-article-h {
