@@ -94,7 +94,7 @@
 </div>
 
 <!-- 병원 목록 -->
-<div class="con flex-jc-c">
+<div class="con flex-jc-c margin-bottom-20">
 	<div class="kakaoMap con" id="map"></div>
 	<div class="kakaoMap-info con">
 		<ul>
@@ -120,10 +120,6 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
 <script>
 
-	// select onchange로 넘겨받은 값
-	var administrative = function (adCateItemName) {
-		return adCateItemName;
-	}
 	
 	var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
 	contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
@@ -167,16 +163,43 @@
 
 		
 	var 데이터 = [
-
 		<c:forEach items="${organes}" var="organ">
-			
-			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
-
-
+			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', '${organ.organAdmAddress}'],
 		</c:forEach>
-			
 		];
 
+
+	// select onchange로 넘겨받은 값
+	var administrative = function (adCateItemName) {
+		if (adCateItemName != null) {
+			
+			데이터 = [];
+
+			for (var i = 0; i < 데이터.length; i++ ) {
+				<c:forEach items="${organes}" var="organ">
+					if (adCateItemName == 데이터[i][3]) {
+						데이터.push([	
+								[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', '${organ.organAdmAddress}'],			
+						]);
+					} else if (adCateItemName != 데이터[i][3]){
+						데이터.splice(i);
+					}		
+				</c:forEach>	
+			}
+			
+			alert(adCateItemName);
+			console.log('데이터 값 확인1 : ' + adCateItemName);
+			
+		}	
+
+		console.log('데이터 값 확인2 : ' + 데이터);
+	}
+
+
+
+	
+	
+	
 	// 마커 이미지
 	var imageSrc = 'https://img.icons8.com/clouds/100/000000/hospital.png', // 마커이미지의 주소입니다    
     imageSize = new kakao.maps.Size(70, 70), // 마커이미지의 크기입니다

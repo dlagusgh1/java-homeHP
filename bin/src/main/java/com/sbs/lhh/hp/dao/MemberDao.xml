@@ -65,7 +65,8 @@
 	
 	<update id="memberModifyPw">
 		UPDATE `member`
-		SET loginPw = #{loginPw}
+		SET loginPw = #{loginPw},
+		updateDate = NOW()
 		WHERE loginId = #{loginId}
 	</update>
 	

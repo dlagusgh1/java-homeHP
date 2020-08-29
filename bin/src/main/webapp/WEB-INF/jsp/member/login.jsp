@@ -64,7 +64,7 @@
 </script>
 
 
-	<form method="POST" class="table-box con flex-jc-c" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
+	<form method="POST" class="table-box table-box-vertical  con form1" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
 		<input type="hidden" name="redirectUri" value="${param.redirectUri}">
 		<input type="hidden" name="loginPwReal">	
 		<table>
@@ -90,15 +90,15 @@
 				</tr>
 				<tr>
 					<th>로그인</th>
-					<td class="btn-info">
-						<button class="btn" type="submit">로그인</button>
-						<button class="btn" onclick="history.back();" type="button">취소</button>
+					<td>
+						<button class="btn btn-primary" type="submit">로그인</button>
+						<button class="btn btn-info" onclick="history.back();" type="button">취소</button>
 					</td>
 				</tr>
 				<tr>
 					<th>회원정보 찾기</th>
-					<td class="btn-info">
-						<button class="btn" type="button"><a href="findAccount">아이디<br>비밀번호<br>찾기</a></button>
+					<td>
+						<button class="btn btn-primary" type="button"><a href="findAccount">아이디 / 비밀번호 찾기</a></button>
 					</td>
 				</tr>
 			</tbody>

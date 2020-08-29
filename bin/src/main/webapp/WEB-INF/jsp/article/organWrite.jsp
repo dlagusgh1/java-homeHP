@@ -11,7 +11,9 @@
 
 <h1 class="con flex-jc-c">기관 정보 등록</h1>
 <div class="con flex-jc-c" style="margin-bottom: 5px; font-size: 1rem;">
-	<a href="/article/searchMap" style="background-color: #4BAF4B; color: white; padding: 5px; border-radius: 10px;" onclick="window.open(this.href,'지도 검색', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">지도 검색하기</a>
+	<button class="btn btn-primary">
+		<a href="/article/searchMap" onclick="window.open(this.href,'지도 검색', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">지도 검색하기</a>
+	</button>
 </div>
 
 <script>
@@ -135,108 +137,108 @@
  주말운영여부 : 토요일 / 일요일 운영
  비고 : 응급실 운영기관
  -->
-<div class="organWrite-form-box con flex-jc-c">
-	<form method="POST" class="table-box con" action="doOrganWrite" onsubmit="OrganWriteForm__submit(this); return false;">
-		<input type="hidden" name="redirectUri" value="/home/main">
-		<table>
-			<colgroup>
-				<col width="250">
-			</colgroup>
-			<tbody>
-				<tr>
-					<th>기관 구분</th>
-					<td>
-						<div class="form-control-box">
-							<select name="organNumber" id="organNum">
-								<c:forEach items="${cateItems}" var="cateItem">
-									<option id="organNumber" value="${cateItem.id}">${cateItem.name}</option>
-								</c:forEach>
-							</select>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>기관명</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="기관명을 입력해주세요." name="organName" maxlength="30" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>좌표</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="위도, 경도(좌표)를 입력해주세요. " name="orgamLocation" maxlength="30" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>기관 주소</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="기관의 주소를 입력해주세요." name="organAddress" maxlength="30" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>행정 주소 (동/면)</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="행정 주소 입력 예) 도담동" name="organAdmAddress" maxlength="30" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>전화 번호</th>
-					<td>
-						<div class="form-control-box">
-							<input type="tel" placeholder="전화번호를 입력해주세요." name="organTel" maxlength="12" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>진료 시간</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="진료 시간을 입력해 주세요." name="organTime" maxlength="30" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>진료 시간 (주말)</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="주말 진료 시간을 입력해 주세요." name="organWeekendTime" maxlength="30" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>주말 운영여부</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="주말 운영 입력 예) 미 운영, 토요일, 일요일 운영" name="organWeekend" maxlength="30" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>비고</th>
-					<td>
-						<div class="form-control-box">
-							<input type="text" placeholder="추가사항 입력 예) 응급실 운영" name="organRemarks" maxlength="30" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>등록하기</th>
-					<td class="btn-info">
-						<button class="btn" type="submit">등록</button>
-						<button class="btn" type="button" onclick="history.back();">취소</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</form>
-</div>
+
+<form method="POST" class="table-box table-box-vertical con form1" action="doOrganWrite" onsubmit="OrganWriteForm__submit(this); return false;">
+	<input type="hidden" name="redirectUri" value="/home/main">
+	<table>
+		<colgroup>
+			<col width="250">
+		</colgroup>
+		<tbody>
+			<tr>
+				<th>기관 구분</th>
+				<td>
+					<div class="form-control-box">
+						<select name="organNumber" id="organNum">
+							<c:forEach items="${cateItems}" var="cateItem">
+								<option id="organNumber" value="${cateItem.id}">${cateItem.name}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>기관명</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="기관명을 입력해주세요." name="organName" maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>좌표</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="위도, 경도(좌표)를 입력해주세요. " name="orgamLocation" maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>기관 주소</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="기관의 주소를 입력해주세요." name="organAddress" maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>행정 주소 (동/면)</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="행정 주소 입력 예) 도담동" name="organAdmAddress" maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>전화 번호</th>
+				<td>
+					<div class="form-control-box">
+						<input type="tel" placeholder="전화번호를 입력해주세요." name="organTel" maxlength="12" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>진료 시간</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="진료 시간을 입력해 주세요." name="organTime" maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>진료 시간 (주말)</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="주말 진료 시간을 입력해 주세요." name="organWeekendTime" maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>주말 운영여부</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="주말 운영 입력 예) 미 운영, 토요일, 일요일 운영" name="organWeekend" maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>비고</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="추가사항 입력 예) 응급실 운영" name="organRemarks" maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>등록하기</th>
+				<td>
+					<button class="btn btn-primary" type="submit">등록</button>
+					<button class="btn btn-info" type="button" onclick="history.back();">취소</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+
 
 <%@ include file="../part/foot.jspf"%>

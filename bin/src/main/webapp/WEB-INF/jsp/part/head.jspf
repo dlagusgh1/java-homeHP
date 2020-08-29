@@ -29,6 +29,7 @@
 <!-- 공통(라이브러리) JS -->
 <script src="/resource/common.js"></script>
 <!-- 공통 CSS -->
+<link rel="stylesheet" href="/resource/app.css" />
 <link rel="stylesheet" href="/resource/keyframes.css" />
 <!-- 공통 JS -->
 <script src="/resource/app.js"></script>
@@ -42,36 +43,80 @@ var param = ${paramJson};
 
 </head>
 <body>
+<div class="outer-box">
+	<!-- PC 탑바 -->
+	<div class="top-bar con flex flex-ai-c flex-jc-sb visible-on-md-up">
+		<nav class="menu-box-1">	
+			<ul class="flex">
+				<li>
+					<a href="/home/main" class="logo img-box">
+						<img src="/resource/img/logo3B.png"/>
+					</a>
+				</li>
+				<li><a href="/home/main">홈</a></li>
+				<li><a href="/article/notice-list">공지사항</a></li>
+				<li><a href="/article/free-list">게시판</a></li>
+				<li><a href="/article/kakaoMap">병원/약국 찾기</a></li>	
+				<li><a href="/article/firstAid">응급 처치</a></li>			
+				<c:if test="${isLogined == false}">
+					<li><a href="/member/join">회원 가입</a></li>
+					<li><a href="/member/login">로그인</a></li>
+				</c:if>
+				<c:if test="${isLogined}">
+					<li><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}">내정보</a></li>
+					<li><a href="/article/organModify">지도 정보 수정</a></li>
+					<li><a href="/member/doLogout">로그아웃</a></li>
+				</c:if>	
+			</ul>
+		</nav>
+	</div>
 
-<!-- PC -->
-<div class="header-top-box con flex-jc-c">
-	<nav class="header-top">	
-		<ul class="flex">
-			<li><a href="/home/main" style="padding:0;">
-					<img src="/resource/img/logo3W.png" style="height:80px; margin-right: 20px;"/>
-				</a>
-			</li>
-			<li><a href="/home/main">홈</a></li>
-			<li><a href="/article/notice-list">공지</a></li>
-			<li><a href="/article/free-list">자유</a></li>
-			<li><a href="/article/kakaoMap">병원/약국 찾기</a></li>	
-			<li><a href="/article/firstAid">응급 처치</a></li>			
-			<c:if test="${isLogined == false}">
-				<li><a href="/member/join">회원 가입</a></li>
-				<li><a href="/member/login">로그인</a></li>
-			</c:if>
-			<c:if test="${isLogined}">
-				<li><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}">내정보</a></li>
-				<li><a href="/article/organModify">지도 정보 수정</a></li>
-				<li><a href="/member/doLogout">로그아웃</a></li>
-			</c:if>	
-		</ul>
-	</nav>
+	<div class="mobile-top-bar visible-on-sm-down flex flex flex-ai-c">
+		<a href="/home/main" class="logo img-box">
+			<img src="/resource/img/logo3B.png" />
+		</a>
+		<div class="flex-1-0-0"></div>
+		<c:if test="${isLogined}">
+			<a href="/member/doLogout">
+				<i class="fas fa-sign-out-alt"></i>
+			</a>
+		</c:if>
+		<c:if test="${isLogined == false}">
+			<a href="/member/login">
+				<i class="fas fa-user"></i>
+			</a>
+		</c:if>
+		<a class="btn-toggle-mobile-side-bar">
+			<i class="fas fa-times"></i> <i class="fas fa-bars"></i>
+		</a>
+	</div>
+
+	<!-- 모바일 사이드 바 -->
+	<div class="mobile-side-bar flex flex-ai-c">
+		<nav class="menu-box-1 flex-1-0-0">
+			<ul>
+				<li class="flex flex-jc-c"><a href="/home/main">홈</a></li>
+				<li class="flex flex-jc-c"><a href="/article/notice-list">공지사항</a></li>
+				<li class="flex flex-jc-c"><a href="/article/free-list">게시판</a></li>
+				<li class="flex flex-jc-c"><a href="/article/kakaoMap">병원/약국 찾기</a></li>	
+				<li class="flex flex-jc-c"><a href="/article/firstAid">응급 처치</a></li>			
+				<c:if test="${isLogined == false}">
+					<li class="flex flex-jc-c"><a href="/member/join">회원 가입</a></li>
+					<li class="flex flex-jc-c"><a href="/member/login">로그인</a></li>
+				</c:if>
+			</ul>
+		</nav>
+	</div>
 </div>
 
 <!-- 로그인 대상 표시 -->
 <c:if test="${isLogined}">
 	<div class="con flex-jc-end">
+		<div>
+			<a href="https://donaricano.com/mypage/1461113623_Oh2ISH" target="_blank">
+				<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="margin-right:10px; height:25px !important; width: 100px !important;" />
+		 	</a>
+		</div>
 		<c:if test="${loginedMember.level == 10}">
 			<div><a href="/article/organWrite" style="color: red; font-weight:bold; margin-right: 10px;">관리자 메뉴</a></div>
 		</c:if>

@@ -30,407 +30,421 @@ label[for] {
 }
 
 /* 라이브러리 */
+.break-all {
+  word-break: break-all;
+}
+
+.text-overflow-el {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.abs-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.relative {
+  position: relative;
+}
+
+.ratio-16-9::after {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+.ratio-1-1::after {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.img-box.img-box-auto>img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+}
+
+.none {
+  display: none !important;
+}
+
 .block {
-	display: block;
+  display: block;
 }
 
 .inline-block {
-	display: inline-block;
+  display: inline-block;
+}
+
+.img-box>img, .img-box>svg {
+  width: 100%;
+  display: block;
 }
 
 .text-align-center {
-	text-align:center;
+  text-align: center;
 }
 
-/* PC/모바일 사이즈 관련 if 문 설정 */
-@media ( max-width :1210px ) and ( min-width :801px ) {
-  .con {
-    margin-left: 10px;
-    margin-right: 10px;
+.video-box>video {
+  width: 100%;
+  display: block;
+}
+
+.con {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.border-red {
+  border: 10px solid red;
+}
+
+.height-50 {
+  min-height: 50px !important;
+}
+
+.height-300 {
+  min-height: 300px;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-top-30 {
+  margin-top: 30px;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
+
+.padding-left-10 {
+  padding-left: 10px;
+}
+
+.padding-0-10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.padding-0-20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.padding-10-0 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.padding-20-0 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.padding-10 {
+  padding: 10px;
+}
+
+.margin-right-10 {
+  margin-right: 10px;
+}
+
+.height-100p {
+  height: 100%;
+}
+
+.width-100p {
+  width: 100%;
+}
+
+.border-box {
+  box-sizing: border-box;
+}
+
+.min-width-30 {
+  min-width: 30px;
+}
+
+.min-width-50 {
+  min-width: 50px;
+}
+
+.min-width-80 {
+  min-width: 80px;
+}
+
+.min-width-100 {
+  min-width: 100px;
+}
+
+/* flex 관련 */
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: flex;
+  display: inline-flex;
+}
+
+.flex-ai-c {
+  display: flex;
+  align-items: center;
+}
+
+.flex-jc-c {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-jc-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-jc-sb {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-column { 
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row-wrap {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.flex-1-0-0 {
+  flex: 1 0 0;
+}
+
+/* table-box 관련 */
+.table-box {
+  border-top: 3px solid #4BAF4B;
+  box-sizing: border-box;
+}
+
+.table-box>table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.table-box>table thead {
+  border-bottom: 1px solid black;
+}
+
+.table-box>table th, .table-box>table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.table-box>table th:first-child, .table-box>table td:first-child {
+  padding-left: 0;
+}
+
+.table-box tr {
+  border-bottom: 1px solid #dfdfdf;
+}
+
+@media ( max-width :800px ) {
+  .table-box>table>colgroup>col:first-child {
+    width: 100% !important;
   }
-}
-
-@media ( min-width :801px ) {
-  .visible-on-sm-down {
-    display: none;
+  .table-box>table>colgroup>col {
+    width: auto !important;
+  }
+  .table-box, .table-box head, .table-box tbody, .table-box tr, .table-box td, .table-box th {
+    display: block;
+  }
+  .table-box tr.flex {
+    display: flex;
+  }
+  .table-box>table th, .table-box>table td {
+    border: 0;
+    padding: 0;
+    text-align: left;
+  }
+  .table-box>table tr {
+    padding-top: 20px;
   }
 }
 
 @media ( max-width :800px ) {
-  .visible-on-md-up {
-    display: none;
+  .table-box.table-box-vertical>table td {
+    margin-top: 10px;
+  }
+  .table-box.table-box-vertical td>.btn {
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    border-radius: 4px;
+  }
+  .table-box.table-box-vertical td>.btn+.btn {
+    margin-top: 10px;
+  }
+  .table-box.table-box-vertical tr {
+    padding-bottom: 20px;
+  }
+  .table-box.table-box-vertical .tr-do>th {
+    display: none !important;
   }
 }
 
-.con {
-	max-width: 1200px;
-	margin-left: auto;
-	margin-right: auto;
+@media ( max-width :800px ) {
+  .table-box.table-box-data thead, .table-box.table-box-data th, .table-box.table-box-data td {
+    display: none;
+  }
+  .table-box.table-box-data td.visible-on-sm-down {
+    display: block;
+  }
+  .table-box.table-box-data td.visible-on-sm-down {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .table-box.table-box-data td.visible-on-sm-down a {
+    text-decoration: none;
+  }
+  .btn-box>.btn {
+    display: block;
+    width: 100%;
+    margin-left: 0 !important;
+    border-radius: 4px;
+    margin-top: 10px !important;
+  }
+  .btn-box>.btn:first-chid {
+    margin-top: 0 !important;
+  }
 }
 
-.margin-top-10 {
-	margin-top: 10px;
+/* 폼 관련 */
+.form1 .form-control-box>input, .form1 .form-control-box>textarea {
+  width: 100%;
+  padding: 0;
+  display: block;
+  box-sizing: border-box;
+  padding: 10px;
 }
 
-.margin-top-20 {
-	margin-top: 20px;
+.form1 .form-control-box>textarea {
+  min-height: 300px;
+  resize: none;
 }
 
-.margin-top-30 {
-	margin-top: 30px;
+.form1 .form-control-box>select {
+  width: 100%;
+  padding: 0;
+  display: block;
+  box-sizing: border-box;
+  padding: 10px;
 }
 
-.padding-0-10 {
-	padding-left: 10px;
-	padding-right: 10px;
+.form1 .form-row {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.padding-0-20 {
-	padding-left: 20px;
-	padding-right: 20px;
+.form1 .form-row>.form-control-label {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-weight: bold;
 }
 
-.padding-10-0 {
-	padding-top: 10px;
-	padding-bottom: 10px;
+.form1 .form-row>.form-control-box {
+  display: flex;
+  align-items: center;
+  padding: 10px;
 }
 
-.padding-20-0 {
-	padding-top: 20px;
-	padding-bottom: 20px;
+.form1 th, .form-control-label {
+  /* `로그인 아이디` 문구가 줄 바꿈 될 때 공백기준으로 줄바꿈 되도록 */
+  word-break: keep-all;
 }
 
-.bg-white {
-	background-color:white;
+/* 버튼관련 */
+.btn {
+  font-size: 1rem;
+  line-height: 1rem;
+  padding: 10px 15px 7px 15px;
+  display: inline-flex;
+  font-weight: bold;
+  border-radius: 10px;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: #4BAF4B;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 20px #000000;
+  text-decoration: none;
+  box-sizing: border-box;
+  justify-content: center;
+  text-align: center;
 }
 
-.padding-10 {
-	padding:10px;
+.btn:hover {
+	color: black;
 }
 
-/* 라이브러리 - flex */
-*>.flex {
-	display: flex;
+.btn-success {
+  background-color: #28a745;
 }
 
-*>.flex-column-nowrap {
-	display: flex;
-	flex-flow: column nowrap;
+.btn-info {
+  background-color: #4BAF4B;
 }
 
-*>.flex-grow-1 {
-	flex-grow: 1;
+.btn-danger {
+  background-color: #dc3540;
 }
 
-*>.flex-jc-end {
-	display: flex;
-	justify-content: flex-end;
+.btn-warning {
+  background-color: #ffc10;
 }
 
-*>.flex-jc-c {
-	display: flex;
-	justify-content: center;
+.btn+.btn {
+  margin-left: 10px;
 }
 
-*>.flex-ai-c {
-	display: flex;
-	align-items: center;
+.btn-inline-box {
+  display: flex;
 }
 
-*>.flex-row-nowrap {
-	flex-direction: row;
-	flex-wrap: nowrap;
-}
-
-*>.flex-ch-basis-0 {
-	display: flex;
-}
-
-.flex-ch-basis-0>* {
-	flex-basis: 0;
-}
-
-*>.flex-1-0-0 {
-	flex: 1 0 0;
-}
-
-*>.flex-0-0-1 {
-	flex: 0 0 1;
+.btn-inline-box>.btn {
+  display: block;
+  flex-grow: 1;
+  border-radius: 4px;
 }
 
 .page-title-box {
 	margin-top: 30px;
 	margin-bottom: 30px;
 } 
-
-.btn {
-	font-size: 1rem;
-	line-height: 1rem;
-	padding: 10px 15px 7px 15px;
-	display: inline-flex;
-	font-weight: bold;
-	border-radius: 10px;
-	outline: 0;
-	border: 0;
-	cursor: pointer;
-	background-color: #3D94F6;
-	color: #FFFFFF;
-	text-shadow: 1px 1px 20px #000000;
-	text-decoration: none;
-	margin-right: 10px;
-	text-align: center;
-}
-.btn a {
-	width: 100px;
-}
-
-.table-box {
-	background-color: #4BAF4B; 
-	color:white; 
-	width: 45%; 
-	padding: 20px;
-	margin-bottom: 20px;
-}
-
-.table-box .form-control-box {
-	width: 100%;
-}
-
-.table-box tr {
-	width: 100%;	
-}
-
-.table-box th {
-	padding: 10px 0;
-	text-indent: 1rem;
-	width: 30%;
-}
-
-.table-box td {
-	padding: 10px 0;
-	text-indent: 1rem;
-	width: 70%;
-}
-
-.table-box input {
-	padding: 10px 0;
-	text-indent: 1rem;
-	width: 95%;
-}
-
-.table-box textarea {
-	padding: 10px 5px;
-	width: 79%;
-	height: 200px;
-	resize: none;
-}
-
-.table-box select{
-	padding: 10px 0;
-	text-indent: 1rem;
-	width: 82%;
-}
-
-body {
-	margin-bottom: 20px;
-}
-
 /* 기본 CSS 끝 */
-
-/* head */
-.header-top-box {
-	background-color: #4BAF4B;
-	color: white;
-}
-
-.header-top-box>.header-top > ul > li{
-	margin:auto;
-}
-
-.header-top-box>.header-top > ul > li > a {
-	padding: 30px 20px;
-	font-size: 1.5rem;
-	white-space:nowrap;
-	text-align:center;
-}
-
-.header-top-box>.header-top > ul > li:hover > a {
-	color: black;
-}
-
-h1, h2 {
-	margin-bottom: 20px;
-}
-
-.btn-info {
-	display: flex;
-	justify-content: center;
-	margin: auto;
-	width: 100px;
-}
-/* join */
-
-
-/* login */
-
-
-/* findId */
-
-/* main */
-.main-article-box {
-	margin-top: 10px;
-	width:100%;
-}
-.main-img-box {
-	width: 100%;
-}
-.main-img {
-	width:100%; 
-	height: 350px; 
-	background:url("https://cdn.pixabay.com/photo/2016/07/06/20/31/ambulance-1501264_960_720.png") no-repeat;
-	background-size: cover;
-}
-
-.main-article-h {
-	text-indent: 1rem;
-	margin: 0;
-	padding: 10px 0;
-}	
-.main-article-notice {
-	margin-right: 5px;
-}
-.main-article-table-box {
-	text-indent: 1rem;
-	width: 50%; 
-	height:350px; 
-	border:2px solid #4BAF4B; 	
-	overflow: auto;
-}
-.main-article-table-box > table {
-	border-collapse: collapse;
-	border-top: 3px solid #4BAF4B;
-	width: 100%;
-	min-width: 500px;
-	text-align: center;
-}
-.main-article-table-box tr {
-	height: 50px;
-	font-size: 1rem;
-	border: 0.5px solid #4BAF4B;
-}
-
-.main-article-table-box td {
-	border: 0.5px solid #4BAF4B;
-}
-
-.main-article-table-box td > a {
-	width: 200px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	height: 20px;
-	display:block;
-}
-
-.main-article-table-box td > .tdaf {
-	width: 180px;
-}
-
-.main-article-table-box > table th {
-	color: black;
-	background: #f0f6f9;
-	margin: 10px 0px;
-	width: 33.3333%;
-	font-size: 1.3rem;
-	border: 0.5px solid #4BAF4B;
-}
-
-/* organWrite (기관 등록) */
-.organWrite-form-box > .table-box input {
-	width: 300px;
-}
-
-/* write (게시물 작성) */
-.write-table-box, .modify-table-box {
-	background-color: #4BAF4B; 
-	color:white; 
-	margin-bottom: 20px;
-	width: 100%;
-	padding: 10px 0;
-}
-.write-table-box td, .modify-table-box td {
-	padding: 10px 0;
-	text-indent: 1rem;
-	width: 85%;
-}
-.write-table-box input, .modify-table-box input {
-	width: 98%;
-	padding: 10px 0;	
-	text-indent: 1rem;
-}
-.write-table-box .toast-editor, .modify-table-box .toast-editor {
-	background-color: white;
-	width: 98%;
-}
-
-.write-table-box .form-control, .modify-table-box .form-control {
-	text-indent: 0;
-}
-
-/* list */
-.article-table-box, .article-detail-box {
-	margin-bottom: 10px;
-	display: block;
-	overflow-x: auto;
-	width: 100%;
-}
-
-.article-table-box > table, .article-detail-box > table {
-	border-collapse: collapse;
-	border-top: 3px solid #4BAF4B;
-	width: 100%;
-	min-width: 500px;
-	text-align: center;
-}
-
-.article-table-box tr, .article-detail-box tr {
-	height: 50px;
-	font-size: 1.2rem;
-	border: 0.5px solid #4BAF4B;
-}
-
-.article-table-box td {
-	border: 0.5px solid #4BAF4B;
-}
-
-.article-table-box td a {
-	width: 300px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	display:block;
-	margin: auto;
-}
-
-.article-table-box > table th, .article-detail-box > table th {
-	color: black;
-	background: #f0f6f9;
-	margin: 10px 0px;
-	width: 33.3333%;
-	font-size: 1.3rem;
-	border: 0.5px solid #4BAF4B;
-}
-
-/* detail */
-.article-detail-box .toast-editor-box {
-	overflow: auto;
-	width: 100%;
-}
-
-.article-detail-box .toast-editor-box >.toast-editor {
-	margin: auto;
-	border-collapse: collapse;
-	display: block;
-	width: 100%;
-	height: 400px;
-}

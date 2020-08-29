@@ -101,7 +101,7 @@
  비고 : 응급실 운영기관
 -->
 <!-- 병원 목록 -->
-<div class="con flex-jc-c">
+<div class="con flex-jc-c margin-bottom-20">
 	<div class="kakaoMap con" id="map"></div>
 	<div class="kakaoMap-info con">
 		<ul>

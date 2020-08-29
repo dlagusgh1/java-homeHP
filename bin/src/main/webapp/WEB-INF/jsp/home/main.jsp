@@ -5,13 +5,23 @@
 <!-- JSTL 데이터 포맷 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="pageTitle" value="병원/약국 24시/주말" />
+<c:set var="pageTitle" value="당직 의료기관 찾기" />
 <%@ include file="../part/head.jspf"%>
 
-<h1 class="con flex-jc-c">우리동네 당직 의료기관(병원, 약국) 찾기</h1>
+<h1 class="con flex-jc-c">우리동네 당직 의료기관 찾기</h1>
 
 <div class="main-img-box con flex-jc-c">
 	<div class="main-img">
+		<h1>ㅇㄹㄷㄴ</h1>
+		<div>
+			- 우리동네 당직 의료기관 찾기
+		</div>
+		<div>
+			- 우리동네란? 주말, 야간 당직 의료기관(병원/약국)을 찾는 서비스
+		</div>
+		<div>
+			- 운영지역? 현재 세종시만 한정하여 운영 중 입니다.
+		</div>
 	</div>
 </div>
 
@@ -68,12 +78,6 @@
 			</tbody>
 		</table>
 	</div>
-	
-</div>
-<div class="con" style="margin-top: 10px;">
-	<a href="https://donaricano.com/mypage/1461113623_Oh2ISH" target="_blank">
-		<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="height:50px !important;width: 200px !important;" />
- 	</a>
 </div>
 
 <%@ include file="../part/foot.jspf"%>

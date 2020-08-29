@@ -13,9 +13,12 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -419,18 +422,6 @@ public class Util {
 		}
 	}
 
-	public static int getPassedSecondsFrom(String from) {
-		SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		Date n;
-		try {
-			n = fDate.parse(from);
-		} catch (ParseException e) {
-			return -1;
-		}
-
-		return (int) ((new Date().getTime() - n.getTime()) / 1000);
-	}
-
 	public static Object ifNull(Object value, Object elseValue) {
 		if (value == null) {
 			return elseValue;
@@ -446,7 +437,20 @@ public class Util {
 
 		return (String) value;
 	}
+	
+	public static int getPassedSecondsFrom(String from) {
+		SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date n;
+		try {
+			n = fDate.parse(from);
+		} catch (ParseException e) {
+			return -1;
+		}
 
+		return (int) ((new Date().getTime() - n.getTime()) / 1000);
+	}
+
+	// 현재 날짜 가져오기
 	public static String getNowDateStr() {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -454,7 +458,8 @@ public class Util {
 
 		return dateStr;
 	}
-
+	
+	// 초로 날짜 가져오기
 	public static String getDateStrLater(int seconds) {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -462,4 +467,35 @@ public class Util {
 
 		return dateStr;
 	}
+	
+	public static long getTime(String currentDateTime, String lastDateTime) {
+		
+		long calDateDays = 0;
+		
+		try{
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); // mm으로 할 경우 분을 의미한다.
+	        // date1, date2 두 날짜를 parse()를 통해 Date형으로 변환.
+	        Date current = format.parse(currentDateTime);
+	        Date last = format.parse(lastDateTime);
+	        
+	        // Date로 변환된 두 날짜를 계산한 뒤 그 리턴값으로 long type 변수를 초기화 하고 있다.
+	        // 연산결과 -950400000. long type 으로 return 된다.
+	        long calDate = current.getTime() - last.getTime(); 
+	        
+	        // Date.getTime() 은 해당날짜를 기준으로1970년 00:00:00 부터 몇 초가 흘렀는지를 반환해준다. 
+	        // 이제 24*60*60*1000(각 시간값에 따른 차이점) 을 나눠주면 일수가 나온다.
+        	calDateDays = calDate / ( 24*60*60*1000); 
+	 
+	        calDateDays = Math.abs(calDateDays);
+        
+        	System.out.println("비밀번호 변경 후 소요된 기간 : "+calDateDays);
+        }
+        catch(ParseException e)
+        {
+            // 예외 처리
+        }
+        
+        return calDateDays;
+	}
+	
 }

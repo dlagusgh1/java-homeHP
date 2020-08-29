@@ -25,7 +25,7 @@
 	</div>
 </div>
 
-<div class="main-article-box con flex-jc-c">
+<div class="main-article-box con flex-jc-c margin-bottom-20">
 	<div class="main-article-table-box main-article-notice">
 		<h3 class="main-article-h">공지사항</h3>
 		<table>

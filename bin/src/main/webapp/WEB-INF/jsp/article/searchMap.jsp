@@ -82,7 +82,7 @@
             <div>
                 <form onsubmit="searchPlaces(); return false;">
                     키워드 : <input type="text" value="세종시 병원" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
+                    <button class="btn btn-primary" type="submit">검색하기</button> 
                 </form>
             </div>
         </div>

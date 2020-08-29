@@ -1,11 +1,6 @@
 package com.sbs.lhh.hp.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -247,28 +242,24 @@ public class MemberController {
 			return "common/redirect";
 		}
 		
-		long systemTime = System.currentTimeMillis();
+
+		String current = Util.getNowDateStr();
+		String last = member.getUpdateDate();	
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);	
+		long differenceDate = Util.getTime(current, last);	
 		
-		String nowDateTime = dateFormat.format(systemTime);	
-		String lastPwChangeDateTime = dateFormat.format(member.getUpdateDate());
-		System.out.println("nowDateTime : " + nowDateTime);
-		System.out.println("lastPwChangeDateTime : " + lastPwChangeDateTime);
-//		Calendar baseCal = new GregorianCalendar(lastPwChangeDateTime);
-//		Calendar targetCal = new GregorianCalendar(nowDateTime);
-//		
-//		long diffSec = (targetCal.getTimeInMillis() - baseCal.getTimeInMillis())/1000;
-//		long diffDays = diffSec / (24*60*60);
-//		
-//		System.out.println("두 날짜간의 일수 차 : " + diffDays + "일");		
-		
-		
-	
+		ResultData useTempPassword = memberService.useTempPassword(member.getId());
 		
 		session.setAttribute("loginedMemberId", member.getId());
 		
-		ResultData useTempPassword = memberService.useTempPassword(member.getId());
+		if ( differenceDate > 30 ) {
+			model.addAttribute("alertMsg", "장기간 동일한 비밀번호를 사용중 입니다.\\n비밀번호 변경 부탁드립니다.");	
+			
+			redirectUri = "/member/checkPassword?redirectUri=%2Fmember%2FmemberModifyPw";
+			model.addAttribute("redirectUri", redirectUri);
+			
+			return "common/redirect";
+		}
 		
 		if (useTempPassword.isSuccess()) {
 			model.addAttribute("alertMsg", "현재 임시 비밀번호를 사용 중 입니다.\\n비밀번호 변경 부탁드립니다.");

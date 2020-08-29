@@ -45,7 +45,7 @@
 </script>
 
 
-<form method="POST" class="table-box con flex-jc-c" action="doPasswordConfirm" onsubmit="MemberPasswordConfirmForm__submit(this); return false;">
+<form method="POST" class="table-box table-box-vertical  con form1" action="doPasswordConfirm" onsubmit="MemberPasswordConfirmForm__submit(this); return false;">
 	<input type="hidden" name="redirectUri" value="${param.redirectUri}">
 	<input type="hidden" name="loginPwReal">	
 	<table>
@@ -63,9 +63,9 @@
 			</tr>
 			<tr>
 				<th>확인</th>
-				<td class="btn-info">
-					<button class="btn" type="submit">확인</button>
-					<button class="btn" onclick="history.back();" type="button">취소</button>
+				<td>
+					<button class="btn btn-primary" type="submit">확인</button>
+					<button class="btn btn-info" onclick="history.back();" type="button">취소</button>
 				</td>
 			</tr>
 		</tbody>

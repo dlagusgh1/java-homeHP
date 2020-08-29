@@ -17,10 +17,10 @@
 	.firstAidList {
 		max-width: 1200px;
 		width: 100%;
-		margin: 0 auto;
 		border: 1px solid rgb(160, 160, 160, 0.5);
 		border-radius: 10px;
 		padding-top: 20px;
+		margin: 0 auto;
 		margin-top: 20px;
 		margin-bottom: 20px;
 	}
@@ -30,7 +30,7 @@
 	.firstAidList > ul > li {
 		display: inline-block;
 		vertical-align: top;
-		width: 33.3%;
+		width: 24.9%;
 	}
 	.firstAidList > ul > li > a {
 		display: block;
@@ -69,7 +69,7 @@
 	.firstAidList > ul > li > a h3 {
 		font-size: 14px;
 		text-aligh: center;
-		padding: 20px;
+		padding: 10px;
 		color: #666;
 	}
 	.firstAidList > ul > li > a:hover .top {
