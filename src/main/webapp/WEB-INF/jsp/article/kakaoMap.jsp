@@ -114,35 +114,18 @@
 		];
 
 
+	
 	// select onchange로 넘겨받은 값
 	var administrative = function (adCateItemName) {
-		if (adCateItemName != null) {
-			
-			데이터 = [];
 
-			for (var i = 0; i < 데이터.length; i++ ) {
-				<c:forEach items="${organes}" var="organ">
-					if (adCateItemName == 데이터[i][3]) {
-						데이터.push([	
-								[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', '${organ.organAdmAddress}'],			
-						]);
-					} else if (adCateItemName != 데이터[i][3]){
-						데이터.splice(i);
-					}		
-				</c:forEach>	
+		<c:forEach items="${organes}" var="organ">
+			if(${organ.organAdmAddress == adCateItemName}) {
+				console.log('organAdmAddress' + ${organ.organAdmAddress});
 			}
-			
-			alert(adCateItemName);
-			console.log('데이터 값 확인1 : ' + adCateItemName);
-			
-		}	
-
-		console.log('데이터 값 확인2 : ' + 데이터);
+		</c:forEach>
+		console.log('adCateItemName 확인 : ' + adCateItemName);
 	}
 
-
-
-	
 	
 	
 	// 마커 이미지
@@ -199,7 +182,7 @@
         	infowindow.open(map, marker);  
         };
     }
-
+	
 </script>
 
 <%@ include file="../part/foot.jspf"%>
