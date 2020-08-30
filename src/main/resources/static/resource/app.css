@@ -454,12 +454,21 @@ h1, h2, h3 {
 	color: black;
 }
 
-.administrative-district ul li a {
-	padding:10px 5px;
-	font-size: 1rem;
-	margin-left: 5px;
+
+@media (max-width :801px) {
+    .administrative-district ul li a {
+    	font-size: 0.8rem;
+    }
 }
 
+@media (min-width :801px) {
+	.administrative-district ul li a {
+		padding:10px 5px;
+		font-size: 1rem;
+		margin-left: 5px;
+	}
+}
+	
 .administrative-district select {
 	padding: 5px;
 }

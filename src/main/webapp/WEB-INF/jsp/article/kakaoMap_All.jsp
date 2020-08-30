@@ -34,29 +34,6 @@
 	.placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
 	.placeinfo .tel {color:#0f7833;}
 	.placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
-
-
-	.administrative-district ul {
-		background-color: #4BAF4B;
-		border-radius: 10px;	
-		width: 100%;
-		padding: 6px 0px;
-		margin: 5px 0 7px 0;
-		text-align: center;
-	}
-	.administrative-district ul li {
-		color: white;
-		text-align: center;
-	}
-	.administrative-district ul li:hover {
-		color: black;
-	}
-	
-	.administrative-district ul li a {
-		padding:10px 5px;
-		font-size: 1rem;
-		margin-left: 5px;
-	}
 	
 </style>
 

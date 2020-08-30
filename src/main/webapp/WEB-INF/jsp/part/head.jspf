@@ -118,6 +118,11 @@ var param = ${paramJson};
 					<li class="flex flex-jc-c"><a href="/member/join">회원 가입</a></li>
 					<li class="flex flex-jc-c"><a href="/member/login">로그인</a></li>
 				</c:if>
+				<c:if test="${isLogined}">
+					<li class="flex flex-jc-c"><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}">내정보</a></li>
+					<li class="flex flex-jc-c"><a href="/article/organModify">지도 정보 수정</a></li>
+					<li class="flex flex-jc-c"><a href="/member/doLogout">로그아웃</a></li>
+				</c:if>
 			</ul>
 		</nav>
 	</div>
