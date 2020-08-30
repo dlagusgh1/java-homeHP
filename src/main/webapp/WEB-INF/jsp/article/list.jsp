@@ -31,16 +31,20 @@
 	1번 : 자유 게시판
 	2번 : 공지 게시판
  -->
-<div class="article-table-box table-box-data con">
+<div class="table-box table-box-data con">
 	<table>
 		<colgroup>
-			<col class="table-first-col">
+			<col width="100" />
+           	<col width="500" />
+           	<col width="200" />
+           	<col width="200" />
 		</colgroup>
 		<thead>
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
-				<th>날짜</th>
+				<th>작성자</th>	
+				<th>작성일자</th>								
 			</tr>
 		</thead>
 		<tbody>
@@ -50,8 +54,19 @@
 						<td><a>${article.id}</a></td>
 						<td>
 							<a href="${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
-						</td>
-						<td><a>${article.regDate}</a></td>
+						</td>	
+						<td class="writer">${article.extra.writer}</td>	
+						<td><a>${article.regDate}</a></td>							
+						<td class="visible-on-sm-down">
+                        <a href="${article.getDetailLink(board.code)}" class="flex flex-row-wrap flex-ai-c">
+                            <span class="badge badge-primary bold margin-right-10">${article.id}</span>
+                            <div class="title flex-1-0-0 text-overflow-el">${article.forPrintTitle}</div>
+                            <div class="width-100p"></div>
+                            <div class="writer">${article.extra.writer}</div>
+                            &nbsp;|&nbsp;
+                            <div class="reg-date">${article.regDate}</div>
+                        </a>
+                    </td>
 					</tr>
 				</c:if>
 			</c:forEach>

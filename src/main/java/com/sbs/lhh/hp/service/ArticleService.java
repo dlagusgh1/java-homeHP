@@ -89,9 +89,9 @@ public class ArticleService {
 		return articles;
 	}
 	
-	// 게시물 리스트(자유) 출력제한
-	public List<Article> getForPrintBoarCodeArticles(String boardCode, int limit) {
-		List<Article> articles = articleDao.getForPrintBoarCodeArticles(boardCode, limit);
+	// 게시물 리스트(공지) 출력제한
+	public List<Article> getForPrintLimitNoticeArticles(int limit) {
+		List<Article> articles = articleDao.getForPrintLimitNoticeArticles(limit);
 
 		return articles;
 	}

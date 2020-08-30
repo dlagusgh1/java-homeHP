@@ -23,6 +23,11 @@ h1, h2, h3 {
     }
 }
 
+.page-title-box {
+	margin-top: 30px;
+	margin-bottom: 30px;
+} 
+
 /* 커스텀 */
 .con {
     max-width: 1200px;
@@ -353,18 +358,13 @@ h1, h2, h3 {
 /* main */
 .main-article-box {
 	margin-top: 10px;
-	margin-bottom: 20px;
-	width:100%;
 }
 
 @media (max-width :801px) {
-    .main-article-box {
-        display: block;
-    }
-    .main-article-box .main-article-table-box {
-    	width:100%;
-    	margin-bottom: 10px;
-    }
+	body {
+		margin-right: 10px;
+		margin-left: 10px;
+	}
 }
 
 .main-img-box {
@@ -388,69 +388,15 @@ h1, h2, h3 {
     }
 }
 
-.main-article-h {
-	text-indent: 1rem;
-	margin: 0;
-	padding: 10px 0;
-}	
-.main-article-notice {
-	margin-right: 5px;
-}
-.main-article-table-box {
-	text-indent: 1rem;
-	width: 50%; 
-	height:350px; 
-	border:2px solid #4BAF4B; 	
-	overflow: auto;
-}
-.main-article-table-box > table {
-	border-collapse: collapse;
-	border-top: 3px solid #4BAF4B;
-	width: 100%;
-	min-width: 500px;
-	text-align: center;
-}
-.main-article-table-box tr {
-	height: 50px;
-	font-size: 1rem;
-	border: 0.5px solid #4BAF4B;
-}
-
-.main-article-table-box td {
-	border: 0.5px solid #4BAF4B;
-}
-
-.main-article-table-box td > a {
-	width: 200px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	height: 20px;
-	display:block;
-}
-
-.main-article-table-box td > .tdaf {
-	width: 180px;
-}
-
-.main-article-table-box > table th {
-	color: black;
-	background: #f0f6f9;
-	margin: 10px 0px;
-	width: 33.3333%;
-	font-size: 1.3rem;
-	border: 0.5px solid #4BAF4B;
-}
-
-/* list */
-.article-table-box, .article-detail-box {
+/* detail */
+.article-detail-box {
 	margin-bottom: 10px;
 	display: block;
 	overflow-x: auto;
 	width: 100%;
 }
 
-.article-table-box > table, .article-detail-box > table {
+.article-detail-box > table {
 	border-collapse: collapse;
 	border-top: 3px solid #4BAF4B;
 	width: 100%;
@@ -458,7 +404,7 @@ h1, h2, h3 {
 	text-align: center;
 }
 
-.article-table-box tr, .article-detail-box tr {
+.article-detail-box tr {
 	height: 50px;
 	font-size: 1.2rem;
 	border: 0.5px solid #4BAF4B;
@@ -477,7 +423,7 @@ h1, h2, h3 {
 	margin: auto;
 }
 
-.article-table-box > table th, .article-detail-box > table th {
+.article-detail-box > table th {
 	color: black;
 	background: #f0f6f9;
 	margin: 10px 0px;
@@ -486,7 +432,6 @@ h1, h2, h3 {
 	border: 0.5px solid #4BAF4B;
 }
 
-/* detail */
 .article-detail-box .toast-editor-box {
 	overflow: auto;
 	width: 100%;
@@ -497,6 +442,6 @@ h1, h2, h3 {
 	border-collapse: collapse;
 	display: block;
 	width: 100%;
-	height: 400px;
+	height: auto;
 }
 
