@@ -103,6 +103,7 @@ h1, h2, h3 {
 
 .top-bar ul li:hover > a {
 	color: #4BAF4B;
+	font-size: 1.1rem;
 }
 
 .mobile-top-bar {

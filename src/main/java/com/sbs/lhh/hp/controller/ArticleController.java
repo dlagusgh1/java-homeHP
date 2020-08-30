@@ -118,7 +118,14 @@ public class ArticleController {
 
 		return "article/kakaoMap_PM";
 	}
-
+	
+	// 관리자 메뉴
+	@RequestMapping("/article/adminMenu")
+	public String adminMenu(Model model) {
+			
+		return "article/adminMenu";
+	}
+	
 	// 기관 등록 시 카카오맵 검색 기능
 	@RequestMapping("/article/searchMap")
 	public String searchMap(Model model) {
