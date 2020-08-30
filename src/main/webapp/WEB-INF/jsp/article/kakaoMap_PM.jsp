@@ -9,73 +9,16 @@
 <c:set var="pageTitle" value="병원/약국 찾기" />
 <%@ include file="../part/head.jspf"%>
 
-<style>
-	.kakaoMap {
-		width:100%; 
-		height:650px; 
-		border: 2px solid green; 
-		margin-right: 10px;
-	}
-	
-	.kakaoMap-info {
-		width:100%; 
-		height:650px; 
-		overflow:auto; 
-		border: 2px solid green;
-		text-indent: 1rem;
-	}
-	
-	.administrative-district {
-		margin-bottom: 20px;
-	}
-	
-	.administrative-district div {
-		font-weight:bold; 
-		font-size: 1.5rem;
-	}
-	
-	.administrative-district ul {
-		background-color: #4BAF4B;
-		border-radius: 10px;	
-		width: 100%;
-		padding: 10px 0px;
-		margin: 5px 0 7px 0;
-		text-align: center;
-	}
-	
-	.administrative-district select {
-		padding: 5px;
-	}
-	
-	.cate ul li a{
-		padding:10px 5px;
-		font-size: 1rem;
-		margin-left: 5px;
-	}
-	.map_marker {
-		padding:10px; 
-		width: 550px;
-		
-	}
-	.map_marker_header {
-		font-size: 1.2rem;
-		font-weight:bold;
-	}
-	.map_marker nav {
-		padding: 3px 0;
-		text-indent: 1rem;
-	}
-</style>
+<h1 class="con flex-jc-c">당직 약국 찾기</h1>
 
-<h1 class="con flex-jc-c">약국 찾기</h1>
-
-<div class="cate con flex-jc-c">
-	<ul class="flex">
-		<li><a href="kakaoMap">전체(${organ_ALLCount})</a></li>
-		<li><a href="kakaoMap_HP">당직 병원(${organ_HPCount})</a></li>
-		<li><a href="kakaoMap_PM">당직 약국(${organ_PMCount})</a></li>
-		<li><a href="kakaoMap_All">일반</a></li>
-	</ul>	
+<div class="cateItem con flex-jc-c">
+	<select name="cateItemName" id="cateItem" onchange="if(this.value) location.href=(this.value);">
+		<option>찾기선택</option>	
+		<option value="kakaoMap">당직 병원/약국 (${organ_ALLCount})</option>
+		<option value="kakaoMap_HP">당직 병원 (${organ_HPCount})</option>
+		<option value="kakaoMap_PM">당직 약국 (${organ_PMCount})</option>
+		<option value="kakaoMap_All">모든 병원/약국</option>
+	</select>
 </div>
 
 
@@ -84,45 +27,34 @@
 	<nav>
 		<div>
 			행정구역(동/읍/면)&nbsp&nbsp
-			<select name="adCateItemName" id="adCateItem">
+			<select name="adCateItemName" id="adCateItem" onchange="administrative(this.value)">
+				<option>행정구역 선택</option>
 				<c:forEach items="${adCateItems}" var="adCateItem">
-					<option id="adCateItemName" value="${adCateItem.name}" onClick="administrative(this.value)" >${adCateItem.name}</option>
+					<option value="${adCateItem.name}" style="height: 50px;">${adCateItem.name}</option>
 				</c:forEach>
 			</select>
 		</div>
 	</nav>
 </div>
-<!--  
- 기관명 : 엔케이(NK) 세종 병원
- 기관주소 : 세종 한누리대로 161
- 전화번호 : 044-850-7700
- 진료시간 : 24시간
- 주말운영여부 : 토요일 / 일요일 운영
- 비고 : 응급실 운영기관
--->
-<!-- 병원 목록 -->
-<div class="con flex-jc-c margin-bottom-20">
+
+<!-- 약국 목록 -->
+<div class="kakaoMap-box con flex-jc-c margin-bottom-20">
 	<div class="kakaoMap con" id="map"></div>
 	<div class="kakaoMap-info con">
 		<ul>
 			<li>
 				<c:forEach items="${organes}" var="organ">
-					<c:choose>
-						<c:when test="${organ.organNumber == 2}">
-							<ul>
-								<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
-								<li><a>주소 : ${organ.organAddress} (${organ.organAdmAddress})</a></li>
-								<li><a>전화 번호 : ${organ.organTel}</a></li>
-								<li><a>진료 시간 : ${organ.organTime}</a></li>
-								<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
-								<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
-								<li><a>비고 : ${organ.organRemarks}</a></li>
-							</ul>		
-							<br>
-						</c:when>
-						<c:otherwise>
-						</c:otherwise>
-					</c:choose>
+					<ul>
+						<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
+						<li><a>주소 : ${organ.organAddress}</a></li>
+						<li><a>행정구역 : ${organ.organAdmAddress}</a></li>
+						<li><a>전화 번호 : ${organ.organTel}</a></li>
+						<li><a>진료 시간 : ${organ.organTime}</a></li>
+						<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
+						<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
+						<li><a>비고 : ${organ.organRemarks}</a></li>
+					</ul>		
+					<br>
 				</c:forEach>	
 			</li>
 		</ul>
@@ -175,7 +107,7 @@
 		<c:forEach items="${organes}" var="organ">
 			<c:choose>
 				<c:when test="${organ.organNumber == 2}">
-					[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress} (${organ.organAdmAddress})</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>'],
+				[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress}</nav><nav>행정구역 : (${organ.organAdmAddress}) / 전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', '${organ.organAdmAddress}'],
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>

@@ -43,6 +43,20 @@ var param = ${paramJson};
 
 </head>
 <body>
+
+<div class="loading-box flex-ai-c flex-jc-c">
+	<div class="lds-roller">
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	</div>
+</div>
+
 <div class="outer-box">
 	<!-- PC 탑바 -->
 	<div class="top-bar con flex flex-ai-c flex-jc-sb visible-on-md-up">
@@ -92,8 +106,8 @@ var param = ${paramJson};
 	</div>
 
 	<!-- 모바일 사이드 바 -->
-	<div class="mobile-side-bar flex flex-ai-c">
-		<nav class="menu-box-1 flex-1-0-0">
+	<div class="mobile-side-bar flex flex-ai-c bold">
+		<nav class="menu-@box-1 flex-1-0-0">
 			<ul>
 				<li class="flex flex-jc-c"><a href="/home/main">홈</a></li>
 				<li class="flex flex-jc-c"><a href="/article/notice-list">공지사항</a></li>

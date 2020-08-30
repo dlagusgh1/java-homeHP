@@ -355,11 +355,7 @@ h1, h2, h3 {
     left: 12px;
 }
 
-/* main */
-.main-article-box {
-	margin-top: 10px;
-}
-
+/* body */
 @media (max-width :801px) {
 	body {
 		margin-right: 10px;
@@ -367,6 +363,7 @@ h1, h2, h3 {
 	}
 }
 
+/* main */
 .main-img-box {
 	width: 100%;
 }
@@ -379,6 +376,7 @@ h1, h2, h3 {
 	background-color: #4BAF4B;
 	margin: auto;
 	padding: 5px 20px;
+	border-radius: 5px;
 }
 
 @media (max-width :801px) {
@@ -389,59 +387,121 @@ h1, h2, h3 {
 }
 
 /* detail */
-.article-detail-box {
-	margin-bottom: 10px;
-	display: block;
-	overflow-x: auto;
-	width: 100%;
+@media (min-width :801px) {
+   	.article-detail-box > table th {
+		text-align: center;
+	}
 }
 
-.article-detail-box > table {
-	border-collapse: collapse;
-	border-top: 3px solid #4BAF4B;
+/* 카카오 */
+@media (max-width :801px) {
+    .kakaoMap-box {
+        display: block;
+    }
+    .kakaoMap-box .kakaoMap {
+    	height: 300px;
+    	margin-bottom: 10px;
+    }
+    .kakaoMap-box .kakaoMap-info {
+    	height: 300px;
+    }
+    
+    .kakaoMap-box .kakaoMap-info a {
+    	 font-size: 0.8rem;
+    }
+    .cateItem {
+    	font-size: 1rem;
+    }
+}
+
+.kakaoMap {
+	width:100%; 
+	height:650px; 
+	border: 2px solid green; 
+	margin-right: 10px;
+}
+.kakaoMap-info {
+	width:100%; 
+	height:650px; 
+	overflow:auto; 
+	border: 2px solid green;
+	text-indent: 1rem;
+}
+
+.administrative-district {
+	margin-bottom: 20px;
+}
+
+.administrative-district div {
+	font-weight:bold; 
+	font-size: 1.5rem;
+}
+
+.administrative-district ul {
+	background-color: #4BAF4B;
+	border-radius: 10px;	
 	width: 100%;
-	min-width: 500px;
+	padding: 10px 0px;
+	margin: 5px 0 7px 0;
 	text-align: center;
 }
 
-.article-detail-box tr {
-	height: 50px;
-	font-size: 1.2rem;
-	border: 0.5px solid #4BAF4B;
+.administrative-district ul li {
+	color: white;
+	text-align: center;
 }
-
-.article-table-box td {
-	border: 0.5px solid #4BAF4B;
-}
-
-.article-table-box td a {
-	width: 300px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	display:block;
-	margin: auto;
-}
-
-.article-detail-box > table th {
+.administrative-district ul li:hover {
 	color: black;
-	background: #f0f6f9;
-	margin: 10px 0px;
-	width: 33.3333%;
-	font-size: 1.3rem;
-	border: 0.5px solid #4BAF4B;
 }
 
-.article-detail-box .toast-editor-box {
-	overflow: auto;
-	width: 100%;
+.administrative-district ul li a {
+	padding:10px 5px;
+	font-size: 1rem;
+	margin-left: 5px;
 }
 
-.article-detail-box .toast-editor-box >.toast-editor {
-	margin: auto;
-	border-collapse: collapse;
-	display: block;
-	width: 100%;
-	height: auto;
+.administrative-district select {
+	padding: 5px;
 }
 
+.cateItem select {
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+.cateItem ul li a{
+	padding:10px 5px;
+	font-size: 1rem;
+	margin-left: 5px;
+}
+
+@media (max-width :801px) {
+	.map_marker {
+		padding:5px; 
+		width: 250px;
+		height: 180px;
+	}
+	.map_marker_header {
+		font-size: 1rem;
+		font-weight:bold;
+	}
+	.map_marker nav {
+		padding: 3px 0;
+		font-size: 0.7rem;
+	}
+}
+
+@media (min-width :801px) {
+	.map_marker {
+		padding:10px; 
+		width: 550px;		
+	}
+	.map_marker_header {
+		font-size: 1.2rem;
+		font-weight:bold;
+	}
+	.map_marker nav {
+		padding: 3px 0;
+		text-indent: 1rem;
+	}
+}

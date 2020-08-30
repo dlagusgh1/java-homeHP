@@ -34,23 +34,8 @@
 	.placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
 	.placeinfo .tel {color:#0f7833;}
 	.placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
-	.kakaoMap {
-		width:100%; 
-		height:650px; 
-		border: 2px solid green; 
-		margin-right: 10px;
-	}
-	.kakaoMap-info {
-		width:100%; 
-		height:650px; 
-		overflow:auto; 
-		border: 2px solid green;
-		text-indent: 1rem;
-	}
-	.administrative-district div {
-		font-weight:bold; 
-		font-size: 1.5rem;
-	}
+
+
 	.administrative-district ul {
 		background-color: #4BAF4B;
 		border-radius: 10px;	
@@ -67,46 +52,33 @@
 		color: black;
 	}
 	
-	.administrative-district ul li a , .cate ul li a{
+	.administrative-district ul li a {
 		padding:10px 5px;
 		font-size: 1rem;
 		margin-left: 5px;
 	}
 	
-	.map_marker {
-		padding:10px; 
-		width: 550px;
-		
-	}
-	.map_marker_header {
-		font-size: 1.2rem;
-		font-weight:bold;
-	}
-	.map_marker nav {
-		padding: 3px 0;
-		text-indent: 1rem;
-	}
 </style>
 
 <h1 class="con flex-jc-c">모든 병원/약국</h1>
 
-<div class="cate con flex-jc-c">
-	<ul class="flex">
-		<li><a href="kakaoMap">전체(${organ_ALLCount})</a></li>
-		<li><a href="kakaoMap_HP">당직 병원(${organ_HPCount})</a></li>
-		<li><a href="kakaoMap_PM">당직 약국(${organ_PMCount})</a></li>
-		<li><a href="kakaoMap_All">일반</a></li>
-	</ul>	
+<div class="cateItem con flex-jc-c">
+	<select name="cateItemName" id="cateItem" onchange="if(this.value) location.href=(this.value);">
+		<option>찾기선택</option>	
+		<option value="kakaoMap">당직 병원/약국 (${organ_ALLCount})</option>
+		<option value="kakaoMap_HP">당직 병원 (${organ_HPCount})</option>
+		<option value="kakaoMap_PM">당직 약국 (${organ_PMCount})</option>
+		<option value="kakaoMap_All">모든 병원/약국</option>
+	</select>
 </div>
 
 <div class="administrative-district con">
-
 	<ul class="flex">
 		<li><a><i class="far fa-hand-point-down"></i> 아래 지도에서 병원/약국 항목을 클릭하여 세부 위치/내용을 확인하실 수 있습니다.</a></li>
 	</ul>
 </div>
 
-<div class="con flex-jc-c margin-bottom-20">
+<div class="kakaoMap_box con flex-jc-c margin-bottom-20">
 	<div class="map_wrap">
 	    <div class="kakaoMap con" id="map"></div>
 	    <ul id="category"> 
