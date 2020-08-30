@@ -133,7 +133,7 @@ var param = ${paramJson};
 	<div class="con flex-jc-end">
 		<div>
 			<a href="https://donaricano.com/mypage/1461113623_Oh2ISH" target="_blank">
-				<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="margin-right:10px; height:25px !important; width: 100px !important;" />
+				<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="margin-right:10px; height:25px !important; width: 80px !important;" />
 		 	</a>
 		</div>
 		<c:if test="${loginedMember.level == 10}">

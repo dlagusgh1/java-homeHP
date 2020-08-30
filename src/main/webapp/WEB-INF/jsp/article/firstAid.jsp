@@ -54,6 +54,14 @@
 			padding: 10px;
 			color: #666;
 		}
+		.firstAidList > ul > li > a h3:hover {
+			color: blue;
+			font-weight: bold;
+			font-size: 20px;
+		}
+		.firstAidList > ul > li > a .screen {
+			display: none;
+		}
 	}
 	.firstAidList > ul > li > a {
 		display: block;
