@@ -169,9 +169,9 @@
 		// 인포윈도우를 생성하고 지도에 표시합니다
 		var infowindow = new kakao.maps.InfoWindow({
 		    //map: map, // 인포윈도우가 표시될 지도
-		    //position : iwPosition, 
+		    position : iwPosition, 
 		    content : 데이터[i][2],
-		    //removable : iwRemoveable
+		    removable : iwRemoveable
 		});
 
 		// 생성된 마커를 마커 저장하는 변수에 넣음
@@ -182,33 +182,24 @@
 	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 	    kakao.maps.event.addListener(
     	    marker, 
-    	    'mouseover',
-    	    makeOverListener(map, marker, infowindow)
+    	    'click',
+    	    makeClickListener(map, marker, infowindow)
    	    );
-	    kakao.maps.event.addListener(
-    	    marker, 
-    	    'mouseout', 
-    	    makeOutListener(infowindow)
-   	    );
-   	   
+	    
 	}	
 
 	// 클러스터러에 마커들을 추가합니다
     clusterer.addMarkers(markers);
-	
- 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-    function makeOverListener(map, marker, infowindow) {
+
+	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+    function makeClickListener(map, marker, infowindow) {
+        // 마커 위에 인포윈도우를 표시합니다
+	  
         return function() {
-            infowindow.open(map, marker);
+        	infowindow.open(map, marker);  
         };
     }
 
-    // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-    function makeOutListener(infowindow) {
-        return function() {
-            infowindow.close();
-        };
-    }
 </script>
 
 <%@ include file="../part/foot.jspf"%>
