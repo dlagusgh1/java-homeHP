@@ -65,7 +65,6 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
 <script>
 
-	
 	var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
 	contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
 	markers = [], // 마커를 담을 배열입니다
@@ -122,19 +121,33 @@
 		</c:forEach>
 		];
 
-
 	
+	var 선택된데이터 = [];	
 	// select onchange로 넘겨받은 값
-	var administrative = function (adCateItemName) {
-
-		<c:forEach items="${organes}" var="organ">
-			if(${organ.organAdmAddress == adCateItemName}) {
-				console.log('organAdmAddress' + ${organ.organAdmAddress});
+	function administrative(adCateItemName) {
+		placeOverlay.setMap(null);
+		removeMarker();
+		
+		var adCateName = adCateItemName;
+		for ( var i = 0; i < 데이터.length; i++ ) {
+			if ( adCateName == 데이터[i][3]) {
+				선택된데이터 = [
+					[데이터[i][0], 데이터[i][1], 데이터[i][2]],
+				];
 			}
-		</c:forEach>
-		console.log('adCateItemName 확인 : ' + adCateItemName);
+		}
+		<!-- console.log("선택된데이터 : " + 선택된데이터); -->
+		
+		for (var i = 0; i < 선택된데이터.length; i++ ) {
+			placeOverlay.setPosition(new kakao.maps.LatLng(선택된데이터[i][0], 선택된데이터[i][1]));
+		    placeOverlay.setMap(map);
+		}
 	}
 
+	if (!선택된데이터.length) {
+		console.log(!선택된데이터.length);
+		console.log("비었어");
+	}
 	
 	
 	// 마커 이미지
@@ -147,6 +160,7 @@
 
 	// 마커들을 저장할 변수 생성
 	var markers = [];
+	
 	for (var i = 0; i < 데이터.length; i++ ) {
 		// 지도에 마커를 생성하고 표시한다.
 		var marker = new kakao.maps.Marker({
@@ -178,8 +192,8 @@
     	    makeClickListener(map, marker, infowindow)
    	    );
 	    
-	}	
-
+	}
+	
 	// 클러스터러에 마커들을 추가합니다
     clusterer.addMarkers(markers);
 
@@ -190,7 +204,15 @@
         return function() {
         	infowindow.open(map, marker);  
         };
-    }
+    } 	
+
+ 	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+	function removeMarker() {
+	    for ( var i = 0; i < markers.length; i++ ) {
+	        markers[i].setMap(null);
+	    }   
+	    markers = [];
+	}
 	
 </script>
 

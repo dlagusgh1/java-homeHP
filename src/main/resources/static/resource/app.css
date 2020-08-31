@@ -107,7 +107,6 @@ h1, h2, h3 {
 
 .top-bar ul li:hover > a {
 	color: #4BAF4B;
-	font-size: 1.1rem;
 }
 
 .mobile-top-bar {
@@ -463,6 +462,7 @@ h1, h2, h3 {
 @media (max-width :801px) {
     .administrative-district ul li a {
     	font-size: 0.8rem;
+    	margin-left: 5px;
     }
 }
 
