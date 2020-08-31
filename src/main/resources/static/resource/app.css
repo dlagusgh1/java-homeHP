@@ -54,6 +54,8 @@ h1, h2, h3 {
 
 .outer-box {
     padding-bottom: 10px;
+    border-bottom: 5px solid #4BAF4B;
+    margin-bottom: 10px;
 }
 
 @media (min-width :801px) {
@@ -72,6 +74,8 @@ h1, h2, h3 {
     .outer-box {
         padding-left: 10px;
         padding-right: 10px;
+        border-bottom: 0;
+        margin-bottom: 0;
     }
 
     .page-title-box {
