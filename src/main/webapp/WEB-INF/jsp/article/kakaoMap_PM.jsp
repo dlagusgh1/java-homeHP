@@ -86,7 +86,7 @@
         minLevel: 6, // 클러스터 할 최소 지도 레벨 
         styles: [{
         	width : '60px', height : '60px',
-        	background: 'rgba(51, 204, 255, .8)',
+            background: 'rgba(2, 88, 255, .8)',
             borderRadius: '30px',
             color: 'white',
             textAlign: 'center',

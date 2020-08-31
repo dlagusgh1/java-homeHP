@@ -22,19 +22,6 @@ CREATE TABLE `member` (
     `level` INT(1) UNSIGNED DEFAULT 0 NOT NULL
 );
 
-# member 테이블에 테스트 데이터 삽입
-INSERT INTO `member`
-SET regDate = NOW(),
-updateDate = NOW(),
-loginId = 'admin',
-loginPw = SHA2('admin', 256),
-`name` = '관리자',
-`organName` = '관리병원',
-`organCode` = 'a12345',
-`email` = 'dlagusgh1@gmail.com',
-`phoneNo` = '010-0000-0000',
-`level` = '10';
-
 # 카테고리 테이블 생성
 DROP TABLE IF EXISTS `cateItem`;
 CREATE TABLE `cateItem` (

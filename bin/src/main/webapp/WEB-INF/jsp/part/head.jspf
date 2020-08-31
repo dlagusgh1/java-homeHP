@@ -43,6 +43,20 @@ var param = ${paramJson};
 
 </head>
 <body>
+
+<div class="loading-box flex-ai-c flex-jc-c">
+	<div class="lds-roller">
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	    <div></div>
+	</div>
+</div>
+
 <div class="outer-box">
 	<!-- PC 탑바 -->
 	<div class="top-bar con flex flex-ai-c flex-jc-sb visible-on-md-up">
@@ -92,8 +106,8 @@ var param = ${paramJson};
 	</div>
 
 	<!-- 모바일 사이드 바 -->
-	<div class="mobile-side-bar flex flex-ai-c">
-		<nav class="menu-box-1 flex-1-0-0">
+	<div class="mobile-side-bar flex flex-ai-c bold">
+		<nav class="menu-@box-1 flex-1-0-0">
 			<ul>
 				<li class="flex flex-jc-c"><a href="/home/main">홈</a></li>
 				<li class="flex flex-jc-c"><a href="/article/notice-list">공지사항</a></li>
@@ -103,6 +117,11 @@ var param = ${paramJson};
 				<c:if test="${isLogined == false}">
 					<li class="flex flex-jc-c"><a href="/member/join">회원 가입</a></li>
 					<li class="flex flex-jc-c"><a href="/member/login">로그인</a></li>
+				</c:if>
+				<c:if test="${isLogined}">
+					<li class="flex flex-jc-c"><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}">내정보</a></li>
+					<li class="flex flex-jc-c"><a href="/article/organModify">지도 정보 수정</a></li>
+					<li class="flex flex-jc-c"><a href="/member/doLogout">로그아웃</a></li>
 				</c:if>
 			</ul>
 		</nav>
@@ -114,12 +133,12 @@ var param = ${paramJson};
 	<div class="con flex-jc-end">
 		<div>
 			<a href="https://donaricano.com/mypage/1461113623_Oh2ISH" target="_blank">
-				<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="margin-right:10px; height:25px !important; width: 100px !important;" />
+				<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="margin-right:10px; height:25px !important; width: 80px !important;" />
 		 	</a>
 		</div>
 		<c:if test="${loginedMember.level == 10}">
-			<div><a href="/article/organWrite" style="color: red; font-weight:bold; margin-right: 10px;">관리자 메뉴</a></div>
+			<div><a href="/article/adminMenu" style="color: red; font-weight:bold; margin-right: 10px;">관리자 메뉴</a></div>
 		</c:if>
-		<div><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}" style="color: blue; font-weight:bold;">${loginedMember.organName}</a> 님</div>				
+		<div><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}" style="color: blue; font-weight:bold; margin-right: 10px;">${loginedMember.organName}님</a></div>				
 	</div>
 </c:if>

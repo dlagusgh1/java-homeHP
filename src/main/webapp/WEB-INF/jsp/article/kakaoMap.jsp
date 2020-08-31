@@ -133,7 +133,7 @@
 	function administrative(adCateItemName) {
 
 		// 클러스터 지우기
-		// clusterer.clear();
+		clusterer.clear();
 		// 기존 마커들 지우기.
 		removeMarker();
 
@@ -150,16 +150,18 @@
 		for ( var i = 0; i < 데이터.length; i++ ) {
 
 			if (adCateName == 데이터[i][3]) {
-				선택된데이터= [
-					[데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3]],
-				];
-			}
-			
+				선택된데이터 = [ [데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3]], ];
+			}			
+		}
+
+		// push로 배열에 추가하니 0번에 값이 다 들어감...
+		// 기존 '데이터'처럼 추가하니 마지막에 입력한 값들만 들어가짐.
+		for (var k = 0; k < 선택된데이터.length; k++ ) {
+			console.log("1선택된데이터[k][0] : " + 선택된데이터[k][0]);
+			console.log("2선택된데이터[k][1] : " + 선택된데이터[k][1]);
+			console.log("3선택된데이터[k][2] : " + 선택된데이터[k][2]);
 		}
 		
-		
-		console.log("선택된데이터 : " + 선택된데이터);
-
 		for (var i = 0; i < 선택된데이터.length; i++ ) {
 			// 지도에 마커를 생성하고 표시한다.
 			marker = new kakao.maps.Marker({

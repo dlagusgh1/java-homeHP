@@ -13,24 +13,55 @@
 
 <h1 class="con flex-jc-c">응급처치</h1>
 
-<style>
-	.firstAidList {
-		max-width: 1200px;
-		width: 100%;
-		border: 1px solid rgb(160, 160, 160, 0.5);
-		border-radius: 10px;
-		padding-top: 20px;
-		margin: 0 auto;
-		margin-top: 20px;
-		margin-bottom: 20px;
+<style>	
+	@media (min-width :1050px) {
+		.firstAidList {
+		 	max-width: 1200px;
+			width: 100%;
+			border: 1px solid rgb(160, 160, 160, 0.5);
+			border-radius: 10px;
+			padding-top: 20px;	
+			margin-top: 20px;
+			margin-bottom: 20px;
+			margin-left: auto;
+ 			margin-right: auto;
+		}
+		.firstAidList > ul {
+			font-size: 0;
+		}
+		.firstAidList > ul > li {
+			display: inline-block;
+			vertical-align: top;
+			width: 24.8%;
+		}
+		.firstAidList > ul > li > a h3 {
+			font-size: 14px;
+			text-aligh: center;
+			padding: 10px;
+			color: #666;
+		}
 	}
-	.firstAidList > ul {
-		font-size: 0;
-	}
-	.firstAidList > ul > li {
-		display: inline-block;
-		vertical-align: top;
-		width: 24.9%;
+	
+	@media (max-width :1050px) {
+		.firstAidList > ul > li {
+			display: block;
+			vertical-align: top;
+			width: 100%;
+		}
+		.firstAidList > ul > li > a h3 {
+			font-size: 18px;
+			text-aligh: center;
+			padding: 10px;
+			color: #666;
+		}
+		.firstAidList > ul > li > a h3:hover {
+			color: blue;
+			font-weight: bold;
+			font-size: 20px;
+		}
+		.firstAidList > ul > li > a .screen {
+			display: none;
+		}
 	}
 	.firstAidList > ul > li > a {
 		display: block;
@@ -66,12 +97,7 @@
 	.firstAidList > ul > li > a .screen img {
 		width: 100%;
 	}
-	.firstAidList > ul > li > a h3 {
-		font-size: 14px;
-		text-aligh: center;
-		padding: 10px;
-		color: #666;
-	}
+	
 	.firstAidList > ul > li > a:hover .top {
 		bottom: 52%;
 	}
@@ -96,7 +122,7 @@
 	}
 </style>
 	
-<div class="firstAidList con">
+<div class="firstAidList">
 	<ul>
 		<li><a href="https://terms.naver.com/entry.nhn?docId=2099713&cid=51010&categoryId=51010" target="_blank">
 				<div class="screen">

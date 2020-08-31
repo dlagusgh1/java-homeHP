@@ -13,7 +13,7 @@
 
 <h1 class="con flex-jc-c">${board.name} 게시물 상세내용</h1>
 	
-<div class="article-detail-box con">
+<div class="article-detail-box table-box table-box-vertical con">
 	<table>
 		<colgroup>
 			<col class="table-first-col">
@@ -33,7 +33,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td class="toast-editor-box">
+				<td>
 					<script type="text/x-template">${article.body}</script>
                     <div class="toast-editor toast-editor-viewer"></div>
 				</td>
