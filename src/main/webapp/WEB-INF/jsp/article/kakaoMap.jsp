@@ -106,49 +106,7 @@
 	var zoomControl = new kakao.maps.ZoomControl();
 
 	// 지도의 우측에 확대 축소 컨트롤을 추가한다
-	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-		
-
-	// 다중 마커 생성
-	// [좌표, '<div class="map_marker">기관명<br>- 주소 : (동)<br>- 전화 : <br>- 진료시간 : <br>- 주말운영여부 : <br>- 비고 : </div>'],
-	
-	//for(var i = 1; i < ${fn:length(organes)}; i++ ) {
-
-		
-	var 데이터 = [
-		<c:forEach items="${organes}" var="organ">
-			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress}</nav><nav>행정구역 : (${organ.organAdmAddress}) / 전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', '${organ.organAdmAddress}'],
-		</c:forEach>
-		];
-
-	
-	var 선택된데이터 = [];	
-	// select onchange로 넘겨받은 값
-	function administrative(adCateItemName) {
-		placeOverlay.setMap(null);
-		removeMarker();
-		
-		var adCateName = adCateItemName;
-		for ( var i = 0; i < 데이터.length; i++ ) {
-			if ( adCateName == 데이터[i][3]) {
-				선택된데이터 = [
-					[데이터[i][0], 데이터[i][1], 데이터[i][2]],
-				];
-			}
-		}
-		<!-- console.log("선택된데이터 : " + 선택된데이터); -->
-		
-		for (var i = 0; i < 선택된데이터.length; i++ ) {
-			placeOverlay.setPosition(new kakao.maps.LatLng(선택된데이터[i][0], 선택된데이터[i][1]));
-		    placeOverlay.setMap(map);
-		}
-	}
-
-	if (!선택된데이터.length) {
-		console.log(!선택된데이터.length);
-		console.log("비었어");
-	}
-	
+	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);	
 	
 	// 마커 이미지
 	var imageSrc = 'https://img.icons8.com/clouds/100/000000/hospital.png', // 마커이미지의 주소입니다    
@@ -160,6 +118,85 @@
 
 	// 마커들을 저장할 변수 생성
 	var markers = [];
+
+
+	// 다중 마커 생성
+	var 데이터 = [
+		<c:forEach items="${organes}" var="organ">
+			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress}</nav><nav>행정구역 : (${organ.organAdmAddress}) / 전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', '${organ.organAdmAddress}'],
+		</c:forEach>
+		];
+
+
+	// select박스 onchange로 넘겨받은 값
+	var 선택된데이터 = [];		
+	function administrative(adCateItemName) {
+
+		// 클러스터 지우기
+		// clusterer.clear();
+		// 기존 마커들 지우기.
+		removeMarker();
+
+		var adCateName = adCateItemName;
+		
+		/*선택된데이터 = [
+			<c:forEach var="i" begin="0" items="데이터.length" step="1">
+				<c:if test="adCateName == 데이터[i][3]">
+					[데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3]]
+				</c:if>
+			</c:forEach>
+		];*/	
+
+		for ( var i = 0; i < 데이터.length; i++ ) {
+
+			if (adCateName == 데이터[i][3]) {
+				선택된데이터= [
+					[데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3]],
+				];
+			}
+			
+		}
+		
+		
+		console.log("선택된데이터 : " + 선택된데이터);
+
+		for (var i = 0; i < 선택된데이터.length; i++ ) {
+			// 지도에 마커를 생성하고 표시한다.
+			marker = new kakao.maps.Marker({
+				position: new kakao.maps.LatLng(선택된데이터[i][0], 선택된데이터[i][1]), // 마커의 좌표
+				map: map, // 마커를 표시할 지도 객체
+				image: markerImage // 마커에 이미지 추가
+			});
+
+			iwPosition = new kakao.maps.LatLng(선택된데이터[i][0], 선택된데이터[i][1]),
+		    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+			// 인포윈도우를 생성하고 지도에 표시합니다
+			infowindow = new kakao.maps.InfoWindow({
+			    //map: map, // 인포윈도우가 표시될 지도
+			    position : iwPosition, 
+			    content : 선택된데이터[i][2],
+			    removable : iwRemoveable
+			});
+
+			// 생성된 마커를 마커 저장하는 변수에 넣음
+			markers.push(marker);
+
+		 	// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+		    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+		    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+		    kakao.maps.event.addListener(
+	    	    marker, 
+	    	    'click',
+	    	    makeClickListener(map, marker, infowindow)
+	   	    );
+		    
+		}
+		
+		// 클러스터러에 마커들을 추가합니다
+	    clusterer.addMarkers(markers);
+	}
+	
 	
 	for (var i = 0; i < 데이터.length; i++ ) {
 		// 지도에 마커를 생성하고 표시한다.
