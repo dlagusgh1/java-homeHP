@@ -208,22 +208,27 @@
 			}
 		}
 
+		console.log("x 확인 : " + x);
 		console.log("arr 확인 : " + arr); // 2, 25
 		console.log("데이터[arr[0]][0] 확인 : " + 데이터[arr[0]][0]);
 		console.log("데이터[arr[0]][1] 확인 : " + 데이터[arr[0]][1]);
 		console.log("데이터[arr[0]][2] 확인 : " + 데이터[arr[0]][2]);
 		
 		var 선택된데이터 = [[]];
-		for ( var k = 0; k < x; k++ ) {
+		
 			for ( var i = 0; i < arr.length; i++ ) {
-				
+				// arr = 2개, 0 1
+				console.log("i값 변화 : " + i);
+				for ( var k = i; k <= i; k++ ) {
+					// x = 2, 0 1    arr 0 = 0 1, arr 1 = 0 1
+					console.log("k값 변화 : " + k);
 				선택된데이터[0][0] = 데이터[arr[i]][0],
 				선택된데이터[0][1] = 데이터[arr[i]][1],
 				선택된데이터[0][2] = 데이터[arr[i]][2]
 				
 				console.log(i + "번 내부 선택데이터 : " + 선택된데이터);
-			}			
-		}
+				}			
+			}
 		
 		console.log("선택된데이터.length : " + 선택된데이터.length);
 		
