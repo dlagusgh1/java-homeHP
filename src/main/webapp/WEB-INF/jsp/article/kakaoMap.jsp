@@ -210,25 +210,37 @@
 
 		console.log("x 확인 : " + x);
 		console.log("arr 확인 : " + arr); // 2, 25
+		// 2일때 담고있는 값 출력됨
+		console.log("======= for문 전 확인 시작 =======");
 		console.log("데이터[arr[0]][0] 확인 : " + 데이터[arr[0]][0]);
 		console.log("데이터[arr[0]][1] 확인 : " + 데이터[arr[0]][1]);
 		console.log("데이터[arr[0]][2] 확인 : " + 데이터[arr[0]][2]);
+
+		// 25일때 담고있는 값 출력됨
+		console.log("데이터[arr[1]][0] 확인 : " + 데이터[arr[1]][0]);
+		console.log("데이터[arr[1]][1] 확인 : " + 데이터[arr[1]][1]);
+		console.log("데이터[arr[1]][2] 확인 : " + 데이터[arr[1]][2]);
+		console.log("======= for문 전 확인 끝 =======");
 		
 		var 선택된데이터 = [[]];
 		
-			for ( var i = 0; i < arr.length; i++ ) {
-				// arr = 2개, 0 1
-				console.log("i값 변화 : " + i);
-				for ( var k = i; k <= i; k++ ) {
-					// x = 2, 0 1    arr 0 = 0 1, arr 1 = 0 1
-					console.log("k값 변화 : " + k);
-				선택된데이터[0][0] = 데이터[arr[i]][0],
-				선택된데이터[0][1] = 데이터[arr[i]][1],
-				선택된데이터[0][2] = 데이터[arr[i]][2]
+		for ( var i = 0; i < arr.length; i++ ) {
+			// arr = 2개, 0 1
+			console.log("(입)i값 변화 : " + i);
+			for ( var k = i; k <= i; k++ ) {
+				// x = 2, 0 1    arr 0 = 0 1, arr 1 = 0 1
+				console.log("(입)k값 변화 : " + k);
 				
-				console.log(i + "번 내부 선택데이터 : " + 선택된데이터);
-				}			
+				선택된데이터[i][0] = 데이터[arr[i]][0],
+				선택된데이터[i][1] = 데이터[arr[i]][1],
+				선택된데이터[i][2] = 데이터[arr[i]][2]
+
+				console.log("@@@선택된데이터[0] : " + 선택된데이터[i]);
+				console.log("(출)k값 변화 : " + k);
 			}
+
+			console.log("(출)i값 변화 : " + i);
+		}
 		
 		console.log("선택된데이터.length : " + 선택된데이터.length);
 		
