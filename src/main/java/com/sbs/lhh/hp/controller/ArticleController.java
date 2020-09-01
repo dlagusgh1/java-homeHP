@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.lhh.hp.dto.AdCateItem;
 import com.sbs.lhh.hp.dto.Article;
@@ -119,6 +120,26 @@ public class ArticleController {
 		return "article/kakaoMap_PM";
 	}
 	
+	// 관리자 메뉴 - 게시물 관리(게시물 숨기기)
+	@RequestMapping("/article/doHideArticleAjax")
+	@ResponseBody
+	public ResultData doHideArticleAjax(int id, HttpServletRequest request) {
+		
+		articleService.hideArticle(id);
+
+		return new ResultData("S-1", String.format("%d번 게시물을 숨겼습니다.", id));
+	}
+	
+	// 관리자 메뉴 - 게시물 관리(게시물 보이기(노출))
+		@RequestMapping("/article/doShowArticleAjax")
+		@ResponseBody
+		public ResultData doShowArticleAjax(int id, HttpServletRequest request) {
+			
+			articleService.showArticle(id);
+
+			return new ResultData("S-1", String.format("%d번 게시물을 노출시켰습니다.", id));
+		}
+	
 	// 관리자 메뉴 - 게시물 관리
 	@RequestMapping("/article/{boardCode}articleManage")
 	public String articleManage(Model model) {
@@ -128,8 +149,6 @@ public class ArticleController {
 		List<Article> articles = articleService.getForPrintVisibleArticles();
 
 		model.addAttribute("articles", articles);
-		
-		System.out.println("숨김/보임 확인 : " + articles);
 		
 		return "article/articleManage";
 	}

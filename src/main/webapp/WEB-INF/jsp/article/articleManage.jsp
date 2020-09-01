@@ -12,7 +12,7 @@
 
 <h1 class="con flex-jc-c">게시물 관리</h1>
 
-<div class="table-box table-box-data con">
+<div class="table-box table-box-data articleManage-table-box con">
 	<table>
 		<colgroup>
 			<col width="100" />
@@ -28,8 +28,7 @@
 				<th>작성일자</th>	
 				<th>구분</th>
 				<th>상태</th>
-				<th>숨기기</th>
-				<th>보이기</th>							
+				<th>비고</th>						
 			</tr>
 		</thead>
 		<tbody>
@@ -45,18 +44,20 @@
 						<td>${board.name}</td>
 						<td>
 							<c:if test="${article.displayStatus}">
-								보임
+								노출
 							</c:if>
 							<c:if test="${article.displayStatus != true}">
 								숨김
 							</c:if>
 						</td>
 						<td>
-							<a class="btn btn-primary"	href="${board.code}-modify?id=${article.id}&listUrl=${Util.getUriEncoded(listUrl)}">숨기기</a>					
-						</td>
-						<td>
-							<a class="btn btn-primary"	href="${board.code}-modify?id=${article.id}&listUrl=${Util.getUriEncoded(listUrl)}">보이기</a>		
-						</td>					
+							<c:if test="${article.displayStatus}">
+								<button class="btn btn-danger" type="button" onclick="ArticleList__hide(this, '${article.id}');">숨기기</button>
+							</c:if>
+							<c:if test="${article.displayStatus != true}">
+								<button class="btn btn-info" type="button" onclick="ArticleList__show(this, '${article.id}');">보이기</button>
+							</c:if>
+						</td>				
 						<td class="visible-on-sm-down">
                         <a href="${article.getDetailLink(board.code)}" class="flex flex-row-wrap flex-ai-c">
                             <span class="badge badge-primary bold margin-right-10">${article.id}</span>
@@ -73,5 +74,27 @@
 		</tbody>
 	</table>
 </div>	
+
+<script>
+	function ArticleList__hide(el, articleId) {
+		if (confirm('게시물을 숨기시겠습니까?') == false) {
+			return;
+		}
+		
+		$.post('./../article/doHideArticleAjax', {
+			id : articleId
+		}, 'json');
+	}
+
+	function ArticleList__show(el, articleId) {
+		if (confirm('게시물을 노출시키겠습니까?') == false) {
+			return;
+		}
+		
+		$.post('./../article/doShowArticleAjax', {
+			id : articleId
+		}, 'json');
+	}
+</script>
 	
 <%@ include file="../part/foot.jspf"%>

@@ -249,5 +249,15 @@ public class ArticleService {
 	public int organCount(int organNumber) {
 		return articleDao.organCount(organNumber);
 	}
+
+	// 게시물 숨기기 기능
+	public void hideArticle(int id) {
+		articleDao.hideArticle(id);
+	}
+
+	// 게시물 보이기 기능
+	public void showArticle(int id) {
+		articleDao.showArticle(id);
+	}
 	
 }

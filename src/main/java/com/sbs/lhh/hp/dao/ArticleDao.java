@@ -46,5 +46,9 @@ public interface ArticleDao {
 	int organsCount();
 
 	int organCount(int organNumber);
+
+	void hideArticle(int id);
+	
+	void showArticle(int id);
 	
 }

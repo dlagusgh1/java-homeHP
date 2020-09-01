@@ -5,26 +5,18 @@
 <!-- JSTL 데이터 포맷 -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="pageTitle" value="당직 의료기관 찾기" />
+<c:set var="pageTitle" value="게시물 관리" />
+
+
 <%@ include file="../part/head.jspf"%>
 
-<h1 class="con flex-jc-c">우리동네 당직 의료기관 찾기</h1>
+<h1 class="con flex-jc-c">게시물 관리</h1>
 
-<div class="main-img-box con flex-jc-c">
-	<div class="main-img">
-		<h1>우리동네</h1>
-		<div>
-			<p>서비스 소개<br>우리동네는 주말, 야간 당직 의료기관(병원/약국)을 찾는 서비스 입니다.<br><br>운영지역<br>현재 세종시만 한정하여 운영 중 이며 점차 확대할 예정입니다.</p>
-		</div>
-	</div>
-</div>
-
-<h3 class="main-article-h con">공지사항</h3>
 <div class="table-box table-box-data con">
 	<table>
 		<colgroup>
 			<col width="100" />
-           	<col width="500" />
+           	<col width="300" />
            	<col width="200" />
            	<col width="200" />
 		</colgroup>
@@ -33,21 +25,40 @@
 				<th>번호</th>
 				<th>제목</th>
 				<th>작성자</th>	
-				<th>작성일자</th>								
+				<th>작성일자</th>	
+				<th>구분</th>
+				<th>상태</th>
+				<th>숨기기</th>
+				<th>보이기</th>							
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${articles}" var="article">
-				<c:if test="${boardId == article.boardId}">
+				<c:if test="${board.id == article.boardId}">
 					<tr>
 						<td><a>${article.id}</a></td>
 						<td>
-							<a href="${article.getDetailLink('notice')}">${article.forPrintTitle}</a>
+							<a href="${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
 						</td>	
 						<td class="writer">${article.extra.writer}</td>	
-						<td><a>${article.regDate}</a></td>							
+						<td><a>${article.regDate}</a></td>	
+						<td>${board.name}</td>
+						<td>
+							<c:if test="${article.displayStatus}">
+								보임
+							</c:if>
+							<c:if test="${article.displayStatus != true}">
+								숨김
+							</c:if>
+						</td>
+						<td>
+							<a class="btn btn-primary"	href="${board.code}-modify?id=${article.id}&listUrl=${Util.getUriEncoded(listUrl)}">숨기기</a>					
+						</td>
+						<td>
+							<a class="btn btn-primary"	href="${board.code}-modify?id=${article.id}&listUrl=${Util.getUriEncoded(listUrl)}">보이기</a>		
+						</td>					
 						<td class="visible-on-sm-down">
-                        <a href="${article.getDetailLink('notice')}" class="flex flex-row-wrap flex-ai-c">
+                        <a href="${article.getDetailLink(board.code)}" class="flex flex-row-wrap flex-ai-c">
                             <span class="badge badge-primary bold margin-right-10">${article.id}</span>
                             <div class="title flex-1-0-0 text-overflow-el">${article.forPrintTitle}</div>
                             <div class="width-100p"></div>
@@ -61,6 +72,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
-</div>
-
+</div>	
+	
 <%@ include file="../part/foot.jspf"%>

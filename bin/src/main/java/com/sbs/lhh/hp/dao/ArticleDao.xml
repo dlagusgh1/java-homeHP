@@ -51,6 +51,14 @@
 		ORDER BY A.id DESC
 	</select>
 	
+	<select id="getForPrintVisibleArticles" resultMap="article">
+		SELECT A.*, M.name AS extra__writer
+		FROM article AS A
+		INNER JOIN `member` AS M
+		ON A.memberId = M.id
+		ORDER BY A.id DESC
+	</select>
+	
 	<select id="getForPrintLimitNoticeArticles" resultMap="article">
 		SELECT A.*, M.name AS extra__writer
 		FROM article AS A
