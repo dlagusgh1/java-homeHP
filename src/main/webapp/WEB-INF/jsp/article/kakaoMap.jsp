@@ -149,16 +149,16 @@
 		for ( var i = 0; i < 데이터.length; i++ ) {
 
 			if (adCateName == 데이터[i][3]) {
-				선택된데이터 = [ [ 데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3] ], ];
-				console.log( i + "번 선택된데이터 확인 : " + 선택된데이터);
+				선택된데이터= [
+					[ 데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3] ],
+				];
+				console.log(i + "번 내부 선택데이터 : " + 선택된데이터);
 			}			
 		}
 		/*
 		for ( var i = 0; i < 데이터.length; i++ ) {
 		<c:set var="organAdmAddress" value="데이터[i][3]" />
-			<c:set var="administrativeCateName" value="adCateName" />
-				
-			
+			<c:set var="administrativeCateName" value="adCateName" />		
 			
 			<c:if test="${organAdmAddress eq administrativeCateName}">
 				console.log( "organAdmAddress : " + ${organAdmAddress}),
