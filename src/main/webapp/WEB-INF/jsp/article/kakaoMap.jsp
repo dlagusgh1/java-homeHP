@@ -198,32 +198,31 @@
 		}
 		*/
 
+		var arr = [];
 		var x = 0;
 		for ( var i = 0; i < 데이터.length; i++ ) {
 
 			if (adCateName == 데이터[i][3]) {
+				arr.push(i);
 				x++;
 			}
 		}
-		var 선택된데이터 = [];
+
+		console.log("arr 확인 : " + arr); // 2, 25
+		console.log("데이터[arr[0]][0] 확인 : " + 데이터[arr[0]][0]);
+		console.log("데이터[arr[0]][1] 확인 : " + 데이터[arr[0]][1]);
+		console.log("데이터[arr[0]][2] 확인 : " + 데이터[arr[0]][2]);
+		
+		var 선택된데이터 = [[]];
 		for ( var k = 0; k < x; k++ ) {
-			for ( var i = 0; i < 데이터.length; i++ ) {
-	
-				if (adCateName == 데이터[i][3]) {
-					// 2, 25
-					//console.log(i + "(adCateName == 데이터[i][3]) : " + (adCateName == 데이터[i][3]));
-					선택된데이터[k] = [ 
-							[ 	
-								데이터[i][0], 
-								데이터[i][1], 
-								데이터[i][2],
-								데이터[i][3] 
-							], 
-					];	
-					
-					console.log(i + "번 내부 선택데이터 : " + 선택된데이터);
-				}			
-			}
+			for ( var i = 0; i < arr.length; i++ ) {
+				
+				선택된데이터[0][0] = 데이터[arr[i]][0],
+				선택된데이터[0][1] = 데이터[arr[i]][1],
+				선택된데이터[0][2] = 데이터[arr[i]][2]
+				
+				console.log(i + "번 내부 선택데이터 : " + 선택된데이터);
+			}			
 		}
 		
 		console.log("선택된데이터.length : " + 선택된데이터.length);
@@ -231,10 +230,10 @@
 		// push로 배열에 추가하니 0번에 값이 다 들어감...
 		// 기존 '데이터'처럼 추가하니 마지막에 입력한 값들만 들어가짐.
 		for (var k = 0; k < 선택된데이터.length; k++ ) {
-			console.log("===== 선택데이터 확인 =====");
-			console.log("1선택된데이터[" + k + "][0] :" + 선택된데이터[k][0]);
-			console.log("2선택된데이터[" + k + "][1] :" + 선택된데이터[k][1]);
-			console.log("3선택된데이터[" + k + "][2] :" + 선택된데이터[k][2]);
+			console.log("===== " + k + "번 선택데이터 확인 =====");
+			console.log("선택된데이터[" + k + "][0] :" + 선택된데이터[k][0]);
+			console.log("선택된데이터[" + k + "][1] :" + 선택된데이터[k][1]);
+			console.log("선택된데이터[" + k + "][2] :" + 선택된데이터[k][2]);
 		}
 		
 		for (var i = 0; i < 선택된데이터.length; i++ ) {
