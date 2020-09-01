@@ -141,7 +141,8 @@
 
 		var adCateName = adCateItemName;
 		
-		/*선택된데이터 = [
+		/* 시도1)
+		선택된데이터 = [
 			<c:forEach var="i" begin="0" items="데이터.length" step="1">
 				<c:if test="adCateName == 데이터[i][3]">
 					[데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3]]
@@ -153,6 +154,20 @@
 		//console.log("데이터[0][2] : " + 데이터[0][2]);
 		//console.log("데이터[0][3] : " + 데이터[0][3]);
 		
+		/* 시도2)
+		for ( var i = 0; i < 데이터.length; i++ ) {
+		<c:set var="organAdmAddress" value="데이터[i][3]" />
+			<c:set var="administrativeCateName" value="adCateName" />		
+			
+			<c:if test="${organAdmAddress eq administrativeCateName}">
+				console.log( "organAdmAddress : " + ${organAdmAddress}),
+				console.log( "adCateName : " + ${administrativeCateName}),
+			  	[ 데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3] ], 
+				console.log( i + "번 선택된데이터 확인 : " + 선택된데이터);
+			</c:if>
+		}
+		*/
+		/* 시도3)
 		var x = 0;
 		for ( var i = 0; i < 데이터.length; i++ ) {
 
@@ -160,7 +175,7 @@
 				x++;
 			}
 		}
-		
+	
 		for ( var i = 0; i < 데이터.length; i++ ) {
 
 			if (adCateName == 데이터[i][3]) {
@@ -181,19 +196,36 @@
 				console.log(i + "번 내부 선택데이터 : " + 선택된데이터);
 			}			
 		}
-		/*
-		for ( var i = 0; i < 데이터.length; i++ ) {
-		<c:set var="organAdmAddress" value="데이터[i][3]" />
-			<c:set var="administrativeCateName" value="adCateName" />		
-			
-			<c:if test="${organAdmAddress eq administrativeCateName}">
-				console.log( "organAdmAddress : " + ${organAdmAddress}),
-				console.log( "adCateName : " + ${administrativeCateName}),
-			  	[ 데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3] ], 
-				console.log( i + "번 선택된데이터 확인 : " + 선택된데이터);
-			</c:if>
-		}
 		*/
+
+		var x = 0;
+		for ( var i = 0; i < 데이터.length; i++ ) {
+
+			if (adCateName == 데이터[i][3]) {
+				x++;
+			}
+		}
+		var 선택된데이터 = [];
+		for ( var k = 0; k < x; k++ ) {
+			for ( var i = 0; i < 데이터.length; i++ ) {
+	
+				if (adCateName == 데이터[i][3]) {
+					// 2, 25
+					//console.log(i + "(adCateName == 데이터[i][3]) : " + (adCateName == 데이터[i][3]));
+					선택된데이터[k] = [ 
+							[ 	
+								데이터[i][0], 
+								데이터[i][1], 
+								데이터[i][2],
+								데이터[i][3] 
+							], 
+					];	
+					
+					console.log(i + "번 내부 선택데이터 : " + 선택된데이터);
+				}			
+			}
+		}
+		
 		console.log("선택된데이터.length : " + 선택된데이터.length);
 		
 		// push로 배열에 추가하니 0번에 값이 다 들어감...
