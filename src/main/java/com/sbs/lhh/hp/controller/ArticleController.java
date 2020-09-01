@@ -119,6 +119,21 @@ public class ArticleController {
 		return "article/kakaoMap_PM";
 	}
 	
+	// 관리자 메뉴 - 게시물 관리
+	@RequestMapping("/article/{boardCode}articleManage")
+	public String articleManage(Model model) {
+		Board board = articleService.getBoardByCode("free");
+		model.addAttribute("board", board);
+		
+		List<Article> articles = articleService.getForPrintVisibleArticles();
+
+		model.addAttribute("articles", articles);
+		
+		System.out.println("숨김/보임 확인 : " + articles);
+		
+		return "article/articleManage";
+	}
+
 	// 관리자 메뉴
 	@RequestMapping("/article/adminMenu")
 	public String adminMenu(Model model) {

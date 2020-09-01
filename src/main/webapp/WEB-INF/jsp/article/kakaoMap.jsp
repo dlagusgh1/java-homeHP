@@ -198,6 +198,21 @@
 		}
 		*/
 
+		/* 시도4)
+		var 선택된데이터 = [		
+			<c:forEach items="${organes}" var="organ">
+				<c:if test="${organ.organAdmAddress == adCateName}">
+				[
+					${organ.organLocation1}, 
+					${organ.organLocation2}, 
+					'<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress}</nav><nav>행정구역 : (${organ.organAdmAddress}) / 전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', 
+					'${organ.organAdmAddress}'
+				],
+				</c:if>
+			</c:forEach>
+		];
+		*/
+
 		var arr = [];
 		var x = 0;
 		for ( var i = 0; i < 데이터.length; i++ ) {
@@ -207,9 +222,11 @@
 				x++;
 			}
 		}
-
+		
 		console.log("x 확인 : " + x);
 		console.log("arr 확인 : " + arr); // 2, 25
+		console.log("arr[0] 확인 : " + arr[0]);
+		console.log("arr[1] 확인 : " + arr[1]);
 		// 2일때 담고있는 값 출력됨
 		console.log("======= for문 전 확인 시작 =======");
 		console.log("데이터[arr[0]][0] 확인 : " + 데이터[arr[0]][0]);
@@ -231,9 +248,9 @@
 				// x = 2, 0 1    arr 0 = 0 1, arr 1 = 0 1
 				console.log("(입)k값 변화 : " + k);
 				
-				선택된데이터[i][0] = 데이터[arr[i]][0],
-				선택된데이터[i][1] = 데이터[arr[i]][1],
-				선택된데이터[i][2] = 데이터[arr[i]][2]
+				선택된데이터[0][0] = 데이터[arr[i]][0],
+				선택된데이터[0][1] = 데이터[arr[i]][1],
+				선택된데이터[0][2] = 데이터[arr[i]][2]
 
 				console.log("@@@선택된데이터[0] : " + 선택된데이터[i]);
 				console.log("(출)k값 변화 : " + k);
@@ -248,6 +265,7 @@
 		// 기존 '데이터'처럼 추가하니 마지막에 입력한 값들만 들어가짐.
 		for (var k = 0; k < 선택된데이터.length; k++ ) {
 			console.log("===== " + k + "번 선택데이터 확인 =====");
+			console.log("선택된데이터 : " + 선택된데이터[k]);
 			console.log("선택된데이터[" + k + "][0] :" + 선택된데이터[k][0]);
 			console.log("선택된데이터[" + k + "][1] :" + 선택된데이터[k][1]);
 			console.log("선택된데이터[" + k + "][2] :" + 선택된데이터[k][2]);

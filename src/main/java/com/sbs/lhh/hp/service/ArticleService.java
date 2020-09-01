@@ -89,6 +89,13 @@ public class ArticleService {
 		return articles;
 	}
 	
+	// 게시물 리스트(관리자 메뉴 내 게시물 관리에 이용)
+	public List<Article> getForPrintVisibleArticles() {
+		List<Article> articles = articleDao.getForPrintVisibleArticles();
+
+		return articles;
+	}
+	
 	// 게시물 리스트(공지) 출력제한
 	public List<Article> getForPrintLimitNoticeArticles(int limit) {
 		List<Article> articles = articleDao.getForPrintLimitNoticeArticles(limit);

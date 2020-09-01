@@ -32,9 +32,9 @@
 			</a>
 		</li>
 		<li>
-			<a href="organWrite">
+			<a href="articleManage">
 				<div>
-					<p><i class="fas fa-arrow-right"></i> 기관 정보 등록</p>
+					<p><i class="fas fa-arrow-right"></i> 게시물 관리 </p>
 				</div>
 			</a>
 		</li>
