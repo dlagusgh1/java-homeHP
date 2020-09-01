@@ -1,5 +1,6 @@
 package com.sbs.lhh.hp.service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -217,6 +218,11 @@ public class MemberService {
 	// 회원탈퇴
 	public void memberDelete(String loginId) {
 		memberDao.meberDelete(loginId);
+	}
+
+	// 관리자 메뉴 - 회원 관리 (회원 리스트 가져오기)
+	public List<Member> getMemberList() {
+		return memberDao.getMemberList();
 	}
 
 }

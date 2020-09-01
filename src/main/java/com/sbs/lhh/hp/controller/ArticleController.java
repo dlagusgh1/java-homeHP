@@ -120,7 +120,7 @@ public class ArticleController {
 		return "article/kakaoMap_PM";
 	}
 	
-	// 관리자 메뉴 - 게시물 관리(게시물 숨기기)
+	// 관리자 메뉴 - 게시물 관리(게시물 숨기기)ajax
 	@RequestMapping("/article/doHideArticleAjax")
 	@ResponseBody
 	public ResultData doHideArticleAjax(int id, HttpServletRequest request) {
@@ -130,15 +130,15 @@ public class ArticleController {
 		return new ResultData("S-1", String.format("%d번 게시물을 숨겼습니다.", id));
 	}
 	
-	// 관리자 메뉴 - 게시물 관리(게시물 보이기(노출))
-		@RequestMapping("/article/doShowArticleAjax")
-		@ResponseBody
-		public ResultData doShowArticleAjax(int id, HttpServletRequest request) {
-			
-			articleService.showArticle(id);
+	// 관리자 메뉴 - 게시물 관리(게시물 보이기(노출))ajax
+	@RequestMapping("/article/doShowArticleAjax")
+	@ResponseBody
+	public ResultData doShowArticleAjax(int id, HttpServletRequest request) {
+		
+		articleService.showArticle(id);
 
-			return new ResultData("S-1", String.format("%d번 게시물을 노출시켰습니다.", id));
-		}
+		return new ResultData("S-1", String.format("%d번 게시물을 노출시켰습니다.", id));
+	}
 	
 	// 관리자 메뉴 - 게시물 관리
 	@RequestMapping("/article/{boardCode}articleManage")

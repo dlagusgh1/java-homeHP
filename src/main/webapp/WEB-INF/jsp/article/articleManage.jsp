@@ -32,50 +32,67 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${articles}" var="article">
-				<c:if test="${board.id == article.boardId}">
-					<tr>
-						<td><a>${article.id}</a></td>
-						<td>
-							<a href="${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
-						</td>	
-						<td class="writer">${article.extra.writer}</td>	
-						<td><a>${article.regDate}</a></td>	
-						<td>${board.name}</td>
-						<td>
-							<c:if test="${article.displayStatus}">
-								노출
-							</c:if>
-							<c:if test="${article.displayStatus != true}">
-								숨김
-							</c:if>
-						</td>
-						<td>
-							<c:if test="${article.displayStatus}">
-								<button class="btn btn-danger" type="button" onclick="ArticleList__hide(this, '${article.id}');">숨기기</button>
-							</c:if>
-							<c:if test="${article.displayStatus != true}">
-								<button class="btn btn-info" type="button" onclick="ArticleList__show(this, '${article.id}');">보이기</button>
-							</c:if>
-						</td>				
-						<td class="visible-on-sm-down">
-                        <a href="${article.getDetailLink(board.code)}" class="flex flex-row-wrap flex-ai-c">
-                            <span class="badge badge-primary bold margin-right-10">${article.id}</span>
-                            <div class="title flex-1-0-0 text-overflow-el">${article.forPrintTitle}</div>
-                            <div class="width-100p"></div>
-                            <div class="writer">${article.extra.writer}</div>
-                            &nbsp;|&nbsp;
-                            <div class="reg-date">${article.regDate}</div>
-                        </a>
-                    </td>
-					</tr>
-				</c:if>
-			</c:forEach>
+			<c:if test="${loginedMember.level == 10}">
+				<c:forEach items="${articles}" var="article">
+					<c:if test="${board.id == article.boardId}">
+						<tr>
+							<td><a>${article.id}</a></td>
+							<td>
+								<a href="${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
+							</td>	
+							<td class="writer">${article.extra.writer}</td>	
+							<td><a>${article.regDate}</a></td>	
+							<td>${board.name}</td>
+							<td>
+								<c:if test="${article.displayStatus}">
+									노출
+								</c:if>
+								<c:if test="${article.displayStatus != true}">
+									숨김
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${article.displayStatus}">
+									<button class="btn btn-danger" type="button" onclick="ArticleList__hide(this, '${article.id}');">숨기기</button>
+								</c:if>
+								<c:if test="${article.displayStatus != true}">
+									<button class="btn btn-info" type="button" onclick="ArticleList__show(this, '${article.id}');">보이기</button>
+								</c:if>
+							</td>				
+							<td class="visible-on-sm-down">
+		                        <a href="${article.getDetailLink(board.code)}" class="flex flex-row-wrap flex-ai-c">
+		                            <span class="badge badge-primary bold margin-right-10">${article.id}</span>
+		                            <div class="title flex-1-0-0 text-overflow-el">${article.forPrintTitle}</div>
+		                            <div class="title flex-1-0-0 text-overflow-el">${article.extra.writer}</div>
+		                            <div class="reg-date flex-1-0-0">
+		                            	<c:if test="${article.displayStatus}">
+											노출
+										</c:if>
+										<c:if test="${article.displayStatus != true}">
+											숨김
+										</c:if>
+		                            </div>
+		                            <div class="reg-date">
+		                            	<c:if test="${article.displayStatus}">
+											<button class="btn btn-danger" type="button" onclick="ArticleList__hide(this, '${article.id}');">숨기기</button>
+										</c:if>
+										<c:if test="${article.displayStatus != true}">
+											<button class="btn btn-info" type="button" onclick="ArticleList__show(this, '${article.id}');">보이기</button>
+										</c:if>
+		                            </div>
+		                        </a>
+	                    	</td>
+						</tr>
+					</c:if>
+				</c:forEach>
+			</c:if>
 		</tbody>
 	</table>
 </div>	
 
 <script>
+	
+	// 게시물 숨기기 ajax
 	function ArticleList__hide(el, articleId) {
 		if (confirm('게시물을 숨기시겠습니까?') == false) {
 			return;
@@ -86,6 +103,7 @@
 		}, 'json');
 	}
 
+	// 게시물 보이기 ajax
 	function ArticleList__show(el, articleId) {
 		if (confirm('게시물을 노출시키겠습니까?') == false) {
 			return;
@@ -95,6 +113,7 @@
 			id : articleId
 		}, 'json');
 	}
+
 </script>
 	
 <%@ include file="../part/foot.jspf"%>

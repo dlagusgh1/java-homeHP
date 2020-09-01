@@ -1,5 +1,6 @@
 package com.sbs.lhh.hp.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -28,5 +29,7 @@ public interface MemberDao {
 	boolean checkMemberDataJoinable(Map<String, Object> param);
 	
 	void meberDelete(String loginId);
+
+	List<Member> getMemberList();
 
 }

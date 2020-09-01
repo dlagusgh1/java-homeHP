@@ -1,6 +1,7 @@
 package com.sbs.lhh.hp.controller;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sbs.lhh.hp.dto.Article;
+import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.dto.Member;
 import com.sbs.lhh.hp.dto.ResultData;
 import com.sbs.lhh.hp.service.MemberService;
@@ -224,6 +227,9 @@ public class MemberController {
 		String loginPw = loginPwReal;
 		Member member = memberService.getMemberByLoginId(loginId);
 
+		System.out.println("ㄱ" + member.getLoginPw());
+		System.out.println("ㄴ" + loginPw);
+		
 		if (member == null) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
@@ -242,7 +248,6 @@ public class MemberController {
 			return "common/redirect";
 		}
 		
-
 		String current = Util.getNowDateStr();
 		String last = member.getUpdateDate();	
 		
@@ -470,6 +475,16 @@ public class MemberController {
 		session.removeAttribute("loginedMemberId");
 		
 		return "common/redirect";	
+	}
+	
+	// 관리자 메뉴 - 회원 관리
+	@RequestMapping("/member/memberManage")
+	public String memberManage(Model model) {
+		List<Member> members = memberService.getMemberList();
+
+		model.addAttribute("members", members);
+		
+		return "member/memberManage";
 	}
 }
 

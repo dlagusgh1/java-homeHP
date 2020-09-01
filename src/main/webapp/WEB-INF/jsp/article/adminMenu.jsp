@@ -21,31 +21,32 @@
 		color: #4BAF4B;
 	}
 </style>
-
-<div class="adminMenu-box con">
-	<ul>
-		<li>
-			<a href="organWrite">
-				<div>
-					<p><i class="fas fa-arrow-right"></i> 기관 정보 등록</p>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="articleManage">
-				<div>
-					<p><i class="fas fa-arrow-right"></i> 게시물 관리 </p>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="organWrite">
-				<div>
-					<p><i class="fas fa-arrow-right"></i> 기관 정보 등록</p>
-				</div>
-			</a>
-		</li>
-	</ul>
-</div>
+<c:if test="${loginedMember.level == 10}">
+	<div class="adminMenu-box con">
+		<ul>
+			<li>
+				<a href="organWrite">
+					<div>
+						<p><i class="fas fa-arrow-right"></i> 기관 정보 등록</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="articleManage">
+					<div>
+						<p><i class="fas fa-arrow-right"></i> 게시물 관리</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="/member/memberManage">
+					<div>
+						<p><i class="fas fa-arrow-right"></i> 회원 관리</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+</c:if>
 
 <%@ include file="../part/foot.jspf"%>
