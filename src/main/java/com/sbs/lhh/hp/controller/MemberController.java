@@ -528,26 +528,43 @@ public class MemberController {
 		return new ResultData("S-1", String.format("%s 회원을 탈퇴시켰습니다.", loginId));
 	}
 	
-	// 관리자 메뉴 - 회원 관리(권한 설정)ajax
-	@RequestMapping("/member/doMemberGiveLevelAjax")
-	@ResponseBody
-	public ResultData doMemberGiveLevelAjax(Model model, String loginId, HttpServletRequest request) {
+	// 관리자 메뉴 - 회원 관리(권한 설정 폼)
+	@RequestMapping("/member/memberGrantLevel")
+	public String memberGrantLevel(Model model) {
 		
-		Member member = memberService.getMemberByLoginId(loginId);
-		
-		if (member == null) {
-			
-			new ResultData("F-1", String.format("존재하지 않는 회원입니다."));
-		}
-		
-		if (member.isDelStatus()) {
-			
-			new ResultData("F-1", String.format("탈퇴한 회원 입니다."));
-		}
-		
-		
+		List<Member> members = memberService.getMemberList();
 
-		return new ResultData("S-1", String.format("%s 회원에게 권한을 부여하였습니다.", loginId));
+		model.addAttribute("members", members);
+		
+		return "member/memberGrantLevel";
+	}
+	
+	// 관리자 메뉴 - 회원 관리(권한 설정 기능)
+	@RequestMapping("/member/doGrantLevel")
+	public String doGrantLevel(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUri, HttpServletRequest request) {
+		
+		String loginMemberId = (String) param.get("memberId");
+		
+		int grantLevel1 = 0;
+		if (Util.isNum(param.get("grantLevel1"))) {
+			grantLevel1 = Integer.parseInt((String) param.get("grantLevel1"));
+			System.out.println("grantLevel1 확인 : " + grantLevel1);
+		}
+		int grantLevel2 = 0;
+		if (Util.isNum(param.get("grantLevel2"))) {
+			grantLevel2 = Integer.parseInt((String) param.get("grantLevel2"));
+			System.out.println("grantLevel2 확인 : " + grantLevel2);
+		}
+		int grantLevel3 = 0;
+		if (Util.isNum(param.get("grantLevel3"))) {
+			grantLevel1 = Integer.parseInt((String) param.get("grantLevel3"));
+			System.out.println("grantLevel3 확인 : " + grantLevel3);
+		}
+		
+		model.addAttribute("alertMsg", "회원 권한 설정이 완료되었습니다.");
+		model.addAttribute("historyBack", true);
+
+		return "common/redirect";	
 	}
 }
 

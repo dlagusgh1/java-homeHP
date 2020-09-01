@@ -56,12 +56,14 @@
 							</td>
 								<td><a>${member.level}</a></td>
 							<td>
-							<button class="btn btn-danger" type="button" onclick="member__giveLevel(this,'${member.loginId}');">권한</button>
+							<div class="btn btn-info">
+                  				<a href="/member/memberGrantLevel" onclick="window.open(this.href,'권한 설정', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">권한</a>
+	                  		</div>
 							<c:if test="${member.delStatus}">
-								<button class="btn btn-danger" type="button" onclick="member__recovery(this,'${member.loginId}');">복구</button>
+								<button class="btn btn-info" type="button" onclick="member__recovery(this,'${member.loginId}');">복구</button>
 							</c:if>
 							<c:if test="${member.delStatus != true}">
-								<button class="btn btn-info" type="button" onclick="member__Delete(this,'${member.loginId}');">탈퇴</button>
+								<button class="btn btn-danger" type="button" onclick="member__Delete(this,'${member.loginId}');">탈퇴</button>
 							</c:if>
 							</td>				
 							<td class="visible-on-sm-down">
@@ -70,12 +72,14 @@
 				                  	<div class="title flex-1-0-0 text-overflow-el">${member.loginId}</div>
 				                  	<div class="title flex-1-0-0 text-overflow-el">${member.organName}</div>
 				                  	<div class="reg-date">
-					                  	<button class="btn btn-danger" type="button" onclick="member__giveLevel(this,'${member.loginId}');">권한</button>
+				                  		<div class="btn btn-info">
+				                  			<a href="/member/memberGrantLevel" onclick="window.open(this.href,'권한 설정', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0'); return false;">권한</a>
+				                  		</div>
 					                  	<c:if test="${member.delStatus}">
-					                  		<button class="btn btn-danger" type="button" onclick="member__recovery(this,'${member.loginId}');">복구</button>
+					                  		<button class="btn btn-info" type="button" onclick="member__recovery(this,'${member.loginId}');">복구</button>
 										</c:if>
 										<c:if test="${member.delStatus != true}">
-											<button class="btn btn-info" type="button" onclick="member__Delete(this,'${member.loginId}');">탈퇴</button>
+											<button class="btn btn-danger" type="button" onclick="member__Delete(this,'${member.loginId}');">탈퇴</button>
 										</c:if>
 			                      	</div>
 			                  	</a>
@@ -90,15 +94,7 @@
 
 <script>
 	//회원 권한 ajax
-	function member__giveLevel(el, memberLoginId) {
-		if (confirm('권한설정을 하시겠습니까?') == false) {
-			return;
-		}
-		
-		$.post('./../member/doMemberGiveLevelAjax', {
-			loginId : memberLoginId
-		}, 'json');
-	}
+	
 
 	// 회원 복구 ajax
 	function member__recovery(el, memberLoginId) {
