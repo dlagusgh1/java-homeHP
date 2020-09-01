@@ -21,7 +21,6 @@
 	</select>
 </div>
 
-
 <!-- 행정구역(동/면) 리스트 -->
 <div class="administrative-district con">
 	<nav>
@@ -87,7 +86,7 @@
         minLevel: 6, // 클러스터 할 최소 지도 레벨 
         styles: [{
         	width : '60px', height : '60px',
-            background: 'rgba(255, 80, 80, .8)',
+            background: 'rgba(75, 175, 75, .8)',
             borderRadius: '30px',
             color: 'white',
             textAlign: 'center',
@@ -150,10 +149,27 @@
 		for ( var i = 0; i < 데이터.length; i++ ) {
 
 			if (adCateName == 데이터[i][3]) {
-				선택된데이터 = [ [데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3]], ];
+				선택된데이터 = [ [ 데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3] ], ];
+				console.log( i + "번 선택된데이터 확인 : " + 선택된데이터);
 			}			
 		}
-
+		/*
+		for ( var i = 0; i < 데이터.length; i++ ) {
+		<c:set var="organAdmAddress" value="데이터[i][3]" />
+			<c:set var="administrativeCateName" value="adCateName" />
+				
+			
+			
+			<c:if test="${organAdmAddress eq administrativeCateName}">
+				console.log( "organAdmAddress : " + ${organAdmAddress}),
+				console.log( "adCateName : " + ${administrativeCateName}),
+			  	[ 데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3] ], 
+				console.log( i + "번 선택된데이터 확인 : " + 선택된데이터);
+			</c:if>
+		}
+		*/
+		console.log("선택된데이터.length : " + 선택된데이터.length);
+		
 		// push로 배열에 추가하니 0번에 값이 다 들어감...
 		// 기존 '데이터'처럼 추가하니 마지막에 입력한 값들만 들어가짐.
 		for (var k = 0; k < 선택된데이터.length; k++ ) {
