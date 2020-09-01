@@ -120,15 +120,18 @@
 
 
 	// 다중 마커 생성
-	var 데이터 = [
-		<c:forEach items="${organes}" var="organ">
-			[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress}</nav><nav>행정구역 : (${organ.organAdmAddress}) / 전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', '${organ.organAdmAddress}'],
-		</c:forEach>
+	var 데이터 = [		
+			<c:forEach items="${organes}" var="organ">
+				[
+					${organ.organLocation1}, 
+					${organ.organLocation2}, 
+					'<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress}</nav><nav>행정구역 : (${organ.organAdmAddress}) / 전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', 
+					'${organ.organAdmAddress}'
+				],
+			</c:forEach>
 		];
 
-
 	// select박스 onchange로 넘겨받은 값
-	var 선택된데이터 = [];		
 	function administrative(adCateItemName) {
 
 		// 클러스터 지우기
@@ -145,13 +148,36 @@
 				</c:if>
 			</c:forEach>
 		];*/	
-
+		//console.log("데이터[0][0] : " + 데이터[0][0]);
+		//console.log("데이터[0][1] : " + 데이터[0][1]);
+		//console.log("데이터[0][2] : " + 데이터[0][2]);
+		//console.log("데이터[0][3] : " + 데이터[0][3]);
+		
+		var x = 0;
 		for ( var i = 0; i < 데이터.length; i++ ) {
 
 			if (adCateName == 데이터[i][3]) {
-				선택된데이터= [
-					[ 데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3] ],
+				x++;
+			}
+		}
+		
+		for ( var i = 0; i < 데이터.length; i++ ) {
+
+			if (adCateName == 데이터[i][3]) {
+				// 2, 25
+				//console.log(i + "(adCateName == 데이터[i][3]) : " + (adCateName == 데이터[i][3]));
+				var 선택된데이터 = [ 
+ 					<c:forEach var="k" begin="0" items="x" step="1">
+						[ 	
+							데이터[i][0], 
+							데이터[i][1], 
+							데이터[i][2],
+							데이터[i][3] 
+						], 
+ 					</c:forEach>
 				];
+
+				
 				console.log(i + "번 내부 선택데이터 : " + 선택된데이터);
 			}			
 		}
