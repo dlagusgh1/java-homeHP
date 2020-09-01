@@ -32,4 +32,8 @@ public interface MemberDao {
 
 	List<Member> getMemberList();
 
+	void doMemberRecoveryAjax(String loginId);
+
+	void doMemberDeleteAjax(String loginId);
+
 }

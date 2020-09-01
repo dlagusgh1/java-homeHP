@@ -74,10 +74,10 @@
 		                            </div>
 		                            <div class="reg-date">
 		                            	<c:if test="${article.displayStatus}">
-											<button class="btn btn-danger" type="button" onclick="ArticleList__hide(this, '${article.id}');">숨기기</button>
+											<button class="btn btn-danger" type="button" onclick="ArticleList__hide(this,'${article.id}');">숨기기</button>
 										</c:if>
 										<c:if test="${article.displayStatus != true}">
-											<button class="btn btn-info" type="button" onclick="ArticleList__show(this, '${article.id}');">보이기</button>
+											<button class="btn btn-info" type="button" onclick="ArticleList__show(this,'${article.id}');">보이기</button>
 										</c:if>
 		                            </div>
 		                        </a>

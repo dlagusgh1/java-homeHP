@@ -226,9 +226,6 @@ public class MemberController {
 	public String doLogin(String loginId, String loginPwReal, String redirectUri, Model model, HttpSession session, HttpServletRequest request) {
 		String loginPw = loginPwReal;
 		Member member = memberService.getMemberByLoginId(loginId);
-
-		System.out.println("ㄱ" + member.getLoginPw());
-		System.out.println("ㄴ" + loginPw);
 		
 		if (member == null) {
 			model.addAttribute("historyBack", true);
@@ -485,6 +482,72 @@ public class MemberController {
 		model.addAttribute("members", members);
 		
 		return "member/memberManage";
+	}
+	
+	// 관리자 메뉴 - 회원 관리(회원 복구)ajax
+	@RequestMapping("/member/doMemberRecoveryAjax")
+	@ResponseBody
+	public ResultData doMemberRecoveryAjax(Model model, String loginId, HttpServletRequest request) {
+		
+		Member member = memberService.getMemberByLoginId(loginId);
+		
+		if (member == null) {
+			
+			new ResultData("F-1", String.format("존재하지 않는 회원입니다."));
+		}
+		
+		if (member.isDelStatus() != true) {
+			
+			new ResultData("F-1", String.format("이미 복구처리된 회원 입니다."));
+		}
+		
+		memberService.doMemberRecoveryAjax(loginId);
+
+		return new ResultData("S-1", String.format("%d 회원을 복구시켰습니다.", loginId));
+	}
+	
+	// 관리자 메뉴 - 회원 관리(탈퇴(숨기기))ajax
+	@RequestMapping("/member/doMemberDeleteAjax")
+	@ResponseBody
+	public ResultData doMemberDeleteAjax(Model model, String loginId, HttpServletRequest request) {
+		
+		Member member = memberService.getMemberByLoginId(loginId);
+		
+		if (member == null) {
+			
+			new ResultData("F-1", String.format("존재하지 않는 회원입니다."));
+		}
+		
+		if (member.isDelStatus()) {
+			
+			new ResultData("F-1", String.format("이미 탈퇴처리된 회원 입니다."));
+		}
+		
+		memberService.doMemberDeleteAjax(loginId);
+
+		return new ResultData("S-1", String.format("%s 회원을 탈퇴시켰습니다.", loginId));
+	}
+	
+	// 관리자 메뉴 - 회원 관리(권한 설정)ajax
+	@RequestMapping("/member/doMemberGiveLevelAjax")
+	@ResponseBody
+	public ResultData doMemberGiveLevelAjax(Model model, String loginId, HttpServletRequest request) {
+		
+		Member member = memberService.getMemberByLoginId(loginId);
+		
+		if (member == null) {
+			
+			new ResultData("F-1", String.format("존재하지 않는 회원입니다."));
+		}
+		
+		if (member.isDelStatus()) {
+			
+			new ResultData("F-1", String.format("탈퇴한 회원 입니다."));
+		}
+		
+		
+
+		return new ResultData("S-1", String.format("%s 회원에게 권한을 부여하였습니다.", loginId));
 	}
 }
 

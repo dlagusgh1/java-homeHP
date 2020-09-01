@@ -225,4 +225,14 @@ public class MemberService {
 		return memberDao.getMemberList();
 	}
 
+	// 관리자 메뉴 - 회원 관리 (회원 복구)
+	public void doMemberRecoveryAjax(String loginId) {
+		memberDao.doMemberRecoveryAjax(loginId);
+	}
+
+	// 관리자 메뉴 - 회원 관리 (회원 탈퇴(숨기기))
+	public void doMemberDeleteAjax(String loginId) {
+		memberDao.doMemberDeleteAjax(loginId);
+	}
+
 }

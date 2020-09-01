@@ -91,6 +91,18 @@
 		FROM `member`
 	</select>
 	
+	<update id="doMemberRecoveryAjax">
+		UPDATE `member`
+		SET delStatus = 0
+		WHERE loginId = #{loginId}
+	</update>
+	
+	<update id="doMemberDeleteAjax">
+		UPDATE `member`
+		SET delStatus = 1
+		WHERE loginId = #{loginId}
+	</update>
+	
 	<resultMap type="Member" id="member">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

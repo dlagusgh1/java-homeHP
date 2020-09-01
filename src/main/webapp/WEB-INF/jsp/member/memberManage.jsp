@@ -12,7 +12,7 @@
 
 <h1 class="con flex-jc-c">회원 관리</h1>
 
-<div class="table-box table-box-data articleManage-table-box con">
+<div class="table-box table-box-data memberManage-table-box con">
 	<table>
 		<colgroup>
 			<col width="100" />
@@ -39,52 +39,89 @@
 		<tbody>
 			<c:if test="${loginedMember.level == 10}">
 				<c:forEach items="${members}" var="member">
-					<tr>
-						<td><a>${member.id}</a></td>
-						<td><a>${member.loginId}</a></td>	
-						<td><a>${member.name}</a></td>	
-						<td><a>${member.organName}</a></td>	
-						<td><a>${member.regDate}</a></td>	
-						<td>
-						<c:if test="${member.delStatus}">
-							탈퇴
-						</c:if>
-						<c:if test="${article.displayStatus != true}">
-							정상
-						</c:if>
-						</td>
-							<td><a>${member.level}</a></td>
-						<td>
-						<button class="btn btn-danger" type="button">권한</button>
-						<c:if test="${member.delStatus}">
-							<button class="btn btn-danger" type="button">복구</button>
-						</c:if>
-						<c:if test="${member.delStatus != true}">
-							<button class="btn btn-info" type="button">탈퇴</button>
-						</c:if>
-						</td>				
-						<td class="visible-on-sm-down">
-							<a class="flex flex-row-wrap flex-ai-c">
-		                      	<span class="badge badge-primary bold margin-right-10">${member.id}</span>
-			                  	<div class="title flex-1-0-0 text-overflow-el">${member.loginId}</div>
-			                  	<div class="title flex-1-0-0 text-overflow-el">${member.organName}</div>
-			                  	<div class="reg-date">
-				                  	<button class="btn btn-danger" type="button">권한</button>
-				                  	<c:if test="${member.delStatus}">
-				                  		<button class="btn btn-danger" type="button">복구</button>
-									</c:if>
-									<c:if test="${member.delStatus != true}">
-										<button class="btn btn-info" type="button">탈퇴</button>
-									</c:if>
-		                      	</div>
-		                  	</a>
-		               	</td>
-					</tr>
+					<c:if test="${member.name != '관리자'}">
+						<tr>
+							<td><a>${member.id}</a></td>
+							<td><a>${member.loginId}</a></td>	
+							<td><a>${member.name}</a></td>	
+							<td><a>${member.organName}</a></td>	
+							<td><a>${member.regDate}</a></td>	
+							<td>
+							<c:if test="${member.delStatus}">
+								탈퇴
+							</c:if>
+							<c:if test="${article.displayStatus != true}">
+								정상
+							</c:if>
+							</td>
+								<td><a>${member.level}</a></td>
+							<td>
+							<button class="btn btn-danger" type="button" onclick="member__giveLevel(this,'${member.loginId}');">권한</button>
+							<c:if test="${member.delStatus}">
+								<button class="btn btn-danger" type="button" onclick="member__recovery(this,'${member.loginId}');">복구</button>
+							</c:if>
+							<c:if test="${member.delStatus != true}">
+								<button class="btn btn-info" type="button" onclick="member__Delete(this,'${member.loginId}');">탈퇴</button>
+							</c:if>
+							</td>				
+							<td class="visible-on-sm-down">
+								<a class="flex flex-row-wrap flex-ai-c">
+			                      	<span class="badge badge-primary bold margin-right-10">${member.id}</span>
+				                  	<div class="title flex-1-0-0 text-overflow-el">${member.loginId}</div>
+				                  	<div class="title flex-1-0-0 text-overflow-el">${member.organName}</div>
+				                  	<div class="reg-date">
+					                  	<button class="btn btn-danger" type="button" onclick="member__giveLevel(this,'${member.loginId}');">권한</button>
+					                  	<c:if test="${member.delStatus}">
+					                  		<button class="btn btn-danger" type="button" onclick="member__recovery(this,'${member.loginId}');">복구</button>
+										</c:if>
+										<c:if test="${member.delStatus != true}">
+											<button class="btn btn-info" type="button" onclick="member__Delete(this,'${member.loginId}');">탈퇴</button>
+										</c:if>
+			                      	</div>
+			                  	</a>
+			               	</td>
+						</tr>
+					</c:if>
 				</c:forEach>
 			</c:if>
 		</tbody>
 	</table>
 </div>	
 
+<script>
+	//회원 권한 ajax
+	function member__giveLevel(el, memberLoginId) {
+		if (confirm('권한설정을 하시겠습니까?') == false) {
+			return;
+		}
+		
+		$.post('./../member/doMemberGiveLevelAjax', {
+			loginId : memberLoginId
+		}, 'json');
+	}
+
+	// 회원 복구 ajax
+	function member__recovery(el, memberLoginId) {
+		if (confirm('복구처리 하시겠습니까?') == false) {
+			return;
+		}
+		
+		$.post('./../member/doMemberRecoveryAjax', {
+			loginId : memberLoginId
+		}, 'json');
+	}
+
+	// 회원 탈퇴(숨기기) ajax
+	function member__Delete(el, memberLoginId) {
+		if (confirm('탈퇴처리 하시겠습니까?') == false) {
+			return;
+		}
+		
+		$.post('./../member/doMemberDeleteAjax', {
+			loginId : memberLoginId
+		}, 'json');
+	}
+
+</script>
 	
 <%@ include file="../part/foot.jspf"%>
