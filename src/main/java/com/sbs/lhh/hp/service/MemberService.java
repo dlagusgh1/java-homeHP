@@ -235,9 +235,11 @@ public class MemberService {
 		memberDao.doMemberDeleteAjax(loginId);
 	}
 
-	// 관리자 메뉴 - 회원 관리 (권한 설정)
-	public void setGrantLevel(String loginId, int grant) {
-		memberDao.setGrantLevel(loginId, grant);
+	// 관리자 메뉴 - 회원 관리 (회원 권한 설정)
+	public void setMemberGrant(Map<String, Object> param) {
+		
+		
+		
 	}
 
 }

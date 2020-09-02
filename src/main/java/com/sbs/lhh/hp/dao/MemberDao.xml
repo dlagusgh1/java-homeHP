@@ -102,13 +102,7 @@
 		SET delStatus = 1
 		WHERE loginId = #{loginId}
 	</update>
-	
-	<update id="setGrantLevel">
-		UPDATE `member`
-		SET level = #{grant}
-		WHERE loginId = #{loginId}
-	</update>
-	
+
 	<resultMap type="Member" id="member">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

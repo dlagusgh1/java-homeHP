@@ -1,6 +1,5 @@
 package com.sbs.lhh.hp.controller;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sbs.lhh.hp.dto.Article;
-import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.dto.Member;
 import com.sbs.lhh.hp.dto.ResultData;
 import com.sbs.lhh.hp.service.MemberService;
@@ -538,59 +535,32 @@ public class MemberController {
 	
 	// 관리자 메뉴 - 회원 관리(권한 설정 폼)
 	@RequestMapping("/member/memberGrantLevel")
-	public String memberGrantLevel(Model model) {
+	public String memberGrantLevel(@RequestParam Map<String, Object> param, Model model, HttpServletRequest request) {
 		
 		List<Member> members = memberService.getMemberList();
 
 		model.addAttribute("members", members);
 		
+		// memberService.setMemberGrant(param);
+
+		System.out.println("1값 확인 : " + param.get("body"));
+		String arr = (String) param.get("body");
+		System.out.println("2값 확인 : " + arr);
+		// {body={"member__2__authority__hideArticle":"Y","member__3__authority__hideArticle":"Y","member__4__authority__hideArticle":"Y"}}
+		// {body={"member__2__authority__stopUsing":"Y","member__3__authority__stopUsing":"Y","member__4__authority__stopUsing":"Y"}}
+		// reltypecode = member
+		// relid = 숫자
+		// typecode authority
+		// type2code hideArticle(게시물 숨기기권한) / stopUsing(정지 권한)
+		
+		// System.out.println("확인" + Util.toJsonStr(param));
+		
+		System.out.println("3값 확인 : " + Util.getNewMapOf(param, "body"));
+		
+		
+		
 		return "member/memberGrantLevel";
 	}
 	
-	// 관리자 메뉴 - 회원 관리(권한 설정 기능)
-	@RequestMapping("/member/doGrantLevel")
-	public String doGrantLevel(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUri, HttpServletRequest request) {
-		
-		String loginId = (String) param.get("memberId");
-		System.out.println("param확인 : " + param);
-		System.out.println("입력 : " + loginId);
-		
-		int grantLevel1 = 0;
-		if (Util.isNum(param.get("grantLevel1"))) {
-			grantLevel1 = Integer.parseInt((String) param.get("grantLevel1"));
-			System.out.println("grantLevel1 확인 : " + grantLevel1);
-		}
-		int grantLevel2 = 0;
-		if (Util.isNum(param.get("grantLevel2"))) {
-			grantLevel2 = Integer.parseInt((String) param.get("grantLevel2"));
-			System.out.println("grantLevel2 확인 : " + grantLevel2);
-		}
-		int grantLevel3 = 0;
-		if (Util.isNum(param.get("grantLevel3"))) {
-			grantLevel3 = Integer.parseInt((String) param.get("grantLevel3"));
-			System.out.println("grantLevel3 확인 : " + grantLevel3);
-		}
-		
-		int grant = 0;
-		if (grantLevel1 != 0 || grantLevel2 != 0 || grantLevel3 != 0) {
-			grant = Util.getGrantLevel(grantLevel1, grantLevel2, grantLevel3);
-			memberService.setGrantLevel(loginId, grant);
-		} else if (grantLevel1 == 0 && grantLevel1 == 0 && grantLevel1 == 0) {
-			model.addAttribute("alertMsg", "선택된 권한이 없습니다.");
-			model.addAttribute("historyBack", true);
-			return "common/redirect";
-		}
-		
-		System.out.println("대상 : " + loginId);
-		System.out.println("권한1 : " + grantLevel1);
-		System.out.println("권한2 : " + grantLevel2);
-		System.out.println("권한3 : " + grantLevel3);
-		System.out.println("권한 값 : " + grant);
-		
-		model.addAttribute("alertMsg", "회원 권한 설정이 완료되었습니다.");
-		model.addAttribute("historyBack", true);
-
-		return "common/redirect";	
-	}
 }
 
