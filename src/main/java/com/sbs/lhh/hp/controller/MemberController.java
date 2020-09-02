@@ -551,7 +551,7 @@ public class MemberController {
 	@RequestMapping("/member/doGrantLevel")
 	public String doGrantLevel(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUri, HttpServletRequest request) {
 		
-		String loginMemberId = (String) param.get("memberId");
+		String loginId = (String) param.get("memberId");
 		
 		int grantLevel1 = 0;
 		if (Util.isNum(param.get("grantLevel1"))) {
@@ -565,9 +565,24 @@ public class MemberController {
 		}
 		int grantLevel3 = 0;
 		if (Util.isNum(param.get("grantLevel3"))) {
-			grantLevel1 = Integer.parseInt((String) param.get("grantLevel3"));
+			grantLevel3 = Integer.parseInt((String) param.get("grantLevel3"));
 			System.out.println("grantLevel3 확인 : " + grantLevel3);
 		}
+		
+		int grant = 0;
+		if (grantLevel1 != 0 || grantLevel2 != 0 || grantLevel3 != 0) {
+			grant = Util.getGrantLevel(grantLevel1, grantLevel2, grantLevel3);
+			memberService.setGrantLevel(loginId, grant);
+		} else if (grantLevel1 == 0 && grantLevel1 == 0 && grantLevel1 == 0) {
+			model.addAttribute("alertMsg", "선택된 권한이 없습니다.");
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+		
+		System.out.println("권한1 : " + grantLevel1);
+		System.out.println("권한2 : " + grantLevel2);
+		System.out.println("권한3 : " + grantLevel3);
+		System.out.println("권한 값 : " + grant);
 		
 		model.addAttribute("alertMsg", "회원 권한 설정이 완료되었습니다.");
 		model.addAttribute("historyBack", true);

@@ -405,19 +405,14 @@ public class Util {
 				extra.put(key, value);
 			}
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -497,5 +492,20 @@ public class Util {
         
         return calDateDays;
 	}
+	
+	// 권한 설정 관련
+	public static int getGrantLevel(int level1, int level2, int level3) {
+		
+		if ( level1 > level2  && level1 > level3 ) {
+			return level1;
+		} else if ( level2 > level1 && level2 > level3 ) {
+			return level2;
+		} else if ( level3 > level1 && level3 > level2 ) {
+			return level3;
+		} 
+
+		return 0;
+	}
+	
 	
 }

@@ -21,7 +21,6 @@
            	<col width="150" />
            	<col width="200" />
            	<col width="50" />
-           	<col width="50" />
            	<col width="200" />
 		</colgroup>
 		<thead>
@@ -32,7 +31,6 @@
 				<th>기관명</th>	
 				<th>등록일자</th>	
 				<th>상태</th>
-				<th>권한</th>
 				<th>비고</th>						
 			</tr>
 		</thead>
@@ -54,7 +52,6 @@
 								정상
 							</c:if>
 							</td>
-								<td><a>${member.level}</a></td>
 							<td>
 							<div class="btn btn-info">
                   				<a href="/member/memberGrantLevel" onclick="window.open(this.href,'권한 설정', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">권한</a>

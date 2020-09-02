@@ -36,4 +36,6 @@ public interface MemberDao {
 
 	void doMemberDeleteAjax(String loginId);
 
+	void setGrantLevel(String loginId, int grant);
+
 }

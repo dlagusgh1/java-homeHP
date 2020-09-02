@@ -102,7 +102,7 @@
 							<td><input type="checkbox" name="grantLevel2" value="5"/>권한2</td>	
 							<td><input type="checkbox" name="grantLevel3" value="8"/>권한3</td>			
 							<td>
-								<button class="btn btn-info" type="submit">권한 설정</button>
+								<button class="btn btn-info" type="submit">설정</button>
 							</td>				
 						</tr>
 					</c:if>
