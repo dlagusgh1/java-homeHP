@@ -50,8 +50,11 @@
 	
 	function ChangeAuthoritiesForm__changeItem(el) {
 	  var $el = $(el);
+
+	  // name="member__authority__hideArticle__${member.id}"
 	  var keyName = $el.prop('name');
-	
+
+	  // 체크관련
 	  if ( $el.prop('checked') ) {
 	    if ( $el.attr('data-origin-value') == 'N' ) {
 	      ChangeAuthoritiesForm__data[keyName] = "Y";
@@ -74,7 +77,10 @@
 	}
 	
 	function ChangeAuthoritiesForm__submit() {
-	
+
+
+
+		
 	}
 </script>
 <div class="con">
@@ -110,13 +116,13 @@
 							<td>
 					          <label>
 					          	<!-- data-origin-value 의 속성값은 기존상태(DB에 저장되어 있는)를 의미한다. -->
-				          		<input type="checkbox" name="member__authority__hideArticle__' + ${member.id} + '" onchange="ChangeAuthoritiesForm__changeItem(this)" data-origin-value="N">
+				          		<input type="checkbox" name="member__authority__hideArticle__${member.id}" onchange="ChangeAuthoritiesForm__changeItem(this)" data-origin-value="N">
 					            권한부여
 					          </label>
 				        	</td>	
 				        	<td>
 					          <label>
-				            	<input type="checkbox" name="member__authority__stopUsing__' + ${member.id} + '" onchange="ChangeAuthoritiesForm__changeItem(this)" data-origin-value="N">
+				            	<input type="checkbox" name="member__authority__stopUsing__${member.id}" onchange="ChangeAuthoritiesForm__changeItem(this)" data-origin-value="N">
 					            권한부여
 					          </label>
 					        </td>					
@@ -129,7 +135,7 @@
 </div>
 
 <form name="change-authorities-form" class="con margin-top-20" onsubmit="ChangeAuthoritiesForm__submit(); return false;">
-  <textarea name="body"></textarea>
+  <textarea class="flex margin-bottom-10" name="body" style="width: 800px; height: 100px;"></textarea>
   <input class="btn btn-info" type="submit" value="권한 일괄수정">
 </form>
 
