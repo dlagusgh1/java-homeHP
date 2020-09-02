@@ -25,21 +25,21 @@
 	<div class="adminMenu-box con">
 		<ul>
 			<li>
-				<a href="organWrite">
+				<a href="/article/organWrite">
 					<div>
 						<p><i class="fas fa-arrow-right"></i> 기관 정보 등록</p>
 					</div>
 				</a>
 			</li>
 			<li>
-				<a href="articleManage">
+				<a href="/article/articleAdministrate">
 					<div>
 						<p><i class="fas fa-arrow-right"></i> 게시물 관리</p>
 					</div>
 				</a>
 			</li>
 			<li>
-				<a href="/member/memberManage">
+				<a href="memberAdministrate">
 					<div>
 						<p><i class="fas fa-arrow-right"></i> 회원 관리</p>
 					</div>

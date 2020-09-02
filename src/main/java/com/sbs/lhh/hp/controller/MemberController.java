@@ -474,14 +474,22 @@ public class MemberController {
 		return "common/redirect";	
 	}
 	
+
+	// 관리자 메뉴
+	@RequestMapping("/member/adminMenu")
+	public String adminMenu(Model model) {
+			
+		return "member/adminMenu";
+	}
+	
 	// 관리자 메뉴 - 회원 관리
-	@RequestMapping("/member/memberManage")
+	@RequestMapping("/member/memberAdministrate")
 	public String memberManage(Model model) {
 		List<Member> members = memberService.getMemberList();
 
 		model.addAttribute("members", members);
 		
-		return "member/memberManage";
+		return "member/memberAdministrate";
 	}
 	
 	// 관리자 메뉴 - 회원 관리(회원 복구)ajax

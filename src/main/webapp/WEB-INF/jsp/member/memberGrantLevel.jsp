@@ -69,8 +69,10 @@
 		</colgroup>
 		<thead>
 			<tr>
+				<th>번호</th>
 				<th>아이디</th>
 				<th>기관명</th>	
+				<th>권한</th>
 				<th>권한1</th>	
 				<th>권한2</th>
 				<th>권한3</th>
@@ -83,6 +85,9 @@
 					<c:if test="${member.name != '관리자'}">
 						<tr>
 							<td>
+								<a>${member.id}</a>
+							</td>
+							<td>
 								<input type="hidden" name="memberId" value="${member.loginId}"/>
 								<a>${member.loginId}</a>
 							</td>	
@@ -90,6 +95,9 @@
 								<input type="hidden" name="organName" value="${member.organName}"/>
 								<a>${member.organName}</a>
 							</td>	
+							<td>
+								<a>${member.level}</a>
+							</td>
 							<td><input type="checkbox" name="grantLevel1" value="3"/>권한1</td>	
 							<td><input type="checkbox" name="grantLevel2" value="5"/>권한2</td>	
 							<td><input type="checkbox" name="grantLevel3" value="8"/>권한3</td>			

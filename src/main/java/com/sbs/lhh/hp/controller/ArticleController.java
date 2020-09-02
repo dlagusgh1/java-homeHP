@@ -141,7 +141,7 @@ public class ArticleController {
 	}
 	
 	// 관리자 메뉴 - 게시물 관리
-	@RequestMapping("/article/{boardCode}articleManage")
+	@RequestMapping("/article/{boardCode}articleAdministrate")
 	public String articleManage(Model model) {
 		Board board = articleService.getBoardByCode("free");
 		model.addAttribute("board", board);
@@ -150,14 +150,7 @@ public class ArticleController {
 
 		model.addAttribute("articles", articles);
 		
-		return "article/articleManage";
-	}
-
-	// 관리자 메뉴
-	@RequestMapping("/article/adminMenu")
-	public String adminMenu(Model model) {
-			
-		return "article/adminMenu";
+		return "article/articleAdministrate";
 	}
 	
 	// 기관 등록 시 카카오맵 검색 기능
