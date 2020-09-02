@@ -46,23 +46,42 @@
 <body style="padding-top: 0px; margin: 0 5px;">
 
 <script>
-	var MemberGrantForm__submitDone = false;
+	var ChangeAuthoritiesForm__data = {};
 	
-	function MemberGrantForm__submit(form) {
-		if (MemberGrantForm__submitDone) {
-			alert('처리중입니다.');
-			return;
-		}
-
-		form.submit();
-		MemberGrantForm__submitDone = true;
-		//window.open("about:blank", "_self").close();
+	function ChangeAuthoritiesForm__changeItem(el) {
+	  var $el = $(el);
+	  var keyName = $el.prop('name');
+	
+	  if ( $el.prop('checked') ) {
+	    if ( $el.attr('data-origin-value') == 'N' ) {
+	      ChangeAuthoritiesForm__data[keyName] = "Y";
+	    }
+	    else {
+	      delete ChangeAuthoritiesForm__data[keyName];
+	    }
+	  }
+	  else {
+	    if ( $el.attr('data-origin-value') == 'N' ) {
+	      delete ChangeAuthoritiesForm__data[keyName];
+	    }
+	    else {
+	      ChangeAuthoritiesForm__data[keyName] = "N";
+	    }
+	  }
+	
+	  var form = document['change-authorities-form'];
+	  form.body.value = JSON.stringify(ChangeAuthoritiesForm__data);
+	}
+	
+	function ChangeAuthoritiesForm__submit() {
+	
 	}
 </script>
 <div class="con">
 	<h1>회원 권한관리</h1>
 </div>
-<form method="POST" class="table-box table-box-data memberGrant-table-box con" action="doGrantLevel" onsubmit="MemberGrantForm__submit(this); return false;">
+
+<div class="table-box table-box-data memberGrant-table-box con">
 	<table>
 		<colgroup>
 			
@@ -71,17 +90,14 @@
 			<tr>
 				<th>번호</th>
 				<th>아이디</th>
-				<th>기관명</th>	
-				<th>권한</th>
-				<th>권한1</th>	
-				<th>권한2</th>
-				<th>권한3</th>
-				<th>비고</th>						
+				<th>게시물숨김 권한</th>	
+				<th>사용정지 권한</th>						
 			</tr>
 		</thead>
 		<tbody>
 			<c:if test="${loginedMember.level == 10}">
 				<c:forEach items="${members}" var="member">
+					<input type="hidden" name="member__${member.id}__inputed" value="Y">
 					<c:if test="${member.name != '관리자'}">
 						<tr>
 							<td>
@@ -90,26 +106,31 @@
 							<td>
 								<input type="hidden" name="memberId" value="${member.loginId}"/>
 								<a>${member.loginId}</a>
-							</td>	
+							</td>		
 							<td>
-								<input type="hidden" name="organName" value="${member.organName}"/>
-								<a>${member.organName}</a>
-							</td>	
-							<td>
-								<a>${member.level}</a>
-							</td>
-							<td><input type="checkbox" name="grantLevel1" value="3"/>권한1</td>	
-							<td><input type="checkbox" name="grantLevel2" value="5"/>권한2</td>	
-							<td><input type="checkbox" name="grantLevel3" value="8"/>권한3</td>			
-							<td>
-								<button class="btn btn-info" type="submit">설정</button>
-							</td>				
+					          <label>
+					          	<!-- data-origin-value 의 속성값은 기존상태(DB에 저장되어 있는)를 의미한다. -->
+				          		<input type="checkbox" name="member__authority__hideArticle__' + ${member.id} + '" onchange="ChangeAuthoritiesForm__changeItem(this)" data-origin-value="N">
+					            권한부여
+					          </label>
+				        	</td>	
+				        	<td>
+					          <label>
+				            	<input type="checkbox" name="member__authority__stopUsing__' + ${member.id} + '" onchange="ChangeAuthoritiesForm__changeItem(this)" data-origin-value="N">
+					            권한부여
+					          </label>
+					        </td>					
 						</tr>
 					</c:if>
 				</c:forEach>
 			</c:if>
 		</tbody>
 	</table>
+</div>
+
+<form name="change-authorities-form" class="con margin-top-20" onsubmit="ChangeAuthoritiesForm__submit(); return false;">
+  <textarea name="body"></textarea>
+  <input class="btn btn-info" type="submit" value="권한 일괄수정">
 </form>
 
 <%@ include file="../part/foot.jspf"%>

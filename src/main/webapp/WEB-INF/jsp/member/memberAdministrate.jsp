@@ -12,6 +12,10 @@
 
 <h1 class="con flex-jc-c">회원 관리</h1>
 
+<div class="con flex-jc-c margin-bottom-10">
+	<a class="btn btn-info" href="/member/memberGrantLevel" onclick="window.open(this.href,'권한 설정', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">권한 설정하기</a>
+</div>
+
 <div class="table-box table-box-data memberManage-table-box con">
 	<table>
 		<colgroup>
@@ -24,7 +28,7 @@
            	<col width="200" />
 		</colgroup>
 		<thead>
-			<tr>
+			<tr >
 				<th>번호</th>
 				<th>아이디</th>
 				<th>이름</th>
@@ -33,6 +37,7 @@
 				<th>상태</th>
 				<th>비고</th>						
 			</tr>
+			
 		</thead>
 		<tbody>
 			<c:if test="${loginedMember.level == 10}">
@@ -53,9 +58,6 @@
 							</c:if>
 							</td>
 							<td>
-							<div class="btn btn-info">
-                  				<a href="/member/memberGrantLevel" onclick="window.open(this.href,'권한 설정', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">권한</a>
-	                  		</div>
 							<c:if test="${member.delStatus}">
 								<button class="btn btn-info" type="button" onclick="member__recovery(this,'${member.loginId}');">복구</button>
 							</c:if>
@@ -68,10 +70,7 @@
 			                      	<span class="badge badge-primary bold margin-right-10">${member.id}</span>
 				                  	<div class="title flex-1-0-0 text-overflow-el">${member.loginId}</div>
 				                  	<div class="title flex-1-0-0 text-overflow-el">${member.organName}</div>
-				                  	<div class="reg-date">
-				                  		<div class="btn btn-info">
-				                  			<a href="/member/memberGrantLevel" onclick="window.open(this.href,'권한 설정', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0'); return false;">권한</a>
-				                  		</div>
+				                  	<div class="itle flex-1-0-0 text-overflow-el">
 					                  	<c:if test="${member.delStatus}">
 					                  		<button class="btn btn-info" type="button" onclick="member__recovery(this,'${member.loginId}');">복구</button>
 										</c:if>

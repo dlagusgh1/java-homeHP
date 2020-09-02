@@ -64,7 +64,7 @@
 		                            <span class="badge badge-primary bold margin-right-10">${article.id}</span>
 		                            <div class="title flex-1-0-0 text-overflow-el">${article.forPrintTitle}</div>
 		                            <div class="title flex-1-0-0 text-overflow-el">${article.extra.writer}</div>
-		                            <div class="reg-date flex-1-0-0">
+		                            <div class="title flex-1-0-0 text-overflow-el">
 		                            	<c:if test="${article.displayStatus}">
 											노출
 										</c:if>

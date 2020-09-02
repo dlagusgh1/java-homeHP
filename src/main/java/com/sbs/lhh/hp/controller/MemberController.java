@@ -552,6 +552,8 @@ public class MemberController {
 	public String doGrantLevel(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUri, HttpServletRequest request) {
 		
 		String loginId = (String) param.get("memberId");
+		System.out.println("param확인 : " + param);
+		System.out.println("입력 : " + loginId);
 		
 		int grantLevel1 = 0;
 		if (Util.isNum(param.get("grantLevel1"))) {
@@ -579,6 +581,7 @@ public class MemberController {
 			return "common/redirect";
 		}
 		
+		System.out.println("대상 : " + loginId);
 		System.out.println("권한1 : " + grantLevel1);
 		System.out.println("권한2 : " + grantLevel2);
 		System.out.println("권한3 : " + grantLevel3);
