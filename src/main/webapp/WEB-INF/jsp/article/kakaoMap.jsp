@@ -77,8 +77,8 @@
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(36.478631, 127.270530), // 지도의 중심좌표
-        level: 7, // 지도의 확대 레벨
+        center: new kakao.maps.LatLng(36.533672, 127.270254), // 지도의 중심좌표
+        level: 8, // 지도의 확대 레벨
         mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
     }; 
     
