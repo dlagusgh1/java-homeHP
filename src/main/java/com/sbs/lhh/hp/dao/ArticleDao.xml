@@ -12,11 +12,13 @@
 	<select id="getAdCateItem" resultType="AdCateItem">
 		SELECT *
 		FROM `adCateItem`
+		ORDER BY `name` ASC
 	</select>
 	
 	<select id="getOrgan" resultType="Organ">
 		SELECT *
 		FROM `organ`
+		ORDER BY `organAdmAddress` ASC
 	</select>
 	
 	<insert id="organWrite">

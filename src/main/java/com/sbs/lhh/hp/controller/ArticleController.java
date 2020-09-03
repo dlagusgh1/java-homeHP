@@ -28,7 +28,7 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 
-	// 카카오맵
+	// 카카오맵(기본-병원/약국)
 	@RequestMapping("/article/kakaoMap")
 	public String kakaoMap(Model model) {
 
@@ -51,7 +51,7 @@ public class ArticleController {
 		return "article/kakaoMap";
 	}
 
-	// 카카오맵
+	// 카카오맵(전체)
 	@RequestMapping("/article/kakaoMap_All")
 	public String kakaoMap_All(Model model) {
 
@@ -74,7 +74,7 @@ public class ArticleController {
 		return "article/kakaoMap_All";
 	}
 
-	// 카카오맵
+	// 카카오맵(병원)
 	@RequestMapping("/article/kakaoMap_HP")
 	public String kakaoMap_HP(Model model) {
 
@@ -97,7 +97,7 @@ public class ArticleController {
 		return "article/kakaoMap_HP";
 	}
 
-	// 카카오맵
+	// 카카오맵(약국)
 	@RequestMapping("/article/kakaoMap_PM")
 	public String kakaoMap_PM(Model model) {
 

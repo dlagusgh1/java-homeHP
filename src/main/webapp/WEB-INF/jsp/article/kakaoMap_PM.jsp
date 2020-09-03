@@ -22,7 +22,7 @@
 </div>
 
 
-<!-- 행정구역(동/면) 리스트 -->
+<!-- 행정구역(동/면) 리스트(administrativeDistrict) -->
 <div class="administrative-district con">
 	<nav>
 		<div>
@@ -30,31 +30,39 @@
 			<select name="adCateItemName" id="adCateItem" onchange="administrative(this.value)">
 				<option>행정구역 선택</option>
 				<c:forEach items="${adCateItems}" var="adCateItem">
-					<option value="${adCateItem.name}" style="height: 50px;">${adCateItem.name}</option>
+					<c:set var="count" value="0" />
+					<c:forEach items="${organes}" var="organ">
+						<c:if test="${organ.organNumber == 2 && organ.organAdmAddress == adCateItem.name && count == 0}">
+							<option value="${adCateItem.name}" style="height: 50px;">${adCateItem.name}</option>
+							<c:set var="count" value="${count + 1}" />
+						</c:if>
+					</c:forEach>
 				</c:forEach>
 			</select>
 		</div>
 	</nav>
 </div>
 
-<!-- 약국 목록 -->
+<!-- 약국 목록(organization)  -->
 <div class="kakaoMap-box con flex-jc-c margin-bottom-20">
 	<div class="kakaoMap con" id="map"></div>
 	<div class="kakaoMap-info con">
 		<ul>
 			<li>
 				<c:forEach items="${organes}" var="organ">
-					<ul>
-						<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
-						<li><a>주소 : ${organ.organAddress}</a></li>
-						<li><a>행정구역 : ${organ.organAdmAddress}</a></li>
-						<li><a>전화 번호 : ${organ.organTel}</a></li>
-						<li><a>진료 시간 : ${organ.organTime}</a></li>
-						<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
-						<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
-						<li><a>비고 : ${organ.organRemarks}</a></li>
-					</ul>		
-					<br>
+					<c:if test="${organ.organNumber == 2}">
+						<ul>
+							<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
+							<li><a>주소 : ${organ.organAddress}</a></li>
+							<li><a>행정구역 : ${organ.organAdmAddress}</a></li>
+							<li><a>전화 번호 : ${organ.organTel}</a></li>
+							<li><a>진료 시간 : ${organ.organTime}</a></li>
+							<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
+							<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
+							<li><a>비고 : ${organ.organRemarks}</a></li>
+						</ul>		
+						<br>
+					</c:if>
 				</c:forEach>	
 			</li>
 		</ul>
@@ -124,14 +132,92 @@
 		</c:forEach>
 		];
 
+	// select박스 onchange로 넘겨받은 행정구역 값에 해당하는 마커 생성
+	function administrative(adCateItemName) {
 
-		// 마커 이미지
-		var imageSrc = 'https://img.icons8.com/cotton/64/000000/hand-with-a-pill.png', // 마커이미지의 주소입니다    
-	    imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
-	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-	      
-		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+		// 클러스터 지우기
+		clusterer.clear();
+		// 기존 마커들 지우기.
+		removeMarker();
+
+		var adCateName = adCateItemName;
+
+		var arr = [];
+		var x = 0;
+		for ( var i = 0; i < 데이터.length; i++ ) {
+
+			if (adCateName == 데이터[i][3]) {
+				arr.push(i);
+				x++;
+			}
+		}
+
+		// 2차원 배열 생성 함수
+		function create2DArray(rows, columns) {
+		    var 선택된데이터 = new Array(rows);
+		    for (var i = 0; i < rows; i++) {
+		    	선택된데이터[i] = new Array(columns);
+		    }
+		    return 선택된데이터;
+		}
+
+		// 함수를 이용하여 2차원 배열 생성 (선택된데이터[x][3] 생성 됨)
+		var 선택된데이터 = create2DArray(x, 3);
+		
+		for ( var i = 0; i < arr.length; i++ ) {
+			// arr.length = 2 => 0, 1
+			for ( var k = i; k <= i; k++ ) {
+				// x = 2, 0 1    arr 0 = 0 1, arr 1 = 0 1
+				선택된데이터[i][0] = 데이터[arr[i]][0],
+				선택된데이터[i][1] = 데이터[arr[i]][1],
+				선택된데이터[i][2] = 데이터[arr[i]][2]
+			}
+		}
+		
+		for (var i = 0; i < 선택된데이터.length; i++ ) {
+			// 지도에 마커를 생성하고 표시한다.
+			marker = new kakao.maps.Marker({
+				position: new kakao.maps.LatLng(선택된데이터[i][0], 선택된데이터[i][1]), // 마커의 좌표
+				map: map, // 마커를 표시할 지도 객체
+				image: markerImage // 마커에 이미지 추가
+			});
+
+			iwPosition = new kakao.maps.LatLng(선택된데이터[i][0], 선택된데이터[i][1]),
+		    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+			// 인포윈도우를 생성하고 지도에 표시합니다
+			infowindow = new kakao.maps.InfoWindow({
+			    //map: map, // 인포윈도우가 표시될 지도
+			    position : iwPosition, 
+			    content : 선택된데이터[i][2],
+			    removable : iwRemoveable
+			});
+
+			// 생성된 마커를 마커 저장하는 변수에 넣음
+			markers.push(marker);
+
+		 	// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+		    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+		    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+		    kakao.maps.event.addListener(
+	    	    marker, 
+	    	    'click',
+	    	    makeClickListener(map, marker, infowindow)
+	   	    );
+		    
+		}
+		
+		// 클러스터러에 마커들을 추가합니다
+	    clusterer.addMarkers(markers);
+	}
+
+	// 마커 이미지
+	var imageSrc = 'https://img.icons8.com/cotton/64/000000/hand-with-a-pill.png', // 마커이미지의 주소입니다    
+    imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 		
 	// 마커들을 저장할 변수 생성
 	var markers = [];
@@ -178,6 +264,14 @@
         	infowindow.open(map, marker);  
         };
     }
+
+ 	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+	function removeMarker() {
+	    for ( var i = 0; i < markers.length; i++ ) {
+	        markers[i].setMap(null);
+	    }   
+	    markers = [];
+	}
 </script>
 
 <%@ include file="../part/foot.jspf"%>

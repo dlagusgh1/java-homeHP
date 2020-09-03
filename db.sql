@@ -23,8 +23,8 @@ CREATE TABLE `member` (
 );
 
 # 카테고리 테이블 생성
-DROP TABLE IF EXISTS `cateItem`;
-CREATE TABLE `cateItem` (
+DROP TABLE IF EXISTS cateItem;
+CREATE TABLE cateItem (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     `name` CHAR(100) NOT NULL UNIQUE
@@ -34,7 +34,7 @@ CREATE TABLE `cateItem` (
 INSERT INTO cateItem SET regDate = NOW(), `name` = '병원';
 INSERT INTO cateItem SET regDate = NOW(), `name` = '약국';
 
-# 행정구역 구분 카테고리 테이블 생성
+# 행정구역 구분 카테고리 테이블 생성(administrativeDistrict)
 DROP TABLE IF EXISTS adCateItem;
 CREATE TABLE adCateItem (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -74,7 +74,7 @@ INSERT INTO adCateItem SET regDate = NOW(), `name` = '전의면';
 INSERT INTO adCateItem SET regDate = NOW(), `name` = '전동면';
 INSERT INTO adCateItem SET regDate = NOW(), `name` = '소정면';
 
-# 기관 테이블 생성
+# 기관 테이블 생성(organization)
 DROP TABLE IF EXISTS `organ`;
 CREATE TABLE `organ` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -100,7 +100,6 @@ LOAD DATA INFILE  "hp/list1.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
 LOAD DATA INFILE  "hp/list2.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
 
 # 게시판 테이블 추가
-DROP TABLE IF EXISTS `board`;
 CREATE TABLE `board` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME,
@@ -124,7 +123,6 @@ updateDAte = NOW(),
 `name` = '공지';
 
 # article 테이블 세팅
-DROP TABLE IF EXISTS `article`;
 CREATE TABLE article (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME,
@@ -158,7 +156,6 @@ boardId = '1';
 
 # 부가정보테이블 
 # 댓글 테이블 추가
-DROP TABLE IF EXISTS `attr`;
 CREATE TABLE attr (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
@@ -183,7 +180,6 @@ ALTER TABLE `attr` ADD COLUMN `expireDate` DATETIME NULL AFTER `value`;
 
 
 /* 파일 테이블 생성 */
-DROP TABLE IF EXISTS `file`;
 CREATE TABLE `file` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME,

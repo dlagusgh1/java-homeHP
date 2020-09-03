@@ -21,7 +21,7 @@
 	</select>
 </div>
 
-<!-- 행정구역(동/면) 리스트 -->
+<!-- 행정구역(동/면) 리스트(administrativeDistrict) -->
 <div class="administrative-district con">
 	<nav>
 		<div>
@@ -29,14 +29,20 @@
 			<select name="adCateItemName" id="adCateItem" onchange="administrative(this.value)">
 				<option>행정구역 선택</option>
 				<c:forEach items="${adCateItems}" var="adCateItem">
-					<option value="${adCateItem.name}" style="height: 50px;">${adCateItem.name}</option>
+					<c:set var="count" value="0" />
+					<c:forEach items="${organes}" var="organ">
+						<c:if test="${organ.organAdmAddress == adCateItem.name && count == 0}">
+							<option value="${adCateItem.name}" style="height: 50px;">${adCateItem.name}</option>
+							<c:set var="count" value="${count + 1}" />
+						</c:if>
+					</c:forEach>
 				</c:forEach>
 			</select>
 		</div>
 	</nav>
 </div>
 
-<!-- 병원 목록 -->
+<!-- 병원 목록(organization) -->
 <div class="kakaoMap-box con flex-jc-c margin-bottom-20">
 	<div class="kakaoMap con" id="map"></div>
 	<div class="kakaoMap-info con">
