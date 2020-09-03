@@ -54,7 +54,7 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 
 		// 현재 페이지가 이미 로그인 페이지라면, 이 상태에서 로그인 버튼을 눌렀을 때 기존 param의 redirectUri가 계속 유지되도록
 		// 한다.
-		if (requestUri.contains("/member/login")) {
+		if (requestUri.contains("/usr/member/login") || requestUri.contains("/usr/member/join") || requestUri.contains("/usr/member/doFindId") || requestUri.contains("/usr/member/doFindPw")) {
 			afterLoginUri = Util.getString(request, "redirectUri", "");
 		}
 

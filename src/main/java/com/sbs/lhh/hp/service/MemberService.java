@@ -50,7 +50,7 @@ public class MemberService {
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>이메일 인증</h1>");
 		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
-		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>아래 링크로 접속하여 이메일 인증을 해주세요.<br><br><a href=\"http://localhost:8085/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
+		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>아래 링크로 접속하여 이메일 인증을 해주세요.<br><br><a href=\"http://localhost:8085/usr/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
 		
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
@@ -66,7 +66,7 @@ public class MemberService {
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>이메일 인증</h1>");
 		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
-		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>가입을 진심으로 축하드립니다.<br><br>아래 링크를 클릭하여 이메일 인증을 진행해주세요.<br><br><a href=\"http://localhost:8085/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
+		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>가입을 진심으로 축하드립니다.<br><br>아래 링크를 클릭하여 이메일 인증을 진행해주세요.<br><br><a href=\"http://localhost:8085/usr/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
 		
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
@@ -97,7 +97,7 @@ public class MemberService {
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>환영합니다!</h1>");
 		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
-		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>가입을 진심으로 축하드립니다.<br><br><a href=\"http://localhost:8085/home/main\" target=\"_blank\">%s 사이트로 이동하기</a></p>", siteName));
+		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>가입을 진심으로 축하드립니다.<br><br><a href=\"http://localhost:8085/usr/home/main\" target=\"_blank\">%s 사이트로 이동하기</a></p>", siteName));
 
 		mailService.send(email, mailTitle, mailBodySb.toString());
 	}
@@ -237,7 +237,6 @@ public class MemberService {
 
 	// 관리자 메뉴 - 회원 관리 (회원 권한 설정)
 	public void setMemberGrant(Map<String, Object> param) {
-		
 		
 		
 	}

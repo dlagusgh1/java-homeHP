@@ -58,20 +58,6 @@ public class AppConfig {
 
 		return false;
 	}
-	
-	public String getAttachmentFileInputDisplayName(String relTypeCode, int fileNo) {
-		switch ( relTypeCode ) {
-		case "applyment":
-			if ( fileNo == 1 ) {
-				return "해당 배역 1분 연기";
-			}
-			break;
-		}
-		
-		String name = "첨부 " + fileNo + " " + getAttachmentFileExtTypeDisplayName(relTypeCode, fileNo);
-		
-		return name;
-	}
 
 	public int getModifyAvailablePeriodSeconds() {
 		return 60 * 60 * 1;

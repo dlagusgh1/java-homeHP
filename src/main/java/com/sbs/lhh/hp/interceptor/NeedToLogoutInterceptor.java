@@ -21,7 +21,7 @@ public class NeedToLogoutInterceptor implements HandlerInterceptor {
 			if (isAjax == false) {
 				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().append("<script>");
-				response.getWriter().append("location.replace('/home/main');");
+				response.getWriter().append("location.replace('/usr/home/main');");
 				response.getWriter().append("</script>");
 			} else {
 				response.setContentType("application/json; charset=UTF-8");

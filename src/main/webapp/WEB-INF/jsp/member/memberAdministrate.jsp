@@ -13,7 +13,7 @@
 <h1 class="con flex-jc-c">회원 관리</h1>
 
 <div class="con flex-jc-c margin-bottom-10">
-	<a class="btn btn-info" href="/member/memberGrantLevel" onclick="window.open(this.href,'권한 설정', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">권한 설정하기</a>
+	<a class="btn btn-info" href="/adm/member/memberGrantLevel" onclick="window.open(this.href,'권한 설정', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">권한 설정하기</a>
 </div>
 
 <div class="table-box table-box-data memberManage-table-box con">
@@ -53,7 +53,7 @@
 							<c:if test="${member.delStatus}">
 								탈퇴
 							</c:if>
-							<c:if test="${article.displayStatus != true}">
+							<c:if test="${member.delStatus != true}">
 								정상
 							</c:if>
 							</td>

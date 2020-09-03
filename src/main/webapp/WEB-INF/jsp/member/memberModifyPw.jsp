@@ -61,7 +61,7 @@
 
 <div class="table-box table-box-vertical con form1">
 	<form method="POST" class="table-box con" action="doMemberModifyPw" onsubmit="MemberMemberModifyPwForm__submit(this); return false;">
-		<input type="hidden" name="redirectUri" value="/member/login">
+		<input type="hidden" name="redirectUri" value="/usr/member/login">
 		<input type="hidden" name="loginId" value="${loginedMember.loginId}">
 		<input type="hidden" name="loginPwReal">
 		<table>

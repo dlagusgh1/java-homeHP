@@ -29,13 +29,13 @@ public class MemberController {
 	private String siteName;
 	
 	// 이메일 인증 재 발송 기능
-	@RequestMapping("/member/reAuthEmail")
+	@RequestMapping("/usr/member/reAuthEmail")
 	private String reAuthEmail(HttpServletRequest request, Model model) {
 		Member loginedMember = (Member) request.getAttribute("loginedMember");
 		
 		memberService.reSendEmailAuthCode(loginedMember.getId(), loginedMember.getEmail());
 		
-		String redirectUri = "/member/checkPassword?redirectUri=%2Fmember%2FmyPage";
+		String redirectUri = "/usr/member/checkPassword?redirectUri=%2Fmember%2FmyPage";
 		model.addAttribute("redirectUri", redirectUri);
 		model.addAttribute("alertMsg", "인증 메일이 재 발송 되었습니다.\\n확인 후 이메일 인증 부탁드립니다.");
 
@@ -43,7 +43,7 @@ public class MemberController {
 	}
 	
 	// 이메일 인증 기능
-	@RequestMapping("/member/authEmail")
+	@RequestMapping("/usr/member/authEmail")
 	private String authCodeEmail(@RequestParam Map<String, Object> param, HttpServletRequest request, Model model) {
 		
 		String email = (String) param.get("email"); 
@@ -55,7 +55,7 @@ public class MemberController {
 		
 		// 이메일 인증 중복 방지
 		if ( emailAuthed != "" ) {
-			String redirectUri = "/home/main";
+			String redirectUri = "/usr/home/main";
 			model.addAttribute("redirectUri", redirectUri);
 			model.addAttribute("alertMsg", "이미 이메일 인증이 완료되었습니다.");
 
@@ -70,7 +70,7 @@ public class MemberController {
 		String mailAuthCode = memberService.getAuthCode(Integer.parseInt(memberId)); 
 		
 		if (isExistMemberId == false || isExistMemberEmail == false || mailAuthCode == null ) {
-			String redirectUri = "/member/checkPassword?redirectUri=%2Fmember%2FmyPage";
+			String redirectUri = "/usr/member/checkPassword?redirectUri=%2Fmember%2FmyPage";
 			model.addAttribute("redirectUri", redirectUri);
 			model.addAttribute("alertMsg", "이메일 인증에 사용되는 정보가 잘못되었습니다.");
 
@@ -79,7 +79,7 @@ public class MemberController {
 	
 		memberService.setEmailAuthed(Integer.parseInt(memberId), email);
 		
-		String redirectUri = "/member/login";
+		String redirectUri = "/usr/member/login";
 		model.addAttribute("redirectUri", redirectUri);
 		model.addAttribute("alertMsg", "이메일 인증이 완료되었습니다.");
 
@@ -88,13 +88,13 @@ public class MemberController {
 	}
 
 	// 회원가입
-	@RequestMapping("/member/join")
+	@RequestMapping("/usr/member/join")
 	public String join() {
 		return "member/join";
 	}
 
 	// 회원가입 기능
-	@RequestMapping("/member/doJoin")
+	@RequestMapping("/usr/member/doJoin")
 	public String doJoin(@RequestParam Map<String, Object> param, Model model) {
 		Util.changeMapKey(param, "loginPwReal", "loginPw");
 
@@ -118,7 +118,7 @@ public class MemberController {
 	}
 	
 	// 회원가입 진행 중 중복체크(AJAX)(아이디)
-	@RequestMapping("/member/getLoginIdDup")
+	@RequestMapping("/usr/member/getLoginIdDup")
 	@ResponseBody
 	public ResultData getLoginIdDup(@RequestParam Map<String, Object> param) {
 		
@@ -143,7 +143,7 @@ public class MemberController {
 	}
 	
 	// 회원가입 진행 중 중복체크(AJAX)(기관명)
-	@RequestMapping("/member/getOrganNameDup")
+	@RequestMapping("/usr/member/getOrganNameDup")
 	@ResponseBody
 	public ResultData getOrganNameDup(@RequestParam Map<String, Object> param) {
 		
@@ -165,7 +165,7 @@ public class MemberController {
 	}
 	
 	// 회원가입 진행 중 중복체크(AJAX)(이메일)
-	@RequestMapping("/member/getEmailDup")
+	@RequestMapping("/usr/member/getEmailDup")
 	@ResponseBody
 	public ResultData getEmailDup(@RequestParam Map<String, Object> param) {
 		
@@ -189,7 +189,7 @@ public class MemberController {
 	}
 	
 	// 회원가입 진행 중 중복체크(AJAX)(휴대전화번호)
-	@RequestMapping("/member/getCellPhoneNoDup")
+	@RequestMapping("/usr/member/getCellPhoneNoDup")
 	@ResponseBody
 	public ResultData getCellPhoneNoDup(@RequestParam Map<String, Object> param) {
 		
@@ -213,13 +213,13 @@ public class MemberController {
 	}
 
 	// 로그인 폼
-	@RequestMapping("/member/login")
+	@RequestMapping("/usr/member/login")
 	public String showLogin() {
 		return "member/login";
 	}
 
 	// 로그인 기능
-	@RequestMapping("/member/doLogin")
+	@RequestMapping("/usr/member/doLogin")
 	public String doLogin(String loginId, String loginPwReal, String redirectUri, Model model, HttpSession session, HttpServletRequest request) {
 		String loginPw = loginPwReal;
 		Member member = memberService.getMemberByLoginId(loginId);
@@ -254,7 +254,7 @@ public class MemberController {
 		if ( differenceDate > 30 ) {
 			model.addAttribute("alertMsg", "장기간 동일한 비밀번호를 사용중 입니다.\\n비밀번호 변경 부탁드립니다.");	
 			
-			redirectUri = "/member/checkPassword?redirectUri=%2Fmember%2FmemberModifyPw";
+			redirectUri = "/usr/member/checkPassword?redirectUri=%2Fmember%2FmemberModifyPw";
 			model.addAttribute("redirectUri", redirectUri);
 			
 			return "common/redirect";
@@ -263,14 +263,14 @@ public class MemberController {
 		if (useTempPassword.isSuccess()) {
 			model.addAttribute("alertMsg", "현재 임시 비밀번호를 사용 중 입니다.\\n비밀번호 변경 부탁드립니다.");
 			
-			redirectUri = "/member/checkPassword?redirectUri=%2Fmember%2FmemberModifyPw";
+			redirectUri = "/usr/member/checkPassword?redirectUri=%2Fmember%2FmemberModifyPw";
 			model.addAttribute("redirectUri", redirectUri);
 			
 			return "common/redirect";
 		}
 		
 		if (redirectUri == null || redirectUri.length() == 0) {
-			redirectUri = "/home/main";
+			redirectUri = "/usr/home/main";
 		}
 
 		model.addAttribute("redirectUri", redirectUri);
@@ -280,12 +280,12 @@ public class MemberController {
 	}
 
 	// 로그아웃 기능
-	@RequestMapping("/member/doLogout")
+	@RequestMapping("/usr/member/doLogout")
 	public String doLogout(HttpSession session, Model model, String redirectUri) {
 		session.removeAttribute("loginedMemberId");
 
 		if (redirectUri == null || redirectUri.length() == 0) {
-			redirectUri = "/home/main";
+			redirectUri = "/usr/home/main";
 		}
 
 		model.addAttribute("redirectUri", redirectUri);
@@ -293,13 +293,13 @@ public class MemberController {
 	}
 	
 	// 아이디 / 비밀번호 찾기 폼
-	@RequestMapping("member/findAccount")
+	@RequestMapping("/usr/member/findAccount")
 	public String findAccount() {
 		return "member/findAccount";
 	}
 	
 	// 아이디 찾기 기능
-	@RequestMapping("member/doFindId")
+	@RequestMapping("/usr/member/doFindId")
 	public String doFindId(@RequestParam Map<String, Object> param, Model model, String redirectUri) {
 		
 		Member member = memberService.getMemberByParam(param);
@@ -313,7 +313,7 @@ public class MemberController {
 		memberService.sendFindId(member);
 		
 		if (redirectUri == null || redirectUri.length() == 0) {
-			redirectUri = "/member/login";
+			redirectUri = "/usr/member/login";
 		}
 		
 		model.addAttribute("alertMsg", "등록하신 메일로 아이디가 전송되었습니다.\\n메일 확인 부탁드립니다.");
@@ -323,7 +323,7 @@ public class MemberController {
 	}
 
 	// 비밀번호 찾기(임시패스워드 발급)
-	@RequestMapping("member/doFindPw")
+	@RequestMapping("/usr/member/doFindPw")
 	public String doFindPw(@RequestParam Map<String, Object> param, Model model, String redirectUri) {
 		
 		Member member = memberService.getMemberByParam(param);
@@ -337,7 +337,7 @@ public class MemberController {
 		memberService.changeLoginPw(member);
 		
 		if (redirectUri == null || redirectUri.length() == 0) {
-			redirectUri = "/member/login";
+			redirectUri = "/usr/member/login";
 		}
 		
 		model.addAttribute("alertMsg", "등록하신 메일로 임시패스워드가 전송되었습니다.\\n메일 확인 부탁드립니다.");
@@ -347,7 +347,7 @@ public class MemberController {
 	}
 	
 	// 마이페이지
-	@RequestMapping("member/myPage")
+	@RequestMapping("/usr/member/myPage")
 	public String myPage(Model model, HttpServletRequest request) {
 		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
 		
@@ -360,7 +360,7 @@ public class MemberController {
 	}
 	
 	// 회원정보 수정 폼
-	@RequestMapping("member/memberModify")
+	@RequestMapping("/usr/member/memberModify")
 	public String memberModify(HttpSession session, Model model, HttpServletRequest request, String checkPasswordAuthCode) {
 		
 		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
@@ -382,7 +382,7 @@ public class MemberController {
 	}
 	
 	// 회원정보 수정 기능
-	@RequestMapping("member/doMemberModify")
+	@RequestMapping("/usr/member/doMemberModify")
 	public String doMemberModify(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUri) {
 		
 		memberService.memberModify(param);
@@ -396,13 +396,13 @@ public class MemberController {
 	}
 
 	// 비밀번호 수정 폼
-	@RequestMapping("member/memberModifyPw")
+	@RequestMapping("/usr/member/memberModifyPw")
 	public String memberModifyPw() {
 		return "member/memberModifyPw";
 	}
 	
 	// 비밀번호 수정 기능
-	@RequestMapping("member/doMemberModifyPw")
+	@RequestMapping("/usr/member/doMemberModifyPw")
 	public String doMemberModifyPw(@RequestParam Map<String, Object> param, HttpSession session, Model model, String redirectUri, HttpServletRequest request) {
 	
 		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
@@ -420,13 +420,13 @@ public class MemberController {
 	}
 	
 	// 비밀번호 확인 폼 연결(내정보/회원정보 변경/비밀번호 변경 전 확인)
-	@RequestMapping("/member/checkPassword")
+	@RequestMapping("usr//member/checkPassword")
 	public String checkPassword() {
 		return "member/passwordConfirm";
 	}
 	
 	// 비밀번호 확인 기능(내정보/회원정보 변경/비밀번호 변경 전 확인)
-	@RequestMapping("/member/doPasswordConfirm")
+	@RequestMapping("/usr/member/doPasswordConfirm")
 	public String doPasswordConfirm(@RequestParam Map<String, Object> param, Model model, HttpServletRequest request, String redirectUri) {
 		String loginPw = (String) param.get("loginPwReal");
 		Member loginedMember = (Member) request.getAttribute("loginedMember");
@@ -440,7 +440,7 @@ public class MemberController {
 		String authCode = memberService.genCheckPasswordAuthCode(loginedMember.getId());
 		
 		if (redirectUri == null || redirectUri.length() == 0) {
-			redirectUri = "/home/main";
+			redirectUri = "/usr/home/main";
 		}
 
 		redirectUri = Util.getNewUri(redirectUri, "checkPasswordAuthCode", authCode);
@@ -451,13 +451,13 @@ public class MemberController {
 	}
 	
 	// 회원 탈퇴 폼
-	@RequestMapping("member/memberDelete")
+	@RequestMapping("/usr/member/memberDelete")
 	public String memberDelete() {		
 		return "member/memberDelete";
 	}
 	
 	// 회원 탈퇴 기능
-	@RequestMapping("member/doMemberDelete")
+	@RequestMapping("/usr/member/doMemberDelete")
 	public String doMemberDelete(@RequestParam Map<String, Object> param, HttpSession session, Model model, HttpServletRequest request, String redirectUri) {
 		Member loginedMember = (Member) request.getAttribute("loginedMember");	
 		
@@ -473,14 +473,14 @@ public class MemberController {
 	
 
 	// 관리자 메뉴
-	@RequestMapping("/member/adminMenu")
+	@RequestMapping("/adm/member/adminMenu")
 	public String adminMenu(Model model) {
 			
 		return "member/adminMenu";
 	}
 	
 	// 관리자 메뉴 - 회원 관리
-	@RequestMapping("/member/memberAdministrate")
+	@RequestMapping("/adm/member/memberAdministrate")
 	public String memberManage(Model model) {
 		List<Member> members = memberService.getMemberList();
 
@@ -490,7 +490,7 @@ public class MemberController {
 	}
 	
 	// 관리자 메뉴 - 회원 관리(회원 복구)ajax
-	@RequestMapping("/member/doMemberRecoveryAjax")
+	@RequestMapping("/adm/member/doMemberRecoveryAjax")
 	@ResponseBody
 	public ResultData doMemberRecoveryAjax(Model model, String loginId, HttpServletRequest request) {
 		
@@ -512,7 +512,7 @@ public class MemberController {
 	}
 	
 	// 관리자 메뉴 - 회원 관리(탈퇴(숨기기))ajax
-	@RequestMapping("/member/doMemberDeleteAjax")
+	@RequestMapping("/adm/member/doMemberDeleteAjax")
 	@ResponseBody
 	public ResultData doMemberDeleteAjax(Model model, String loginId, HttpServletRequest request) {
 		
@@ -534,7 +534,7 @@ public class MemberController {
 	}
 	
 	// 관리자 메뉴 - 회원 관리(권한 설정 폼)
-	@RequestMapping("/member/memberGrantLevel")
+	@RequestMapping("/adm/member/memberGrantLevel")
 	public String memberGrantLevel(@RequestParam Map<String, Object> param, Model model, HttpServletRequest request) {
 		
 		List<Member> members = memberService.getMemberList();

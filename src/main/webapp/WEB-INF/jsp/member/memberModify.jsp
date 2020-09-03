@@ -79,7 +79,7 @@
 
 <!-- 회원 정보 변경 -->
 <form method="POST" class="table-box table-box-vertical con form1" action="doMemberModify" onsubmit="MemberMemberModifyForm__submit(this); return false;">
-	<input type="hidden" name="redirectUri" value="/member/login">
+	<input type="hidden" name="redirectUri" value="/usr/member/login">
 	<table>
 		<colgroup>
 			<col width="250">

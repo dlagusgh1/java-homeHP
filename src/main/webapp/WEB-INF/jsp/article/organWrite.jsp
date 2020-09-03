@@ -12,7 +12,7 @@
 <h1 class="con flex-jc-c">기관 정보 등록</h1>
 <div class="con flex-jc-c" style="margin-bottom: 5px; font-size: 1rem;">
 	<button class="btn btn-primary">
-		<a href="/article/searchMap" onclick="window.open(this.href,'지도 검색', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">지도 검색하기</a>
+		<a href="/adm/article/searchMap" onclick="window.open(this.href,'지도 검색', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">지도 검색하기</a>
 	</button>
 </div>
 
@@ -42,11 +42,20 @@
 			return;
 		}
 
-		form.orgamLocation.value = form.orgamLocation.value.trim();
+		form.organLocation1.value = form.organLocation1.value.trim();
 
-		if (form.orgamLocation.value.length == 0) {
-			form.orgamLocation.focus();
-			alert('주소의 좌표를 입력해주세요.');
+		if (form.organLocation1.value.length == 0) {
+			form.organLocation1.focus();
+			alert('주소의 위도(좌표)를 입력해주세요.');
+
+			return;
+		}
+
+		form.organLocation2.value = form.organLocation2.value.trim();
+
+		if (form.organLocation2.value.length == 0) {
+			form.organLocation2.focus();
+			alert('주소의 경도(좌표)를 입력해주세요.');
 
 			return;
 		}
@@ -126,20 +135,8 @@
 
 </script>
 
-<!-- 
- == Organization info == 
- 기관 구분 선택(병원/약국)
- 기관명 : 엔케이(NK) 세종 병원
- 기관 주소 : 세종 한누리대로 161
- 행정 주소 선택(동/면) : (나성동)
- 전화 번호 : 044-850-7700
- 진료 시간 : 24시간
- 주말운영여부 : 토요일 / 일요일 운영
- 비고 : 응급실 운영기관
- -->
-
 <form method="POST" class="table-box table-box-vertical con form1" action="doOrganWrite" onsubmit="OrganWriteForm__submit(this); return false;">
-	<input type="hidden" name="redirectUri" value="/home/main">
+	<input type="hidden" name="redirectUri" value="/usr/home/main">
 	<table>
 		<colgroup>
 			<col width="250">
@@ -166,10 +163,18 @@
 				</td>
 			</tr>
 			<tr>
-				<th>좌표</th>
+				<th>위도</th>
 				<td>
 					<div class="form-control-box">
-						<input type="text" placeholder="위도, 경도(좌표)를 입력해주세요. " name="orgamLocation" maxlength="30" />
+						<input type="text" placeholder="위도(좌표)를 입력해주세요. " name="organLocation1" maxlength="30" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>경도</th>
+				<td>
+					<div class="form-control-box">
+						<input type="text" placeholder="경도(좌표)를 입력해주세요. " name="organLocation2" maxlength="30" />
 					</div>
 				</td>
 			</tr>

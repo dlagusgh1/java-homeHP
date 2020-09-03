@@ -21,7 +21,7 @@
 		<h1 class="con flex-jc-c">${board.name} 사항</h1>
 	</c:when>
 	<c:otherwise>
-		<h1 class="con flex-jc-c">${board.name} 게시물 리스트</h1>
+		<h1 class="con flex-jc-c">${board.name} 게시판</h1>
 	</c:otherwise>
 </c:choose>
 
@@ -53,7 +53,7 @@
 					<tr>
 						<td><a>${article.id}</a></td>
 						<td>
-							<a href="${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
+							<a href="/usr${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
 						</td>	
 						<td class="writer">${article.extra.writer}</td>	
 						<td><a>${article.regDate}</a></td>							

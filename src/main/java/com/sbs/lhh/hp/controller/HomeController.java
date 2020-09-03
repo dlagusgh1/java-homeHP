@@ -16,7 +16,7 @@ public class HomeController {
 	@Autowired
 	private ArticleService articleService;
 	
-	@RequestMapping("/home/main")
+	@RequestMapping("/usr/home/main")
 	public String showMain(Model model) {
 		
 		int limit = 5;

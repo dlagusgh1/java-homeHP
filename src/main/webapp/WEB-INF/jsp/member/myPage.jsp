@@ -12,7 +12,7 @@
 
 <div class="mypage-box con flex-jc-c">
 	<form method="POST" class="table-box con" action="myPage">
-		<input type="hidden" name="redirectUri" value="/home/main">
+		<input type="hidden" name="redirectUri" value="/usr/home/main">
 		<table>
 			<colgroup>
 				<col width="250">
@@ -77,7 +77,7 @@
 					<tr>
 						<th>인증 메일 발송</th>
 						<td>
-							<button class="btn"><a href="/member/reAuthEmail" style="width:120px;">인증메일 재 발송</a></button>
+							<button class="btn"><a href="/usr/member/reAuthEmail" style="width:120px;">인증메일 재 발송</a></button>
 						</td>
 					</tr>
 				</c:if>
@@ -92,14 +92,14 @@
 				<tr>
 					<th>회원정보 변경</th>
 					<td>
-						<button class="btn btn-primary" type="button"><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/memberModify')}">회원정보 변경</a></button>
-						<button class="btn btn-primary" type="button"><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/memberModifyPw')}">비밀번호 변경</a></button>
+						<button class="btn btn-primary" type="button"><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/memberModify')}">회원정보 변경</a></button>
+						<button class="btn btn-primary" type="button"><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/memberModifyPw')}">비밀번호 변경</a></button>
 					</td>
 				</tr>
 				<tr>
 					<th>회원 탈퇴</th>
 					<td>
-						<button class="btn btn-primary" type="button"><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/memberDelete')}">회원탈퇴</a></button>
+						<button class="btn btn-primary" type="button"><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/memberDelete')}">회원탈퇴</a></button>
 					</td>
 				</tr>
 			</tbody>

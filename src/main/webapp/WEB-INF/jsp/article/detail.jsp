@@ -11,7 +11,7 @@
 <!-- 토스트 UI -->
 <%@ include file="/WEB-INF/jsp/part/toastUiEditor.jspf"%>
 
-<h1 class="con flex-jc-c">${board.name} 게시물 상세내용</h1>
+<h1 class="con flex-jc-c">${board.name} 게시판 상세내용</h1>
 	
 <div class="article-detail-box table-box table-box-vertical con">
 	<table>
@@ -47,12 +47,12 @@
 						<td>
 							<c:if test="${file.fileExtTypeCode == 'video'}">
 								<div class="video-box">
-									<video controls src="/file/streamVideo?id=${file.id}&updateDate=${file.updateDate}"></video>
+									<video controls src="/usr/file/streamVideo?id=${file.id}&updateDate=${file.updateDate}"></video>
 								</div>
 							</c:if>
 							<c:if test="${file.fileExtTypeCode == 'img'}">
 								<div class="img-box img-box-auto">
-									<img src="/file/img?id=${file.id}&updateDate=${file.updateDate}" alt="" />
+									<img src="/usr/file/img?id=${file.id}&updateDate=${file.updateDate}" alt="" />
 								</div>
 							</c:if>
 						</td>

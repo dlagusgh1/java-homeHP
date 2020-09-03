@@ -50,7 +50,7 @@ public class FileController {
 		}
 	});
 
-	@RequestMapping(value = "/file/img", method = RequestMethod.GET)
+	@RequestMapping(value = "/usr/file/img", method = RequestMethod.GET)
 	public void showImg(HttpServletResponse response, int id) throws IOException {
 
 		File file = Util.getCacheData(fileCache, id);
@@ -72,7 +72,7 @@ public class FileController {
 		IOUtils.copy(in, response.getOutputStream());
 	}
 
-	@RequestMapping(value = "/file/tempImg", method = RequestMethod.GET)
+	@RequestMapping(value = "/usr/file/tempImg", method = RequestMethod.GET)
 	public void showTempImg(HttpServletResponse response, int id) throws IOException {
 
 		File file = Util.getCacheData(fileCache, id);
@@ -94,14 +94,14 @@ public class FileController {
 		IOUtils.copy(in, response.getOutputStream());
 	}
 
-	@RequestMapping("/file/streamVideo")
+	@RequestMapping("/usr/file/streamVideo")
 	public ResponseEntity<byte[]> streamVideo(@RequestHeader(value = "Range", required = false) String httpRangeList, int id) {
 		File file = Util.getCacheData(fileCache, id);
 
 		return videoStreamService.prepareContent(new ByteArrayInputStream(file.getBody()), file.getFileSize(), file.getFileExt(), httpRangeList);
 	}
 
-	@RequestMapping("/file/doUploadEditorBlobAjax")
+	@RequestMapping("/usr/file/doUploadEditorBlobAjax")
 	@ResponseBody
 	public ResultData uploadEditorBlobAjax(@RequestParam Map<String, Object> param, HttpServletRequest req, MultipartRequest multipartRequest) {
 
@@ -155,7 +155,7 @@ public class FileController {
 		return new ResultData("S-1", String.format("%d개의 파일을 저장했습니다.", fileIds.size()), rsDataBody);
 	}
 
-	@RequestMapping("/file/doUploadAjax")
+	@RequestMapping("/usr/file/doUploadAjax")
 	@ResponseBody
 	public ResultData uploadAjax(@RequestParam Map<String, Object> param, HttpServletRequest req, MultipartRequest multipartRequest) {
 		

@@ -38,7 +38,7 @@
 						<tr>
 							<td><a>${article.id}</a></td>
 							<td>
-								<a href="${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
+								<a href="/usr${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
 							</td>	
 							<td class="writer">${article.extra.writer}</td>	
 							<td><a>${article.regDate}</a></td>	

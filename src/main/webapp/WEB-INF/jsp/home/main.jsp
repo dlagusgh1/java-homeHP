@@ -8,7 +8,7 @@
 <c:set var="pageTitle" value="당직 의료기관 찾기" />
 <%@ include file="../part/head.jspf"%>
 
-<h1 class="con flex-jc-c">우리동네 당직 의료기관 찾기</h1>
+<h1 class="con flex-jc-c"><a href="/usr/article/kakaoMap">우리동네 당직 의료기관 찾기</a></h1>
 
 <div class="main-img-box con flex-jc-c">
 	<div class="main-img">
@@ -42,7 +42,7 @@
 					<tr>
 						<td><a>${article.id}</a></td>
 						<td>
-							<a href="${article.getDetailLink('notice')}">${article.forPrintTitle}</a>
+							<a href="/usr${article.getDetailLink('notice')}">${article.forPrintTitle}</a>
 						</td>	
 						<td class="writer">${article.extra.writer}</td>	
 						<td><a>${article.regDate}</a></td>							

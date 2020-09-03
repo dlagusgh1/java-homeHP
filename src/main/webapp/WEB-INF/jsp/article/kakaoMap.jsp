@@ -9,7 +9,7 @@
 <c:set var="pageTitle" value="병원/약국 찾기" />
 <%@ include file="../part/head.jspf"%>
 
-<h1 class="con flex-jc-c">당직 병원 / 약국 찾기</h1>
+<h1 class="con flex-jc-c"><a href="kakaoMap_HP">당직 병원 /</a>&nbsp<a href="kakaoMap_PM">약국 찾기</a></h1>
 
 <div class="cateItem con flex-jc-c">
 	<select name="cateItemName" id="cateItem" onchange="if(this.value) location.href=(this.value);">

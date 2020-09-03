@@ -29,7 +29,7 @@ public class ArticleController {
 	private ArticleService articleService;
 
 	// 카카오맵(기본-병원/약국)
-	@RequestMapping("/article/kakaoMap")
+	@RequestMapping("/usr/article/kakaoMap")
 	public String kakaoMap(Model model) {
 
 		List<AdCateItem> adCateItems = articleService.getAdCateItem();
@@ -52,7 +52,7 @@ public class ArticleController {
 	}
 
 	// 카카오맵(전체)
-	@RequestMapping("/article/kakaoMap_All")
+	@RequestMapping("/usr/article/kakaoMap_All")
 	public String kakaoMap_All(Model model) {
 
 		List<AdCateItem> adCateItems = articleService.getAdCateItem();
@@ -75,7 +75,7 @@ public class ArticleController {
 	}
 
 	// 카카오맵(병원)
-	@RequestMapping("/article/kakaoMap_HP")
+	@RequestMapping("/usr/article/kakaoMap_HP")
 	public String kakaoMap_HP(Model model) {
 
 		List<AdCateItem> adCateItems = articleService.getAdCateItem();
@@ -98,7 +98,7 @@ public class ArticleController {
 	}
 
 	// 카카오맵(약국)
-	@RequestMapping("/article/kakaoMap_PM")
+	@RequestMapping("/usr/article/kakaoMap_PM")
 	public String kakaoMap_PM(Model model) {
 
 		List<AdCateItem> adCateItems = articleService.getAdCateItem();
@@ -121,7 +121,7 @@ public class ArticleController {
 	}
 	
 	// 관리자 메뉴 - 게시물 관리(게시물 숨기기)ajax
-	@RequestMapping("/article/doHideArticleAjax")
+	@RequestMapping("/adm/article/doHideArticleAjax")
 	@ResponseBody
 	public ResultData doHideArticleAjax(int id, HttpServletRequest request) {
 		
@@ -131,7 +131,7 @@ public class ArticleController {
 	}
 	
 	// 관리자 메뉴 - 게시물 관리(게시물 보이기(노출))ajax
-	@RequestMapping("/article/doShowArticleAjax")
+	@RequestMapping("/adm/article/doShowArticleAjax")
 	@ResponseBody
 	public ResultData doShowArticleAjax(int id, HttpServletRequest request) {
 		
@@ -141,7 +141,7 @@ public class ArticleController {
 	}
 	
 	// 관리자 메뉴 - 게시물 관리
-	@RequestMapping("/article/{boardCode}articleAdministrate")
+	@RequestMapping("/adm/article/{boardCode}articleAdministrate")
 	public String articleManage(Model model) {
 		Board board = articleService.getBoardByCode("free");
 		model.addAttribute("board", board);
@@ -154,21 +154,21 @@ public class ArticleController {
 	}
 	
 	// 기관 등록 시 카카오맵 검색 기능
-	@RequestMapping("/article/searchMap")
+	@RequestMapping("/adm/article/searchMap")
 	public String searchMap(Model model) {
 
 		return "article/searchMap";
 	}
 
 	// 응급처치
-	@RequestMapping("/article/firstAid")
+	@RequestMapping("/usr/article/firstAid")
 	public String firstAid(Model model) {
 
 		return "article/firstAid";
 	}
 	
 	// 기관(병원/약국) 정보 수정요청 폼
-	@RequestMapping("/article/organModify")
+	@RequestMapping("/usr/article/organModify")
 	public String organModify(Model model) {
 
 		List<CateItem> cateItems = articleService.getCateItem();
@@ -179,7 +179,7 @@ public class ArticleController {
 	}
 	
 	// 기관(병원/약국) 정보 수정 기능
-	@RequestMapping("/article/doOrganModify")
+	@RequestMapping("/usr/article/doOrganModify")
 	public String doOrganModify(@RequestParam Map<String, Object> param, Model model, String redirectUri) {
 
 		articleService.organModify(param);
@@ -191,7 +191,7 @@ public class ArticleController {
 	}
 
 	// 기관(병원/약국) 추가 폼
-	@RequestMapping("/article/organWrite")
+	@RequestMapping("/adm/article/organWrite")
 	public String organWrite(Model model) {
 
 		List<CateItem> cateItems = articleService.getCateItem();
@@ -202,7 +202,7 @@ public class ArticleController {
 	}
 
 	// 기관(병원/약국) 추가 기능
-	@RequestMapping("/article/doOrganWrite")
+	@RequestMapping("/adm/article/doOrganWrite")
 	public String doOrganWrite(@RequestParam Map<String, Object> param, Model model, String redirectUri,
 			HttpServletRequest request) {
 
@@ -217,7 +217,7 @@ public class ArticleController {
 	}
 
 	// 게시물 리스트(자유/공지)
-	@RequestMapping("/article/{boardCode}-list")
+	@RequestMapping("/usr/article/{boardCode}-list")
 	public String showList(Model model, @PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
@@ -230,7 +230,7 @@ public class ArticleController {
 	}
 
 	// 게시물 상세보기
-	@RequestMapping("/article/{boardCode}-detail")
+	@RequestMapping("/usr/article/{boardCode}-detail")
 	public String showDetail(Model model, @RequestParam Map<String, Object> param, HttpServletRequest req,
 			@PathVariable("boardCode") String boardCode, String listUrl) {
 		if (listUrl == null) {
@@ -253,7 +253,7 @@ public class ArticleController {
 	}
 
 	// 게시물 작성 폼
-	@RequestMapping("/article/{boardCode}-write")
+	@RequestMapping("/usr/article/{boardCode}-write")
 	public String showWrite(@PathVariable("boardCode") String boardCode, Model model, String listUrl) {
 		if (listUrl == null) {
 			listUrl = "./" + boardCode + "-list";
@@ -271,7 +271,7 @@ public class ArticleController {
 	}
 
 	// 게시물 작성 기능
-	@RequestMapping("/article/{boardCode}-doWrite")
+	@RequestMapping("/usr/article/{boardCode}-doWrite")
 	public String doWrite(@RequestParam Map<String, Object> param, HttpServletRequest req, @PathVariable("boardCode") String boardCode, Model model) {
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
@@ -289,7 +289,7 @@ public class ArticleController {
 	}
 
 	// 게시물 수정 폼
-	@RequestMapping("/article/{boardCode}-modify")
+	@RequestMapping("/usr/article/{boardCode}-modify")
 	public String showModify(Model model, @RequestParam Map<String, Object> param, HttpServletRequest req,
 			@PathVariable("boardCode") String boardCode, String listUrl) {
 		model.addAttribute("listUrl", listUrl);
@@ -308,7 +308,7 @@ public class ArticleController {
 	}
 
 	// 게시물 수정 기능
-	@RequestMapping("/article/{boardCode}-doModify")
+	@RequestMapping("/usr/article/{boardCode}-doModify")
 	public String doModify(@RequestParam Map<String, Object> param, HttpServletRequest req, int id,
 			@PathVariable("boardCode") String boardCode, Model model) {
 		Board board = articleService.getBoardByCode(boardCode);
@@ -334,7 +334,7 @@ public class ArticleController {
 	}
 
 	// 게시물 삭제 기능
-	@RequestMapping("/article/{boardCode}-doDelete")
+	@RequestMapping("/usr/article/{boardCode}-doDelete")
 	public String doDelete(@RequestParam Map<String, Object> param, HttpServletRequest req, int id,
 			@PathVariable("boardCode") String boardCode, Model model) {
 		Board board = articleService.getBoardByCode(boardCode);

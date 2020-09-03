@@ -32,22 +32,22 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 		// 로그인 '없이'도 접속할 수 있는 URI 전부 기술
 		registry.addInterceptor(needToLoginInterceptor).addPathPatterns("/**").excludePathPatterns("/")
-				.excludePathPatterns("/resource/**").excludePathPatterns("/home/main")
-				.excludePathPatterns("/member/login").excludePathPatterns("/member/doLogin")
-				.excludePathPatterns("/member/join").excludePathPatterns("/member/doJoin")
-				.excludePathPatterns("/article/*-list").excludePathPatterns("/article/*-detail")
-				.excludePathPatterns("/article/kakaoMap").excludePathPatterns("/member/findAccount")
-				.excludePathPatterns("/member/doFindId").excludePathPatterns("/member/doFindPw")
-				.excludePathPatterns("/home/main").excludePathPatterns("/article/kakaoMap_All")
-				.excludePathPatterns("/article/firstAid").excludePathPatterns("/article/kakaoMap_HP")
-				.excludePathPatterns("/article/kakaoMap_PM").excludePathPatterns("/member/getLoginIdDup")
-				.excludePathPatterns("/member/getOrganNameDup").excludePathPatterns("/member/getEmailDup")
-				.excludePathPatterns("/member/getCellPhoneNoDup").excludePathPatterns("/member/authEmail");;
+				.excludePathPatterns("/resource/**").excludePathPatterns("/usr/home/main")
+				.excludePathPatterns("/usr/member/login").excludePathPatterns("/usr/member/doLogin")
+				.excludePathPatterns("/usr/member/join").excludePathPatterns("/usr/member/doJoin")
+				.excludePathPatterns("/usr/article/*-list").excludePathPatterns("/usr/article/*-detail")
+				.excludePathPatterns("/usr/article/kakaoMap").excludePathPatterns("/usr/member/findAccount")
+				.excludePathPatterns("/usr/member/doFindId").excludePathPatterns("/usr/member/doFindPw")
+				.excludePathPatterns("/usr/article/kakaoMap_All").excludePathPatterns("/usr/article/firstAid")
+				.excludePathPatterns("/usr/article/kakaoMap_HP").excludePathPatterns("/usr/article/kakaoMap_PM")
+				.excludePathPatterns("/usr/member/getLoginIdDup").excludePathPatterns("/usr/member/getOrganNameDup")
+				.excludePathPatterns("/usr/member/getEmailDup").excludePathPatterns("/usr/member/getCellPhoneNoDup")
+				.excludePathPatterns("/usr/member/authEmail");
 
 		// 로그인 상태에서 접속할 수 '없는' URI 전부 기술
-		registry.addInterceptor(needToLogoutInterceptor).addPathPatterns("/member/login")
-				.addPathPatterns("/member/doLogin").addPathPatterns("/member/join")
-				.addPathPatterns("/member/doJoin");
+		registry.addInterceptor(needToLogoutInterceptor).addPathPatterns("/usr/member/login")
+				.addPathPatterns("/usr/member/doLogin").addPathPatterns("/usr/member/join")
+				.addPathPatterns("/usr/member/doJoin");
 
 	}
 }
