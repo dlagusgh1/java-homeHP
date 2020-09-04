@@ -8,16 +8,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sbs.lhh.hp.dto.Article;
-import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.service.ArticleService;
+import com.sbs.lhh.hp.service.CrawlingService;
 
 @Controller
 public class HomeController {
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private CrawlingService crawlingService;
 	
 	@RequestMapping("/usr/home/main")
 	public String showMain(Model model) {
+		
+		crawlingService.getCrawling();
 		
 		int limit = 5;
 		
