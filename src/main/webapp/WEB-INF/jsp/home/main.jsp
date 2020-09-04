@@ -47,7 +47,7 @@
 						<td class="writer">${article.extra.writer}</td>	
 						<td><a>${article.regDate}</a></td>							
 						<td class="visible-on-sm-down">
-                        <a href="${article.getDetailLink('notice')}" class="flex flex-row-wrap flex-ai-c">
+                        <a href="/usr${article.getDetailLink('notice')}" class="flex flex-row-wrap flex-ai-c">
                             <span class="badge badge-primary bold margin-right-10">${article.id}</span>
                             <div class="title flex-1-0-0 text-overflow-el">${article.forPrintTitle}</div>
                             <div class="width-100p"></div>
