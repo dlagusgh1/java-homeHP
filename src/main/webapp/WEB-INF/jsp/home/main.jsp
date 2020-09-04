@@ -19,6 +19,42 @@
 	</div>
 </div>
 
+<h3 class="con">세종시 COVID-19 현황</h3>
+<div class="main-covid19-box con flex-jc-c margin-top-10">
+	<div class="covid19-counter">
+		<div class="box1">
+			<span class="box-head">확진 / 완치 / 격리</span>
+			<span class="data">
+				<span>확진자</span>
+				<em>- 명</em>
+			</span>
+			<span class="data">
+				<span>완치자</span>
+				<em>- 명</em>
+			</span>
+			<span class="data">
+				<span>격리자</span>
+				<em>- 명</em>
+			</span>
+		</div>	
+		<div class="box2">
+			<span class="box-head">검사 / 자가격리</span>
+			<span class="data">
+				<span>전일검사자</span>
+				<em>- 명</em>
+			</span>
+			<span class="data">
+				<span>금일검사자</span>
+				<em>- 명</em>
+			</span>
+			<span class="data">
+				<span>자가격리자</span>
+				<em>- 명</em>
+			</span>
+		</div>	
+	</div>
+</div>
+
 <h3 class="main-article-h con">공지사항</h3>
 <div class="table-box table-box-data con">
 	<table>
