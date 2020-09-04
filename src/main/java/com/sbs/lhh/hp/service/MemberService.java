@@ -59,6 +59,7 @@ public class MemberService {
 	public void sendEmailAuthCode(int actorId, String email) {
 		String authCode = UUID.randomUUID().toString();
 		
+		// emailAuthCode : 개인별 이메일 인증 코드
 		attrService.setValue("member__" + actorId + "__extra__emailAuthCode", authCode, Util.getDateStrLater(60 * 60));	
 		
 		String mailTitle = String.format("[%s] 이메일 인증", siteName);
@@ -73,6 +74,7 @@ public class MemberService {
 	
 	// 이메일이 인증되었는지 attr에서 인증된 메일정보 가져오기
 	public String getAuthCodeEmail(int memberId) {
+		// emailAuthed 이메일 인증여부( 인증 완료 시 attr에 인증된 이메일이 value 값으로 저장 된다. )
 		String authCodeEmail = attrService.getValue("member__" + memberId + "__extra__emailAuthed");
 		
 		return authCodeEmail;
@@ -189,6 +191,7 @@ public class MemberService {
 	// 정보변경(회원정보, 비밀번호) 등 진행 시 비밀번호 확인 attr 저장
 	public String genCheckPasswordAuthCode(int actorId) {
 		String authCode = UUID.randomUUID().toString();
+		// modifyPrivateAuthCode ( 회원정보 변경 시 변경 attr에 변경일자 등이 등록된다. )
 		attrService.setValue("member__" + actorId + "__extra__modifyPrivateAuthCode", authCode, Util.getDateStrLater(60 * 60));
 
 		return authCode;

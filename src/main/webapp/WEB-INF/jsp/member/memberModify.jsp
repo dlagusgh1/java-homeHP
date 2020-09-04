@@ -65,7 +65,7 @@
 
 			return;
 		}
-
+		
 		if (isCellphoneNo(form.cellphoneNo.value) == flase) {
 			form.cellphoneNo.focus();
 			alert('휴대전화번호를 정확히 입력해주세요.');
