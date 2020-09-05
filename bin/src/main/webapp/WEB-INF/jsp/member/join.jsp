@@ -275,7 +275,7 @@
 
 
 <form method="POST" class="table-box table-box-vertical con form1" action="doJoin" onsubmit="MemberJoinForm__submit(this); return false;">
-	<input type="hidden" name="redirectUri" value="/member/login">
+	<input type="hidden" name="redirectUri" value="/usr/member/login">
 	<input type="hidden" name="loginPwReal">
 	<table>
 		<colgroup>

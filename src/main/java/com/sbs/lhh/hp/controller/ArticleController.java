@@ -21,12 +21,15 @@ import com.sbs.lhh.hp.dto.Member;
 import com.sbs.lhh.hp.dto.Organ;
 import com.sbs.lhh.hp.dto.ResultData;
 import com.sbs.lhh.hp.service.ArticleService;
+import com.sbs.lhh.hp.service.CrawlingService;
 import com.sbs.lhh.hp.util.Util;
 
 @Controller
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private CrawlingService crawlingService;
 
 	// 카카오맵(기본-병원/약국)
 	@RequestMapping("/usr/article/kakaoMap")

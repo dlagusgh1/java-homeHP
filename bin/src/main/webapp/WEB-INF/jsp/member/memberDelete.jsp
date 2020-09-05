@@ -46,7 +46,7 @@
 
 <!-- 회원 탈퇴 -->
 <form method="POST" class="table-box table-box-vertical  con form1" action="doMemberDelete" onsubmit="MemberDeleteForm__submit(this); return false;">
-	<input type="hidden" name="redirectUri" value="/home/main">
+	<input type="hidden" name="redirectUri" value="/usr/home/main">
 	<table>
 		<colgroup>
 			<col width="250">

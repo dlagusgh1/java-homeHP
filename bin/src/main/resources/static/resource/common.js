@@ -30,6 +30,7 @@ function jq_attr($el, attrName, elseValue) {
 }
 
 function isCellphoneNo(str) {
+	// 핸드폰 번호 첫자리가 0이 아닌 숫자가 오는 경우
 	if ( str.substr(0, 1) != '0' ) {
 		return false;
 	}

@@ -44,18 +44,14 @@
 
 	<select id="getArticleById" resultType="Article">
 		SELECT *
-		FROM
-		article
-		WHERE
-		id = #{id}
+		FROM article
+		WHERE id = #{id}
 	</select>
 
 	<select id="getBoardByCode" resultType="Board">
 		SELECT *
-		FROM
-		board
-		WHERE
-		`code` = #{code}
+		FROM board
+		WHERE `code` = #{code}
 	</select>
 
 	<insert id="write" useGeneratedKeys="true" keyProperty="id">

@@ -9,7 +9,7 @@
 <c:set var="pageTitle" value="병원/약국 찾기" />
 <%@ include file="../part/head.jspf"%>
 
-<h1 class="con flex-jc-c">당직 병원 / 약국 찾기</h1>
+<h1 class="con flex-jc-c"><a href="kakaoMap_HP">당직 병원 /</a>&nbsp<a href="kakaoMap_PM">약국 찾기</a></h1>
 
 <div class="cateItem con flex-jc-c">
 	<select name="cateItemName" id="cateItem" onchange="if(this.value) location.href=(this.value);">
@@ -21,7 +21,7 @@
 	</select>
 </div>
 
-<!-- 행정구역(동/면) 리스트 -->
+<!-- 행정구역(동/면) 리스트(administrativeDistrict) -->
 <div class="administrative-district con">
 	<nav>
 		<div>
@@ -29,14 +29,20 @@
 			<select name="adCateItemName" id="adCateItem" onchange="administrative(this.value)">
 				<option>행정구역 선택</option>
 				<c:forEach items="${adCateItems}" var="adCateItem">
-					<option value="${adCateItem.name}" style="height: 50px;">${adCateItem.name}</option>
+					<c:set var="count" value="0" />
+					<c:forEach items="${organes}" var="organ">
+						<c:if test="${organ.organAdmAddress == adCateItem.name && count == 0}">
+							<option value="${adCateItem.name}" style="height: 50px;">${adCateItem.name}</option>
+							<c:set var="count" value="${count + 1}" />
+						</c:if>
+					</c:forEach>
 				</c:forEach>
 			</select>
 		</div>
 	</nav>
 </div>
 
-<!-- 병원 목록 -->
+<!-- 병원 목록(organization) -->
 <div class="kakaoMap-box con flex-jc-c margin-bottom-20">
 	<div class="kakaoMap con" id="map"></div>
 	<div class="kakaoMap-info con">
@@ -71,8 +77,8 @@
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(36.478631, 127.270530), // 지도의 중심좌표
-        level: 7, // 지도의 확대 레벨
+        center: new kakao.maps.LatLng(36.533672, 127.270254), // 지도의 중심좌표
+        level: 8, // 지도의 확대 레벨
         mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
     }; 
     
@@ -131,7 +137,7 @@
 			</c:forEach>
 		];
 
-	// select박스 onchange로 넘겨받은 값
+	// select박스 onchange로 넘겨받은 행정구역 값에 해당하는 마커 생성
 	function administrative(adCateItemName) {
 
 		// 클러스터 지우기
@@ -140,78 +146,6 @@
 		removeMarker();
 
 		var adCateName = adCateItemName;
-		
-		/* 시도1)
-		선택된데이터 = [
-			<c:forEach var="i" begin="0" items="데이터.length" step="1">
-				<c:if test="adCateName == 데이터[i][3]">
-					[데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3]]
-				</c:if>
-			</c:forEach>
-		];*/	
-		//console.log("데이터[0][0] : " + 데이터[0][0]);
-		//console.log("데이터[0][1] : " + 데이터[0][1]);
-		//console.log("데이터[0][2] : " + 데이터[0][2]);
-		//console.log("데이터[0][3] : " + 데이터[0][3]);
-		
-		/* 시도2)
-		for ( var i = 0; i < 데이터.length; i++ ) {
-		<c:set var="organAdmAddress" value="데이터[i][3]" />
-			<c:set var="administrativeCateName" value="adCateName" />		
-			
-			<c:if test="${organAdmAddress eq administrativeCateName}">
-				console.log( "organAdmAddress : " + ${organAdmAddress}),
-				console.log( "adCateName : " + ${administrativeCateName}),
-			  	[ 데이터[i][0], 데이터[i][1], 데이터[i][2], 데이터[i][3] ], 
-				console.log( i + "번 선택된데이터 확인 : " + 선택된데이터);
-			</c:if>
-		}
-		*/
-		/* 시도3)
-		var x = 0;
-		for ( var i = 0; i < 데이터.length; i++ ) {
-
-			if (adCateName == 데이터[i][3]) {
-				x++;
-			}
-		}
-	
-		for ( var i = 0; i < 데이터.length; i++ ) {
-
-			if (adCateName == 데이터[i][3]) {
-				// 2, 25
-				//console.log(i + "(adCateName == 데이터[i][3]) : " + (adCateName == 데이터[i][3]));
-				var 선택된데이터 = [ 
- 					<c:forEach var="k" begin="0" items="x" step="1">
-						[ 	
-							데이터[i][0], 
-							데이터[i][1], 
-							데이터[i][2],
-							데이터[i][3] 
-						], 
- 					</c:forEach>
-				];
-
-				
-				console.log(i + "번 내부 선택데이터 : " + 선택된데이터);
-			}			
-		}
-		*/
-
-		/* 시도4)
-		var 선택된데이터 = [		
-			<c:forEach items="${organes}" var="organ">
-				<c:if test="${organ.organAdmAddress == adCateName}">
-				[
-					${organ.organLocation1}, 
-					${organ.organLocation2}, 
-					'<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress}</nav><nav>행정구역 : (${organ.organAdmAddress}) / 전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', 
-					'${organ.organAdmAddress}'
-				],
-				</c:if>
-			</c:forEach>
-		];
-		*/
 
 		var arr = [];
 		var x = 0;
@@ -222,53 +156,27 @@
 				x++;
 			}
 		}
-		
-		console.log("x 확인 : " + x);
-		console.log("arr 확인 : " + arr); // 2, 25
-		console.log("arr[0] 확인 : " + arr[0]);
-		console.log("arr[1] 확인 : " + arr[1]);
-		// 2일때 담고있는 값 출력됨
-		console.log("======= for문 전 확인 시작 =======");
-		console.log("데이터[arr[0]][0] 확인 : " + 데이터[arr[0]][0]);
-		console.log("데이터[arr[0]][1] 확인 : " + 데이터[arr[0]][1]);
-		console.log("데이터[arr[0]][2] 확인 : " + 데이터[arr[0]][2]);
 
-		// 25일때 담고있는 값 출력됨
-		console.log("데이터[arr[1]][0] 확인 : " + 데이터[arr[1]][0]);
-		console.log("데이터[arr[1]][1] 확인 : " + 데이터[arr[1]][1]);
-		console.log("데이터[arr[1]][2] 확인 : " + 데이터[arr[1]][2]);
-		console.log("======= for문 전 확인 끝 =======");
-		
-		var 선택된데이터 = [[]];
+		// 2차원 배열 생성 함수
+		function create2DArray(rows, columns) {
+		    var 선택된데이터 = new Array(rows);
+		    for (var i = 0; i < rows; i++) {
+		    	선택된데이터[i] = new Array(columns);
+		    }
+		    return 선택된데이터;
+		}
+
+		// 함수를 이용하여 2차원 배열 생성 (선택된데이터[x][3] 생성 됨)
+		var 선택된데이터 = create2DArray(x, 3);
 		
 		for ( var i = 0; i < arr.length; i++ ) {
-			// arr = 2개, 0 1
-			console.log("(입)i값 변화 : " + i);
+			// arr.length = 2 => 0, 1
 			for ( var k = i; k <= i; k++ ) {
 				// x = 2, 0 1    arr 0 = 0 1, arr 1 = 0 1
-				console.log("(입)k값 변화 : " + k);
-				
-				선택된데이터[0][0] = 데이터[arr[i]][0],
-				선택된데이터[0][1] = 데이터[arr[i]][1],
-				선택된데이터[0][2] = 데이터[arr[i]][2]
-
-				console.log("@@@선택된데이터[0] : " + 선택된데이터[i]);
-				console.log("(출)k값 변화 : " + k);
+				선택된데이터[i][0] = 데이터[arr[i]][0],
+				선택된데이터[i][1] = 데이터[arr[i]][1],
+				선택된데이터[i][2] = 데이터[arr[i]][2]
 			}
-
-			console.log("(출)i값 변화 : " + i);
-		}
-		
-		console.log("선택된데이터.length : " + 선택된데이터.length);
-		
-		// push로 배열에 추가하니 0번에 값이 다 들어감...
-		// 기존 '데이터'처럼 추가하니 마지막에 입력한 값들만 들어가짐.
-		for (var k = 0; k < 선택된데이터.length; k++ ) {
-			console.log("===== " + k + "번 선택데이터 확인 =====");
-			console.log("선택된데이터 : " + 선택된데이터[k]);
-			console.log("선택된데이터[" + k + "][0] :" + 선택된데이터[k][0]);
-			console.log("선택된데이터[" + k + "][1] :" + 선택된데이터[k][1]);
-			console.log("선택된데이터[" + k + "][2] :" + 선택된데이터[k][2]);
 		}
 		
 		for (var i = 0; i < 선택된데이터.length; i++ ) {

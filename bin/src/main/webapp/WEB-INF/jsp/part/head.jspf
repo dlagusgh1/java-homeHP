@@ -63,40 +63,40 @@ var param = ${paramJson};
 		<nav class="menu-box-1">	
 			<ul class="flex">
 				<li>
-					<a href="/home/main" class="logo img-box">
+					<a href="/usr/home/main" class="logo img-box">
 						<img src="/resource/img/logo3B.png"/>
 					</a>
 				</li>
-				<li><a href="/home/main">홈</a></li>
-				<li><a href="/article/notice-list">공지사항</a></li>
-				<li><a href="/article/free-list">게시판</a></li>
-				<li><a href="/article/kakaoMap">병원/약국 찾기</a></li>	
-				<li><a href="/article/firstAid">응급 처치</a></li>			
+				<li><a href="/usr/home/main">홈</a></li>
+				<li><a href="/usr/article/notice-list">공지사항</a></li>
+				<li><a href="/usr/article/free-list">게시판</a></li>
+				<li><a href="/usr/article/kakaoMap">병원/약국 찾기</a></li>	
+				<li><a href="/usr/article/firstAid">응급 처치</a></li>			
 				<c:if test="${isLogined == false}">
-					<li><a href="/member/join">회원 가입</a></li>
-					<li><a href="/member/login">로그인</a></li>
+					<li><a href="/usr/member/join">회원 가입</a></li>
+					<li><a href="/usr/member/login">로그인</a></li>
 				</c:if>
 				<c:if test="${isLogined}">
-					<li><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}">내정보</a></li>
-					<li><a href="/article/organModify">지도 정보 수정</a></li>
-					<li><a href="/member/doLogout">로그아웃</a></li>
+					<li><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}">내정보</a></li>
+					<li><a href="/usr/article/organModify">지도 정보 수정</a></li>
+					<li><a href="/usr/member/doLogout">로그아웃</a></li>
 				</c:if>	
 			</ul>
 		</nav>
 	</div>
 
 	<div class="mobile-top-bar visible-on-sm-down flex flex flex-ai-c">
-		<a href="/home/main" class="logo img-box">
+		<a href="/usr/home/main" class="logo img-box">
 			<img src="/resource/img/logo3B.png" />
 		</a>
 		<div class="flex-1-0-0"></div>
 		<c:if test="${isLogined}">
-			<a href="/member/doLogout">
+			<a href="/usr/member/doLogout">
 				<i class="fas fa-sign-out-alt"></i>
 			</a>
 		</c:if>
 		<c:if test="${isLogined == false}">
-			<a href="/member/login">
+			<a href="/usr/member/login">
 				<i class="fas fa-user"></i>
 			</a>
 		</c:if>
@@ -109,19 +109,19 @@ var param = ${paramJson};
 	<div class="mobile-side-bar flex flex-ai-c bold">
 		<nav class="menu-@box-1 flex-1-0-0">
 			<ul>
-				<li class="flex flex-jc-c"><a href="/home/main">홈</a></li>
-				<li class="flex flex-jc-c"><a href="/article/notice-list">공지사항</a></li>
-				<li class="flex flex-jc-c"><a href="/article/free-list">게시판</a></li>
-				<li class="flex flex-jc-c"><a href="/article/kakaoMap">병원/약국 찾기</a></li>	
-				<li class="flex flex-jc-c"><a href="/article/firstAid">응급 처치</a></li>			
+				<li class="flex flex-jc-c"><a href="/usr/home/main">홈</a></li>
+				<li class="flex flex-jc-c"><a href="/usr/article/notice-list">공지사항</a></li>
+				<li class="flex flex-jc-c"><a href="/usr/article/free-list">게시판</a></li>
+				<li class="flex flex-jc-c"><a href="/usr/article/kakaoMap">병원/약국 찾기</a></li>	
+				<li class="flex flex-jc-c"><a href="/usr/article/firstAid">응급 처치</a></li>			
 				<c:if test="${isLogined == false}">
-					<li class="flex flex-jc-c"><a href="/member/join">회원 가입</a></li>
-					<li class="flex flex-jc-c"><a href="/member/login">로그인</a></li>
+					<li class="flex flex-jc-c"><a href="/usr/member/join">회원 가입</a></li>
+					<li class="flex flex-jc-c"><a href="/usr/member/login">로그인</a></li>
 				</c:if>
 				<c:if test="${isLogined}">
-					<li class="flex flex-jc-c"><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}">내정보</a></li>
-					<li class="flex flex-jc-c"><a href="/article/organModify">지도 정보 수정</a></li>
-					<li class="flex flex-jc-c"><a href="/member/doLogout">로그아웃</a></li>
+					<li class="flex flex-jc-c"><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}">내정보</a></li>
+					<li class="flex flex-jc-c"><a href="/usr/article/organModify">지도 정보 수정</a></li>
+					<li class="flex flex-jc-c"><a href="/usr/member/doLogout">로그아웃</a></li>
 				</c:if>
 			</ul>
 		</nav>
@@ -137,8 +137,9 @@ var param = ${paramJson};
 		 	</a>
 		</div>
 		<c:if test="${loginedMember.level == 10}">
-			<div><a href="/member/adminMenu" style="color: red; font-weight:bold; margin-right: 10px;">관리자 메뉴</a></div>
+			<div><a href="" style="color: green; font-weight:bold; margin-right: 10px;">갱신</a></div>
+			<div><a href="/adm/member/adminMenu" style="color: red; font-weight:bold; margin-right: 10px;">관리자 메뉴</a></div>
 		</c:if>
-		<div><a href="/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}" style="color: blue; font-weight:bold; margin-right: 10px;">${loginedMember.organName}님</a></div>				
+		<div><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}" style="color: blue; font-weight:bold; margin-right: 10px;">${loginedMember.organName}님</a></div>				
 	</div>
 </c:if>

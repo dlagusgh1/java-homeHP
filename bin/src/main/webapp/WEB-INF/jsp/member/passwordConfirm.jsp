@@ -46,7 +46,7 @@
 
 
 <form method="POST" class="table-box table-box-vertical  con form1" action="doPasswordConfirm" onsubmit="MemberPasswordConfirmForm__submit(this); return false;">
-	<input type="hidden" name="redirectUri" value="${param.redirectUri}">
+	<input type="hidden" name="redirectUri" value="/usr${param.redirectUri}">
 	<input type="hidden" name="loginPwReal">	
 	<table>
 		<colgroup>

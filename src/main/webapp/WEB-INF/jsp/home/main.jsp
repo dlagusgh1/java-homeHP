@@ -10,50 +10,47 @@
 
 <h1 class="con flex-jc-c"><a href="/usr/article/kakaoMap">우리동네 당직 의료기관 찾기</a></h1>
 
-<div class="main-img-box con flex-jc-c">
-	<div class="main-img">
-		<h1>우리동네</h1>
-		<div>
-			<p>서비스 소개<br>우리동네는 주말, 야간 당직 의료기관(병원/약국)을 찾는 서비스 입니다.<br><br>운영지역<br>현재 세종시만 한정하여 운영 중 이며 점차 확대할 예정입니다.</p>
-		</div>
+<div class="main-covid19-box con flex-jc-c margin-top-10">
+	<div class="covid19-counter">
+		<c:forEach items="${covidDataList}" var="covid">
+		<c:if test="${covid.country == '세종' || covid.country == '대전' || covid.country == '충북' || covid.country == '충남'}">
+			<h3 class="con">${covid.country} COVID-19 현황</h3>
+			<div class="box1">
+				<span class="box-head">전일대비확진환자 증감 <span class="head-info">(*발생률 인구 10만 명당)</span></span>
+				<span class="data">
+					<span>확진자</span>
+					<em>${covid.total} 명</em>
+				</span>
+				<span class="data">
+					<span>전일대비확진자</span>
+					<em>${covid.diffFromPrevDay} 명</em>
+				</span>
+				<span class="data">
+					<span>발생률</span>
+					<em>${covid.incidence} 명</em>	
+				</span>
+			</div>
+			<div class="box2">
+				<span class="box-head">격리 / 사망자수</span>
+				<span class="data">
+					<span>격리중</span>
+					<em>${covid.quarantine} 명</em>
+				</span>
+				<span class="data">
+					<span>격리해제</span>
+					<em>${covid.quarantineRelease} 명</em>
+				</span>
+				<span class="data">
+					<span>사망자</span>
+					<em>${covid.death} 명</em>
+				</span>
+			</div>
+		</c:if>
+		</c:forEach>	
 	</div>
 </div>
 
-<h3 class="con">세종시 COVID-19 현황</h3>
-<div class="main-covid19-box con flex-jc-c margin-top-10">
-	<div class="covid19-counter">
-		<div class="box1">
-			<span class="box-head">확진 / 완치 / 격리</span>
-			<span class="data">
-				<span>확진자</span>
-				<em>- 명</em>
-			</span>
-			<span class="data">
-				<span>완치자</span>
-				<em>- 명</em>
-			</span>
-			<span class="data">
-				<span>격리자</span>
-				<em>- 명</em>
-			</span>
-		</div>	
-		<div class="box2">
-			<span class="box-head">검사 / 자가격리</span>
-			<span class="data">
-				<span>전일검사자</span>
-				<em>- 명</em>
-			</span>
-			<span class="data">
-				<span>금일검사자</span>
-				<em>- 명</em>
-			</span>
-			<span class="data">
-				<span>자가격리자</span>
-				<em>- 명</em>
-			</span>
-		</div>	
-	</div>
-</div>
+
 
 <h3 class="main-article-h con">공지사항</h3>
 <div class="table-box table-box-data con">

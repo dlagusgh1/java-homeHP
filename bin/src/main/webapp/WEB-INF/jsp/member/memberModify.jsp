@@ -65,11 +65,12 @@
 
 			return;
 		}
-
-		if (isCellphoneNo(form.cellphoneNo.value)) {
+		
+		if (isCellphoneNo(form.cellphoneNo.value) == flase) {
 			form.cellphoneNo.focus();
 			alert('휴대전화번호를 정확히 입력해주세요.');
-			
+
+			return;
 		}
 
 		form.submit();
@@ -79,7 +80,7 @@
 
 <!-- 회원 정보 변경 -->
 <form method="POST" class="table-box table-box-vertical con form1" action="doMemberModify" onsubmit="MemberMemberModifyForm__submit(this); return false;">
-	<input type="hidden" name="redirectUri" value="/member/login">
+	<input type="hidden" name="redirectUri" value="/usr/member/login">
 	<table>
 		<colgroup>
 			<col width="250">

@@ -15,6 +15,7 @@ import com.sbs.lhh.hp.dto.AdCateItem;
 import com.sbs.lhh.hp.dto.Article;
 import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.dto.CateItem;
+import com.sbs.lhh.hp.dto.CovidData;
 import com.sbs.lhh.hp.dto.File;
 import com.sbs.lhh.hp.dto.Member;
 import com.sbs.lhh.hp.dto.Organ;

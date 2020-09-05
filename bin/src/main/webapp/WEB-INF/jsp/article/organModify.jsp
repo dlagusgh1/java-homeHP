@@ -56,7 +56,7 @@
 
 
 <form method="POST" class="table-box table-box-vertical con form1" action="doOrganModify" onsubmit="OrganModifyForm__submit(this); return false;">
-	<input type="hidden" name="redirectUri" value="/home/main">
+	<input type="hidden" name="redirectUri" value="/usr/home/main">
 	<table>
 		<colgroup>
 			<col width="250">

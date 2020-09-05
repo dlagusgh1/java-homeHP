@@ -171,7 +171,7 @@
 <form method="POST" class="table-box table-box-vertical con form1" action="${board.code}-doModify" onsubmit="ArticleModifyForm__submit(this); return false;">
 	<input type="hidden" name="fileIdsStr" />
 	<input type="hidden" name="body" />
-	<input type="hidden" name="redirectUri" value="/article/${board.code}-detail?id=${article.id}" />
+	<input type="hidden" name="redirectUri" value="/usr/article/${board.code}-detail?id=${article.id}" />
 	<input type="hidden" name="id" value="${article.id}" />
 	<table>
 		<colgroup>
@@ -214,12 +214,12 @@
 						</div>
 						<c:if test="${file != null && file.fileExtTypeCode == 'video'}">
 							<div class="video-box">
-								<video controls src="/file/streamVideo?id=${file.id}&updateDate=${file.updateDate}"></video>
+								<video controls src="/usr/file/streamVideo?id=${file.id}&updateDate=${file.updateDate}"></video>
 							</div>
 						</c:if>
 						<c:if test="${file != null && file.fileExtTypeCode == 'img'}">
 							<div class="img-box img-box-auto">
-								<img src="/file/img?id=${file.id}&updateDate=${file.updateDate}">
+								<img src="/usr/file/img?id=${file.id}&updateDate=${file.updateDate}">
 							</div>
 						</c:if>
 					</td>

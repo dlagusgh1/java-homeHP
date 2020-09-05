@@ -76,11 +76,16 @@
 	  form.body.value = JSON.stringify(ChangeAuthoritiesForm__data);
 	}
 	
-	function ChangeAuthoritiesForm__submit() {
-
-
-
+	var ChangeAuthoritiesForm__submitDone = false;
+	
+	function ChangeAuthoritiesForm__submit(form) {
+		if (ChangeAuthoritiesForm__submitDone) {
+			alert('처리중입니다.');
+			return;
+		}
 		
+		form.submit();
+		var ChangeAuthoritiesForm__submitDone = true;
 	}
 </script>
 <div class="con">
@@ -116,13 +121,13 @@
 							<td>
 					          <label>
 					          	<!-- data-origin-value 의 속성값은 기존상태(DB에 저장되어 있는)를 의미한다. -->
-				          		<input type="checkbox" name="member__authority__hideArticle__${member.id}" onchange="ChangeAuthoritiesForm__changeItem(this)" data-origin-value="N">
+				          		<input type="checkbox" name="member__${member.id}__authority__hideArticle" onchange="ChangeAuthoritiesForm__changeItem(this)" data-origin-value="N">
 					            권한부여
 					          </label>
 				        	</td>	
 				        	<td>
 					          <label>
-				            	<input type="checkbox" name="member__authority__stopUsing__${member.id}" onchange="ChangeAuthoritiesForm__changeItem(this)" data-origin-value="N">
+				            	<input type="checkbox" name="member__${member.id}__authority__stopUsing" onchange="ChangeAuthoritiesForm__changeItem(this)" data-origin-value="N">
 					            권한부여
 					          </label>
 					        </td>					

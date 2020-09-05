@@ -383,6 +383,59 @@ h1, h2, h3 {
 	border-radius: 5px;
 }
 
+/* main-covid */
+.main-covid19-box {
+	width: 100%;
+}
+
+.covid19-counter {
+	width:100%; 
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+@media (min-width :1130px) {
+    .covid19-counter .box1, .box2 {
+		display: inline-block;
+		border: 5px solid #4BAF4B;
+		border-radius: 5px;
+		width: 48.8%;
+	}
+}
+
+@media (max-width :1130px) {
+    .covid19-counter .box1, .box2 {
+		border: 5px solid #4BAF4B;
+		border-radius: 5px;
+		width: 100%;
+		margin-top: 10px;
+		font-size: 1rem;
+	}
+}
+
+
+.covid19-counter .box-head {
+	display: block;
+	padding: 10px;
+	text-align: center;
+	border-bottom: 5px solid #4BAF4B;
+}
+
+.covid19-counter .data {
+	display: inline-block;
+	width: 32%;
+	text-align: center;
+}
+
+.covid19-counter .data:not(:last-child) {
+	border-right: 3px dashed #4BAF4B;
+}
+
+.covid19-counter .data > span, em {
+	display: block;
+	padding: 7px;
+}
+
 @media (max-width :801px) {
     .main-img {
         font-size: 1rem;
