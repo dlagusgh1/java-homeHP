@@ -26,8 +26,6 @@ public interface ArticleDao {
 	List<Article> getForPrintArticles();
 	
 	List<Article> getForPrintVisibleArticles();
-	
-	List<Article> getForPrintLimitNoticeArticles(int limit);
 
 	Article getForPrintArticleById(@Param("id") int id);
 

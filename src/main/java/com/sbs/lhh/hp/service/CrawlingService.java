@@ -38,8 +38,6 @@ public class CrawlingService {
                     .build();
            
             covidDataList.add(covidData);
-            
-            // System.out.println("확인 : " + covidData);
             	
        }
 

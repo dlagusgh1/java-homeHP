@@ -1,5 +1,6 @@
 package com.sbs.lhh.hp.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import com.sbs.lhh.hp.dto.AdCateItem;
 import com.sbs.lhh.hp.dto.Article;
 import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.dto.CateItem;
+import com.sbs.lhh.hp.dto.CovidData;
 import com.sbs.lhh.hp.dto.Member;
 import com.sbs.lhh.hp.dto.Organ;
 import com.sbs.lhh.hp.dto.ResultData;
@@ -121,6 +123,21 @@ public class ArticleController {
 		model.addAttribute("organes", organes);
 
 		return "article/kakaoMap_PM";
+	}
+	
+	// COVID-19 현황
+	@RequestMapping("/usr/article/covid19Status")
+	public String covid19(Model model) {
+
+		List<CovidData> covidDataList;
+		try {
+			covidDataList = crawlingService.getCovidDatas();		
+			model.addAttribute("covidDataList", covidDataList);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "article/covid19Status";
 	}
 	
 	// 관리자 메뉴 - 게시물 관리(게시물 숨기기)ajax

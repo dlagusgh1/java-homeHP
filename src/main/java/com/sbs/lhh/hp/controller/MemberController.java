@@ -148,7 +148,7 @@ public class MemberController {
 	public ResultData getOrganNameDup(@RequestParam Map<String, Object> param) {
 		
 		String organName = (String) param.get("organName");
-
+		
 		boolean isJoinableOrganName = memberService.checkMemberDataJoinable(param);
 
 		if (isJoinableOrganName == false) {

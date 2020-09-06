@@ -97,14 +97,6 @@ public class ArticleService {
 		return articles;
 	}
 	
-	// 게시물 리스트(공지) 출력제한
-	public List<Article> getForPrintLimitNoticeArticles(int limit) {
-		List<Article> articles = articleDao.getForPrintLimitNoticeArticles(limit);
-
-		return articles;
-	}
-
-	
 	// 게시물 상세보기
 	public Article getForPrintArticleById(Member actor, int id) {
 		Article article = articleDao.getForPrintArticleById(id);

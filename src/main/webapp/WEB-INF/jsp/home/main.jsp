@@ -8,92 +8,82 @@
 <c:set var="pageTitle" value="당직 의료기관 찾기" />
 <%@ include file="../part/head.jspf"%>
 
-<h1 class="con flex-jc-c"><a href="/usr/article/kakaoMap">우리동네 당직 의료기관 찾기</a></h1>
+<style>			
 
-<div class="main-covid19-box con flex-jc-c margin-top-10">
-	<div class="covid19-counter">
-		<c:forEach items="${covidDataList}" var="covid">
-		<c:if test="${covid.country == '세종' || covid.country == '대전' || covid.country == '충북' || covid.country == '충남'}">
-			<h3 class="con">${covid.country} COVID-19 현황</h3>
-			<div class="box1">
-				<span class="box-head">전일대비확진환자 증감 <span class="head-info">(*발생률 인구 10만 명당)</span></span>
-				<span class="data">
-					<span>확진자</span>
-					<em>${covid.total} 명</em>
-				</span>
-				<span class="data">
-					<span>전일대비확진자</span>
-					<em>${covid.diffFromPrevDay} 명</em>
-				</span>
-				<span class="data">
-					<span>발생률</span>
-					<em>${covid.incidence} 명</em>	
-				</span>
+	#main{
+		background: url("/resource/img/main1.png") center center / cover no-repeat;
+		width:100vm;
+		height:100vh;
+		z-index:-2;
+	}	
+	#contents{
+		position:absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width:100%;
+		color: white;
+		font-weight: bold;	
+		text-align: center;
+		text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;		
+	}
+	#contents::after {
+		position:absolute;
+		top: 53%;
+  		left: 0;
+		transform: translateY(-50%);
+		width: 100%;
+ 		height: 100%;
+		z-index: -1;
+	 	content: "";
+		background: black;
+		opacity: 0.5;
+		padding: 10px 0;
+	}
+	#contents h1 {
+		font-size: 5rem;
+		margin-bottom: 16px;
+	}
+	#contents p {
+		font-size: 2rem;
+		margin-bottom: 16px;
+	}
+    .main-contents {
+		display: inline-block;
+		width: 150px;
+		height: 100%;
+		vertical-align: middle;
+		padding: 10px 0;
+		border: 5px solid #4BAF4B;
+		border-radius: 100px;
+		font-weight: bold;	
+	 	background-color: #4BAF4B;
+	 	color: white;	
+	 	font-size: 1.2rem;
+	 	text-shadow: none;
+	}
+	.main-contents:not(:last-child) {
+		margin-right: 20px;
+	}
+	#contents a:hover {
+		color: black;
+		text-shadow: none;
+	}	
+</style>
+
+<div id="main">
+	<div id="contents">
+		<h1>우리동네</h1>
+		<p>방문을 환영합니다.</p>
+			<div class="main-contents">
+				<a href="/usr/article/kakaoMap">병원&약국 찾기</a>
 			</div>
-			<div class="box2">
-				<span class="box-head">격리 / 사망자수</span>
-				<span class="data">
-					<span>격리중</span>
-					<em>${covid.quarantine} 명</em>
-				</span>
-				<span class="data">
-					<span>격리해제</span>
-					<em>${covid.quarantineRelease} 명</em>
-				</span>
-				<span class="data">
-					<span>사망자</span>
-					<em>${covid.death} 명</em>
-				</span>
+			<div class="main-contents">
+				<a href="/usr/article/covid19Status"><span>COVID-19 현황</span></a>
 			</div>
-		</c:if>
-		</c:forEach>	
+			<div class="main-contents">
+				<a href="/usr/article/firstAid"><span>응급처치</span></a>
+			</div>
 	</div>
-</div>
-
-
-
-<h3 class="main-article-h con">공지사항</h3>
-<div class="table-box table-box-data con">
-	<table>
-		<colgroup>
-			<col width="100" />
-           	<col width="500" />
-           	<col width="200" />
-           	<col width="200" />
-		</colgroup>
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>	
-				<th>작성일자</th>								
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${articles}" var="article">
-				<c:if test="${boardId == article.boardId}">
-					<tr>
-						<td><a>${article.id}</a></td>
-						<td>
-							<a href="/usr${article.getDetailLink('notice')}">${article.forPrintTitle}</a>
-						</td>	
-						<td class="writer">${article.extra.writer}</td>	
-						<td><a>${article.regDate}</a></td>							
-						<td class="visible-on-sm-down">
-                        <a href="/usr${article.getDetailLink('notice')}" class="flex flex-row-wrap flex-ai-c">
-                            <span class="badge badge-primary bold margin-right-10">${article.id}</span>
-                            <div class="title flex-1-0-0 text-overflow-el">${article.forPrintTitle}</div>
-                            <div class="width-100p"></div>
-                            <div class="writer">${article.extra.writer}</div>
-                            &nbsp;|&nbsp;
-                            <div class="reg-date">${article.regDate}</div>
-                        </a>
-                    </td>
-					</tr>
-				</c:if>
-			</c:forEach>
-		</tbody>
-	</table>
 </div>
 
 <%@ include file="../part/foot.jspf"%>

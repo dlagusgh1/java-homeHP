@@ -71,6 +71,7 @@ var param = ${paramJson};
 				<li><a href="/usr/article/notice-list">공지사항</a></li>
 				<li><a href="/usr/article/free-list">게시판</a></li>
 				<li><a href="/usr/article/kakaoMap">병원/약국 찾기</a></li>	
+				<li><a href="/usr/article/covid19Status">COVID-19 현황</a></li>	
 				<li><a href="/usr/article/firstAid">응급 처치</a></li>			
 				<c:if test="${isLogined == false}">
 					<li><a href="/usr/member/join">회원 가입</a></li>
@@ -109,19 +110,20 @@ var param = ${paramJson};
 	<div class="mobile-side-bar flex flex-ai-c bold">
 		<nav class="menu-@box-1 flex-1-0-0">
 			<ul>
-				<li class="flex flex-jc-c"><a href="/usr/home/main">홈</a></li>
-				<li class="flex flex-jc-c"><a href="/usr/article/notice-list">공지사항</a></li>
-				<li class="flex flex-jc-c"><a href="/usr/article/free-list">게시판</a></li>
-				<li class="flex flex-jc-c"><a href="/usr/article/kakaoMap">병원/약국 찾기</a></li>	
-				<li class="flex flex-jc-c"><a href="/usr/article/firstAid">응급 처치</a></li>			
+				<li class="flex flex-jc-c padding-10-0"><a href="/usr/home/main">홈</a></li>
+				<li class="flex flex-jc-c padding-10-0"><a href="/usr/article/notice-list">공지사항</a></li>
+				<li class="flex flex-jc-c padding-10-0"><a href="/usr/article/free-list">게시판</a></li>
+				<li class="flex flex-jc-c padding-10-0"><a href="/usr/article/kakaoMap">병원/약국 찾기</a></li>	
+				<li class="flex flex-jc-c padding-10-0"><a href="/usr/article/covid19Status">COVID-19 현황</a></li>	
+				<li class="flex flex-jc-c padding-10-0"><a href="/usr/article/firstAid">응급 처치</a></li>			
 				<c:if test="${isLogined == false}">
-					<li class="flex flex-jc-c"><a href="/usr/member/join">회원 가입</a></li>
-					<li class="flex flex-jc-c"><a href="/usr/member/login">로그인</a></li>
+					<li class="flex flex-jc-c padding-10-0"><a href="/usr/member/join">회원 가입</a></li>
+					<li class="flex flex-jc-c padding-10-0"><a href="/usr/member/login">로그인</a></li>
 				</c:if>
 				<c:if test="${isLogined}">
-					<li class="flex flex-jc-c"><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}">내정보</a></li>
-					<li class="flex flex-jc-c"><a href="/usr/article/organModify">지도 정보 수정</a></li>
-					<li class="flex flex-jc-c"><a href="/usr/member/doLogout">로그아웃</a></li>
+					<li class="flex flex-jc-c padding-10-0"><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}">내정보</a></li>
+					<li class="flex flex-jc-c padding-10-0"><a href="/usr/article/organModify">지도 정보 수정</a></li>
+					<li class="flex flex-jc-c padding-10-0"><a href="/usr/member/doLogout">로그아웃</a></li>
 				</c:if>
 			</ul>
 		</nav>

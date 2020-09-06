@@ -436,6 +436,10 @@ h1, h2, h3 {
 	border-bottom: 5px solid #4BAF4B;
 }
 
+.covid19-counter {
+	margin-bottom: 10px;
+}
+
 .covid19-counter .data {
 	display: inline-block;
 	width: 30%;
