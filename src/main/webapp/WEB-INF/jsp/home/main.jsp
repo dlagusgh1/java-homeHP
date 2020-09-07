@@ -11,11 +11,22 @@
 <style>			
 
 	#main{
+		position: relative;
 		background: url("/resource/img/main1.png") center center / cover no-repeat;
 		width:100vm;
 		height:100vh;
-		z-index:-2;
+		z-index: 5;
 	}	
+	.layer {
+	    background-color: black;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    opacity: 0.5;
+	    z-index: -2;
+	}
 	#contents{
 		position:absolute;
 		top: 50%;
@@ -26,26 +37,15 @@
 		text-align: center;
 		text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;		
 	}
-	#contents::after {
-		position:absolute;
-		top: 53%;
-  		left: 0;
-		transform: translateY(-50%);
-		width: 100%;
- 		height: 100%;
-		z-index: -1;
-	 	content: "";
-		background: black;
-		opacity: 0.5;
-		padding: 10px 0;
-	}
 	#contents h1 {
 		font-size: 5rem;
 		margin-bottom: 16px;
+		z-index:5;
 	}
 	#contents p {
 		font-size: 2rem;
 		margin-bottom: 16px;
+		z-index:5;
 	}
     .main-contents {
 		display: inline-block;
@@ -68,22 +68,40 @@
 		color: black;
 		text-shadow: none;
 	}	
+	
+	@media (max-width :801px) {
+	    #contents h1 {
+			font-size: 4rem;
+			
+		}
+		#contents p {
+			font-size: 2rem;
+			margin: 0;
+			margin-bottom: 20px;
+		}
+		.main-contents:not(:last-child) {
+			margin-right: 0;
+			margin-bottom: 10px;
+		}
+	}
 </style>
 
 <div id="main">
 	<div id="contents">
 		<h1>우리동네</h1>
 		<p>방문을 환영합니다.</p>
-			<div class="main-contents">
-				<a href="/usr/article/kakaoMap">병원&약국 찾기</a>
-			</div>
-			<div class="main-contents">
-				<a href="/usr/article/covid19Status"><span>COVID-19 현황</span></a>
-			</div>
-			<div class="main-contents">
-				<a href="/usr/article/firstAid"><span>응급처치</span></a>
-			</div>
+		<div class="main-contents">
+			<a href="/usr/article/kakaoMap">병원&약국 찾기</a>
+		</div>
+		<div class="main-contents">
+			<a href="/usr/article/covid19Status"><span>COVID-19 현황</span></a>
+		</div>
+		<div class="main-contents">
+			<a href="/usr/article/firstAid"><span>응급처치</span></a>
+		</div>
 	</div>
+	<div class="layer">
+    </div>
 </div>
 
 <%@ include file="../part/foot.jspf"%>
