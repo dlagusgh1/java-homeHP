@@ -252,5 +252,20 @@ public class ArticleService {
 	public void showArticle(int id) {
 		articleDao.showArticle(id);
 	}
+
+	// covid-19 데이터 가져와서 저장하는 기능(신규)
+	public void setCovidData(CovidData data) {
+		articleDao.setCovidData(data);
+	}
+	
+	// covid-19 데이터 가져와서 저장하는 기능(기존데이터 있는 경우엔 수정)
+	public void setCovidDataUpdate(CovidData data) {
+		articleDao.setCovidDataUpdate(data);
+	}
+
+	// covid-19 데이터 가져오기
+	public List<CovidData> getCovidData() {
+		return articleDao.getCovidData();
+	}
 	
 }

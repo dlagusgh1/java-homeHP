@@ -85,7 +85,7 @@ var param = ${paramJson};
 			</ul>
 		</nav>
 	</div>
-
+	
 	<div class="mobile-top-bar visible-on-sm-down flex flex flex-ai-c">
 		<a href="/usr/home/main" class="logo img-box">
 			<img src="/resource/img/logo3B.png" />
@@ -139,7 +139,7 @@ var param = ${paramJson};
 		 	</a>
 		</div>
 		<c:if test="${loginedMember.level == 10}">
-			<div><a href="" style="color: green; font-weight:bold; margin-right: 10px;">갱신</a></div>
+			<div><a href="/adm/article/getCovid19Status" style="color: green; font-weight:bold; margin-right: 10px;">갱신</a></div>
 			<div><a href="/adm/member/adminMenu" style="color: red; font-weight:bold; margin-right: 10px;">관리자 메뉴</a></div>
 		</c:if>
 		<div><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}" style="color: blue; font-weight:bold; margin-right: 10px;">${loginedMember.organName}님</a></div>				

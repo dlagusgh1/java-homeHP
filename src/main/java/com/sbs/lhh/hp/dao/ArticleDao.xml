@@ -136,6 +136,41 @@
 		WHERE id = #{id}
 	</update>
 	
+	<insert id="setCovidData">
+  		INSERT INTO `covidData`
+  		SET regDate = NOW(),
+		updateDate = NOW(),
+		country = #{country},
+		diffFromPrevDay = #{diffFromPrevDay},
+		domesticInflow = #{domesticInflow},
+		overseasInflow = #{overseasInflow},
+		total = #{total},
+		quarantine = #{quarantine},
+		quarantineRelease = #{quarantineRelease},
+		death = #{death},
+		incidence = #{incidence}			
+	</insert>
+	
+	<update id="setCovidDataUpdate">
+  		UPDATE `covidData`
+  		SET regDate = NOW(),
+		updateDate = NOW(),
+		diffFromPrevDay = #{diffFromPrevDay},
+		domesticInflow = #{domesticInflow},
+		overseasInflow = #{overseasInflow},
+		total = #{total},
+		quarantine = #{quarantine},
+		quarantineRelease = #{quarantineRelease},
+		death = #{death},
+		incidence = #{incidence}	
+		WHERE country = #{country}		
+	</update>
+	
+	<select id="getCovidData" resultType="CovidData">
+		SELECT *
+		FROM `covidData`
+	</select>
+	
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

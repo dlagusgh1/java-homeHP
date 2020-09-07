@@ -125,17 +125,50 @@ public class ArticleController {
 		return "article/kakaoMap_PM";
 	}
 	
+	// COVID-19 현황 가져오기(크롤링)
+	@RequestMapping("/adm/article/getCovid19Status")
+	public String getCovid19Status(Model model) {
+		
+		List<CovidData> covidDatas = articleService.getCovidData();
+		
+		List<CovidData> covidDataList;
+		
+		if ( covidDatas.isEmpty() ) {
+			try {
+				covidDataList = crawlingService.getCovidDatas();
+
+				for (CovidData data : covidDataList) {
+					articleService.setCovidData(data);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		} else {
+			try {
+				covidDataList = crawlingService.getCovidDatas();
+
+				for (CovidData data : covidDataList) {
+					articleService.setCovidDataUpdate(data);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		String redirectUri = "/usr/home/main";
+		model.addAttribute("redirectUri", redirectUri);
+		model.addAttribute("alertMsg", "covid-19 데이터를 갱신했습니다.");
+
+		return "common/redirect";
+	}
+	
 	// COVID-19 현황
 	@RequestMapping("/usr/article/covid19Status")
 	public String covid19(Model model) {
 
-		List<CovidData> covidDataList;
-		try {
-			covidDataList = crawlingService.getCovidDatas();		
-			model.addAttribute("covidDataList", covidDataList);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		List<CovidData> covidDataList = articleService.getCovidData();
+		
+		model.addAttribute("covidDataList", covidDataList);		
 		
 		return "article/covid19Status";
 	}
