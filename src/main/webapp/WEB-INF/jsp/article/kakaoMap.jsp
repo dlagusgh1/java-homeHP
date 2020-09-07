@@ -42,25 +42,94 @@
 	</nav>
 </div>
 
+
+<script>
+
+	var kakaoMapList__$box = $('.kakaoMap-box');
+	var kakaoMapList__$tbody = kakaoMapList__$box.find('.kakaoMap-info-body');
+	
+	function kakaoMapList__loadMore() {
+
+		$.ajax({
+			url : '/usr/article/getForPrintKakaoMapList',
+			data : ${adCateItems:adCateItems},
+			processData : false,
+			contentType : false,
+			dataType:"json",
+			type : 'GET',
+			success : onSuccess
+		});
+
+		kakaoMapList__loadMoreCallback(data);
+	}
+	
+	// 1초
+	kakaoMapList__loadMoreInterval = 1 * 5000;
+
+	function kakaoMapList__loadMoreCallback(kakaoMapList) {
+		
+		kakaoMapList__drawKakaoMapList(kakaoMapList);
+		
+		setTimeout(kakaoMapList__loadMore, kakaoMapList__loadMoreInterval);
+	}
+
+	function kakaoMapList__drawKakaoMapList(kakaoMapList) {
+		for (var i = 0; i < kakaoMapList.length; i++) {
+			var kakaoMap = kakaoMapList[i];
+			kakaoMapList__drawKakaoMap(kakaoMap);
+		}
+	}
+
+	function kakaoMapList__drawKakaoMap(kakaoMap) {
+		var html = '';
+			html += '<ul>';
+			html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
+			html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
+			html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
+			html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
+			html += '<li><a>진료 시간 : ' + kakaoMap.organTime + '</a></li>';
+			html += '<li><a>진료 시간(주말) : ' + kakaoMap.organWeekendTime + '</a></li>';
+			html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
+			html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
+			html += '</ul>';
+		
+		var $tr = $(html);
+		
+		kakaoMapList__$tbody.prepend($tr);
+	}
+
+	kakaoMapList__loadMore();
+	
+</script>
 <!-- 병원 목록(organization) -->
 <div class="kakaoMap-box con flex-jc-c margin-bottom-20">
 	<div class="kakaoMap con" id="map"></div>
 	<div class="kakaoMap-info con">
 		<ul>
-			<li>
+			<li class="kakaoMap-info-body">
+			<!--  
 				<c:forEach items="${organes}" var="organ">
-					<ul>
-						<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
-						<li><a>주소 : ${organ.organAddress}</a></li>
-						<li><a>행정구역 : ${organ.organAdmAddress}</a></li>
-						<li><a>전화 번호 : ${organ.organTel}</a></li>
-						<li><a>진료 시간 : ${organ.organTime}</a></li>
-						<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
-						<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
-						<li><a>비고 : ${organ.organRemarks}</a></li>
-					</ul>		
+				<input type="hidden" id="adCateItemName"/>
+					<c:if test="${adCateItemName != null && adCateItemName == organ.organAdmAddress}">
+						<ul>
+							<li>테스트 중</li>
+						</ul>
+					</c:if>
+					<c:if test="${adCateItemName == null}">
+						<ul>
+							<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
+							<li><a>주소 : ${organ.organAddress}</a></li>
+							<li><a>행정구역 : ${organ.organAdmAddress}</a></li>
+							<li><a>전화 번호 : ${organ.organTel}</a></li>
+							<li><a>진료 시간 : ${organ.organTime}</a></li>
+							<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
+							<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
+							<li><a>비고 : ${organ.organRemarks}</a></li>
+						</ul>
+					</c:if>
 					<br>
-				</c:forEach>	
+				</c:forEach>
+			-->	
 			</li>
 		</ul>
 	</div>
@@ -69,7 +138,7 @@
 <!-- 카카오맵 -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
 <script>
-
+	//마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 	var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
 	contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
 	markers = [], // 마커를 담을 배열입니다
@@ -139,7 +208,10 @@
 	
 	// select박스 onchange로 넘겨받은 행정구역 값에 해당하는 마커 생성
 	function administrative(adCateItemName) {
-		
+
+		document.getElementById("adCateItemName").value=adCateItemName;
+
+		console.log();
 		// 클러스터 지우기
 		clusterer.clear();
 		// 기존 마커들 지우기.
@@ -215,11 +287,10 @@
 		// 클러스터러에 마커들을 추가합니다
 	    clusterer.addMarkers(markers);
 
-		return temp(adCateName);
 	}
 
-	function temp (adCateName) {
-		console.log(adCateName);
+	function temp () {
+	
 	}
 	
 	for (var i = 0; i < 데이터.length; i++ ) {

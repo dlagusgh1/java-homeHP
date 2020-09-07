@@ -136,10 +136,10 @@
 				],
 			</c:forEach>
 		];
-
+	
 	// select박스 onchange로 넘겨받은 행정구역 값에 해당하는 마커 생성
 	function administrative(adCateItemName) {
-
+		
 		// 클러스터 지우기
 		clusterer.clear();
 		// 기존 마커들 지우기.
@@ -209,13 +209,18 @@
 	    	    'click',
 	    	    makeClickListener(map, marker, infowindow)
 	   	    );
-		    
+
 		}
 		
 		// 클러스터러에 마커들을 추가합니다
 	    clusterer.addMarkers(markers);
+
+		return temp(adCateName);
 	}
-	
+
+	function temp (adCateName) {
+		console.log(adCateName);
+	}
 	
 	for (var i = 0; i < 데이터.length; i++ ) {
 		// 지도에 마커를 생성하고 표시한다.

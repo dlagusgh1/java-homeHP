@@ -42,7 +42,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 				.excludePathPatterns("/usr/article/kakaoMap_HP").excludePathPatterns("/usr/article/kakaoMap_PM")
 				.excludePathPatterns("/usr/member/getLoginIdDup").excludePathPatterns("/usr/member/getOrganNameDup")
 				.excludePathPatterns("/usr/member/getEmailDup").excludePathPatterns("/usr/member/getCellPhoneNoDup")
-				.excludePathPatterns("/usr/member/authEmail").excludePathPatterns("/usr/article/covid19Status");
+				.excludePathPatterns("/usr/member/authEmail").excludePathPatterns("/usr/article/covid19Status")
+				.excludePathPatterns("/usr/article/getForPrintKakaoMapList");
 
 		// 로그인 상태에서 접속할 수 '없는' URI 전부 기술
 		registry.addInterceptor(needToLogoutInterceptor).addPathPatterns("/usr/member/login")

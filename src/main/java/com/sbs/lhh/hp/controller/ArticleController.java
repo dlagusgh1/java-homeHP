@@ -1,6 +1,7 @@
 package com.sbs.lhh.hp.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,18 @@ public class ArticleController {
 	private ArticleService articleService;
 	@Autowired
 	private CrawlingService crawlingService;
+	
+	@RequestMapping("/usr/article/getForPrintKakaoMapList")
+	@ResponseBody
+	public ResultData getForPrintKakaoMapList(@RequestParam Map<String, Object> param, HttpServletRequest req) {
+
+		Map<String, Object> rsDataBody = new HashMap<>();
+
+		List<Organ> organes = articleService.getOrgan();
+		rsDataBody.put("organes", organes);
+
+		return new ResultData("S-1", String.format("%d개의 댓글을 불러왔습니다.", organes.size()), rsDataBody);
+	}
 
 	// 카카오맵(기본-병원/약국)
 	@RequestMapping("/usr/article/kakaoMap")
@@ -155,7 +168,7 @@ public class ArticleController {
 			}
 		}
 		
-		String redirectUri = "/usr/home/main";
+		String redirectUri = "/usr/article/covid19Status";
 		model.addAttribute("redirectUri", redirectUri);
 		model.addAttribute("alertMsg", "covid-19 데이터를 갱신했습니다.");
 
