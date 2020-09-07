@@ -70,9 +70,11 @@
 	}	
 	
 	@media (max-width :801px) {
+		#contents{
+			top: 45%;
+		}
 	    #contents h1 {
 			font-size: 4rem;
-			
 		}
 		#contents p {
 			font-size: 2rem;

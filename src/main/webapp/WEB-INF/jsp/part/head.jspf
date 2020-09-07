@@ -58,6 +58,21 @@ var param = ${paramJson};
 </div>
 
 <div class="outer-box">
+	<!-- 로그인 대상 표시 -->
+	<c:if test="${isLogined}">
+		<div class="loginStatus con flex-jc-end margin-top-10">
+			<div>
+				<a href="https://donaricano.com/mypage/1461113623_Oh2ISH" target="_blank">
+					<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="margin-right:10px; height:25px !important; width: 80px !important;" />
+			 	</a>
+			</div>
+			<c:if test="${loginedMember.level == 10}">
+				<div><a href="/adm/article/getCovid19Status" style="color: green; font-weight:bold; margin-right: 10px;">갱신</a></div>
+				<div><a href="/adm/member/adminMenu" style="color: red; font-weight:bold; margin-right: 10px;">관리자 메뉴</a></div>
+			</c:if>
+			<div><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}" style="color: blue; font-weight:bold; margin-right: 10px;">${loginedMember.organName}님</a></div>				
+		</div>
+	</c:if>
 	<!-- PC 탑바 -->
 	<div class="top-bar con flex flex-ai-c flex-jc-sb visible-on-md-up">
 		<nav class="menu-box-1">	
@@ -129,19 +144,3 @@ var param = ${paramJson};
 		</nav>
 	</div>
 </div>
-
-<!-- 로그인 대상 표시 -->
-<c:if test="${isLogined}">
-	<div class="con flex-jc-end">
-		<div>
-			<a href="https://donaricano.com/mypage/1461113623_Oh2ISH" target="_blank">
-				<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="margin-right:10px; height:25px !important; width: 80px !important;" />
-		 	</a>
-		</div>
-		<c:if test="${loginedMember.level == 10}">
-			<div><a href="/adm/article/getCovid19Status" style="color: green; font-weight:bold; margin-right: 10px;">갱신</a></div>
-			<div><a href="/adm/member/adminMenu" style="color: red; font-weight:bold; margin-right: 10px;">관리자 메뉴</a></div>
-		</c:if>
-		<div><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}" style="color: blue; font-weight:bold; margin-right: 10px;">${loginedMember.organName}님</a></div>				
-	</div>
-</c:if>
