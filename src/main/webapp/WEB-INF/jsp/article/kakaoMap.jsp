@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- JSTL -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
@@ -42,46 +41,41 @@
 	</nav>
 </div>
 
-
 <script>
-
 	var kakaoMapList__$box = $('.kakaoMap-box');
-	var kakaoMapList__$tbody = kakaoMapList__$box.find('.kakaoMap-info-body');
+	var kakaoMapList__$li = kakaoMapList__$box.find('.kakaoMap-info-body');
+
+	var kakaoMapList__lastLodedId = 0;
 	
 	function kakaoMapList__loadMore() {
 
-		$.ajax({
-			url : '/usr/article/getForPrintKakaoMapList',
-			data : ${adCateItems:adCateItems},
-			processData : false,
-			contentType : false,
-			dataType:"json",
-			type : 'GET',
-			success : onSuccess
-		});
-
-		kakaoMapList__loadMoreCallback(data);
+		$.get('/usr/article/getForPrintKakaoMapList', {
+			from : kakaoMapList__lastLodedId + 1
+		}, kakaoMapList__loadMoreCallback, 'json');		
 	}
 	
 	// 1초
-	kakaoMapList__loadMoreInterval = 1 * 5000;
+	kakaoMapList__loadMoreInterval = 1 * 2000;
 
-	function kakaoMapList__loadMoreCallback(kakaoMapList) {
-		
-		kakaoMapList__drawKakaoMapList(kakaoMapList);
+	function kakaoMapList__loadMoreCallback(data) {
+		if (data.body.organes && data.body.organes.length > 0) {
+			kakaoMapList__lastLodedId = data.body.organes[data.body.organes.length-1].id;
+			kakaoMapList__drawKakaoMapList(data.body.organes);
+		}
 		
 		setTimeout(kakaoMapList__loadMore, kakaoMapList__loadMoreInterval);
 	}
 
-	function kakaoMapList__drawKakaoMapList(kakaoMapList) {
-		for (var i = 0; i < kakaoMapList.length; i++) {
-			var kakaoMap = kakaoMapList[i];
+	function kakaoMapList__drawKakaoMapList(organes) {
+		for (var i = 0; i < organes.length; i++) {
+			var kakaoMap = organes[i];
 			kakaoMapList__drawKakaoMap(kakaoMap);
 		}
 	}
 
 	function kakaoMapList__drawKakaoMap(kakaoMap) {
 		var html = '';
+		
 			html += '<ul>';
 			html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
 			html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
@@ -92,24 +86,38 @@
 			html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
 			html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
 			html += '</ul>';
+			html += '<br>';
 		
 		var $tr = $(html);
+		$tr.data('data-originBody', kakaoMap.body);
 		
-		kakaoMapList__$tbody.prepend($tr);
+		kakaoMapList__$li.append($tr);
 	}
 
 	kakaoMapList__loadMore();
-	
 </script>
+
 <!-- 병원 목록(organization) -->
+<!-- 방법2 -->
 <div class="kakaoMap-box con flex-jc-c margin-bottom-20">
 	<div class="kakaoMap con" id="map"></div>
 	<div class="kakaoMap-info con">
 		<ul>
 			<li class="kakaoMap-info-body">
-			<!--  
+				
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!--  방법1 
+<div class="kakaoMap-box con flex-jc-c margin-bottom-20">
+	<div class="kakaoMap con" id="map"></div>
+	<div class="kakaoMap-info con">
+		<ul>
+			<li class="kakaoMap-info-body">
 				<c:forEach items="${organes}" var="organ">
-				<input type="hidden" id="adCateItemName"/>
+				<input type="text" id="adCateItemName"/>
 					<c:if test="${adCateItemName != null && adCateItemName == organ.organAdmAddress}">
 						<ul>
 							<li>테스트 중</li>
@@ -129,11 +137,13 @@
 					</c:if>
 					<br>
 				</c:forEach>
-			-->	
 			</li>
 		</ul>
 	</div>
 </div>
+-->
+
+
 
 <!-- 카카오맵 -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
@@ -209,7 +219,8 @@
 	// select박스 onchange로 넘겨받은 행정구역 값에 해당하는 마커 생성
 	function administrative(adCateItemName) {
 
-		document.getElementById("adCateItemName").value=adCateItemName;
+		// adCateItemName 값 맵 우측 상세 목록으로 전달
+		document.getElementById("adCateItemName").value = adCateItemName;
 
 		console.log();
 		// 클러스터 지우기
@@ -287,10 +298,6 @@
 		// 클러스터러에 마커들을 추가합니다
 	    clusterer.addMarkers(markers);
 
-	}
-
-	function temp () {
-	
 	}
 	
 	for (var i = 0; i < 데이터.length; i++ ) {

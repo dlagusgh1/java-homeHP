@@ -34,6 +34,7 @@ public class ArticleController {
 	@Autowired
 	private CrawlingService crawlingService;
 	
+	// 카카오맵 (기본 ajax 테스트 중)
 	@RequestMapping("/usr/article/getForPrintKakaoMapList")
 	@ResponseBody
 	public ResultData getForPrintKakaoMapList(@RequestParam Map<String, Object> param, HttpServletRequest req) {
@@ -43,7 +44,7 @@ public class ArticleController {
 		List<Organ> organes = articleService.getOrgan();
 		rsDataBody.put("organes", organes);
 
-		return new ResultData("S-1", String.format("%d개의 댓글을 불러왔습니다.", organes.size()), rsDataBody);
+		return new ResultData("S-1", String.format("%d개의 지도정보를 불러왔습니다.", organes.size()), rsDataBody);
 	}
 
 	// 카카오맵(기본-병원/약국)
