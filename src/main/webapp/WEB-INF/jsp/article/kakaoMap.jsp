@@ -41,9 +41,21 @@
 	</nav>
 </div>
 
+<!-- 병원 목록(organization) -->
+<div class="kakaoMap-box con flex-jc-c margin-bottom-20">
+	<div class="kakaoMap con" id="map"></div>
+	<div class="kakaoMap-info con">
+		<ul>
+			<li class="kakaoMap-info-list">
+				
+			</li>
+		</ul>
+	</div>
+</div>
+
 <script>
 	var kakaoMapList__$box = $('.kakaoMap-box');
-	var kakaoMapList__$li = kakaoMapList__$box.find('.kakaoMap-info-body');
+	var kakaoMapList__$li = kakaoMapList__$box.find('.kakaoMap-info-list');
 
 	var kakaoMapList__lastLodedId = 0;
 	
@@ -74,6 +86,7 @@
 	}
 
 	function kakaoMapList__drawKakaoMap(kakaoMap) {
+		
 		var html = '';
 		
 			html += '<ul>';
@@ -90,60 +103,11 @@
 		
 		var $tr = $(html);
 		$tr.data('data-originBody', kakaoMap.body);
-		
 		kakaoMapList__$li.append($tr);
 	}
 
 	kakaoMapList__loadMore();
 </script>
-
-<!-- 병원 목록(organization) -->
-<!-- 방법2 -->
-<div class="kakaoMap-box con flex-jc-c margin-bottom-20">
-	<div class="kakaoMap con" id="map"></div>
-	<div class="kakaoMap-info con">
-		<ul>
-			<li class="kakaoMap-info-body">
-				
-			</li>
-		</ul>
-	</div>
-</div>
-
-<!--  방법1 
-<div class="kakaoMap-box con flex-jc-c margin-bottom-20">
-	<div class="kakaoMap con" id="map"></div>
-	<div class="kakaoMap-info con">
-		<ul>
-			<li class="kakaoMap-info-body">
-				<c:forEach items="${organes}" var="organ">
-				<input type="text" id="adCateItemName"/>
-					<c:if test="${adCateItemName != null && adCateItemName == organ.organAdmAddress}">
-						<ul>
-							<li>테스트 중</li>
-						</ul>
-					</c:if>
-					<c:if test="${adCateItemName == null}">
-						<ul>
-							<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
-							<li><a>주소 : ${organ.organAddress}</a></li>
-							<li><a>행정구역 : ${organ.organAdmAddress}</a></li>
-							<li><a>전화 번호 : ${organ.organTel}</a></li>
-							<li><a>진료 시간 : ${organ.organTime}</a></li>
-							<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
-							<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
-							<li><a>비고 : ${organ.organRemarks}</a></li>
-						</ul>
-					</c:if>
-					<br>
-				</c:forEach>
-			</li>
-		</ul>
-	</div>
-</div>
--->
-
-
 
 <!-- 카카오맵 -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
