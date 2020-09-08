@@ -49,21 +49,29 @@
 
 <!-- 병원/약국 목록 출력 -->
 <script>
-	var tempAdCateItemName = '';
 	var kakaoMapList__$box = $('.kakaoMap-box');
 	var kakaoMapList__$li = kakaoMapList__$box.find('.kakaoMap-info-list');
 
 	var kakaoMapList__lastLodedId = 0;
-	
-	function kakaoMapList__loadMore() {
 
+	var tempAdCateItemName = '';
+	var isRun = false;
+
+	function kakaoMapList__loadMore() {
+		console.log("ajax 확인1 : " + isRun);
+		if(isRun) {
+			return;
+		}
+		isRun = true;
+		
 		$.get('/usr/article/getForPrintKakaoMapList', {
 			from : kakaoMapList__lastLodedId + 1
-		}, kakaoMapList__loadMoreCallback, 'json');		
+		}, kakaoMapList__loadMoreCallback, 'json');	
+			
 	}
 	
 	// 2초
-	kakaoMapList__loadMoreInterval = 1 * 5000;
+	kakaoMapList__loadMoreInterval = 1 * 3000;
 
 	function kakaoMapList__loadMoreCallback(data) {
 		if (data.body.organes && data.body.organes.length > 0) {
@@ -84,10 +92,8 @@
 	function kakaoMapList__drawKakaoMap(kakaoMap) {
 		
 		var html = '';
-
-		if( tempAdCateItemName.length == 0 ) {
-			
-			console.log("실행1" + tempAdCateItemName);
+		
+		if ( tempAdCateItemName.length == 0 ) {
 			html += '<ul>';
 			html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
 			html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
@@ -99,12 +105,8 @@
 			html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
 			html += '</ul>';
 			html += '<br>';
-			
 		} else if ( tempAdCateItemName.length != 0 ) {
-			
-			if( tempAdCateItemName == kakaoMap.organAdmAddress ) {
-				
-				console.log("실행2" + tempAdCateItemName);
+			if ( kakaoMap.organAdmAddress == tempAdCateItemName ) {
 				html += '<ul>';
 				html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
 				html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
@@ -115,10 +117,8 @@
 				html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
 				html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
 				html += '</ul>';
-				html += '<br>';
-				
-			}
-			
+				html += '<br>';	
+			}			
 		}
 		
 		var $tr = $(html);
@@ -202,12 +202,9 @@
 	
 	// select박스 onchange로 넘겨받은 행정구역 값에 해당하는 마커 생성
 	function administrative(adCateItemName) {
-
+		
 		tempAdCateItemName = adCateItemName;
-		// adCateItemName 값 맵 우측 상세 목록으로 전달
-		// document.getElementById("adCateItemName").value = adCateItemName;
-
-		console.log();
+		
 		// 클러스터 지우기
 		clusterer.clear();
 		// 기존 마커들 지우기.

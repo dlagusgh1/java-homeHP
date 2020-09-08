@@ -25,6 +25,7 @@ public class Article {
 	private int memberId;
 	private int boardId;
 	private Map<String, Object> extra;
+	private int hit;
 
 	@JsonProperty("forPrintBody")
 	public String getForPrintBody() {

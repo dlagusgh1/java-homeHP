@@ -29,14 +29,8 @@
 			행정구역(동/읍/면)&nbsp&nbsp
 			<select name="adCateItemName" id="adCateItem" onchange="administrative(this.value)">
 				<option>행정구역 선택</option>
-				<c:forEach items="${adCateItems}" var="adCateItem">
-					<c:set var="count" value="0" />
-					<c:forEach items="${organes}" var="organ">
-						<c:if test="${organ.organNumber == 1 && organ.organAdmAddress == adCateItem.name && count == 0}">
-							<option value="${adCateItem.name}" style="height: 50px;">${adCateItem.name}</option>
-							<c:set var="count" value="${count + 1}" />
-						</c:if>
-					</c:forEach>
+				<c:forEach items="${hashMap}" var="entry">
+					<option value="${entry.key}" style="height: 50px;">${entry.value}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -48,26 +42,69 @@
 	<div class="kakaoMap con" id="map"></div>
 	<div class="kakaoMap-info con">
 		<ul>
-			<li>
-				<c:forEach items="${organes}" var="organ">
-					<c:if test="${organ.organNumber == 1}">
-						<ul>
-							<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
-							<li><a>주소 : ${organ.organAddress}</a></li>
-							<li><a>행정구역 : ${organ.organAdmAddress}</a></li>
-							<li><a>전화 번호 : ${organ.organTel}</a></li>
-							<li><a>진료 시간 : ${organ.organTime}</a></li>
-							<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
-							<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
-							<li><a>비고 : ${organ.organRemarks}</a></li>
-						</ul>		
-						<br>
-					</c:if>
-				</c:forEach>	
+			<li class="kakaoMap-info-list">
+				
 			</li>
 		</ul>
 	</div>
 </div>
+
+<!-- 병원 목록 출력 -->
+<script>
+	var kakaoMapList__$box = $('.kakaoMap-box');
+	var kakaoMapList__$li = kakaoMapList__$box.find('.kakaoMap-info-list');
+
+	var kakaoMapList__lastLodedId = 0;
+	
+	function kakaoMapList__loadMore() {
+
+		$.get('/usr/article/getForPrintKakaoMapHPList', {
+			from : kakaoMapList__lastLodedId + 1
+		}, kakaoMapList__loadMoreCallback, 'json');		
+	}
+	
+	// 2초
+	kakaoMapList__loadMoreInterval = 1 * 5000;
+
+	function kakaoMapList__loadMoreCallback(data) {
+		if (data.body.organes && data.body.organes.length > 0) {
+			kakaoMapList__lastLodedId = data.body.organes[data.body.organes.length-1].id;
+			kakaoMapList__drawKakaoMapList(data.body.organes);
+		}
+		
+		setTimeout(kakaoMapList__loadMore, kakaoMapList__loadMoreInterval);
+	}
+
+	function kakaoMapList__drawKakaoMapList(organes) {
+		for (var i = 0; i < organes.length; i++) {
+			var kakaoMap = organes[i];
+			kakaoMapList__drawKakaoMap(kakaoMap);
+		}
+	}
+
+	function kakaoMapList__drawKakaoMap(kakaoMap) {
+		
+		var html = '';
+
+		html += '<ul>';
+		html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
+		html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
+		html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
+		html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
+		html += '<li><a>진료 시간 : ' + kakaoMap.organTime + '</a></li>';
+		html += '<li><a>진료 시간(주말) : ' + kakaoMap.organWeekendTime + '</a></li>';
+		html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
+		html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
+		html += '</ul>';
+		html += '<br>';
+		
+		var $tr = $(html);
+		$tr.data('data-originBody', kakaoMap.body);
+		kakaoMapList__$li.append($tr);
+	}
+
+	kakaoMapList__loadMore();
+</script>
 
 <!-- 카카오맵 -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>

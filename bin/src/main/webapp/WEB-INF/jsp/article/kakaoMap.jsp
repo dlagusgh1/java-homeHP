@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- JSTL -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
@@ -28,14 +27,8 @@
 			행정구역(동/읍/면)&nbsp&nbsp
 			<select name="adCateItemName" id="adCateItem" onchange="administrative(this.value)">
 				<option>행정구역 선택</option>
-				<c:forEach items="${adCateItems}" var="adCateItem">
-					<c:set var="count" value="0" />
-					<c:forEach items="${organes}" var="organ">
-						<c:if test="${organ.organAdmAddress == adCateItem.name && count == 0}">
-							<option value="${adCateItem.name}" style="height: 50px;">${adCateItem.name}</option>
-							<c:set var="count" value="${count + 1}" />
-						</c:if>
-					</c:forEach>
+				<c:forEach items="${hashMap}" var="entry">
+					<option value="${entry.key}" style="height: 50px;">${entry.value}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -47,29 +40,99 @@
 	<div class="kakaoMap con" id="map"></div>
 	<div class="kakaoMap-info con">
 		<ul>
-			<li>
-				<c:forEach items="${organes}" var="organ">
-					<ul>
-						<li><a style="font-size: 1.3rem; font-weight: bold;">${organ.organName}</a></li>
-						<li><a>주소 : ${organ.organAddress}</a></li>
-						<li><a>행정구역 : ${organ.organAdmAddress}</a></li>
-						<li><a>전화 번호 : ${organ.organTel}</a></li>
-						<li><a>진료 시간 : ${organ.organTime}</a></li>
-						<li><a>진료 시간(주말) : ${organ.organWeekendTime}</a></li>
-						<li><a>주말 운영여부 : ${organ.organWeekend}</a></li>
-						<li><a>비고 : ${organ.organRemarks}</a></li>
-					</ul>		
-					<br>
-				</c:forEach>	
+			<li class="kakaoMap-info-list">
+				
 			</li>
 		</ul>
 	</div>
 </div>
 
+<!-- 병원/약국 목록 출력 -->
+<script>
+	var tempAdCateItemName = '';
+	var kakaoMapList__$box = $('.kakaoMap-box');
+	var kakaoMapList__$li = kakaoMapList__$box.find('.kakaoMap-info-list');
+
+	var kakaoMapList__lastLodedId = 0;
+	
+	function kakaoMapList__loadMore() {
+
+		$.get('/usr/article/getForPrintKakaoMapList', {
+			from : kakaoMapList__lastLodedId + 1
+		}, kakaoMapList__loadMoreCallback, 'json');		
+	}
+	
+	// 2초
+	kakaoMapList__loadMoreInterval = 1 * 5000;
+
+	function kakaoMapList__loadMoreCallback(data) {
+		if (data.body.organes && data.body.organes.length > 0) {
+			kakaoMapList__lastLodedId = data.body.organes[data.body.organes.length-1].id;
+			kakaoMapList__drawKakaoMapList(data.body.organes);
+		}
+		
+		setTimeout(kakaoMapList__loadMore, kakaoMapList__loadMoreInterval);
+	}
+
+	function kakaoMapList__drawKakaoMapList(organes) {
+		for (var i = 0; i < organes.length; i++) {
+			var kakaoMap = organes[i];
+			kakaoMapList__drawKakaoMap(kakaoMap);
+		}
+	}
+
+	function kakaoMapList__drawKakaoMap(kakaoMap) {
+		
+		var html = '';
+
+		if( tempAdCateItemName.length == 0 ) {
+			
+			console.log("실행1" + tempAdCateItemName);
+			html += '<ul>';
+			html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
+			html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
+			html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
+			html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
+			html += '<li><a>진료 시간 : ' + kakaoMap.organTime + '</a></li>';
+			html += '<li><a>진료 시간(주말) : ' + kakaoMap.organWeekendTime + '</a></li>';
+			html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
+			html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
+			html += '</ul>';
+			html += '<br>';
+			
+		} else if ( tempAdCateItemName.length != 0 ) {
+			
+			if( tempAdCateItemName == kakaoMap.organAdmAddress ) {
+				
+				console.log("실행2" + tempAdCateItemName);
+				html += '<ul>';
+				html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
+				html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
+				html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
+				html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
+				html += '<li><a>진료 시간 : ' + kakaoMap.organTime + '</a></li>';
+				html += '<li><a>진료 시간(주말) : ' + kakaoMap.organWeekendTime + '</a></li>';
+				html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
+				html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
+				html += '</ul>';
+				html += '<br>';
+				
+			}
+			
+		}
+		
+		var $tr = $(html);
+		$tr.data('data-originBody', kakaoMap.body);
+		kakaoMapList__$li.append($tr);
+	}
+
+	kakaoMapList__loadMore();
+</script>
+
 <!-- 카카오맵 -->
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=510e37db593be13becad502aecab0d79&libraries=clusterer"></script>
 <script>
-
+	//마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 	var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
 	contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
 	markers = [], // 마커를 담을 배열입니다
@@ -139,7 +202,12 @@
 	
 	// select박스 onchange로 넘겨받은 행정구역 값에 해당하는 마커 생성
 	function administrative(adCateItemName) {
-		
+
+		tempAdCateItemName = adCateItemName;
+		// adCateItemName 값 맵 우측 상세 목록으로 전달
+		// document.getElementById("adCateItemName").value = adCateItemName;
+
+		console.log();
 		// 클러스터 지우기
 		clusterer.clear();
 		// 기존 마커들 지우기.
@@ -215,11 +283,6 @@
 		// 클러스터러에 마커들을 추가합니다
 	    clusterer.addMarkers(markers);
 
-		return temp(adCateName);
-	}
-
-	function temp (adCateName) {
-		console.log(adCateName);
 	}
 	
 	for (var i = 0; i < 데이터.length; i++ ) {

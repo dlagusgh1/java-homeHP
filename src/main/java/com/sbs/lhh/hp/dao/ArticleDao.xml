@@ -171,6 +171,12 @@
 		FROM `covidData`
 	</select>
 	
+	<update id="increaseArticleHit">
+		UPDATE article
+		SET hit = hit + 1
+		WHERE id = #{id}
+	</update>
+	
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />
@@ -182,6 +188,7 @@
 		<id property="body" column="body" />
 		<id property="memberId" column="memberId" />
 		<id property="boardId" column="boardId" />
+		<id property="hit" column="hit" />
 		<association property="extra" javaType="map">
 			<id property="writer" column="extra__writer" />
 		</association>

@@ -55,5 +55,7 @@ public interface ArticleDao {
 	void setCovidDataUpdate(CovidData data);
 
 	List<CovidData> getCovidData();
+
+	void increaseArticleHit(@Param("id")int id);
 	
 }

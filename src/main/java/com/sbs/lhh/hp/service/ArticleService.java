@@ -267,5 +267,9 @@ public class ArticleService {
 	public List<CovidData> getCovidData() {
 		return articleDao.getCovidData();
 	}
+
+	public void increaseArticleHit(int id) {
+		articleDao.increaseArticleHit(id);
+	}
 	
 }

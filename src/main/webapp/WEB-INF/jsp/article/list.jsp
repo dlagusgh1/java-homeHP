@@ -36,7 +36,8 @@
 		<colgroup>
 			<col width="100" />
            	<col width="500" />
-           	<col width="200" />
+           	<col width="100" />
+           	<col width="100"/>
            	<col width="200" />
 		</colgroup>
 		<thead>
@@ -44,6 +45,7 @@
 				<th>번호</th>
 				<th>제목</th>
 				<th>작성자</th>	
+				<th>조회수</th>
 				<th>작성일자</th>								
 			</tr>
 		</thead>
@@ -56,6 +58,7 @@
 							<a href="/usr${article.getDetailLink(board.code)}">${article.forPrintTitle}</a>
 						</td>	
 						<td class="writer">${article.extra.writer}</td>	
+						<td>${article.hit}</td>
 						<td><a>${article.regDate}</a></td>							
 						<td class="visible-on-sm-down">
                         <a href="/usr${article.getDetailLink(board.code)}" class="flex flex-row-wrap flex-ai-c">

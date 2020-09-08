@@ -399,6 +399,8 @@ public class ArticleController {
 
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
+		articleService.increaseArticleHit(id);
+		
 		model.addAttribute("article", article);
 
 		return "article/detail";
