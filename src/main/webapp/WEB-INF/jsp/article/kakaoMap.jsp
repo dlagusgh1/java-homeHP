@@ -49,6 +49,7 @@
 
 <!-- 병원/약국 목록 출력 -->
 <script>
+	var tempAdCateItemName = '';
 	var kakaoMapList__$box = $('.kakaoMap-box');
 	var kakaoMapList__$li = kakaoMapList__$box.find('.kakaoMap-info-list');
 
@@ -84,17 +85,41 @@
 		
 		var html = '';
 
-		html += '<ul>';
-		html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
-		html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
-		html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
-		html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
-		html += '<li><a>진료 시간 : ' + kakaoMap.organTime + '</a></li>';
-		html += '<li><a>진료 시간(주말) : ' + kakaoMap.organWeekendTime + '</a></li>';
-		html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
-		html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
-		html += '</ul>';
-		html += '<br>';
+		if( tempAdCateItemName.length == 0 ) {
+			
+			console.log("실행1" + tempAdCateItemName);
+			html += '<ul>';
+			html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
+			html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
+			html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
+			html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
+			html += '<li><a>진료 시간 : ' + kakaoMap.organTime + '</a></li>';
+			html += '<li><a>진료 시간(주말) : ' + kakaoMap.organWeekendTime + '</a></li>';
+			html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
+			html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
+			html += '</ul>';
+			html += '<br>';
+			
+		} else if ( tempAdCateItemName.length != 0 ) {
+			
+			if( tempAdCateItemName == kakaoMap.organAdmAddress ) {
+				
+				console.log("실행2" + tempAdCateItemName);
+				html += '<ul>';
+				html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
+				html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
+				html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
+				html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
+				html += '<li><a>진료 시간 : ' + kakaoMap.organTime + '</a></li>';
+				html += '<li><a>진료 시간(주말) : ' + kakaoMap.organWeekendTime + '</a></li>';
+				html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
+				html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
+				html += '</ul>';
+				html += '<br>';
+				
+			}
+			
+		}
 		
 		var $tr = $(html);
 		$tr.data('data-originBody', kakaoMap.body);
@@ -178,6 +203,7 @@
 	// select박스 onchange로 넘겨받은 행정구역 값에 해당하는 마커 생성
 	function administrative(adCateItemName) {
 
+		tempAdCateItemName = adCateItemName;
 		// adCateItemName 값 맵 우측 상세 목록으로 전달
 		// document.getElementById("adCateItemName").value = adCateItemName;
 
