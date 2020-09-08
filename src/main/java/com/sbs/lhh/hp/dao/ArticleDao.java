@@ -57,5 +57,9 @@ public interface ArticleDao {
 	List<CovidData> getCovidData();
 
 	void increaseArticleHit(@Param("id")int id);
+
+	int getArticleLikeByMemberId(@Param("id")int articleId, @Param("memberId")int actor);
+
+	void setArticleLike(@Param("id")int articleId, @Param("memberId")int actor);
 	
 }

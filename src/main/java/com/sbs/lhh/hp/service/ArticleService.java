@@ -122,7 +122,7 @@ public class ArticleService {
 		boolean actorCanModify = actorCanModify(actor, id);
 
 		if (actorCanModify) {
-			return new ResultData("S-1", "가능합니다.", "id", id);
+			return new ResultData("S-1", "수정 가능합니다.", "id", id);
 		}
 
 		return new ResultData("F-1", "권한이 없습니다.", "id", id);
@@ -133,7 +133,7 @@ public class ArticleService {
 		boolean actorCanDelete = actorCanDelete(actor, id);
 
 		if (actorCanDelete) {
-			return new ResultData("S-1", "가능합니다.", "id", id);
+			return new ResultData("S-1", "삭제 가능합니다.", "id", id);
 		}
 
 		return new ResultData("F-1", "권한이 없습니다.", "id", id);
@@ -268,8 +268,31 @@ public class ArticleService {
 		return articleDao.getCovidData();
 	}
 
+	// 조회수 기능
 	public void increaseArticleHit(int id) {
 		articleDao.increaseArticleHit(id);
+	}
+
+	// 좋아요/싫어요 가능여부 확인
+	public ResultData checkCanArticleLikeAvailable(int actor, int articleId) {
+		Article article = articleDao.getForPrintArticleById(articleId);
+		
+		if (article.getMemberId() == actor ) {
+			return new ResultData("F-1", "본인은 추천 할 수 없습니다.", "memberId", actor);
+		}
+
+		int likePoint = articleDao.getArticleLikeByMemberId(actor, articleId);
+		
+		if ( likePoint > 0 ) {
+			return new ResultData("F-1", "이미 좋아요를 했습니다.", "memberId", actor);
+		}
+		
+		return new ResultData("S-1", "추천 가능 합니다.", "memberId", actor);
+	}
+
+	// 좋아요/싫어요 기능
+	public void setArticleLike(int actor, int articleId) {
+		articleDao.setArticleLike(actor, articleId);
 	}
 	
 }

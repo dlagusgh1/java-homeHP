@@ -511,5 +511,28 @@ public class ArticleController {
 
 		return "redirect:" + redirectUri;
 	}
+	
+	// 게시물 추천 기능
+	@RequestMapping("/usr/article/doLike")
+	public String doLike(Model model, int id, HttpServletRequest req) {
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		
+		System.out.println("ㅁㄴㅇㅁㄴㅇ" + id);
+		ResultData checkCanArticleLikeResultData = articleService.checkCanArticleLikeAvailable(loginedMemberId, id);
+
+		if (checkCanArticleLikeResultData.isFail()) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", checkCanArticleLikeResultData.getMsg());
+
+			return "common/redirect";
+		}
+		
+		articleService.setArticleLike(loginedMemberId, id);
+		
+		String redirectUri = (String) param.get("redirectUri");
+		model.addAttribute("alertMsg", "좋아요 완료!");
+		
+		return "redirect:" + redirectUri;
+	}
 
 }
