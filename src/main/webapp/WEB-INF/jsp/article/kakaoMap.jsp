@@ -47,7 +47,7 @@
 	</div>
 </div>
 
-<!-- 병원 목록 출력 -->
+<!-- 병원/약국 목록 출력 -->
 <script>
 	var kakaoMapList__$box = $('.kakaoMap-box');
 	var kakaoMapList__$li = kakaoMapList__$box.find('.kakaoMap-info-list');
@@ -83,18 +83,18 @@
 	function kakaoMapList__drawKakaoMap(kakaoMap) {
 		
 		var html = '';
-		
-			html += '<ul>';
-			html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
-			html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
-			html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
-			html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
-			html += '<li><a>진료 시간 : ' + kakaoMap.organTime + '</a></li>';
-			html += '<li><a>진료 시간(주말) : ' + kakaoMap.organWeekendTime + '</a></li>';
-			html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
-			html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
-			html += '</ul>';
-			html += '<br>';
+
+		html += '<ul>';
+		html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
+		html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
+		html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
+		html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
+		html += '<li><a>진료 시간 : ' + kakaoMap.organTime + '</a></li>';
+		html += '<li><a>진료 시간(주말) : ' + kakaoMap.organWeekendTime + '</a></li>';
+		html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
+		html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
+		html += '</ul>';
+		html += '<br>';
 		
 		var $tr = $(html);
 		$tr.data('data-originBody', kakaoMap.body);

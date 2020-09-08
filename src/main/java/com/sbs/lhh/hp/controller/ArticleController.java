@@ -1,6 +1,7 @@
 package com.sbs.lhh.hp.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,50 @@ public class ArticleController {
 	@Autowired
 	private CrawlingService crawlingService;
 	
+	// 카카오맵 (병원 리스트 ajax)
+	@RequestMapping("/usr/article/getForPrintKakaoMapHPList")
+	@ResponseBody
+	public ResultData getForPrintKakaoMapHPList(@RequestParam Map<String, Object> param, HttpServletRequest req) {
+
+		Map<String, Object> rsDataBody = new HashMap<>();
+
+		List<Organ> arr = articleService.getOrgan();
+		
+		List<Organ> organes = new ArrayList<Organ>();
+		
+		for ( int i = 0; i < arr.size(); i++ ) {
+			if(arr.get(i).getOrganNumber() == 1) {
+				organes.add(arr.get(i));
+			}
+		}
+	
+		rsDataBody.put("organes", organes);
+		
+		return new ResultData("S-1", String.format("%d개의 병원 지도정보를 불러왔습니다.", organes.size()), rsDataBody);
+	}
+		
+	// 카카오맵 (약국 리스트 ajax)
+	@RequestMapping("/usr/article/getForPrintKakaoMapPMList")
+	@ResponseBody
+	public ResultData getForPrintKakaoMapPMList(@RequestParam Map<String, Object> param, HttpServletRequest req) {
+
+		Map<String, Object> rsDataBody = new HashMap<>();
+
+		List<Organ> arr = articleService.getOrgan();
+		
+		List<Organ> organes = new ArrayList<Organ>();
+		
+		for ( int i = 0; i < arr.size(); i++ ) {
+			if(arr.get(i).getOrganNumber() == 2) {
+				organes.add(arr.get(i));
+			}
+		}
+	
+		rsDataBody.put("organes", organes);
+		
+		return new ResultData("S-1", String.format("%d개의 약국 지도정보를 불러왔습니다.", organes.size()), rsDataBody);
+	}
+		
 	// 카카오맵 (기본-병원/약국 리스트 ajax)
 	@RequestMapping("/usr/article/getForPrintKakaoMapList")
 	@ResponseBody
@@ -42,9 +87,80 @@ public class ArticleController {
 		Map<String, Object> rsDataBody = new HashMap<>();
 
 		List<Organ> organes = articleService.getOrgan();
+		
 		rsDataBody.put("organes", organes);
 
 		return new ResultData("S-1", String.format("%d개의 지도정보를 불러왔습니다.", organes.size()), rsDataBody);
+	}
+	
+	// 카카오맵(병원)
+	@RequestMapping("/usr/article/kakaoMap_HP")
+	public String kakaoMap_HP(Model model) {
+
+		List<AdCateItem> adCateItems = articleService.getAdCateItem();
+
+		model.addAttribute("adCateItems", adCateItems);
+
+		int organ_ALLCount = articleService.organsCount();
+		int organ_HPCount = articleService.organCount(1);
+		int organ_PMCount = articleService.organCount(2);
+
+		model.addAttribute("organ_ALLCount", organ_ALLCount);
+		model.addAttribute("organ_HPCount", organ_HPCount);
+		model.addAttribute("organ_PMCount", organ_PMCount);
+
+		List<Organ> organes = articleService.getOrgan();
+
+		model.addAttribute("organes", organes);
+		
+		// 기관의 행정구역과 일치하는 행정구역만 출력하기 위한 hashMap
+		Map<String, String> hashMap = new HashMap<>();		
+		for ( int i = 0; i < adCateItems.size(); i++ ) {
+			for ( int k = 0; k < organes.size(); k++ ) {
+				if( organes.get(k).getOrganNumber() == 1 && adCateItems.get(i).getName().equals(organes.get(k).getOrganAdmAddress()) ) {
+					hashMap.put(adCateItems.get(i).getName(), adCateItems.get(i).getName());
+				}
+			}
+		}
+		
+		model.addAttribute("hashMap", hashMap);
+
+		return "article/kakaoMap_HP";
+	}
+
+	// 카카오맵(약국)
+	@RequestMapping("/usr/article/kakaoMap_PM")
+	public String kakaoMap_PM(Model model) {
+
+		List<AdCateItem> adCateItems = articleService.getAdCateItem();
+
+		model.addAttribute("adCateItems", adCateItems);
+
+		int organ_ALLCount = articleService.organsCount();
+		int organ_HPCount = articleService.organCount(1);
+		int organ_PMCount = articleService.organCount(2);
+
+		model.addAttribute("organ_ALLCount", organ_ALLCount);
+		model.addAttribute("organ_HPCount", organ_HPCount);
+		model.addAttribute("organ_PMCount", organ_PMCount);
+
+		List<Organ> organes = articleService.getOrgan();
+
+		model.addAttribute("organes", organes);
+		
+		// 기관의 행정구역과 일치하는 행정구역만 출력하기 위한 hashMap
+		Map<String, String> hashMap = new HashMap<>();		
+		for ( int i = 0; i < adCateItems.size(); i++ ) {
+			for ( int k = 0; k < organes.size(); k++ ) {
+				if( organes.get(k).getOrganNumber() == 2 && adCateItems.get(i).getName().equals(organes.get(k).getOrganAdmAddress()) ) {
+					hashMap.put(adCateItems.get(i).getName(), adCateItems.get(i).getName());
+				}
+			}
+		}
+		
+		model.addAttribute("hashMap", hashMap);
+				
+		return "article/kakaoMap_PM";
 	}
 
 	// 카카오맵(기본-병원/약국)
@@ -106,52 +222,6 @@ public class ArticleController {
 		model.addAttribute("organes", organes);
 
 		return "article/kakaoMap_All";
-	}
-
-	// 카카오맵(병원)
-	@RequestMapping("/usr/article/kakaoMap_HP")
-	public String kakaoMap_HP(Model model) {
-
-		List<AdCateItem> adCateItems = articleService.getAdCateItem();
-
-		model.addAttribute("adCateItems", adCateItems);
-
-		int organ_ALLCount = articleService.organsCount();
-		int organ_HPCount = articleService.organCount(1);
-		int organ_PMCount = articleService.organCount(2);
-
-		model.addAttribute("organ_ALLCount", organ_ALLCount);
-		model.addAttribute("organ_HPCount", organ_HPCount);
-		model.addAttribute("organ_PMCount", organ_PMCount);
-
-		List<Organ> organes = articleService.getOrgan();
-
-		model.addAttribute("organes", organes);
-
-		return "article/kakaoMap_HP";
-	}
-
-	// 카카오맵(약국)
-	@RequestMapping("/usr/article/kakaoMap_PM")
-	public String kakaoMap_PM(Model model) {
-
-		List<AdCateItem> adCateItems = articleService.getAdCateItem();
-
-		model.addAttribute("adCateItems", adCateItems);
-
-		int organ_ALLCount = articleService.organsCount();
-		int organ_HPCount = articleService.organCount(1);
-		int organ_PMCount = articleService.organCount(2);
-
-		model.addAttribute("organ_ALLCount", organ_ALLCount);
-		model.addAttribute("organ_HPCount", organ_HPCount);
-		model.addAttribute("organ_PMCount", organ_PMCount);
-
-		List<Organ> organes = articleService.getOrgan();
-
-		model.addAttribute("organes", organes);
-
-		return "article/kakaoMap_PM";
 	}
 	
 	// COVID-19 현황 가져오기(크롤링)
