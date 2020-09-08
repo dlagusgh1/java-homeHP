@@ -27,14 +27,8 @@
 			행정구역(동/읍/면)&nbsp&nbsp
 			<select name="adCateItemName" id="adCateItem" onchange="administrative(this.value)">
 				<option>행정구역 선택</option>
-				<c:forEach items="${adCateItems}" var="adCateItem">
-					<c:set var="count" value="0" />
-					<c:forEach items="${organes}" var="organ">
-						<c:if test="${organ.organAdmAddress == adCateItem.name && count == 0}">
-							<option value="${adCateItem.name}" style="height: 50px;">${adCateItem.name}</option>
-							<c:set var="count" value="${count + 1}" />
-						</c:if>
-					</c:forEach>
+				<c:forEach items="${hashMap}" var="entry">
+					<option value="${entry.key}" style="height: 50px;">${entry.value}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -53,6 +47,7 @@
 	</div>
 </div>
 
+<!-- 병원 목록 출력 -->
 <script>
 	var kakaoMapList__$box = $('.kakaoMap-box');
 	var kakaoMapList__$li = kakaoMapList__$box.find('.kakaoMap-info-list');
@@ -66,8 +61,8 @@
 		}, kakaoMapList__loadMoreCallback, 'json');		
 	}
 	
-	// 1초
-	kakaoMapList__loadMoreInterval = 1 * 2000;
+	// 2초
+	kakaoMapList__loadMoreInterval = 1 * 5000;
 
 	function kakaoMapList__loadMoreCallback(data) {
 		if (data.body.organes && data.body.organes.length > 0) {
@@ -184,7 +179,7 @@
 	function administrative(adCateItemName) {
 
 		// adCateItemName 값 맵 우측 상세 목록으로 전달
-		document.getElementById("adCateItemName").value = adCateItemName;
+		// document.getElementById("adCateItemName").value = adCateItemName;
 
 		console.log();
 		// 클러스터 지우기

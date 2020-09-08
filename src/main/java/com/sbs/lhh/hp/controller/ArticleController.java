@@ -34,7 +34,7 @@ public class ArticleController {
 	@Autowired
 	private CrawlingService crawlingService;
 	
-	// 카카오맵 (기본 ajax 테스트 중)
+	// 카카오맵 (기본-병원/약국 리스트 ajax)
 	@RequestMapping("/usr/article/getForPrintKakaoMapList")
 	@ResponseBody
 	public ResultData getForPrintKakaoMapList(@RequestParam Map<String, Object> param, HttpServletRequest req) {
@@ -51,10 +51,12 @@ public class ArticleController {
 	@RequestMapping("/usr/article/kakaoMap")
 	public String kakaoMap(Model model) {
 
+		// 행정구역 선택 select box
 		List<AdCateItem> adCateItems = articleService.getAdCateItem();
 
 		model.addAttribute("adCateItems", adCateItems);
 
+		// 찾기 선택 select box 내 각 count 값 
 		int organ_ALLCount = articleService.organsCount();
 		int organ_HPCount = articleService.organCount(1);
 		int organ_PMCount = articleService.organCount(2);
@@ -62,11 +64,24 @@ public class ArticleController {
 		model.addAttribute("organ_ALLCount", organ_ALLCount);
 		model.addAttribute("organ_HPCount", organ_HPCount);
 		model.addAttribute("organ_PMCount", organ_PMCount);
-
+		
+		// 등록된 기관 리스트
 		List<Organ> organes = articleService.getOrgan();
-
+		
 		model.addAttribute("organes", organes);
 
+		// 기관의 행정구역과 일치하는 행정구역만 출력하기 위한 hashMap
+		Map<String, String> hashMap = new HashMap<>();		
+		for ( int i = 0; i < adCateItems.size(); i++ ) {
+			for ( int k = 0; k < organes.size(); k++ ) {
+				if( adCateItems.get(i).getName().equals(organes.get(k).getOrganAdmAddress())) {
+					hashMap.put(adCateItems.get(i).getName(), adCateItems.get(i).getName());
+				}
+			}
+		}
+	
+		model.addAttribute("hashMap", hashMap);
+		
 		return "article/kakaoMap";
 	}
 
