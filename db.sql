@@ -1,7 +1,7 @@
 # DB 세팅
-DROP DATABASE IF EXISTS `hp`;
-CREATE DATABASE `hp`;
-USE `hp`;
+DROP DATABASE IF EXISTS `st_n35_wori`;
+CREATE DATABASE `st_n35_wori`;
+USE `st_n35_wori`;
 
 # member 테이블 세팅
 DROP TABLE IF EXISTS `member`;
@@ -96,8 +96,9 @@ CREATE TABLE `organ` (
     memberId INT(10) UNSIGNED NOT NULL 
 );
 
-LOAD DATA INFILE  "hp/list1.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
-LOAD DATA INFILE  "hp/list2.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
+# 로컬db에서 저장 후 서버쪽으로 옮기기 
+LOAD DATA INFILE  "st_n35_wori/list1.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
+LOAD DATA INFILE  "st_n35_wori/list2.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
 
 # 게시판 테이블 추가
 DROP TABLE IF EXISTS `board`;
@@ -135,7 +136,8 @@ CREATE TABLE article (
     title CHAR(200) NOT NULL,
     `body` LONGTEXT NOT NULL,
     memberId INT(10) UNSIGNED NOT NULL,
-    boardId INT(10) UNSIGNED NOT NULL
+    boardId INT(10) UNSIGNED NOT NULL,
+    hit INT(10) UNSIGNED NOT NULL DEFAULT 0
 );
 
 # article 테이블에 테스트 데이터 삽입

@@ -12,5 +12,10 @@ public class HomeController {
 		
 		return "home/main";
 	}
+	
+	@RequestMapping("/")
+	public String showIndex() {
+		return "home/main";
+	}
 }
 

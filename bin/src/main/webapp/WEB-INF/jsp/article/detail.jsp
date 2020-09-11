@@ -68,9 +68,11 @@
 		<a class="btn btn-primary"	href="${board.code}-modify?id=${article.id}&listUrl=${Util.getUriEncoded(listUrl)}">수정</a>
 	</c:if>
 	<c:if test="${article.extra.actorCanDelete}">
-		<a class="btn btn-onfo" href="${board.code}-doDelete?id=${article.id}" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;">삭제</a>
+		<a class="btn btn-info" href="${board.code}-doDelete?id=${article.id}" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;">삭제</a>
 	</c:if>
 	<a href="${listUrl}" class="btn">리스트</a>
+	<a href="doLike?id=${article.id}&redirectUri=/usr/article/${board.code}-detail?id=${article.id}" class="btn" onclick="if ( confirm('추천하시겠습니까?') == false ) return false;">좋아요</a>
+	<a href="doLike?id=${article.id}&redirectUri=/usr/article/${board.code}-detail?id=${article.id}" class="btn btn-danger" onclick="if ( confirm('싫어요 하시겠습니까?') == false ) return false;">싫어요</a>
 </div>
 
 <%@ include file="../part/foot.jspf"%>

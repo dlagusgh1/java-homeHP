@@ -512,9 +512,9 @@ public class ArticleController {
 		return "redirect:" + redirectUri;
 	}
 	
-	// 게시물 추천 기능
+	// 게시물 추천 기능(작업 중)
 	@RequestMapping("/usr/article/doLike")
-	public String doLike(Model model, int id, HttpServletRequest req) {
+	public String doLike(@RequestParam Map<String, Object> param, Model model, int id, HttpServletRequest req) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		
 		System.out.println("ㅁㄴㅇㅁㄴㅇ" + id);

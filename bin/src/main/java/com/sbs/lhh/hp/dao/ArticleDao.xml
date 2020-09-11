@@ -171,6 +171,26 @@
 		FROM `covidData`
 	</select>
 	
+	<update id="increaseArticleHit">
+		UPDATE article
+		SET hit = hit + 1
+		WHERE id = #{id}
+	</update>
+	
+	<select id="getArticleLikeByMemberId" resultType="int">
+		SELECT IFNULL(SUM(AL.point), 0) AS `point`
+		FROM `articleLike` AS AL
+		WHERE AL.articleId = #{id}
+		AND AL.memberId = #{memberId}
+	</select>
+	
+	<insert id="setArticleLike">
+		INSERT INTO `articleLike`
+		SET regDate = NOW(),
+		articleId = #{id},
+		memberId = #{memberId}
+		</insert>
+	
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />
@@ -182,6 +202,7 @@
 		<id property="body" column="body" />
 		<id property="memberId" column="memberId" />
 		<id property="boardId" column="boardId" />
+		<id property="hit" column="hit" />
 		<association property="extra" javaType="map">
 			<id property="writer" column="extra__writer" />
 		</association>

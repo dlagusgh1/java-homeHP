@@ -31,7 +31,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(beforeActionInterceptor).addPathPatterns("/**").excludePathPatterns("/resource/**");
 
 		// 로그인 '없이'도 접속할 수 있는 URI 전부 기술
-		registry.addInterceptor(needToLoginInterceptor).addPathPatterns("/**").excludePathPatterns("/")
+		registry.addInterceptor(needToLoginInterceptor).addPathPatterns("/**").excludePathPatterns("/").excludePathPatterns("/error")
 				.excludePathPatterns("/resource/**").excludePathPatterns("/usr/home/main")
 				.excludePathPatterns("/usr/member/login").excludePathPatterns("/usr/member/doLogin")
 				.excludePathPatterns("/usr/member/join").excludePathPatterns("/usr/member/doJoin")

@@ -83,35 +83,33 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency>	
 		<!-- 메일 보내기 위한 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
-		<!-- 메일 보내기 위한 -->
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version>
-		</dependency>
-		
+		</dependency>	
+		<!-- redis -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<!-- redis -->
+		</dependency>	
 		<dependency>
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-data-redis</artifactId>
 			<version>2.3.0.RELEASE</version>
-		</dependency>
+		</dependency>		
 		<!-- jsoup -->
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.8.3</version>
-		</dependency>
+		</dependency>	
 		<!-- json-simple -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
@@ -126,12 +124,9 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<url>http://at.iu.gy:8080/manager/text</url>
-					<server>TomcatServer</server>
+					<url>http://wori.n35.weone.kr:8080/manager/text</url>
+					<server>wori.n35.weone.kr</server>
 					<path>/</path>
-					<username>deployer</username>
-					<password></password>
-					<password>sbs123414</password>
 				</configuration>
 			</plugin>
 			<plugin>
