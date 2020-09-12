@@ -91,15 +91,6 @@
 			return;
 		}
 
-		form.organCode.value = form.organCode.value.trim();
-
-		if (form.organCode.value.length == 0) {
-			form.organCode.focus();
-			alert('기관코드를 입력해주세요.');
-
-			return;
-		}
-
 		form.email.value = form.email.value.trim();
 
 		if (form.email.value.length == 0) {
@@ -147,10 +138,6 @@
 		var form = input.form;
 		
 		form.loginId.value = form.loginId.value.trim();
-		
-		if (form.loginId.value.length == 0) {
-		
-		}
 
 		$.get('getLoginIdDup', {
 			loginId : form.loginId.value
@@ -163,11 +150,14 @@
 			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validLoginId = '';
+				return;
 			} else if (data.resultCode.substr(0, 2) == 'M-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validLoginId = '';
+				return;
 			} else if (data.resultCode.substr(0, 2) == 'E-') {
 				$message.empty();
+				return;
 			}
 		}, 'json');
 
@@ -178,10 +168,6 @@
 		var form = input.form;
 
 		form.organName.value = form.organName.value.trim();
-
-		if (form.organName.value.length == 0) {
-
-		}
 
 		$.get('getOrganNameDup', {
 			organName : form.organName.value
@@ -195,8 +181,10 @@
 			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validOrganName = '';
+				return;
 			} else if (data.resultCode.substr(0, 2) == 'E-') {
 				$message.empty();
+				return;
 			}
 		}, 'json');
 	}
@@ -206,10 +194,6 @@
 		var form = input.form;
 
 		form.email.value = form.email.value.trim();
-
-		if (form.email.value.length == 0) {
-
-		}
 
 		$.get('getEmailDup', {
 			email : form.email.value
@@ -223,11 +207,14 @@
 			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validEmail = '';
+				return;
 			} else if (data.resultCode.substr(0, 2) == 'A-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validEmail = '';
+				return;
 			} else if (data.resultCode.substr(0, 2) == 'E-') {
 				$message.empty();
+				return;
 			}
 		}, 'json');
 	}
@@ -239,10 +226,6 @@
 		form.cellphoneNo.value = form.cellphoneNo.value.trim();
 		form.cellphoneNo.value = form.cellphoneNo.value.replaceAll('-', '');
 		form.cellphoneNo.value = form.cellphoneNo.value.replaceAll(' ', '');
-
-		if (form.cellphoneNo.value.length == 0) {
-
-		}
 
 		$.get('getCellPhoneNoDup', {
 			cellphoneNo : form.cellphoneNo.value
@@ -256,11 +239,18 @@
 			} else if (data.resultCode.substr(0, 2) == 'F-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validCellPhoneNo = '';
+				return;
+			} else if (data.resultCode.substr(0, 2) == 'L-') {
+				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
+				JoinForm__validCellPhoneNo = '';
+				return;
 			} else if (data.resultCode.substr(0, 2) == 'N-') {
 				$message.empty().append('<div style="color:red;">' + data.msg + '</div>');
 				JoinForm__validCellPhoneNo = '';
+				return;
 			} else if (data.resultCode.substr(0, 2) == 'E-') {
 				$message.empty();
+				return;
 			} 
 		}, 'json');
 	}
@@ -325,14 +315,6 @@
 				</td>
 			</tr>
 			<tr>
-				<th>기관코드</th>
-				<td>
-					<div class="form-control-box">
-						<input type="text" placeholder="기관코드명 입력해주세요." name="organCode" maxlength="20" />
-					</div>
-				</td>
-			</tr>
-			<tr>
 				<th>이메일</th>
 				<td>
 					<div class="form-control-box">
@@ -345,7 +327,7 @@
 				<th>휴대폰</th>
 				<td>
 					<div class="form-control-box">
-						<input type="tel" placeholder="휴대전화번호를 입력해주세요.(- 없이)" name="cellphoneNo"	maxlength="12" onkeyup="JoinForm__checkCellPhoneNoDup(this);"/>
+						<input type="tel" placeholder="휴대전화번호를 숫자만 입력해주세요." name="cellphoneNo"	maxlength="11" onkeyup="JoinForm__checkCellPhoneNoDup(this);"/>
 						<div class="message-msg"></div>
 					</div>
 				</td>

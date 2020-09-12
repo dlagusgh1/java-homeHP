@@ -16,11 +16,24 @@ CREATE TABLE `member` (
     loginPw CHAR(100) NOT NULL,
     `name` CHAR(20) NOT NULL,
     `organName` CHAR(20) NOT NULL,
-    `organCode` CHAR(20) NOT NULL,
     `email` CHAR(100) NOT NULL,
     `phoneNo` CHAR(20) NOT NULL,
     `level` INT(1) UNSIGNED DEFAULT 0 NOT NULL
 );
+
+# 관리자 생성
+INSERT
+INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+authStatus = 0,
+loginId = 'admin',
+loginPw = SHA2('admin', 256),
+`name` = '관리자',
+`organName` = '관리자',
+email = 'dlagusgh1@gmail.com',
+phoneNo = '010-1234-5678',
+`level` = 10
 
 # 카테고리 테이블 생성
 DROP TABLE IF EXISTS `cateItem`;

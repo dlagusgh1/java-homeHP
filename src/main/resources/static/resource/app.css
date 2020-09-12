@@ -364,8 +364,8 @@ h1, h2, h3 {
 /* body */
 @media (max-width :801px) {
 	body {
-		margin-right: 10px;
-		margin-left: 10px;
+		margin-right: 5px;
+		margin-left: 5px;
 	}
 }
 

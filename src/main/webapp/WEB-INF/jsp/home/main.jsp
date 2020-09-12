@@ -86,6 +86,13 @@
 			margin-bottom: 10px;
 		}
 	}
+	
+	@media (max-width :801px) {
+		body {
+			margin-right: 0;
+			margin-left: 0;
+		}
+	}
 </style>
 
 <div id="main">

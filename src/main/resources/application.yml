@@ -14,7 +14,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: dlagusgh1@gmail.com
-    password:
+    password: 
     properties:
       mail:
         smtp:
@@ -39,8 +39,8 @@ spring:
 mybatis:
   type-aliases-package: com.sbs.lhh.hp.dto
 server:
-  error:
-    include-exception: true
+  error:    # 이걸 안하면, 실 서비스 환경에서 오류가안나옴
+    include-exception: true   
     include-stacktrace: always
     include-message: always
     include-binding-errors: always

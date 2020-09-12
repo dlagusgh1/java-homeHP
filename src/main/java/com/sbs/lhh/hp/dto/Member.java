@@ -18,7 +18,6 @@ public class Member {
 	private String loginPw;
 	private String name;
 	private String organName;
-	private String organCode;
 	private String email;
 	private String phoneNo;
 	private int level;

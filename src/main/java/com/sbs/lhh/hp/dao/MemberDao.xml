@@ -32,7 +32,6 @@
 		loginPw = #{loginPw},
 		`name` = #{name},
 		`organName` = #{organName},
-		`organCode` = #{organCode},
 		email = #{email},
 		phoneNo = #{cellphoneNo}
 	</insert>
@@ -55,7 +54,6 @@
 	<update id="memberModify">
 		UPDATE `member`
 		SET organName = #{organName},
-		organCode = #{organCode},
 		email = #{email},
 		phoneNo = #{cellphoneNo},
 		updateDate = NOW()
@@ -112,7 +110,6 @@
 		<id property="loginId" column="loginId" />
 		<id property="name" column="name" />
 		<id property="organName" column="organName" />
-		<id property="organCode" column="organCode" />
 		<id property="email" column="email" />
 		<id property="phoneNo" column="phoneNo" />
 		<id property="level" column="level" />

@@ -37,7 +37,7 @@
 
 <!-- 병원 목록(organization) -->
 <div class="kakaoMap-box con flex-jc-c margin-bottom-20">
-	<div class="kakaoMap con" id="map"></div>
+	<div class="kakaoMap con" id="map" ></div>
 	<div class="kakaoMap-info con">
 		<ul>
 			<li class="kakaoMap-info-list">
