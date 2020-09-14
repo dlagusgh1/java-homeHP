@@ -64,7 +64,7 @@
 </script>
 
 
-	<form method="POST" class="table-box table-box-vertical  con form1" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
+	<form method="POST" class="table-box table-box-vertical con form1" action="doLogin" onsubmit="MemberLoginForm__submit(this); return false;">
 		<input type="hidden" name="redirectUri" value="${param.redirectUri}">
 		<input type="hidden" name="loginPwReal">	
 		<table>
@@ -104,6 +104,9 @@
 			</tbody>
 		</table>
 	</form>
+	<div class="con margin-bottom-20 bold">
+		<span>아직 회원이 아니신가요?</span><a href="/usr/member/join"> 회원가입</a>
+	</div>
 
 
 <%@ include file="../part/foot.jspf"%>
