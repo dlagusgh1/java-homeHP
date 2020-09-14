@@ -30,15 +30,6 @@
 			return;
 		}
 
-		form.organCode.value = form.organCode.value.trim();
-
-		if (form.organCode.value.length == 0) {
-			form.organCode.focus();
-			alert('기관코드를 입력해주세요.');
-
-			return;
-		}
-
 		form.email.value = form.email.value.trim();
 
 		if (form.email.value.length == 0) {
@@ -111,14 +102,6 @@
 				</td>
 			</tr>
 			<tr>
-				<th>기관 코드</th>
-				<td>
-					<div class="form-control-box">
-						<input type="text" name="organCode" maxlength="20" value="${loginedMember.organCode}"/>
-					</div>
-				</td>
-			</tr>
-			<tr>
 				<th>이메일</th>
 				<td>
 					<div class="form-control-box">
@@ -130,7 +113,7 @@
 				<th>휴대폰</th>
 				<td>
 					<div class="form-control-box">
-						<input type="text" name="cellphoneNo" maxlength="12" value="${loginedMember.phoneNo}"/>
+						<input type="text" name="cellphoneNo" maxlength="11" value="${loginedMember.phoneNo}"/>
 					</div>
 				</td>
 			</tr>
