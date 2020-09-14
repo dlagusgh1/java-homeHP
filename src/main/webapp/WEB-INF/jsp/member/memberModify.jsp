@@ -30,6 +30,13 @@
 			return;
 		}
 
+		if (form.organName.value.indexOf("관리자") != -1) {
+			form.organName.focus();
+			alert('사용할 수 없는 기관명 입니다.');
+
+			return;
+		}
+
 		form.email.value = form.email.value.trim();
 
 		if (form.email.value.length == 0) {

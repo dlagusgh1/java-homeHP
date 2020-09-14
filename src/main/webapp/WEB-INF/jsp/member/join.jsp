@@ -82,11 +82,25 @@
 			return;
 		}
 
+		if (form.name.value.indexOf("관리자") != -1) {
+			form.name.focus();
+			alert('사용할 수 없는 이름입니다.');
+
+			return;
+		}
+
 		form.organName.value = form.organName.value.trim();
 
 		if (form.organName.value.length == 0) {
 			form.organName.focus();
 			alert('기관명을 입력해주세요.');
+
+			return;
+		}
+
+		if (form.organName.value.indexOf("관리자") != -1) {
+			form.organName.focus();
+			alert('사용할 수 없는 기관명 입니다.');
 
 			return;
 		}
