@@ -98,11 +98,42 @@ public class MemberController {
 	public String doJoin(@RequestParam Map<String, Object> param, Model model) {
 		Util.changeMapKey(param, "loginPwReal", "loginPw");
 
+		System.out.println("값 확인 : " + param);
+		// 값 확인 : {redirectUri=/usr/member/login, loginId=sksksksk, 
+		// loginPw=df938bfb4d1367182956c1617ccd9311c150556457994e9afaf245a647d3f467, 
+		// loginPwConfirm=, name=관리자, organName=관리자, email=asdasdas@naver.com, 
+		// cellphoneNo=01012345678}
 		ResultData checkLoginIdJoinableResultData = memberService.checkLoginIdJoinable(Util.getAsStr(param.get("loginId")));
-
+		ResultData checkOrganNameJoinableResultData = memberService.checkOrganNameJoinable(Util.getAsStr(param.get("organName")));
+		ResultData checkEmailJoinableResultData = memberService.checkEmailJoinable(Util.getAsStr(param.get("email")));
+		ResultData checkCellphoneNoJoinableResultData = memberService.checkCellphoneNoJoinable(Util.getAsStr(param.get("cellphoneNo")));
+		System.out.println("확인1 : " +checkLoginIdJoinableResultData);
+		System.out.println("확인2 : " +checkOrganNameJoinableResultData);
+		System.out.println("확인3 : " +checkEmailJoinableResultData);
+		System.out.println("확인4 : " +checkCellphoneNoJoinableResultData);
+		
+		
 		if (checkLoginIdJoinableResultData.isFail()) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", checkLoginIdJoinableResultData.getMsg());
+			return "common/redirect";
+		}
+		
+		if (checkOrganNameJoinableResultData.isFail()) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", checkOrganNameJoinableResultData.getMsg());
+			return "common/redirect";
+		}
+		
+		if (checkEmailJoinableResultData.isFail()) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", checkEmailJoinableResultData.getMsg());
+			return "common/redirect";
+		}
+		
+		if (checkCellphoneNoJoinableResultData.isFail()) {
+			model.addAttribute("historyBack", true);
+			model.addAttribute("alertMsg", checkCellphoneNoJoinableResultData.getMsg());
 			return "common/redirect";
 		}
 		

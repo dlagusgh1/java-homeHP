@@ -16,6 +16,24 @@
 		WHERE loginId = #{loginId}
 	</select>
 	
+	<select id="getOrganNameDupCount" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM `member`
+		WHERE organName = #{organName}
+	</select>
+	
+	<select id="getEmailDupCount" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM `member`
+		WHERE email = #{email}
+	</select>
+	
+	<select id="getCellphoneNoDupCount" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM `member`
+		WHERE phoneNo = #{cellphoneNo}
+	</select>
+	
 	<select id="getMemberByLoginId" resultType="Member">
 		SELECT *
 		FROM `member`

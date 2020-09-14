@@ -114,6 +114,39 @@ public class MemberService {
 
 		return new ResultData("F-1", "이미 사용중인 로그인 아이디 입니다.", "loginId", loginId);
 	}
+	
+	// 회원가입 기관명 중복체크
+	public ResultData checkOrganNameJoinable(String organName) {
+		int count = memberDao.getOrganNameDupCount(organName);
+
+		if (count == 0) {
+			return new ResultData("S-1", "가입가능한 기관명 입니다.", "organName", organName);
+		}
+
+		return new ResultData("F-1", "이미 사용중인 기관명 입니다.", "organName", organName);
+	}
+	
+	// 회원가입 이메일 중복체크
+	public ResultData checkEmailJoinable(String email) {
+		int count = memberDao.getEmailDupCount(email);
+
+		if (count == 0) {
+			return new ResultData("S-1", "가입가능한 이메일 입니다.", "email", email);
+		}
+
+		return new ResultData("F-1", "이미 사용중인 이메일 입니다.", "email", email);
+	}
+	
+	// 회원가입 핸드폰번호 중복체크
+	public ResultData checkCellphoneNoJoinable(String cellphoneNo) {
+		int count = memberDao.getCellphoneNoDupCount(cellphoneNo);
+
+		if (count == 0) {
+			return new ResultData("S-1", "가입가능한 핸드폰번호 입니다.", "cellphoneNo", cellphoneNo);
+		}
+
+		return new ResultData("F-1", "이미 사용중인 핸드폰번호 입니다.", "cellphoneNo", cellphoneNo);
+	}
 
 	// 로그인 아이디로 대상 가져오기
 	public Member getMemberByLoginId(String loginId) {

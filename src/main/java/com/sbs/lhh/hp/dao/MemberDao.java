@@ -15,6 +15,12 @@ public interface MemberDao {
 	void join(Map<String, Object> param);
 
 	int getLoginIdDupCount(@Param("loginId") String loginId);
+	
+	int getOrganNameDupCount(String organName);
+
+	int getEmailDupCount(String email);
+
+	int getCellphoneNoDupCount(String cellphoneNo);
 
 	Member getMemberByLoginId(@Param("loginId") String loginId);
 
