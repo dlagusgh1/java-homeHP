@@ -9,7 +9,6 @@
 <%@ include file="../part/head.jspf"%>
 
 <style>			
-
 	#main{
 		position: relative;
 		background: url("/resource/img/main1.png") center center / cover no-repeat;

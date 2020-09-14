@@ -549,6 +549,18 @@ h1, h2, h3 {
 	padding: 5px;
 }
 
+.cateItem .refresh {
+	margin-left: 5px;
+	margin-bottom: 10px;
+	padding: 5px;
+	cursor: pointer;
+	font-size: 1.2rem;
+}
+
+.cateItem .refresh:hover {
+	color: #4BAF4B;
+}
+
 .cateItem ul li a{
 	padding:10px 5px;
 	font-size: 1rem;
