@@ -58,8 +58,6 @@ public interface ArticleDao {
 
 	void increaseArticleHit(@Param("id")int id);
 
-	int getArticleLikeByMemberId(@Param("id")int articleId, @Param("memberId")int actor);
-
 	int getLikePointByMemberId(@Param("id") int id, @Param("memberId") int memberId);
 
 	void likeArticle(@Param("id") int id, @Param("memberId") int memberId);

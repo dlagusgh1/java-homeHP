@@ -273,24 +273,8 @@ public class ArticleService {
 		articleDao.increaseArticleHit(id);
 	}
 
-	// 좋아요/싫어요 가능여부 확인
-	public ResultData checkCanArticleLikeAvailable(int actor, int articleId) {
-		Article article = articleDao.getForPrintArticleById(articleId);
-		
-		if (article.getMemberId() == actor ) {
-			return new ResultData("F-1", "본인은 추천 할 수 없습니다.", "memberId", actor);
-		}
 
-		int likePoint = articleDao.getArticleLikeByMemberId(actor, articleId);
-		
-		if ( likePoint > 0 ) {
-			return new ResultData("F-1", "이미 좋아요를 했습니다.", "memberId", actor);
-		}
-		
-		return new ResultData("S-1", "추천 가능 합니다.", "memberId", actor);
-	}
-
-	// 좋아요 가능한지 확인 기능
+	// 추천 가능한지 확인 기능
 	public Map<String, Object> getArticleLikeAvailable(int id, int loginedMemberId) {
 		Article article = articleDao.getArticleById(id);
 
@@ -307,7 +291,7 @@ public class ArticleService {
 
 		if (likePoint > 0) {
 			rs.put("resultCode", "F-2");
-			rs.put("msg", "이미 좋아요를 하셨습니다.");
+			rs.put("msg", "이미 추천 하셨습니다.");
 
 			return rs;
 		}
@@ -318,7 +302,7 @@ public class ArticleService {
 		return rs;
 	}
 
-	// 좋아요 기능
+	// 추천 기능
 	public Map<String, Object> likeArticle(int id, int loginedMemberId) {
 		articleDao.likeArticle(id, loginedMemberId);
 

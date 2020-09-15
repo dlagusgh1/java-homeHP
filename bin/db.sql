@@ -1,14 +1,14 @@
 # DB 세팅
-DROP DATABASE IF EXISTS `hp`;
-CREATE DATABASE `hp`;
-USE `hp`;
+DROP DATABASE IF EXISTS `st_n35_wori`;
+CREATE DATABASE `st_n35_wori`;
+USE `st_n35_wori`;
 
 # member 테이블 세팅
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    regDate DATETIME,
-    updateDate DATETIME,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
     delDate DATETIME,
 	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	authStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
@@ -16,11 +16,24 @@ CREATE TABLE `member` (
     loginPw CHAR(100) NOT NULL,
     `name` CHAR(20) NOT NULL,
     `organName` CHAR(20) NOT NULL,
-    `organCode` CHAR(20) NOT NULL,
     `email` CHAR(100) NOT NULL,
     `phoneNo` CHAR(20) NOT NULL,
     `level` INT(1) UNSIGNED DEFAULT 0 NOT NULL
 );
+
+# 관리자 생성
+INSERT
+INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+authStatus = 0,
+loginId = 'admin',
+loginPw = SHA2('admin', 256),
+`name` = '관리자',
+`organName` = '관리자',
+email = 'dlagusgh1@gmail.com',
+phoneNo = '010-1234-5678',
+`level` = 10
 
 # 카테고리 테이블 생성
 DROP TABLE IF EXISTS `cateItem`;
@@ -96,15 +109,16 @@ CREATE TABLE `organ` (
     memberId INT(10) UNSIGNED NOT NULL 
 );
 
-LOAD DATA INFILE  "hp/list1.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
-LOAD DATA INFILE  "hp/list2.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
+# 로컬db에서 저장 후 서버쪽으로 옮기기 
+LOAD DATA INFILE  "st_n35_wori/list1.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
+LOAD DATA INFILE  "st_n35_wori/list2.csv" INTO TABLE `organ` FIELDS TERMINATED BY ','
 
 # 게시판 테이블 추가
 DROP TABLE IF EXISTS `board`;
 CREATE TABLE `board` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    regDate DATETIME,
-    updateDate DATETIME,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
     delDate DATETIME,
 	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
     `code` CHAR(20) NOT NULL UNIQUE,
@@ -127,15 +141,16 @@ updateDAte = NOW(),
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE article (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    regDate DATETIME,
-    updateDate DATETIME,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
     delDate DATETIME,
 	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	displayStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
     title CHAR(200) NOT NULL,
     `body` LONGTEXT NOT NULL,
     memberId INT(10) UNSIGNED NOT NULL,
-    boardId INT(10) UNSIGNED NOT NULL
+    boardId INT(10) UNSIGNED NOT NULL,
+    hit INT(10) UNSIGNED NOT NULL DEFAULT 0
 );
 
 # article 테이블에 테스트 데이터 삽입
@@ -186,8 +201,8 @@ ALTER TABLE `attr` ADD COLUMN `expireDate` DATETIME NULL AFTER `value`;
 DROP TABLE IF EXISTS `file`;
 CREATE TABLE `file` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    regDate DATETIME,
-    updateDate DATETIME,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
     delDate DATETIME,
 	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	relTypeCode CHAR(50) NOT NULL,
@@ -212,8 +227,8 @@ ALTER TABLE `file` DROP INDEX `relId`, ADD INDEX (`relId` , `relTypeCode` , `typ
 DROP TABLE IF EXISTS `covidData`;
 CREATE TABLE `covidData` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    regDate DATETIME,
-    updateDate DATETIME,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
     delDate DATETIME,
 	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	country CHAR(20) NOT NULL UNIQUE,
@@ -225,4 +240,14 @@ CREATE TABLE `covidData` (
 	quarantineRelease CHAR(20),
 	death INT(10),
 	incidence CHAR(20)
+);
+
+# 좋아요
+CREATE TABLE `articleLike` (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY(id),
+  regDate DATETIME NOT NULL,
+  articleId INT(10) UNSIGNED NOT NULL,
+  memberId INT(10) UNSIGNED NOT NULL,
+  `point` TINYINT(1) UNSIGNED NOT NULL
 );

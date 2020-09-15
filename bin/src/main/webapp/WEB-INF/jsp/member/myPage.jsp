@@ -43,14 +43,6 @@
 					</td>
 				</tr>
 				<tr>
-					<th>기관 코드</th>
-					<td>
-						<div class="form-control-box">
-							<input type="hidden" name="organCode" maxlength="20" />${loginedMember.organCode}
-						</div>
-					</td>
-				</tr>
-				<tr>
 					<th>이메일</th>
 					<td>
 						<div class="form-control-box">

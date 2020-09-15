@@ -35,11 +35,21 @@
 <script src="/resource/app.js"></script>
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="/resource/img/logo3B.ico">
+<link rel="shortcut icon" href="/resource/img/logo3W.ico">
 
 <%="<script>"%>
 var param = ${paramJson};
 <%="</script>"%>
+
+<!-- Global site tag (gtag.js) - Google Analytics // 구글 애널리틱스(사이트 통계확인 코드)--> 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-173020850-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-173020850-2');
+</script>
 
 </head>
 <body>
@@ -58,21 +68,29 @@ var param = ${paramJson};
 </div>
 
 <div class="outer-box">
-	<!-- 로그인 대상 표시 -->
+	<!-- 로그인 대상 표시 -->	
+	<div class="loginStatus con flex-jc-end margin-top-10">
 	<c:if test="${isLogined}">
-		<div class="loginStatus con flex-jc-end margin-top-10">
-			<div>
-				<a href="https://donaricano.com/mypage/1461113623_Oh2ISH" target="_blank">
-					<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="margin-right:10px; height:25px !important; width: 80px !important;" />
-			 	</a>
-			</div>
-			<c:if test="${loginedMember.level == 10}">
-				<div><a href="/adm/article/getCovid19Status" style="color: green; font-weight:bold; margin-right: 10px;">갱신</a></div>
-				<div><a href="/adm/member/adminMenu" style="color: red; font-weight:bold; margin-right: 10px;">관리자 메뉴</a></div>
-			</c:if>
-			<div><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}" style="color: blue; font-weight:bold; margin-right: 10px;">${loginedMember.organName}님</a></div>				
+		<div>
+			<a href="https://donaricano.com/mypage/1461113623_Oh2ISH" target="_blank">
+				<img src="https://d1u4yishnma8v5.cloudfront.net/donarincano_gift.png" alt="donaricano-btn" style="margin-right:10px; height:25px !important; width: 80px !important;" />
+		 	</a>
 		</div>
-	</c:if>
+		<c:if test="${loginedMember.level == 10}">
+			<div><a href="/adm/article/getCovid19Status" style="color: green; font-weight:bold; margin-right: 10px;">갱신</a></div>
+			<div><a href="/adm/member/adminMenu" style="color: red; font-weight:bold; margin-right: 10px;">관리자 메뉴</a></div>
+		</c:if>
+		<div><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/myPage')}" style="color: blue; font-weight:bold; margin-right: 10px;">${loginedMember.organName}님</a></div>				
+		</c:if>
+		<select class="visible-on-md-up" onchange="if(this.value) window.open(this.value);">
+			<option value="" >패밀리사이트</option>
+			<option value="https://blog.n35.weone.kr/">개발자블로그</option>
+			<option value="https://to2.kr/bft">티스토리</option>
+			<option value="https://github.com/dlagusgh1/java-wori"><i class="fab fa-github"></i>깃허브</option>
+			<option value="https://to2.kr/bhw">유튜브</option>
+		</select>
+	</div>
+	
 	<!-- PC 탑바 -->
 	<div class="top-bar con flex flex-ai-c flex-jc-sb visible-on-md-up">
 		<nav class="menu-box-1">	

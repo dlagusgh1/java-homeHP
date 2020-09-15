@@ -30,11 +30,9 @@
 			return;
 		}
 
-		form.organCode.value = form.organCode.value.trim();
-
-		if (form.organCode.value.length == 0) {
-			form.organCode.focus();
-			alert('기관코드를 입력해주세요.');
+		if (form.organName.value.indexOf("관리자") != -1) {
+			form.organName.focus();
+			alert('사용할 수 없는 기관명 입니다.');
 
 			return;
 		}
@@ -111,14 +109,6 @@
 				</td>
 			</tr>
 			<tr>
-				<th>기관 코드</th>
-				<td>
-					<div class="form-control-box">
-						<input type="text" name="organCode" maxlength="20" value="${loginedMember.organCode}"/>
-					</div>
-				</td>
-			</tr>
-			<tr>
 				<th>이메일</th>
 				<td>
 					<div class="form-control-box">
@@ -130,7 +120,7 @@
 				<th>휴대폰</th>
 				<td>
 					<div class="form-control-box">
-						<input type="text" name="cellphoneNo" maxlength="12" value="${loginedMember.phoneNo}"/>
+						<input type="text" name="cellphoneNo" maxlength="11" value="${loginedMember.phoneNo}"/>
 					</div>
 				</td>
 			</tr>

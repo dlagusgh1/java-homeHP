@@ -185,13 +185,6 @@
 		SET hit = hit + 1
 		WHERE id = #{id}
 	</update>
-	
-	<select id="getArticleLikeByMemberId" resultType="int">
-		SELECT IFNULL(SUM(AL.point), 0) AS `point`
-		FROM `articleLike` AS AL
-		WHERE AL.articleId = #{id}
-		AND AL.memberId = #{memberId}
-	</select>
 
 	<select id="getLikePointByMemberId" resultType="int">
 		SELECT IFNULL(SUM(AL.point), 0) AS `point`

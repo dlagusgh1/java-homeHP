@@ -28,6 +28,15 @@
 				<td>${article.regDate}</td>
 			</tr>
 			<tr>
+				<th>좋아요</th>
+				<td>
+					<span>${article.extra.likePoint}</span>
+					/
+					<a href="./doLike?id=${article.id}&redirectUri=/usr/article/${board.code}-detail?id=${article.id}"
+					onclick="if ( confirm('추천하시겠습니까?') == false ) { return false; }">좋아요</a>
+				</td>
+			</tr>
+			<tr>
 				<th>제목</th>
 				<td>${article.forPrintTitle}</td>
 			</tr>

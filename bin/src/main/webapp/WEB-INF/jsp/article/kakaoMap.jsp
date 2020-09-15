@@ -18,6 +18,9 @@
 		<option value="kakaoMap_PM">당직 약국 (${organ_PMCount})</option>
 		<option value="kakaoMap_All">모든 병원/약국</option>
 	</select>
+	<div class="refresh">
+		<a onclick="window.location.reload()"><i class="fas fa-sync-alt"></i></a>
+	</div>
 </div>
 
 <!-- 행정구역(동/면) 리스트(administrativeDistrict) -->
@@ -37,7 +40,7 @@
 
 <!-- 병원 목록(organization) -->
 <div class="kakaoMap-box con flex-jc-c margin-bottom-20">
-	<div class="kakaoMap con" id="map"></div>
+	<div class="kakaoMap con" id="map" ></div>
 	<div class="kakaoMap-info con">
 		<ul>
 			<li class="kakaoMap-info-list">

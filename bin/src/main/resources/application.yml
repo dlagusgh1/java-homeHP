@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local # 기본적으로 local이 선택된다는 뜻
+    active: local   # 기본적으로 local이 선택된다는 뜻
   redis:
     host: localhost
     port: 6379
@@ -22,9 +22,9 @@ spring:
           starttls:
             enable: true
   servlet:
-    multipart:
+    multipart:    # 고객이 업로드한 파일이 temp에 임시적으로 저장된다.
       file-size-threshold: 1MB
-      location: C:\temp
+      location: C:\temp   # 윈도우의 경우 기본 temp폴더 ( 없는경우 해당경로에 생성해줘야 한다. )
       max-file-size: 100MB
       max-request-size: 100MB
   mvc:
@@ -33,39 +33,40 @@ spring:
       suffix: .jsp
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/hp?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
+    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/st_n35_wori?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
     username: root
     password: dlagusgh
 mybatis:
   type-aliases-package: com.sbs.lhh.hp.dto
 server:
-  error:
-    include-exception: true
+  error:    # 이걸 안하면, 실 서비스 환경에서 오류가안나옴
+    include-exception: true   
     include-stacktrace: always
     include-message: always
     include-binding-errors: always
 custom:
   siteName: 우리동네
-  siteMainUri: https://homeHP.com/
+  siteMainUri: https://wori.n35.weone.kr/
   logoText: 우리동네
   emailFrom: no-reply@homeHP.com
   emailFromName: 우리동네 당직의료기관 찾기(병원/약국)
   
 ---
-
+# 로컬에서 단독으로 실행되는 것으로 port 설정
 spring:
   profiles: local
 server:
   port: 8085
 
 ---
-
+# 아래 코드들은 tomcat 안에서 게스트로 실행되는 프로그램으로 별도로 port 부여x
 spring:
   profiles: production
   servlet:
-    multipart:
+    multipart:  # 고객이 업로드한 파일이 tmp에 임시적으로 저장된다.
       location: /tmp
   datasource:
-    username: hp
+    username: lhhLocal # 서버에서 생성한 user id
+    password: sbs123414
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/hp?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull 
+    url: jdbc:mysql://127.0.0.1:3306/st_n35_wori?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull 

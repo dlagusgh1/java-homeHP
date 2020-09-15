@@ -9,7 +9,6 @@
 <%@ include file="../part/head.jspf"%>
 
 <style>			
-
 	#main{
 		position: relative;
 		background: url("/resource/img/main1.png") center center / cover no-repeat;
@@ -84,6 +83,13 @@
 		.main-contents:not(:last-child) {
 			margin-right: 0;
 			margin-bottom: 10px;
+		}
+	}
+	
+	@media (max-width :801px) {
+		body {
+			margin-right: 0;
+			margin-left: 0;
 		}
 	}
 </style>
