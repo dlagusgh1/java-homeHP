@@ -103,7 +103,12 @@ public class ArticleService {
 		
 		// 수정, 삭제 가능/불가능 여부에 따라 상세보기 시 삭제, 수정 표시
 		updateForPrintInfo(actor, article);
-		
+
+		// 상세보기 추천 표시관련 등 
+		if( actor != null ) {
+			updateMoreInfoForPrint(article, actor.getId());
+		}
+
 		List<File> files = fileService.getFiles("article", article.getId(), "common", "attachment");
 
 		Map<String, File> filesMap = new HashMap<>();
@@ -310,6 +315,57 @@ public class ArticleService {
 
 		rs.put("resultCode", "S-1");
 		rs.put("msg", String.format("%d번 게시물을 추천하였습니다.", id));
+
+		return rs;
+	}
+	
+	// 상세보기 추천 표시관련 등 
+	private void updateMoreInfoForPrint(Article article, int loginedMemberId) {
+		if ( loginedMemberId == 0 ) {
+			article.getExtra().put("loginedMemberCanLike", false);
+			article.getExtra().put("loginedMemberCanCancelLike", false);
+
+			return;
+		}
+
+		int likePoint = articleDao.getLikePointByMemberId(article.getId(), loginedMemberId);
+
+		if (likePoint == 0) {
+			article.getExtra().put("loginedMemberCanLike", true);
+			article.getExtra().put("loginedMemberCanCancelLike", false);
+		} else {
+			article.getExtra().put("loginedMemberCanLike", false);
+			article.getExtra().put("loginedMemberCanCancelLike", true);
+		}
+	}
+
+	// 추천 취소 가능한지 확인 기능
+	public Map<String, Object> getArticleCancelLikeAvailable(int id, int loginedMemberId) {
+		Map<String, Object> rs = new HashMap<>();
+
+		int likePoint = articleDao.getLikePointByMemberId(id, loginedMemberId);
+
+		if (likePoint == 0) {
+			rs.put("resultCode", "F-1");
+			rs.put("msg", "추천하신 분만 취소가 가능합니다.");
+
+			return rs;
+		}
+
+		rs.put("resultCode", "S-1");
+		rs.put("msg", "가능합니다.");
+
+		return rs;
+	}
+
+	// 추천 취소 기능
+	public Map<String, Object> cancelLikeArticle(int id, int loginedMemberId) {
+		articleDao.cancelLikeArticle(id, loginedMemberId);
+
+		Map<String, Object> rs = new HashMap<>();
+
+		rs.put("resultCode", "S-1");
+		rs.put("msg", String.format("%d번 게시물 추천을 취소하였습니다.", id));
 
 		return rs;
 	}

@@ -201,6 +201,12 @@
 		`point` = 1
 	</insert>
 	
+	<delete id="cancelLikeArticle">
+		DELETE FROM articleLike
+		WHERE articleId = #{id}
+		AND memberId = #{memberId}
+	</delete>
+	
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

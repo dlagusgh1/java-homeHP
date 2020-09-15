@@ -28,12 +28,17 @@
 				<td>${article.regDate}</td>
 			</tr>
 			<tr>
-				<th>좋아요</th>
-				<td>
-					<span>${article.extra.likePoint}</span>
-					/
-					<a href="./doLike?id=${article.id}&redirectUri=/usr/article/${board.code}-detail?id=${article.id}"
-					onclick="if ( confirm('추천하시겠습니까?') == false ) { return false; }">좋아요</a>
+				<th>추천</th>
+				<td><span>${article.extra.likePoint}</span> / <c:if
+						test="${article.extra.loginedMemberCanLike}">
+						<a
+							href="./doLike?id=${article.id}&redirectUri=/usr/article/${board.code}-detail?id=${article.id}"
+							onclick="if ( confirm('추천하시겠습니까?') == false ) { return false; }">추천</a>
+					</c:if> <c:if test="${article.extra.loginedMemberCanCancelLike}">
+						<a
+							href="./doCancelLike?id=${article.id}&redirectUri=/usr/article/${board.code}-detail?id=${article.id}"
+							onclick="if ( confirm('추천을 취소하시겠습니까?') == false ) { return false; }">추천 취소</a>
+					</c:if>
 				</td>
 			</tr>
 			<tr>

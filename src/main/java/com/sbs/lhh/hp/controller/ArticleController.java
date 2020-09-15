@@ -535,5 +535,30 @@ public class ArticleController {
 		
 		return "common/redirect";
 	}
+	
+	// 게시물 추천 취소 기능
+	@RequestMapping("/usr/article/doCancelLike")
+	public String doCancelLike(Model model, int id, String redirectUri, HttpServletRequest request) {
+
+		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
+
+		Map<String, Object> articleCancelLikeAvailable = articleService.getArticleCancelLikeAvailable(id, loginedMemberId);
+
+		if (((String) articleCancelLikeAvailable.get("resultCode")).startsWith("F-")) {
+			model.addAttribute("alertMsg", articleCancelLikeAvailable.get("msg"));
+			model.addAttribute("historyBack", true);
+
+			return "common/redirect";
+		}
+
+		Map<String, Object> rs = articleService.cancelLikeArticle(id, loginedMemberId);
+
+		String msg = (String) rs.get("msg");
+
+		model.addAttribute("alertMsg", msg);
+		model.addAttribute("redirectUri", redirectUri);
+
+		return "common/redirect";
+	}
 
 }
