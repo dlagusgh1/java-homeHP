@@ -84,8 +84,8 @@ public class ArticleService {
 	}
 
 	// 게시물 리스트
-	public List<Article> getForPrintArticles() {
-		List<Article> articles = articleDao.getForPrintArticles();
+	public List<Article> getForPrintArticles(String boardCode) {
+		List<Article> articles = articleDao.getForPrintArticles(boardCode);
 
 		return articles;
 	}
@@ -290,9 +290,44 @@ public class ArticleService {
 		return new ResultData("S-1", "추천 가능 합니다.", "memberId", actor);
 	}
 
-	// 좋아요/싫어요 기능
-	public void setArticleLike(int actor, int articleId) {
-		articleDao.setArticleLike(actor, articleId);
+	// 좋아요 가능한지 확인 기능
+	public Map<String, Object> getArticleLikeAvailable(int id, int loginedMemberId) {
+		Article article = articleDao.getArticleById(id);
+
+		Map<String, Object> rs = new HashMap<>();
+
+		if (article.getMemberId() == loginedMemberId) {
+			rs.put("resultCode", "F-1");
+			rs.put("msg", "본인은 추천 할 수 없습니다.");
+
+			return rs;
+		}
+
+		int likePoint = articleDao.getLikePointByMemberId(id, loginedMemberId);
+
+		if (likePoint > 0) {
+			rs.put("resultCode", "F-2");
+			rs.put("msg", "이미 좋아요를 하셨습니다.");
+
+			return rs;
+		}
+
+		rs.put("resultCode", "S-1");
+		rs.put("msg", "가능합니다.");
+
+		return rs;
+	}
+
+	// 좋아요 기능
+	public Map<String, Object> likeArticle(int id, int loginedMemberId) {
+		articleDao.likeArticle(id, loginedMemberId);
+
+		Map<String, Object> rs = new HashMap<>();
+
+		rs.put("resultCode", "S-1");
+		rs.put("msg", String.format("%d번 게시물을 추천하였습니다.", id));
+
+		return rs;
 	}
 	
 }

@@ -241,3 +241,13 @@ CREATE TABLE `covidData` (
 	death INT(10),
 	incidence CHAR(20)
 );
+
+# 좋아요
+CREATE TABLE `articleLike` (
+  id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY(id),
+  regDate DATETIME NOT NULL,
+  articleId INT(10) UNSIGNED NOT NULL,
+  memberId INT(10) UNSIGNED NOT NULL,
+  `point` TINYINT(1) UNSIGNED NOT NULL
+);

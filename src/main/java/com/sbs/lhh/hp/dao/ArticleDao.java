@@ -24,7 +24,7 @@ public interface ArticleDao {
 
 	Board getBoardByCode(String boardCode);
 
-	List<Article> getForPrintArticles();
+	List<Article> getForPrintArticles(String boardCode);
 	
 	List<Article> getForPrintVisibleArticles();
 
@@ -60,6 +60,8 @@ public interface ArticleDao {
 
 	int getArticleLikeByMemberId(@Param("id")int articleId, @Param("memberId")int actor);
 
-	void setArticleLike(@Param("id")int articleId, @Param("memberId")int actor);
-	
+	int getLikePointByMemberId(@Param("id") int id, @Param("memberId") int memberId);
+
+	void likeArticle(@Param("id") int id, @Param("memberId") int memberId);
+
 }
