@@ -79,7 +79,7 @@ h1, h2, h3 {
     }
     .outer-box .loginStatus {
     	margin: 0;
-    	margin-top: 5px;
+    	margin-top: 10px;
     }
     .outer-box .loginStatus a {
     	font-size: 0.9rem;
@@ -117,9 +117,9 @@ h1, h2, h3 {
     left: 0;
     right: 0;
     background-color: white;
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 5px black;
     padding: 0 10px;
-    height: 55px;
+    height: 65px;
     z-index: 10;
 }
 

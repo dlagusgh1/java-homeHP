@@ -38,7 +38,7 @@
 <link rel="shortcut icon" href="/resource/img/logo3W.ico">
 
 <%="<script>"%>
-var param = ${paramJson};
+	var param = ${paramJson};
 <%="</script>"%>
 
 <!-- Global site tag (gtag.js) - Google Analytics // 구글 애널리틱스(사이트 통계확인 코드)--> 
@@ -69,7 +69,7 @@ var param = ${paramJson};
 
 <div class="outer-box">
 	<!-- 로그인 대상 표시 -->	
-	<div class="loginStatus con flex-jc-end margin-top-10">
+	<div class="loginStatus con flex-jc-end">
 	<c:if test="${isLogined}">
 		<div>
 			<a href="https://donaricano.com/mypage/1461113623_Oh2ISH" target="_blank">
@@ -97,7 +97,7 @@ var param = ${paramJson};
 			<ul class="flex">
 				<li>
 					<a href="/usr/home/main" class="logo img-box">
-						<img src="/resource/img/logo3B.png"/>
+						<img src="/resource/img/logo4.jpg"/>
 					</a>
 				</li>
 				<li><a href="/usr/home/main">홈</a></li>
@@ -121,7 +121,7 @@ var param = ${paramJson};
 	
 	<div class="mobile-top-bar visible-on-sm-down flex flex flex-ai-c">
 		<a href="/usr/home/main" class="logo img-box">
-			<img src="/resource/img/logo3B.png" />
+			<img src="/resource/img/logo4.jpg" />
 		</a>
 		<div class="flex-1-0-0"></div>
 		<c:if test="${isLogined}">

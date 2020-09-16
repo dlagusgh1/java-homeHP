@@ -49,7 +49,7 @@ public class MemberService {
 		
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>이메일 인증</h1>");
-		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
+		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/93342978-ea56cb80-f86a-11ea-85cc-3b202636b055.jpg\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
 		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>아래 링크로 접속하여 이메일 인증을 해주세요.<br><br><a href=\"https://wori.n35.weone.kr/usr/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
 		
 		mailService.send(email, mailTitle, mailBodySb.toString());
@@ -66,7 +66,7 @@ public class MemberService {
 		
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>이메일 인증</h1>");
-		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
+		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/93342978-ea56cb80-f86a-11ea-85cc-3b202636b055.jpg\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
 		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>가입을 진심으로 축하드립니다.<br><br>아래 링크를 클릭하여 이메일 인증을 진행해주세요.<br><br><a href=\"https://wori.n35.weone.kr/usr/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
 		
 		mailService.send(email, mailTitle, mailBodySb.toString());
@@ -98,7 +98,7 @@ public class MemberService {
 
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>환영합니다!</h1>");
-		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
+		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/93342978-ea56cb80-f86a-11ea-85cc-3b202636b055.jpg\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
 		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>가입을 진심으로 축하드립니다.<br><br><a href=\"https://wori.n35.weone.kr/usr/home/main\" target=\"_blank\">%s 사이트로 이동하기</a></p>", siteName));
 
 		mailService.send(email, mailTitle, mailBodySb.toString());
@@ -185,7 +185,7 @@ public class MemberService {
 
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>비밀번호 찾기 결과</h1>");
-		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/91107964-96185b80-e6b1-11ea-8d76-d3b5952e0add.png\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
+		mailBodySb.append(String.format("<div><img src=\"https://user-images.githubusercontent.com/60770834/93342978-ea56cb80-f86a-11ea-85cc-3b202636b055.jpg\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:10px; border-radius:20px; \"/></div>"));
 		mailBodySb.append(String.format("<p>임시패스워드 : %s <br><br><a href=\"%s\" target=\"_blank\">%s</a>로 이동</p>", tempPw, siteMainUri, siteName));
 
 		mailService.send(member.getEmail(), mailTitle, mailBodySb.toString());	
