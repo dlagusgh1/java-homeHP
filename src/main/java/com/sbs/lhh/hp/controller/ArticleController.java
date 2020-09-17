@@ -54,7 +54,7 @@ public class ArticleController {
 	
 		rsDataBody.put("organes", organes);
 		
-		return new ResultData("S-1", String.format("%d개의 병원 지도정보를 불러왔습니다.", organes.size()), rsDataBody);
+		return new ResultData("S-1", String.format("[%d]개의 병원 지도정보를 불러왔습니다.", organes.size()), rsDataBody);
 	}
 		
 	// 카카오맵 (약국 리스트 ajax)
@@ -76,7 +76,7 @@ public class ArticleController {
 	
 		rsDataBody.put("organes", organes);
 		
-		return new ResultData("S-1", String.format("%d개의 약국 지도정보를 불러왔습니다.", organes.size()), rsDataBody);
+		return new ResultData("S-1", String.format("[%d]개의 약국 지도정보를 불러왔습니다.", organes.size()), rsDataBody);
 	}
 		
 	// 카카오맵 (기본-병원/약국 리스트 ajax)
@@ -90,7 +90,7 @@ public class ArticleController {
 		
 		rsDataBody.put("organes", organes);
 
-		return new ResultData("S-1", String.format("%d개의 지도정보를 불러왔습니다.", organes.size()), rsDataBody);
+		return new ResultData("S-1", String.format("[%d]개의 지도정보를 불러왔습니다.", organes.size()), rsDataBody);
 	}
 	
 	// 카카오맵(병원)
@@ -279,7 +279,7 @@ public class ArticleController {
 		
 		articleService.hideArticle(id);
 
-		return new ResultData("S-1", String.format("%d번 게시물을 숨겼습니다.", id));
+		return new ResultData("S-1", String.format("[%d]번 게시물을 숨겼습니다.", id));
 	}
 	
 	// 관리자 메뉴 - 게시물 관리(게시물 보이기(노출))ajax
@@ -289,7 +289,7 @@ public class ArticleController {
 		
 		articleService.showArticle(id);
 
-		return new ResultData("S-1", String.format("%d번 게시물을 노출시켰습니다.", id));
+		return new ResultData("S-1", String.format("[%d]번 게시물을 노출시켰습니다.", id));
 	}
 	
 	// 관리자 메뉴 - 게시물 관리
@@ -363,7 +363,7 @@ public class ArticleController {
 		articleService.organWrite(param);
 
 		model.addAttribute("redirectUri", redirectUri);
-		model.addAttribute("alertMsg", "정보 등록이 완료되었습니다.");
+		model.addAttribute("alertMsg", "기관 정보 등록이 완료되었습니다.");
 
 		return "common/redirect";
 	}
@@ -439,7 +439,10 @@ public class ArticleController {
 		String redirectUri = (String) param.get("redirectUri");
 		redirectUri = redirectUri.replace("#id", newArticleId + "");
 
-		return "redirect:" + redirectUri;
+		model.addAttribute("redirectUri", redirectUri);
+		model.addAttribute("alertMsg", String.format("[%d]번 게시물 작성이 완료되었습니다.", newArticleId));
+
+		return "common/redirect";
 	}
 
 	// 게시물 수정 폼
@@ -483,8 +486,10 @@ public class ArticleController {
 		articleService.modify(newParam);
 
 		String redirectUri = (String) param.get("redirectUri");
+		model.addAttribute("redirectUri", redirectUri);
+		model.addAttribute("alertMsg", String.format("[%d]번 게시물 수정이 완료되었습니다.", id));
 
-		return "redirect:" + redirectUri;
+		return "common/redirect";
 	}
 
 	// 게시물 삭제 기능
@@ -501,7 +506,7 @@ public class ArticleController {
 		if (checkActorCanDeleteResultData.isFail()) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", checkActorCanDeleteResultData.getMsg());
-
+			
 			return "common/redirect";
 		}
 
@@ -509,7 +514,10 @@ public class ArticleController {
 
 		String redirectUri = boardCode + "-list";
 
-		return "redirect:" + redirectUri;
+		model.addAttribute("redirectUri", redirectUri);
+		model.addAttribute("alertMsg", String.format("[%d]번 게시물 삭제가 완료되었습니다.", id));
+
+		return "common/redirect";
 	}
 	
 	// 게시물 추천 기능
