@@ -93,6 +93,26 @@ public class FileController {
 
 		IOUtils.copy(in, response.getOutputStream());
 	}
+	
+	@RequestMapping(value = "/usr/file/showImg", method = RequestMethod.GET)
+	public void showImg3(HttpServletResponse response, int id) throws IOException {
+		File file = Util.getCacheData(fileCache, id);
+
+		InputStream in = new ByteArrayInputStream(file.getBody());
+
+		switch (file.getFileExtType2Code()) {
+		case "jpg":
+			response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+			break;
+		case "png":
+			response.setContentType(MediaType.IMAGE_PNG_VALUE);
+			break;
+		case "gif":
+			response.setContentType(MediaType.IMAGE_GIF_VALUE);
+			break;
+		}
+		IOUtils.copy(in, response.getOutputStream());
+	}
 
 	@RequestMapping("/usr/file/streamVideo")
 	public ResponseEntity<byte[]> streamVideo(@RequestHeader(value = "Range", required = false) String httpRangeList, int id) {
