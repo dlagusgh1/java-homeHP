@@ -72,8 +72,8 @@
 	.firstAidList > ul > li > a .screen {
 		position: relative;
 		overflow: hidden;
-		background-color: #4BAF4B;
 		border-radius:10px;
+		border: 1px solid #4BAF4B;
 	}
 	.firstAidList > ul > li > a .screen .top {
 		position: absolute;
@@ -128,7 +128,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2W.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 심폐 소생술</h3>
@@ -139,7 +139,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2W.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 기도 이물 폐쇄</h3>
@@ -150,7 +150,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2W.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 자동 심장 충격기</h3>
@@ -161,7 +161,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2B.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 증상별 적정 자세</h3>
@@ -172,7 +172,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2B.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 동물 및 곤충에 물렸을 때</h3>
@@ -183,7 +183,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2B.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 이물질이 들어갔을 때</h3>
@@ -194,7 +194,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2W.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 중독 되었을 때</h3>
@@ -205,7 +205,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2W.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 뼈 및 근육이 손상되었을 때</h3>
@@ -216,7 +216,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2W.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 열 및 냉에 의한 손상이 되었을 때</h3>
@@ -227,7 +227,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2B.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 사고에 의한 응급 상황일 때</h3>
@@ -238,7 +238,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2B.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 응급 증상일 때</h3>
@@ -249,7 +249,7 @@
 				<div class="screen">
 					<div class="top">우리동네 응급처치</div>
 					<div class="bottom">by 우리동네</div>
-					<img src="/resource/img/logo2B.png" />
+					<img src="/resource/img/logo.jpg" />
 				</div>
 				<div>
 					<h3><i class="fas fa-arrow-right"></i> 소아 응급 증상일 때</h3>

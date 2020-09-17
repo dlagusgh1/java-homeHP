@@ -35,7 +35,7 @@
 <script src="/resource/app.js"></script>
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="/resource/img/logo3W.ico">
+<link rel="shortcut icon" href="/resource/img/logo.ico">
 
 <%="<script>"%>
 	var param = ${paramJson};
@@ -97,7 +97,7 @@
 			<ul class="flex">
 				<li>
 					<a href="/usr/home/main" class="logo img-box">
-						<img src="/resource/img/logo4.jpg"/>
+						<img src="/resource/img/logo.jpg"/>
 					</a>
 				</li>
 				<li><a href="/usr/home/main">홈</a></li>
@@ -121,7 +121,7 @@
 	
 	<div class="mobile-top-bar visible-on-sm-down flex flex flex-ai-c">
 		<a href="/usr/home/main" class="logo img-box">
-			<img src="/resource/img/logo4.jpg" />
+			<img src="/resource/img/logo.jpg" />
 		</a>
 		<div class="flex-1-0-0"></div>
 		<c:if test="${isLogined}">
