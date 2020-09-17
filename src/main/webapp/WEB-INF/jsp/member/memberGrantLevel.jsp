@@ -40,7 +40,7 @@
 <script src="/resource/app.js"></script>
 
 <!-- 파비콘 -->
-<link rel="shortcut icon" href="/resource/img/logo3B.ico">
+<link rel="shortcut icon" href="/resource/img/logo.ico">
 
 </head>
 <body style="padding-top: 0px; margin: 0 5px;">

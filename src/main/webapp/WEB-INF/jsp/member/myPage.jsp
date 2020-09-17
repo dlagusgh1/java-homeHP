@@ -91,7 +91,7 @@
 				<tr>
 					<th>회원 탈퇴</th>
 					<td>
-						<button class="btn btn-primary" type="button"><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/memberDelete')}">회원탈퇴</a></button>
+						<button class="btn btn-danger" type="button"><a href="/usr/member/checkPassword?redirectUri=${Util.getUriEncoded('/member/memberDelete')}">회원탈퇴</a></button>
 					</td>
 				</tr>
 			</tbody>

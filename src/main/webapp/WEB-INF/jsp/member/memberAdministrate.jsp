@@ -13,7 +13,7 @@
 <h1 class="con flex-jc-c">회원 관리</h1>
 
 <div class="con flex-jc-c margin-bottom-10">
-	<a class="btn btn-info" href="/adm/member/memberGrantLevel" onclick="window.open(this.href,'권한 설정', 'width=860px, height=560px, scrollbars=no, resizeble=0, directories=0' ); return false;">권한 설정하기</a>
+	<a class="btn btn-info" href="/adm/member/memberGrantLevel" onclick="window.open(this.href,'권한 설정', 'width=950px, height=550px, scrollbars=no, resizeble=0, directories=0' ); return false;">권한 설정하기</a>
 </div>
 
 <div class="table-box table-box-data memberManage-table-box con">
@@ -62,7 +62,7 @@
 								<button class="btn btn-info" type="button" onclick="member__recovery(this,'${member.loginId}');">복구</button>
 							</c:if>
 							<c:if test="${member.delStatus != true}">
-								<button class="btn btn-danger" type="button" onclick="member__Delete(this,'${member.loginId}');">탈퇴</button>
+								<button class="btn btn-danger" type="button" onclick="member__Delete(this,'${member.loginId}');">정지</button>
 							</c:if>
 							</td>				
 							<td class="visible-on-sm-down">
@@ -75,7 +75,7 @@
 					                  		<button class="btn btn-info" type="button" onclick="member__recovery(this,'${member.loginId}');">복구</button>
 										</c:if>
 										<c:if test="${member.delStatus != true}">
-											<button class="btn btn-danger" type="button" onclick="member__Delete(this,'${member.loginId}');">탈퇴</button>
+											<button class="btn btn-danger" type="button" onclick="member__Delete(this,'${member.loginId}');">정지</button>
 										</c:if>
 			                      	</div>
 			                  	</a>

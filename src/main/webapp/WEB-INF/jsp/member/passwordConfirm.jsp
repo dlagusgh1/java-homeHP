@@ -65,7 +65,7 @@
 				<th>확인</th>
 				<td>
 					<button class="btn btn-primary" type="submit">확인</button>
-					<button class="btn btn-info" onclick="history.back();" type="button">취소</button>
+					<button class="btn btn-danger" onclick="history.back();" type="button">취소</button>
 				</td>
 			</tr>
 		</tbody>

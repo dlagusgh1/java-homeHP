@@ -50,7 +50,7 @@ custom:
   logoText: 우리동네
   emailFrom: no-reply@homeHP.com
   emailFromName: 우리동네 당직의료기관 찾기(병원/약국)
-  
+  siteLogo: https://user-images.githubusercontent.com/60770834/93342978-ea56cb80-f86a-11ea-85cc-3b202636b055.jpg  
 ---
 # 로컬에서 단독으로 실행되는 것으로 port 설정
 spring:
