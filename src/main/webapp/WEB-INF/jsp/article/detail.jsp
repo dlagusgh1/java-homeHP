@@ -13,7 +13,7 @@
 
 <h1 class="con flex-jc-c">${board.name} 게시판 상세내용</h1>
 	
-<div class="article-detail-box table-box table-box-vertical con">
+<div class="table-box table-box-vertical con form1">
 	<table>
 		<colgroup>
 			<col class="table-first-col">
@@ -29,17 +29,7 @@
 			</tr>
 			<tr>
 				<th>추천</th>
-				<td><span>${article.extra.likePoint}</span> &nbsp;/&nbsp; <c:if
-						test="${article.extra.loginedMemberCanLike}">
-						<a class="btn btn-info"
-							href="./doLike?id=${article.id}&redirectUri=/usr/article/${board.code}-detail?id=${article.id}"
-							onclick="if ( confirm('추천하시겠습니까?') == false ) { return false; }">추천</a>
-					</c:if> <c:if test="${article.extra.loginedMemberCanCancelLike}">
-						<a class="btn btn-danger"
-							href="./doCancelLike?id=${article.id}&redirectUri=/usr/article/${board.code}-detail?id=${article.id}"
-							onclick="if ( confirm('추천을 취소하시겠습니까?') == false ) { return false; }">추천 취소</a>
-					</c:if>
-				</td>
+				<td><span>${article.extra.likePoint}</span></td>
 			</tr>
 			<tr>
 				<th>제목</th>
@@ -82,7 +72,17 @@
 		<a class="btn btn-primary"	href="${board.code}-modify?id=${article.id}&listUrl=${Util.getUriEncoded(listUrl)}">수정</a>
 	</c:if>
 	<c:if test="${article.extra.actorCanDelete}">
-		<a class="btn btn-info" href="${board.code}-doDelete?id=${article.id}" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;">삭제</a>
+		<a class="btn btn-danger" href="${board.code}-doDelete?id=${article.id}" onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;">삭제</a>
+	</c:if>
+	<c:if test="${article.extra.loginedMemberCanLike}">
+		<a class="btn btn-info"
+			href="./doLike?id=${article.id}&redirectUri=/usr/article/${board.code}-detail?id=${article.id}"
+			onclick="if ( confirm('추천하시겠습니까?') == false ) { return false; }">게시물 추천하기</a>
+	</c:if> 
+	<c:if test="${article.extra.loginedMemberCanCancelLike}">
+		<a class="btn btn-danger"
+			href="./doCancelLike?id=${article.id}&redirectUri=/usr/article/${board.code}-detail?id=${article.id}"
+			onclick="if ( confirm('추천을 취소하시겠습니까?') == false ) { return false; }">추천 취소하기</a>
 	</c:if>
 	<a href="${listUrl}" class="btn">리스트</a>
 </div>
@@ -158,7 +158,7 @@
 		}
 	</script>
 
-	<form class="table-box con form1" onsubmit="ArticleWriteReplyForm__submit(this); return false;">
+	<form class="table-box table-box-vertical con form1" onsubmit="ArticleWriteReplyForm__submit(this); return false;">
 		<input type="hidden" name="relTypeCode" value="article" /> 
 		<input type="hidden" name="relId" value="${article.id}" />
 		<table>
@@ -170,13 +170,14 @@
 					<th>내용</th>
 					<td>
 						<div class="form-control-box">
-							<textarea maxlength="300" name="body" placeholder="내용을 입력해주세요." class="height-300"></textarea>
+							<textarea maxlength="200" name="body" placeholder="댓글 내용을 입력해주세요." class="height-200"></textarea>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<th>작성</th>
-					<td><input class="btn btn-primary" type="submit" value="작성">
+					<td>
+						<button class="btn btn-primary" type="submit">작성</button> 
 					</td>
 				</tr>
 			</tbody>
@@ -186,26 +187,26 @@
 
 <h2 class="con">댓글 리스트</h2>
 
-<div class="reply-list-box table-box con">
+<div class="reply-list-box table-box table-box-data con">
 	<table>
 		<colgroup>
-			<col class="table-first-col table-first-col-tight">
-			<col width="180" class="visible-on-md-up">
-			<col width="180" class="visible-on-md-up">
-			<col>
-			<col width="200" class="visible-on-md-up">
+			<col class="table-first-col">
+			<col width="300">
+			<col width="150">
+			<col width="200">
+			<col width="150">
 		</colgroup>
 		<thead>
 			<tr>
 				<th>번호</th>
-				<th class="visible-on-md-up">날짜</th>
-				<th class="visible-on-md-up">작성자</th>
 				<th>내용</th>
-				<th class="visible-on-md-up">비고</th>
+				<th>작성자</th>
+				<th>날짜</th>
+				<th>비고</th>
 			</tr>
 		</thead>
 		<tbody>
-
+			
 		</tbody>
 	</table>
 </div>
@@ -232,7 +233,7 @@
 	top: 50%;
 	transform: translateX(-50%) translateY(-50%);
 	max-width: 100vw;
-	min-width: 600px;
+	min-width: 350px;
 	max-height: 100vh;
 	overflow-y: auto;
 	border: 3px solid black;
@@ -267,27 +268,6 @@
 					<textarea name="body" placeholder="내용을 입력해주세요."></textarea>
 				</div>
 			</div>
-
-			<c:forEach var="i" begin="1" end="3" step="1">
-				<c:set var="fileNo" value="${String.valueOf(i)}" />
-				<c:set var="fileExtTypeCode" value="${appConfig.getAttachmentFileExtTypeCode('article', i)}" />
-
-				<div class="form-row">
-					<div class="form-control-label">첨부${fileNo}</div>
-					<div class="form-control-box">
-						<input type="file" accept="${appConfig.getAttachemntFileInputAccept('article', i)}"	data-name="file__reply__0__common__attachment__${fileNo}">
-					</div>
-					<div style="width: 100%" class="video-box video-box-file-${fileNo}"></div>
-					<div style="width: 100%" class="img-box img-box-auto img-box-file-${fileNo}"></div>
-				</div>
-
-				<div class="form-row">
-					<div class="form-control-label">첨부${fileNo} 삭제</div>
-					<div class="form-control-box">
-						<label><input type="checkbox" data-name="deleteFile__reply__0__common__attachment__${fileNo}" value="Y" /> 삭제 </label>
-					</div>
-				</div>
-			</c:forEach>
 			<div class="form-row">
 				<div class="form-control-label">수정</div>
 				<div class="form-control-box">
@@ -325,60 +305,11 @@
 		var id = form.id.value;
 		var body = form.body.value;
 
-		var fileInput1 = form['file__reply__' + id + '__common__attachment__1'];
-		var fileInput2 = form['file__reply__' + id + '__common__attachment__2'];
-		var fileInput3 = form['file__reply__' + id + '__common__attachment__3'];
-
-		var deleteFileInput1 = form["deleteFile__reply__" + id + "__common__attachment__1"];
-		var deleteFileInput2 = form["deleteFile__reply__" + id + "__common__attachment__2"];
-		var deleteFileInput3 = form["deleteFile__reply__" + id + "__common__attachment__3"];
-
-		if (fileInput1 && deleteFileInput1 && deleteFileInput1.checked) {
-			fileInput1.value = '';
-		}
-
-		if (fileInput2 && deleteFileInput2 && deleteFileInput2.checked) {
-			fileInput2.value = '';
-		}
-
-		if (fileInput3 && deleteFileInput3 && deleteFileInput3.checked) {
-			fileInput3.value = '';
-		}
-
 		ReplyList__submitModifyFormDone = true;
 
 		// 파일 업로드 시작
 		var startUploadFiles = function() {
 			var needToUpload = false;
-
-			if ( needToUpload == false ) {
-				needToUpload = fileInput1 && fileInput1.value.length > 0;
-			}
-
-			if ( needToUpload == false ) {
-				needToUpload = deleteFileInput1 && deleteFileInput1.checked;
-			}
-
-			if ( needToUpload == false ) {
-				needToUpload = fileInput2 && fileInput2.value.length > 0;
-			}
-
-			if ( needToUpload == false ) {
-				needToUpload = deleteFileInput2 && deleteFileInput2.checked;
-			}
-
-			if ( needToUpload == false ) {
-				needToUpload = fileInput3 && fileInput3.value.length > 0;
-			}
-
-			if ( needToUpload == false ) {
-				needToUpload = deleteFileInput3 && deleteFileInput3.checked;
-			}
-			
-			if (needToUpload == false) {
-				onUploadFilesComplete();
-				return;
-			}
 
 			var fileUploadFormData = new FormData(form); 
 			
@@ -419,24 +350,6 @@
 				// 성공시에는 기존에 그려진 내용을 수정해야 한다.!!
 				$('.reply-list-box tbody > tr[data-id="' + id + '"]').data('data-originBody', body);
 				$('.reply-list-box tbody > tr[data-id="' + id + '"] .reply-body').empty().append(body);
-
-				$('.reply-list-box tbody > tr[data-id="' + id + '"] .video-box').empty();
-				$('.reply-list-box tbody > tr[data-id="' + id + '"] .img-box').empty();
-
-				if ( data && data.body && data.body.file__common__attachment ) {
-					for ( var fileNo in data.body.file__common__attachment ) {
-						var file = data.body.file__common__attachment[fileNo];
-
-						if ( file.fileExtTypeCode == 'video' ) {
-							var html = '<video controls src="/usr/file/streamVideo?id=' + file.id + '&updateDate=' + file.updateDate + '">video not supported</video>';
-							$('.reply-list-box tbody > tr[data-id="' + id + '"] [data-file-no="' + fileNo + '"].video-box').append(html);
-						}
-						else {
-							var html = '<img src="/usr/file/showImg?id=' + file.id + '&updateDate=' + file.updateDate + '">';
-							$('.reply-list-box tbody > tr[data-id="' + id + '"] [data-file-no="' + fileNo + '"].img-box').append(html);
-						}
-					}
-				}
 			}
 
 			if ( data.msg ) {
@@ -459,43 +372,6 @@
 
 		var form = $('.reply-modify-form-modal form').get(0);
 
-		$(form).find('[data-name]').each(function(index, el) {
-			var $el = $(el);
-
-			var name = $el.attr('data-name');
-			name = name.replaceAll('__0__', '__' + id + '__');
-			$el.attr('name', name);
-
-			if ( $el.prop('type') == 'file' ) {
-				$el.val('');
-			}
-			else if ( $el.prop('type') == 'checkbox' ) {
-				$el.prop('checked', false);
-			}
-		});
-
-		for ( var fileNo = 1; fileNo <= 3; fileNo++ ) {
-			$('.reply-modify-form-modal .video-box-file-' + fileNo).empty();
-			
-			var videoName = 'reply__' + id + '__common__attachment__' + fileNo;
-
-			var $videoBox = $('.reply-list-box [data-video-name="' + videoName + '"]');
-			
-			if ( $videoBox.length > 0 ) {
-				$('.reply-modify-form-modal .video-box-file-' + fileNo).append($videoBox.html());
-			}
-
-			$('.reply-modify-form-modal .img-box-file-' + fileNo).empty();
-
-			var imgName = 'reply__' + id + '__common__attachment__' + fileNo;
-
-			var $imgBox = $('.reply-list-box [data-img-name="' + imgName + '"]');
-			
-			if ( $imgBox.length > 0 ) {
-				$('.reply-modify-form-modal .img-box-file-' + fileNo).append($imgBox.html());
-			}
-		}
-
 		form.id.value = id;
 		form.body.value = originBody;
 	}
@@ -504,8 +380,8 @@
 		$('html').removeClass('reply-modify-form-modal-actived');
 	}
 
-	// 1초
-	ReplyList__loadMoreInterval = 1 * 1000;
+	// 5초
+	ReplyList__loadMoreInterval = 1 * 5000;
 
 	function ReplyList__loadMoreCallback(data) {
 		if (data.body.replies && data.body.replies.length > 0) {
@@ -549,50 +425,13 @@
 		var html = '';
 		html += '<tr data-id="' + reply.id + '">';
 		html += '<td>' + reply.id + '</td>';
-		html += '<td class="visible-on-md-up">' + reply.regDate + '</td>';
-		html += '<td class="visible-on-md-up">' + reply.extra.writer + '</td>';
 		html += '<td>';
 		html += '<div class="reply-body">' + reply.body + '</div>';
-		html += '<div class="visible-on-sm-down">날짜 : ' + reply.regDate + '</div>';
-		html += '<div class="visible-on-sm-down">작성 : ' + reply.extra.writer + '</div>';
-
-		for ( var fileNo = 1; fileNo <= 3; fileNo++ ) {
-			var file = null;
-			if ( reply.extra.file__common__attachment && reply.extra.file__common__attachment[fileNo] ) {
-				file = reply.extra.file__common__attachment[fileNo];
-			}
-			
-			html += '<div class="video-box" data-video-name="reply__' + reply.id + '__common__attachment__' + fileNo + '" data-file-no="' + fileNo + '">';
-
-			if ( file && file.fileExtTypeCode == 'video' ) {
-				html += '<video controls src="/usr/file/streamVideo?id=' + file.id + '&updateDate=' + file.updateDate + '">video not supported</video>';
-			}
-
-			html += '</div>';
-
-			html += '<div class="img-box img-box-auto" data-img-name="reply__' + reply.id + '__common__attachment__' + fileNo + '" data-file-no="' + fileNo + '">';
-
-			if ( file && file.fileExtTypeCode == 'img' ) {
-				html += '<img src="/usr/file/showImg?id=' + file.id + '&updateDate=' + file.updateDate + '">';
-	        }
-
-			html += '</div>';
-		}
-
-		html += '<div class="visible-on-sm-down margin-top-10">';
-
-		if (reply.extra.actorCanDelete) {
-			html += '<button class="btn btn-danger" type="button" onclick="ReplyList__delete(this);">삭제</button>';
-		}
-		
-		if (reply.extra.actorCanModify) {
-			html += '<button class="btn btn-info" type="button" onclick="ReplyList__showModifyFormModal(this);">수정</button>';
-		}
-		
-		html += '</div>';
-		
 		html += '</td>';
-		html += '<td class="visible-on-md-up">';
+		html += '<td class="visible-on-md-up">' + reply.extra.writer + '</td>';
+		html += '<td class="visible-on-md-up">' + reply.regDate + '</td>';
+		
+		html += '<td>';
 
 		if (reply.extra.actorCanModify) {
 			html += '<button class="btn btn-info" type="button" onclick="ReplyList__showModifyFormModal(this);">수정</button>';
@@ -601,13 +440,39 @@
 		if (reply.extra.actorCanDelete) {
 			html += '<button class="btn btn-danger" type="button" onclick="ReplyList__delete(this);">삭제</button>';
 		}
-		
-		html += '</td>';
-		html += '</tr>';
 
-		var $tr = $(html);
-		$tr.data('data-originBody', reply.body);
-		ReplyList__$tbody.prepend($tr);
+		html += '</td>';
+
+		html += '<td class="visible-on-sm-down">';
+
+
+    	html += '<div class="flex flex-row-wrap flex-ai-c">';
+        html += '<span class="badge badge-primary bold margin-right-10">' + reply.id + '</span>';
+        html += '<div class="writer">' + reply.extra.writer + '</div>';
+        html += '&nbsp; | &nbsp;';
+        html += '<div class="reg-date">' + reply.regDate + '</div>';
+        html += '<div class="width-100p"></div>';
+        html += '<div class="body flex-1-0-0 margin-top-10 reply-body">' + reply.body + '</div>';
+        html += '</div>';
+
+        html += '<div class="margin-top-10 btn-inline-box">';
+
+        if (reply.extra.actorCanModify) {
+            html += '<button class="btn btn-info" type="button" onclick="ReplyList__showModifyFormModal(this);">수정</button>';
+        }
+        
+        if (reply.extra.actorCanDelete) {
+            html += '<button class="btn btn-danger" type="button" onclick="ReplyList__delete(this);">삭제</button>';
+        }
+
+        html += '</div>';
+
+        html += '</td>';
+        html += '</tr>';
+
+        var $tr = $(html);
+        $tr.data('data-originBody', reply.body);
+        ReplyList__$tbody.prepend($tr);
 	}
 
 	ReplyList__loadMore();
