@@ -107,24 +107,6 @@
 			ArticleWriteReplyForm__submitDone = true;
 
 			var startUploadFiles = function(onSuccess) {
-				var needToUpload = false;
-
-				if ( needToUpload == false ) {
-					needToUpload = form.file__reply__0__common__attachment__1.value.length > 0;
-				}
-				
-				if ( needToUpload == false ) {
-					needToUpload = form.file__reply__0__common__attachment__2.value.length > 0;
-				}
-
-				if ( needToUpload == false ) {
-					needToUpload = form.file__reply__0__common__attachment__3.value.length > 0;
-				}
-				
-				if ( needToUpload == false ) {
-					onSuccess();
-					return;
-				}
 
 				var fileUploadFormData = new FormData(form); 
 				
@@ -170,18 +152,6 @@
 					
 					form.body.value = '';
 					
-					if ( form.file__reply__0__common__attachment__1 ) {
-						form.file__reply__0__common__attachment__1.value = '';
-					}
-					
-					if ( form.file__reply__0__common__attachment__2 ) {
-						form.file__reply__0__common__attachment__2.value = '';
-					}
-
-					if ( form.file__reply__0__common__attachment__3 ) {
-						form.file__reply__0__common__attachment__3.value = '';
-					}
-					
 					ArticleWriteReplyForm__submitDone = false;
 				});
 			});
@@ -191,7 +161,6 @@
 	<form class="table-box con form1" onsubmit="ArticleWriteReplyForm__submit(this); return false;">
 		<input type="hidden" name="relTypeCode" value="article" /> 
 		<input type="hidden" name="relId" value="${article.id}" />
-
 		<table>
 			<colgroup>
 				<col class="table-first-col">
@@ -205,20 +174,6 @@
 						</div>
 					</td>
 				</tr>
-				<c:forEach var="i" begin="1" end="3" step="1">
-					<c:set var="fileNo" value="${String.valueOf(i)}" />
-					<c:set var="fileExtTypeCode"
-						value="${appConfig.getAttachmentFileExtTypeCode('reply', i)}" />
-					<tr>
-						<th>첨부${fileNo}
-							${appConfig.getAttachmentFileExtTypeDisplayName('reply', i)}</th>
-						<td>
-							<div class="form-control-box">
-								<input type="file" accept="${appConfig.getAttachemntFileInputAccept('article', i)}"	name="file__reply__0__common__attachment__${fileNo}">
-							</div>
-						</td>
-					</tr>
-				</c:forEach>
 				<tr>
 					<th>작성</th>
 					<td><input class="btn btn-primary" type="submit" value="작성">
@@ -638,6 +593,10 @@
 		
 		html += '</td>';
 		html += '<td class="visible-on-md-up">';
+
+		if (reply.extra.actorCanModify) {
+			html += '<button class="btn btn-info" type="button" onclick="ReplyList__showModifyFormModal(this);">수정</button>';
+		}
 
 		if (reply.extra.actorCanDelete) {
 			html += '<button class="btn btn-danger" type="button" onclick="ReplyList__delete(this);">삭제</button>';
