@@ -24,6 +24,10 @@ a {
 	text-decoration: none;
 }
 
+body {
+	height: 100%;
+}
+
 label[for] {
 	cursor: pointer;
 	user-select: none;

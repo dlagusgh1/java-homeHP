@@ -24,7 +24,7 @@ public interface ArticleDao {
 
 	Board getBoardByCode(String boardCode);
 
-	List<Article> getForPrintArticles(String boardCode);
+	List<Article> getForPrintArticles(String boardCode, int limitFrom, int itemsInAPage);
 	
 	List<Article> getForPrintVisibleArticles();
 
@@ -63,5 +63,7 @@ public interface ArticleDao {
 	void likeArticle(@Param("id") int id, @Param("memberId") int memberId);
 
 	void cancelLikeArticle(@Param("id") int id, @Param("memberId") int memberId);
+
+	int getForPrintListArticlesCount(String boardCode);
 
 }

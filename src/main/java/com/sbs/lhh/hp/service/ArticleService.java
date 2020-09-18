@@ -84,8 +84,10 @@ public class ArticleService {
 	}
 
 	// 게시물 리스트
-	public List<Article> getForPrintArticles(String boardCode) {
-		List<Article> articles = articleDao.getForPrintArticles(boardCode);
+	public List<Article> getForPrintArticles(String boardCode, int page, int itemsInAPage) {
+		int limitFrom = (page - 1) * itemsInAPage;
+		
+		List<Article> articles = articleDao.getForPrintArticles(boardCode, limitFrom, itemsInAPage);
 
 		return articles;
 	}
@@ -368,6 +370,10 @@ public class ArticleService {
 		rs.put("msg", String.format("%d번 게시물 추천을 취소하였습니다.", id));
 
 		return rs;
+	}
+
+	public int getForPrintListArticlesCount(String boardCode) {
+		return articleDao.getForPrintListArticlesCount(boardCode);
 	}
 	
 }

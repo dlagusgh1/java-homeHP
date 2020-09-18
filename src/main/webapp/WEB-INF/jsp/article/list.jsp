@@ -77,6 +77,48 @@
 		</tbody>
 	</table>
 </div>
+
+<style>
+	.page-box {
+		margin: 10px 0;
+	}
+	.page-navi td {
+	    padding: 10px 15px;
+	    font-size: 1.2rem;
+	    font-weight: bold;
+	}
+	.page-navi td:hover {
+		background-color: #4BAF4B;
+		color: white;
+	}
+	.page-navi td.current>a {
+	    color: red;
+	}
+
+</style>
+
+<div class="page-box">
+	<table class="page-navi flex-jc-c">
+		<tr>
+			<c:if test="${page != 1}">
+				<td><a href="?page=1"><i class="fas fa-angle-double-left"></i></a></td>
+				<c:set var="k" value="${page}" />
+					<td><a href="?page=${k-1}"><i class="fas fa-angle-left"></i></a></td>
+			</c:if>
+			<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+				<td class="${i == page ? 'current' : ''}">
+					<a href="?page=${i}" class="block">${i}</a>
+				</td>
+			</c:forEach>
+			<c:if test="${page != totalPage}">
+				<c:set var="k" value="${page}" />
+					<td><a href="?page=${k+1}"><i class="fas fa-angle-right"></i></a></td>
+				<td><a href="?page=${totalPage}"><i class="fas fa-angle-double-right"></i></a></td>
+			</c:if>
+		</tr>
+	</table>
+</div>
+
 <c:if test="${isLogined}">
 <div class="btn-box con margin-top-20 margin-bottom-20">
 	<c:choose>
@@ -90,7 +132,6 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-</c:if>
-	
+</c:if>	
 	
 <%@ include file="../part/foot.jspf"%>

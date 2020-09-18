@@ -59,6 +59,7 @@
 		AND displayStatus = 1
 		GROUP BY A.id
 		ORDER BY A.id DESC
+		LIMIT #{limitFrom}, #{itemsInAPage} 
 	</select>
 	
 	<select id="getForPrintVisibleArticles" resultMap="article">
@@ -207,6 +208,16 @@
 		WHERE articleId = #{id}
 		AND memberId = #{memberId}
 	</delete>
+	
+	<select id="getForPrintListArticlesCount" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM article AS A
+		INNER JOIN `board` AS B
+		ON A.boardId = B.id
+		WHERE B.code = #{boardCode}
+		AND displayStatus = 1
+		ORDER BY A.boardId DESC
+	</select>
 	
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />

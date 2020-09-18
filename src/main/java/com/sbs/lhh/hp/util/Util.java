@@ -428,6 +428,18 @@ public class Util {
 		return (String) value;
 	}
 	
+	public static boolean empty(Object obj) {
+		if (obj == null) {
+			return true;
+		}
+
+		if (obj instanceof String) {
+			return ((String) obj).trim().length() == 0;
+		}
+
+		return true;
+	}
+	
 	public static int getPassedSecondsFrom(String from) {
 		SimpleDateFormat fDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date n;

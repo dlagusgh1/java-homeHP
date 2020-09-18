@@ -370,13 +370,46 @@ public class ArticleController {
 
 	// 게시물 리스트(자유/공지)
 	@RequestMapping("/usr/article/{boardCode}-list")
-	public String showList(Model model, @PathVariable("boardCode") String boardCode) {
+	public String showList(Model model, @PathVariable("boardCode") String boardCode, HttpServletRequest req, @RequestParam Map<String, Object> param) {
+			
 		Board board = articleService.getBoardByCode(boardCode);
 		model.addAttribute("board", board);
+		
+		int page = 1;
+		
+		System.out.println("값 확인 : " + param.get("page"));
 
-		List<Article> articles = articleService.getForPrintArticles(boardCode);
+		if (!Util.empty(param.get("page")) && Util.isNum(param.get("page"))) {
+			page = Util.getInt(req, "page");
+		}
+		
+		int itemsInAPage = 5;
+		int totalCount = articleService.getForPrintListArticlesCount(boardCode);
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsInAPage); // 몇개의 페이지가 있을지 체크
+		
+		model.addAttribute("totalCount", totalCount);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("page", page);
+
+		List<Article> articles = articleService.getForPrintArticles(boardCode, page, itemsInAPage);
 
 		model.addAttribute("articles", articles);
+		
+		// 게시물 하단 페이징 번호 제한
+		int pageCount = 5;
+		int startPage = ((page - 1) / pageCount) * pageCount + 1;
+		int endPage = startPage + pageCount - 1;
+		
+		if( totalPage < page) {
+			page = totalPage;
+		}
+		if ( endPage > totalPage) {
+			endPage = totalPage;
+		}
+		
+		model.addAttribute("pageCount", pageCount);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 
 		return "article/list";
 	}
