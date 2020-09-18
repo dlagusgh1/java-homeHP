@@ -14,7 +14,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: dlagusgh1@gmail.com
-    password: 
+    password: dddzdldmzjcccvco
     properties:
       mail:
         smtp:
@@ -51,6 +51,9 @@ custom:
   emailFrom: no-reply@homeHP.com
   emailFromName: 우리동네 당직의료기관 찾기(병원/약국)
   siteLogo: https://user-images.githubusercontent.com/60770834/93342978-ea56cb80-f86a-11ea-85cc-3b202636b055.jpg  
+  logging:
+    dir: log
+    level: info
 ---
 # 로컬에서 단독으로 실행되는 것으로 port 설정
 spring:
@@ -70,3 +73,7 @@ spring:
     password: sbs123414
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/st_n35_wori?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull 
+custom:
+  logging:
+    dir: /tmp/hp-log
+    level: info
