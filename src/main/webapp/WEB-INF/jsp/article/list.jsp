@@ -77,7 +77,7 @@
 		</tbody>
 	</table>
 </div>
-
+<c:if test="${isLogined}">
 <div class="btn-box con margin-top-20 margin-bottom-20">
 	<c:choose>
 		<c:when test="${board.code.equals('notice')}">
@@ -90,6 +90,7 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+</c:if>
 	
 	
 <%@ include file="../part/foot.jspf"%>

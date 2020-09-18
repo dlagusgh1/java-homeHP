@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<ins class="kakao_ad_area" style="display:none;" 
+ data-ad-unit    = "DAN-urjjhhgfxzxv" 
+ data-ad-width   = "320" 
+ data-ad-height  = "100"></ins> 
+<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 <!--  
 <style>
 	#footer {
