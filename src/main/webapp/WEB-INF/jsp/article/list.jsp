@@ -94,7 +94,6 @@
 	.page-navi td.current>a {
 	    color: red;
 	}
-
 </style>
 
 <div class="page-box">

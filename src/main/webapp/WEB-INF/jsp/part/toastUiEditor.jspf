@@ -229,6 +229,10 @@
 	}
 
 	function ToastEditor__init() {
+		if (iOS()) {
+			$('html').addClass('device-ios');
+		}
+		
 		$('.toast-editor.toast-editor-viewer:not(.toast-editor-loaded)').each(function(index, el) {
 
 			var $el = $(this);
@@ -259,7 +263,12 @@
 			}
 			var height = jq_attr($el, 'data-toast-editor-height', 500);
 			height = parseInt(height);
-			var initialEditType = jq_attr($el, 'data-toast-editor-initialEditType', "markdown");
+			var initialEditType = jq_attr($el, 'data-toast-editor-initialEditType', "wysiwyg");
+
+			if (iOS()) {
+				initialEditType = 'wysiwyg';
+			}
+			
 			var previewStyle = jq_attr($el, 'data-toast-editor-previewStyle', "vertical");
 			var initialValue = ToastEditor__getBodyFromXTemplate($el.prev());
 
@@ -275,7 +284,11 @@
 				initialValue : initialValue,
 				hooks : {
 					'addImageBlobHook' : function(blob, callback) {
-						var maxSizeMb = 2;
+						if (isNowLoading()) {
+							alert('처리중입니다.');
+						}
+						
+						var maxSizeMb = 20;
 						var maxSize = maxSizeMb * 1024 * 1024 //50MB
 						if (blob.size > maxSize) {
 							alert(maxSizeMb + "MB 이하의 이미지를 선택해주세요.");
@@ -283,6 +296,9 @@
 						}
 						var fd = new FormData();
 						fd.append('file__' + relTypeCode + '__' + relId + '__common__inBody__1', blob);
+
+						startLoading();
+						
 						$.ajax({
 							type : 'POST',
 							url : '/usr/file/doUploadEditorBlobAjax',
@@ -305,8 +321,15 @@
 
 								callback(url);
 							}
-						});
+							
+							endLoading();
+						}).fail(function(data, textStatus, errorThrown) {
+							alert("error : " + errorThrown);
 
+							endLoading();
+							
+						});
+						;
 						//run callback
 						//callback('Image URL');
 					}
@@ -347,3 +370,8 @@
 		ToastEditor__init();
 	});
 </script>
+<style>
+	html.device-ios .te-mode-switch-section {
+	  display: none !important;
+	}
+</style>
