@@ -17,7 +17,7 @@
 		<c:if test="${covid.country == '세종' || covid.country == '대전' || covid.country == '충북' || covid.country == '충남' || covid.country == '합계'}">
 			<c:choose>
 				<c:when test="${covid.country == '합계'}">
-					<h3 class="con">전체 COVID-19 현황</h3>
+					<h3 class="con">전체 COVID-19 현황<span class="covid19-reg"> *업데이트: ${covid.regDate}</span></h3>
 				</c:when>
 				<c:otherwise>
 					<h3 class="con">${covid.country} COVID-19 현황</h3>

@@ -394,6 +394,11 @@ h1, h2, h3 {
 	font-weight: normal;
 }
 
+.covid19-reg {
+	color: red;
+	font-size: 0.8rem;
+}
+
 @media (min-width :1130px) {
     .covid19-counter .box1, .box2 {
 		display: inline-block;

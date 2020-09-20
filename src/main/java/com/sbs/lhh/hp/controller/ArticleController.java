@@ -235,7 +235,6 @@ public class ArticleController {
 		if ( covidDatas.isEmpty() ) {
 			try {
 				covidDataList = crawlingService.getCovidDatas();
-
 				for (CovidData data : covidDataList) {
 					articleService.setCovidData(data);
 				}
