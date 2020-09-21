@@ -98,7 +98,7 @@
 		
 		if ( tempAdCateItemName.length == 0 ) {
 			html += '<ul>';
-			html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
+			html += '<li><a style="font-size: 1.2rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
 			html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
 			html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
 			html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
@@ -111,7 +111,7 @@
 		} else if ( tempAdCateItemName.length != 0 ) {
 			if ( kakaoMap.organAdmAddress == tempAdCateItemName ) {
 				html += '<ul>';
-				html += '<li><a style="font-size: 1.3rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
+				html += '<li><a style="font-size: 1.2rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
 				html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
 				html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
 				html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
@@ -197,7 +197,7 @@
 				[
 					${organ.organLocation1}, 
 					${organ.organLocation2}, 
-					'<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress}</nav><nav>행정구역 : (${organ.organAdmAddress}) / 전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>진료시간(주말) : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', 
+					'<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress}</nav><nav>행정구역 : (${organ.organAdmAddress}) / 전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>주말 : ${organ.organWeekendTime}</nav><nav>주말운영여부 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', 
 					'${organ.organAdmAddress}'
 				],
 			</c:forEach>
