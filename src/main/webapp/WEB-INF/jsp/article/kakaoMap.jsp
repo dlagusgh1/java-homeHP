@@ -315,7 +315,6 @@
     	    'click',
     	    makeClickListener(map, marker, infowindow)
    	    );
-	    
 	}
 	
 	// 클러스터러에 마커들을 추가합니다
@@ -324,10 +323,9 @@
 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
     function makeClickListener(map, marker, infowindow) {
         // 마커 위에 인포윈도우를 표시합니다
-	  	
+
         return function() {
         	infowindow.open(map, marker);  
-        	setCenter();
         };
     } 	
 
@@ -337,12 +335,6 @@
 	        markers[i].setMap(null);
 	    }   
 	    markers = [];
-	}
-
-	function closeInfoWindow() {
-	    for(var idx=0; idx<array.length; idx++){
-	        array[idx].close();
-	    }
 	}
 	
 </script>
