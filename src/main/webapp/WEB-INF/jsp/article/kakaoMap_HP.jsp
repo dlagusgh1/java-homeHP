@@ -164,7 +164,7 @@
 		<c:forEach items="${organes}" var="organ">
 			<c:choose>
 				<c:when test="${organ.organNumber == 1}">
-				[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName}</div><nav>주소 : ${organ.organAddress}</nav><nav>행정구역 : (${organ.organAdmAddress}) / 전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>주말 : ${organ.organWeekendTime}</nav><nav>주말운영 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', '${organ.organAdmAddress}'],
+				[${organ.organLocation1}, ${organ.organLocation2}, '<div class="map_marker"><div class="map_marker_header">${organ.organName} (${organ.organAdmAddress})</div><nav>주소 : ${organ.organAddress}</nav><nav>전화 : ${organ.organTel}</nav><nav>진료시간 : ${organ.organTime}</nav><nav>주말 : ${organ.organWeekendTime}</nav><nav>주말운영 : ${organ.organWeekend}</nav><nav>비고 : ${organ.organRemarks}</nav></div>', '${organ.organAdmAddress}'],
 				</c:when>
 				<c:otherwise>
 				</c:otherwise>

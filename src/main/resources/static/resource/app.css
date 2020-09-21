@@ -583,7 +583,8 @@ h1, h2, h3 {
 
 @media (max-width :801px) {
 	.map_marker {
-		padding:10px; 	
+		padding: 10px;
+		max-width: 300px;
 	}
 	.map_marker_header {
 		font-size: 1rem;
@@ -597,7 +598,8 @@ h1, h2, h3 {
 
 @media (min-width :801px) {
 	.map_marker {
-		padding:10px; 			
+		padding: 20px;	
+		min-width: 300px;	
 	}
 	.map_marker_header {
 		font-size: 1.2rem;
