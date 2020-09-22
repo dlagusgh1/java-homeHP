@@ -147,7 +147,10 @@
         level: 8, // 지도의 확대 레벨
         mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
     }; 
-    
+
+	// 인포윈도우 전역변수로 생성
+	var infowindow = new kakao.maps.InfoWindow();
+	
 	// 지도를 생성한다 
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
 	
@@ -190,6 +193,8 @@
 	// 마커들을 저장할 변수 생성
 	var markers = [];
 
+	// 인포 윈도우를 저장할 변수 생성
+	var infowindows = [];
 
 	// 다중 마커 생성
 	var 데이터 = [		
@@ -203,15 +208,17 @@
 			</c:forEach>
 		];
 	
-	// select박스 onchange로 넘겨받은 행정구역 값에 해당하는 마커 생성
+	// select박스 onchange로 넘겨받은 행정구역 선택 값에 해당하는 마커 생성
 	function administrative(adCateItemName) {
 		
 		tempAdCateItemName = adCateItemName;
 		
-		// 클러스터 지우기
-		clusterer.clear();
+		// 기존 클러스터 지우기
+		clusterer.clear();	
 		// 기존 마커들 지우기.
 		removeMarker();
+		// 기존 인포윈도우 지우기.
+		removeInfowindow();
 
 		var adCateName = adCateItemName;
 
@@ -286,6 +293,7 @@
 	}
 	
 	for (var i = 0; i < 데이터.length; i++ ) {
+		
 		// 지도에 마커를 생성하고 표시한다.
 		var marker = new kakao.maps.Marker({
 			position: new kakao.maps.LatLng(데이터[i][0], 데이터[i][1]), // 마커의 좌표
@@ -297,7 +305,7 @@
 	    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
 		// 인포윈도우를 생성하고 지도에 표시합니다
-		var infowindow = new kakao.maps.InfoWindow({
+		infowindow = new kakao.maps.InfoWindow({
 		    //map: map, // 인포윈도우가 표시될 지도
 		    position : iwPosition, 
 		    content : 데이터[i][2],
@@ -307,26 +315,33 @@
 		// 생성된 마커를 마커 저장하는 변수에 넣음
 		markers.push(marker);
 
+		// 생성된 인포윈도우를 인포윈도우 저장하는 변수에 넣음
+		
+		
 	 	// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
 	    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
 	    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 	    kakao.maps.event.addListener(
     	    marker, 
-    	    'click',
+    	    'click', 
     	    makeClickListener(map, marker, infowindow)
    	    );
+	    
 	}
-	
+
 	// 클러스터러에 마커들을 추가합니다
     clusterer.addMarkers(markers);
 
 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
     function makeClickListener(map, marker, infowindow) {
         // 마커 위에 인포윈도우를 표시합니다
-
+        
         return function() {
-        	infowindow.open(map, marker);  
+        	removeInfowindow();
+        	infowindow.open(map, marker); 
+        	infowindows.push(infowindow); 
         };
+        
     } 	
 
  	// 지도 위에 표시되고 있는 마커를 모두 제거합니다
@@ -335,6 +350,14 @@
 	        markers[i].setMap(null);
 	    }   
 	    markers = [];
+	}
+
+ 	// 지도 위에 기존에 클릭된 인포 윈도우를 제거한다.
+	function removeInfowindow() {
+		for ( var i = 0; i < infowindows.length; i++ ) {
+			infowindows[i].close();
+	    }   
+		infowindows = [];
 	}
 	
 </script>
