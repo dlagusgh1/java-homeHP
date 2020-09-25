@@ -9,6 +9,19 @@
 		FROM `member`
 		WHERE id = #{id}
 	</select>
+	
+	<insert id="join" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `member`
+		SET regDate = NOW(),
+		updateDate = NOW(),
+		authStatus = 0,
+		loginId = #{loginId},
+		loginPw = #{loginPw},
+		`name` = #{name},
+		`organName` = #{organName},
+		email = #{email},
+		phoneNo = #{cellphoneNo}
+	</insert>
 
 	<select id="getLoginIdDupCount" resultType="int">
 		SELECT COUNT(*) AS cnt
@@ -39,20 +52,6 @@
 		FROM `member`
 		WHERE loginId = #{loginId}
 	</select>
-
-	<insert id="join" useGeneratedKeys="true" keyProperty="id">
-		INSERT
-		INTO `member`
-		SET regDate = NOW(),
-		updateDate = NOW(),
-		authStatus = 0,
-		loginId = #{loginId},
-		loginPw = #{loginPw},
-		`name` = #{name},
-		`organName` = #{organName},
-		email = #{email},
-		phoneNo = #{cellphoneNo}
-	</insert>
 	
 	<select id="getMemberByParam" resultType="Member">
 		SELECT *

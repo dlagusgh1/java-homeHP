@@ -133,7 +133,7 @@ public class MemberController {
 		
 		String redirectUri = (String) param.get("redirectUri");
 		model.addAttribute("redirectUri", redirectUri);
-		model.addAttribute("alertMsg", "가입을 환영합니다^^");
+		model.addAttribute("alertMsg", "가입을 환영합니다.\\n메일 확인 후 이메일 인증 부탁드립니다.");
 
 		return "common/redirect";
 	}
@@ -312,6 +312,7 @@ public class MemberController {
 		}
 
 		model.addAttribute("redirectUri", redirectUri);
+		model.addAttribute("alertMsg", String.format("로그아웃 되었습니다."));
 		return "common/redirect";
 	}
 	
