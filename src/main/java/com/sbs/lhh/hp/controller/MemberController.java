@@ -129,6 +129,7 @@ public class MemberController {
 		
 		int newMemberId = memberService.join(param);
 		
+		memberService.setUserPasswordChangeDate(newMemberId);
 		memberService.sendEmailAuthCode(newMemberId, (String) param.get("email"));
 		
 		String redirectUri = (String) param.get("redirectUri");
@@ -246,7 +247,7 @@ public class MemberController {
 	public String doLogin(String loginId, String loginPwReal, String redirectUri, Model model, HttpSession session, HttpServletRequest request) {
 		String loginPw = loginPwReal;
 		Member member = memberService.getMemberByLoginId(loginId);
-		
+		System.out.println("확인" + loginPw);
 		if (member == null) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
@@ -266,7 +267,7 @@ public class MemberController {
 		}
 		
 		String current = Util.getNowDateStr();
-		String last = member.getUpdateDate();	
+		String last = memberService.getUserPasswordChangeDate(member.getId());	
 		
 		long differenceDate = Util.getTime(current, last);	
 		
@@ -359,6 +360,7 @@ public class MemberController {
 		}		
 		
 		memberService.changeLoginPw(member);
+		memberService.setUserPasswordChangeDate(member.getId());
 		
 		if (redirectUri == null || redirectUri.length() == 0) {
 			redirectUri = "/usr/member/login";
@@ -462,7 +464,8 @@ public class MemberController {
 		Util.changeMapKey(param, "loginPwReal", "loginPw");
 		
 		memberService.memberModifyPw(param, loginedMemberId);
-		
+		memberService.setUserPasswordChangeDate(loginedMemberId);
+
 		model.addAttribute("alertMsg", "비밀번호가 정상적으로 수정되었습니다.\\n다시 로그인 해주세요.");
 		model.addAttribute("redirectUri", redirectUri);
 		

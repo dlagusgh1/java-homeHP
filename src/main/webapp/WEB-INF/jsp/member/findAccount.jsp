@@ -25,9 +25,9 @@
 		form.organName.value = form.organName.value.replaceAll('_', '');
 		form.organName.value = form.organName.value.replaceAll(' ', '');
 
-		if (form.organName.value.length == 0) {
-			form.organName.focus();
-			alert('기관명을 입력해주세요.');
+		if (form.name.value.length == 0) {
+			form.name.focus();
+			alert('이름을 입력해주세요.');
 
 			return;
 		}
@@ -56,10 +56,10 @@
 		</colgroup>
 		<tbody>
 			<tr>
-				<th>기관명</th>
+				<th>이름</th>
 				<td>
 					<div class="form-control-box">
-						<input type="text" placeholder="기관명을 입력해주세요." name="organName" maxlength="30" autofocus="autofocus"/>
+						<input type="text" placeholder="이름을 입력해주세요." name="name" maxlength="30" autofocus="autofocus"/>
 					</div>
 				</td>
 			</tr>
@@ -106,11 +106,11 @@
 			return;
 		}
 		
-		form.organName.value = form.organName.value.trim();
+		form.name.value = form.name.value.trim();
 
-		if (form.organName.value.length == 0) {
-			form.organName.focus();
-			alert('기관명을 입력해주세요.');
+		if (form.name.value.length == 0) {
+			form.name.focus();
+			alert('이름을 입력해주세요.');
 
 			return;
 		}
@@ -147,10 +147,10 @@
 				</td>
 			</tr>
 			<tr>
-				<th>기관명</th>
+				<th>이름</th>
 				<td>
 					<div class="form-control-box">
-						<input type="text" placeholder="기관명을 입력해주세요." name="organName" maxlength="30" autofocus="autofocus"/>
+						<input type="text" placeholder="이름을 입력해주세요." name="name" maxlength="30" autofocus="autofocus"/>
 					</div>
 				</td>
 			</tr>

@@ -196,10 +196,10 @@ public class MemberService {
 		
 		attrService.setValue("member__" + member.getId() + "__extra__useTempPassword", authCode, Util.getDateStrLater(60 * 60));
 		
-		memberModifyShaPw(member.getLoginId(), member.getOrganName(), shaPw);
-		
-		String mailTitle = String.format("[%s] 비밀번호 찾기 결과", siteName);
+		memberModifyShaPw(member.getLoginId(), member.getName(), shaPw);
 
+		String mailTitle = String.format("[%s] 비밀번호 찾기 결과", siteName);
+		
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>비밀번호 찾기 결과</h1>");
 		mailBodySb.append(String.format("<div><img src=\"%s\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:5px; border-radius:20px; \"/></div>", siteLogo));
@@ -280,6 +280,16 @@ public class MemberService {
 	public void setMemberGrant(Map<String, Object> param) {
 		
 		
+	}
+
+	// 비밀번호 변경일자 등록하기
+	public void setUserPasswordChangeDate(int actorId) {
+		attrService.setValue("member__" + actorId + "__extra__userPasswordChangeDate", Util.getNowDateStr(), Util.getDateStrLater(60 * 60));
+	}
+	
+	// 비밀번호 변경일자 가져오기
+	public String getUserPasswordChangeDate(int actorId) {
+		return attrService.getValue("member__" + actorId + "__extra__userPasswordChangeDate");
 	}
 
 }

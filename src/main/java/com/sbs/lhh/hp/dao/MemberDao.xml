@@ -56,8 +56,9 @@
 	<select id="getMemberByParam" resultType="Member">
 		SELECT *
 		FROM `member`
-		WHERE organName = #{organName}
+		WHERE name = #{name}
 		AND email = #{email}
+		<if test="loginId != null">AND loginId = #{loginId}</if>
 	</select>
 	
 	<update id="memberModifyShaPw">
@@ -65,7 +66,7 @@
 		SET loginPw = #{shaPw},
 		updateDate = NOW()
 		WHERE loginId = #{loginId}
-		AND organName = #{organName}
+		AND name = #{name}
 	</update>
 	
 	<update id="memberModify">
