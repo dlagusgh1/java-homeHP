@@ -86,6 +86,11 @@ public class MemberService {
 		return new ResultData("F-1", "이미 사용중인 핸드폰번호 입니다.", "cellphoneNo", cellphoneNo);
 	}
 	
+	// 회원가입 진행 중 입력 값 중복체크(AJAX)
+	public boolean checkMemberDataJoinable(Map<String, Object> param) {
+		return memberDao.checkMemberDataJoinable(param);
+	}
+	
 	// 회원가입 완료 시 대상에게 이메일 인증관련 고유 코드 등록 후 인증 안내 발송( 이메일 인증 안내 발송)
 	public void sendEmailAuthCode(int actorId, String email) {
 		String authCode = UUID.randomUUID().toString();
@@ -131,44 +136,7 @@ public class MemberService {
 		return new ResultData("S-1", "임시 패스워드를 사용 중 입니다.");
 	
 	}
-
-
 	
-	// 이메일 인증관련 고유 코드 재 발송 기능( 이메일 인증 안내 재 발송 )
-	public void reSendEmailAuthCode(int actorId, String email) {
-
-		String authCode = getAuthCodeEmail(actorId);
-		
-		String mailTitle = String.format("[%s] 이메일 인증", siteName);
-		
-		StringBuilder mailBodySb = new StringBuilder();
-		mailBodySb.append("<h1>이메일 인증</h1>");
-		mailBodySb.append(String.format("<div><img src=\"%s\" style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:5px; border-radius:20px; \"/></div>", siteLogo));
-		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다.<br><br>아래 링크로 접속하여 이메일 인증을 해주세요.<br><br><a href=\"https://wori.n35.weone.kr/usr/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">이메일 인증하기</a> </p>", email, authCode, actorId));
-		
-		mailService.send(email, mailTitle, mailBodySb.toString());
-	}
-	
-	// 이메일이 인증되었는지 attr에서 인증된 메일정보 가져오기
-	public String getAuthCodeEmail(int memberId) {
-		// emailAuthed 이메일 인증여부( 인증 완료 시 attr에 인증된 이메일이 value 값으로 저장 된다. )
-		String authCodeEmail = attrService.getValue("member__" + memberId + "__extra__emailAuthed");
-		
-		return authCodeEmail;
-	}
-	
-	// attr에서 회원가입 시 등록된 고유 인증 코드 가져오기
-	public String getAuthCode(int memberId) {
-		String authCode = attrService.getValue("member__" + memberId + "__extra__emailAuthCode");
-		
-		return authCode;
-	}
-	
-	// 이메일 인증 완료 시 attr에 인증된 메일 정보 등록
-	public void setEmailAuthed(int actorId, String email) {
-		attrService.setValue("member__" + actorId + "__extra__emailAuthed", email, Util.getDateStrLater(60 * 60));
-	}
-
 	// 아이디 / 비밀번호 찾기 전 일치하는 정보 존재하는지 체크
 	public Member getMemberByParam(Map<String, Object> param) {
 		return memberDao.getMemberByParam(param);
@@ -212,6 +180,51 @@ public class MemberService {
 	private void memberModifyShaPw(String loginId, String organName, String shaPw) {
 		memberDao.memberModifyShaPw(loginId, organName, shaPw);
 	}
+	
+	// 이메일이 인증되었는지 attr에서 인증된 메일정보 가져오기
+	public String getAuthCodeEmail(int memberId) {
+		// emailAuthed 이메일 인증여부( 인증 완료 시 attr에 인증된 이메일이 value 값으로 저장 된다. )
+		String authCodeEmail = attrService.getValue("member__" + memberId + "__extra__emailAuthed");
+		
+		return authCodeEmail;
+	}
+
+	// 회원탈퇴
+	public void memberDelete(String loginId) {
+		memberDao.meberDelete(loginId);
+	}
+	
+	// 이메일 인증관련 고유 코드 재 발송 기능( 이메일 인증 안내 재 발송 )
+	public void reSendEmailAuthCode(int actorId, String email) {
+
+		String authCode = getAuthCodeEmail(actorId);
+		
+		String mailTitle = String.format("[%s] 이메일 인증", siteName);
+		
+		StringBuilder mailBodySb = new StringBuilder();
+		mailBodySb.append("<h1>이메일 인증</h1>");
+		mailBodySb.append(String.format("<div><img src=\"%s\" "
+				+ "style=\"height:150px; width:300px; background-color: #4BAF4B; margin-bottom: 20px; padding:5px; border-radius:20px; \"/>"
+				+ "</div>", siteLogo));
+		mailBodySb.append(String.format("<p>안녕하세요. 우리동네 입니다."
+				+ "<br><br>아래 링크로 접속하여 이메일 인증을 해주세요.<br><br>"
+				+ "<a href=\"https://wori.n35.weone.kr/usr/member/authEmail?email=%s&authCode=%s&memberId=%s\" target=\"_blank\">"
+				+ "이메일 인증하기</a> </p>", email, authCode, actorId));
+		
+		mailService.send(email, mailTitle, mailBodySb.toString());
+	}
+	
+	// attr에서 회원가입 시 등록된 고유 인증 코드 가져오기
+	public String getAuthCode(int memberId) {
+		String authCode = attrService.getValue("member__" + memberId + "__extra__emailAuthCode");
+		
+		return authCode;
+	}
+	
+	// 이메일 인증 완료 시 attr에 인증된 메일 정보 등록
+	public void setEmailAuthed(int actorId, String email) {
+		attrService.setValue("member__" + actorId + "__extra__emailAuthed", email, Util.getDateStrLater(60 * 60));
+	}
 
 	// 회원 정보 수정
 	public void memberModify(Map<String, Object> param) {
@@ -227,16 +240,8 @@ public class MemberService {
 			attrService.remove("member__" + actorId + "__extra__useTempPassword");
 		}
 		
-		memberDao.memberModifyPw(param);
-		
+		memberDao.memberModifyPw(param);	
 	}
-
-	// 회원가입 진행 중 입력 값 중복체크(AJAX)
-	public boolean checkMemberDataJoinable(Map<String, Object> param) {
-		
-		return memberDao.checkMemberDataJoinable(param);
-	}
-
 	
 	// 정보변경(회원정보, 비밀번호) 등 진행 시 비밀번호 확인 attr 저장
 	public String genCheckPasswordAuthCode(int actorId) {
@@ -252,13 +257,17 @@ public class MemberService {
 		if (attrService.getValue("member__" + actorId + "__extra__modifyPrivateAuthCode").equals(checkPasswordAuthCode)) {
 			return new ResultData("S-1", "유효한 키 입니다.");
 		}
-
 		return new ResultData("F-1", "유효하지 않은 키 입니다.");
 	}
 	
-	// 회원탈퇴
-	public void memberDelete(String loginId) {
-		memberDao.meberDelete(loginId);
+	// 비밀번호 변경일자 등록하기
+	public void setUserPasswordChangeDate(int actorId) {
+		attrService.setValue("member__" + actorId + "__extra__userPasswordChangeDate", Util.getNowDateStr(), Util.getDateStrLater(60 * 60));
+	}
+	
+	// 비밀번호 변경일자 가져오기
+	public String getUserPasswordChangeDate(int actorId) {
+		return attrService.getValue("member__" + actorId + "__extra__userPasswordChangeDate");
 	}
 
 	// 관리자 메뉴 - 회원 관리 (회원 리스트 가져오기)
@@ -279,17 +288,6 @@ public class MemberService {
 	// 관리자 메뉴 - 회원 관리 (회원 권한 설정)
 	public void setMemberGrant(Map<String, Object> param) {
 		
-		
-	}
-
-	// 비밀번호 변경일자 등록하기
-	public void setUserPasswordChangeDate(int actorId) {
-		attrService.setValue("member__" + actorId + "__extra__userPasswordChangeDate", Util.getNowDateStr(), Util.getDateStrLater(60 * 60));
-	}
-	
-	// 비밀번호 변경일자 가져오기
-	public String getUserPasswordChangeDate(int actorId) {
-		return attrService.getValue("member__" + actorId + "__extra__userPasswordChangeDate");
 	}
 
 }

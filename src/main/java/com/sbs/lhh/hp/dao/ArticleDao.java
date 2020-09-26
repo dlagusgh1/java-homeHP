@@ -15,22 +15,14 @@ import com.sbs.lhh.hp.dto.Organ;
 
 @Mapper
 public interface ArticleDao {
-
-	List<CateItem> getCateItem();
-
-	void organWrite(Map<String, Object> param);
-
-	List<AdCateItem> getAdCateItem();
-
+	
 	Board getBoardByCode(String boardCode);
-
+	
+	int getForPrintListArticlesCount(String boardCode);
+	
 	List<Article> getForPrintArticles(String boardCode, int limitFrom, int itemsInAPage);
 	
-	List<Article> getForPrintVisibleArticles();
-
 	Article getForPrintArticleById(@Param("id") int id);
-
-	Article getArticleById(@Param("id") int id);
 	
 	void write(Map<String, Object> param);
 
@@ -38,32 +30,40 @@ public interface ArticleDao {
 
 	void delete(Map<String, Object> param);
 	
-	List<Board> getBoards();
-
+	Article getArticleById(@Param("id") int id);
+	
+	void increaseArticleHit(@Param("id")int id);
+	
+	void likeArticle(@Param("id") int id, @Param("memberId") int memberId);
+	
+	int getLikePointByMemberId(@Param("id") int id, @Param("memberId") int memberId);
+	
+	void cancelLikeArticle(@Param("id") int id, @Param("memberId") int memberId);
+	
+	List<AdCateItem> getAdCateItem();
+	
 	List<Organ> getOrgan();
-
+	
 	int organsCount();
-
+	
 	int organCount(int organNumber);
 
-	void hideArticle(int id);
+	List<CateItem> getCateItem();
 	
-	void showArticle(int id);
+	List<CovidData> getCovidData();
 
 	void setCovidData(CovidData data);
 	
 	void setCovidDataUpdate(CovidData data);
+	
+	List<Board> getBoards();
 
-	List<CovidData> getCovidData();
-
-	void increaseArticleHit(@Param("id")int id);
-
-	int getLikePointByMemberId(@Param("id") int id, @Param("memberId") int memberId);
-
-	void likeArticle(@Param("id") int id, @Param("memberId") int memberId);
-
-	void cancelLikeArticle(@Param("id") int id, @Param("memberId") int memberId);
-
-	int getForPrintListArticlesCount(String boardCode);
+	void hideArticle(int id);
+	
+	void showArticle(int id);
+	
+	List<Article> getForPrintVisibleArticles();
+	
+	void organWrite(Map<String, Object> param);
 
 }

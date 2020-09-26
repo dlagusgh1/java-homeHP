@@ -21,6 +21,8 @@ public interface MemberDao {
 	int getEmailDupCount(String email);
 
 	int getCellphoneNoDupCount(String cellphoneNo);
+	
+	boolean checkMemberDataJoinable(Map<String, Object> param);
 
 	Member getMemberByLoginId(@Param("loginId") String loginId);
 
@@ -31,8 +33,6 @@ public interface MemberDao {
 	void memberModify(Map<String, Object> param);
 
 	void memberModifyPw(Map<String, Object> param);
-
-	boolean checkMemberDataJoinable(Map<String, Object> param);
 	
 	void meberDelete(String loginId);
 

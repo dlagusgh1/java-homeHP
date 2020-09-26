@@ -85,6 +85,12 @@
 		updateDate = NOW()
 		WHERE loginId = #{loginId}
 	</update>
+			
+	<update id="meberDelete">
+		UPDATE `member`
+		SET delStatus = 1
+		WHERE loginId = #{loginId}
+	</update>
 	
 	<select id="checkMemberDataJoinable" resultType="boolean">
 		SELECT COUNT(*) AS cnt
@@ -95,12 +101,6 @@
 		<if test="email != null">email = #{email}</if>
 		<if test="cellphoneNo != null">phoneNo = #{cellphoneNo}</if>
 	</select>
-	
-	<update id="meberDelete">
-		UPDATE `member`
-		SET delStatus = 1
-		WHERE loginId = #{loginId}
-	</update>
 	
 	<select id="getMemberList" resultMap="member">
 		SELECT *

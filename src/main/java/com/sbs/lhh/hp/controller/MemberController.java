@@ -372,19 +372,6 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
-	// 마이페이지
-	@RequestMapping("/usr/member/myPage")
-	public String myPage(Model model, HttpServletRequest request) {
-		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
-		
-		// 이메일 인증/비인증 노출 기능 추가하기
-		String emailAuthed = memberService.getAuthCodeEmail(loginedMemberId); 
-		
-		model.addAttribute("emailAuthed", emailAuthed);		
-		
-		return "member/myPage";
-	}
-	
 	// 회원정보 수정 폼
 	@RequestMapping("/usr/member/memberModify")
 	public String memberModify(HttpSession session, Model model, HttpServletRequest request, String checkPasswordAuthCode) {
@@ -505,6 +492,19 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
+	// 마이페이지
+	@RequestMapping("/usr/member/myPage")
+	public String myPage(Model model, HttpServletRequest request) {
+		int loginedMemberId = (int) request.getAttribute("loginedMemberId");
+		
+		// 이메일 인증/비인증 노출 기능 추가하기
+		String emailAuthed = memberService.getAuthCodeEmail(loginedMemberId); 
+		
+		model.addAttribute("emailAuthed", emailAuthed);		
+		
+		return "member/myPage";
+	}	
+	
 	// 회원 탈퇴 폼
 	@RequestMapping("/usr/member/memberDelete")
 	public String memberDelete() {		
@@ -513,7 +513,8 @@ public class MemberController {
 	
 	// 회원 탈퇴 기능
 	@RequestMapping("/usr/member/doMemberDelete")
-	public String doMemberDelete(@RequestParam Map<String, Object> param, HttpSession session, Model model, HttpServletRequest request, String redirectUri) {
+	public String doMemberDelete(@RequestParam Map<String, Object> param, 
+			HttpSession session, Model model, HttpServletRequest request, String redirectUri) {
 		Member loginedMember = (Member) request.getAttribute("loginedMember");	
 		
 		memberService.memberDelete(loginedMember.getLoginId());
@@ -525,12 +526,10 @@ public class MemberController {
 		
 		return "common/redirect";	
 	}
-	
 
 	// 관리자 메뉴
 	@RequestMapping("/adm/member/adminMenu")
 	public String adminMenu(Model model) {
-			
 		return "member/adminMenu";
 	}
 	
@@ -551,13 +550,11 @@ public class MemberController {
 		
 		Member member = memberService.getMemberByLoginId(loginId);
 		
-		if (member == null) {
-			
+		if (member == null) {			
 			new ResultData("F-1", String.format("존재하지 않는 회원입니다."));
 		}
 		
-		if (member.isDelStatus() != true) {
-			
+		if (member.isDelStatus() != true) {			
 			new ResultData("F-1", String.format("이미 복구처리된 회원 입니다."));
 		}
 		
