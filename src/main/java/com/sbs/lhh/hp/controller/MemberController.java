@@ -247,7 +247,7 @@ public class MemberController {
 	public String doLogin(String loginId, String loginPwReal, String redirectUri, Model model, HttpSession session, HttpServletRequest request) {
 		String loginPw = loginPwReal;
 		Member member = memberService.getMemberByLoginId(loginId);
-		System.out.println("확인" + loginPw);
+
 		if (member == null) {
 			model.addAttribute("historyBack", true);
 			model.addAttribute("alertMsg", "존재하지 않는 회원입니다.");
@@ -595,24 +595,8 @@ public class MemberController {
 		List<Member> members = memberService.getMemberList();
 
 		model.addAttribute("members", members);
-		
-		// memberService.setMemberGrant(param);
 
-		System.out.println("1값 확인 : " + param.get("body"));
 		String arr = (String) param.get("body");
-		System.out.println("2값 확인 : " + arr);
-		// {body={"member__2__authority__hideArticle":"Y","member__3__authority__hideArticle":"Y","member__4__authority__hideArticle":"Y"}}
-		// {body={"member__2__authority__stopUsing":"Y","member__3__authority__stopUsing":"Y","member__4__authority__stopUsing":"Y"}}
-		// reltypecode = member
-		// relid = 숫자
-		// typecode authority
-		// type2code hideArticle(게시물 숨기기권한) / stopUsing(정지 권한)
-		
-		// System.out.println("확인" + Util.toJsonStr(param));
-		
-		System.out.println("3값 확인 : " + Util.getNewMapOf(param, "body"));
-		
-		
 		
 		return "member/memberGrantLevel";
 	}
