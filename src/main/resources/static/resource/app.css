@@ -584,7 +584,9 @@ h1, h2, h3 {
 @media (max-width :801px) {
 	.map_marker {
 		padding: 10px;
-		max-width: 300px;
+		width: auto;
+		min-width: 300px;
+		max-width: 400px;
 	}
 	.map_marker_header {
 		font-size: 1rem;
@@ -593,6 +595,7 @@ h1, h2, h3 {
 	.map_marker nav {
 		padding: 3px 0;
 		font-size: 0.7rem;
+		overflow: auto;
 	}
 }
 
