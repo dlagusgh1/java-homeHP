@@ -287,11 +287,22 @@
 
 	var kakaoMapList__lastLodedId = 0;
 
+	var i = 1;
+
 	var isRun = false;
 
 	function kakaoMapList__loadMore() {
 		
 		if( tempAdCateItemName.length != 0 ) {
+		
+			if ( i == 1 ) {
+				kakaoMapList__$li.remove();
+			} else {
+				console.log("끝");
+				return;
+			}
+			i++;
+			
 			isRun = false;
 			console.log("바뀜2 : " + tempAdCateItemName.length);			
 		}
@@ -323,14 +334,11 @@
 	function kakaoMapList__drawKakaoMapList(organes) {
 		for (var i = 0; i < organes.length; i++) {
 			var kakaoMap = organes[i];
-			console.log(" 확인 : " + i)
+
 			if ( tempAdCateItemName.length != 0 ) {
 				if ( kakaoMap.organAdmAddress == tempAdCateItemName ) {				
 					kakaoMapList__drawKakaoMap(kakaoMap);	
-					if ( i == organes.length-1 ) {
-						console.log(" 그만 : " + i)
-						break;
-					}
+					console.log(kakaoMap);
 				}
 				
 			}	
@@ -342,6 +350,20 @@
 	function kakaoMapList__drawKakaoMap(kakaoMap) {
 		
 		var html = '';
+
+		if ( tempAdCateItemName.length != 0 ) {
+			html += '<ul>';
+			html += '<li><a style="font-size: 1.2rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';
+			html += '<li><a>주소 : ' + kakaoMap.organAddress + '</a></li>';
+			html += '<li><a>행정구역 : ' + kakaoMap.organAdmAddress + '</a></li>';
+			html += '<li><a>전화 번호 : ' + kakaoMap.organTel + '</a></li>';
+			html += '<li><a>진료 시간 : ' + kakaoMap.organTime + '</a></li>';
+			html += '<li><a>진료 시간(주말) : ' + kakaoMap.organWeekendTime + '</a></li>';
+			html += '<li><a>주말 운영여부 : ' + kakaoMap.organWeekend + '</a></li>';
+			html += '<li><a>비고 : ' + kakaoMap.organRemarks + '</a></li>';
+			html += '</ul>';
+			html += '<br>';
+		}
 
 		html += '<ul>';
 		html += '<li><a style="font-size: 1.2rem; font-weight: bold;">' + kakaoMap.organName + '</a></li>';

@@ -97,7 +97,7 @@ public class ArticleController {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
-
+		
 		articleService.increaseArticleHit(id);
 		
 		model.addAttribute("article", article);
