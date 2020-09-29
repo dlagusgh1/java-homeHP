@@ -290,10 +290,16 @@
 	var isRun = false;
 
 	function kakaoMapList__loadMore() {
-		console.log("ajax 확인1 : " + isRun);
+		
+		if( tempAdCateItemName.length != 0 ) {
+			isRun = false;
+			console.log("바뀜2 : " + tempAdCateItemName.length);			
+		}
+		
 		if(isRun) {
 			return;
 		}
+		
 		isRun = true;
 		
 		$.get('/usr/article/getForPrintKakaoMapList', {
@@ -317,7 +323,19 @@
 	function kakaoMapList__drawKakaoMapList(organes) {
 		for (var i = 0; i < organes.length; i++) {
 			var kakaoMap = organes[i];
-			kakaoMapList__drawKakaoMap(kakaoMap);
+			console.log(" 확인 : " + i)
+			if ( tempAdCateItemName.length != 0 ) {
+				if ( kakaoMap.organAdmAddress == tempAdCateItemName ) {				
+					kakaoMapList__drawKakaoMap(kakaoMap);	
+					if ( i == organes.length-1 ) {
+						console.log(" 그만 : " + i)
+						break;
+					}
+				}
+				
+			}	
+	
+			kakaoMapList__drawKakaoMap(kakaoMap);		
 		}
 	}
 

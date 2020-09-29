@@ -602,7 +602,7 @@ h1, h2, h3 {
 @media (min-width :801px) {
 	.map_marker {
 		padding: 20px;	
-		min-width: 300px;	
+		min-width: 350px;	
 	}
 	.map_marker_header {
 		font-size: 1.2rem;

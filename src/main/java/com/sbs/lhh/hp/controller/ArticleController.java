@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -456,10 +457,9 @@ public class ArticleController {
 		return "article/kakaoMap_All";
 	}
 	
-	// COVID-19 현황 가져오기(크롤링)
+	// COVID-19 현황 가져오기(크롤링) - 수동
 	@RequestMapping("/adm/article/getCovid19Status")
 	public String getCovid19Status(Model model) {
-		
 		List<CovidData> covidDatas = articleService.getCovidData();
 		
 		List<CovidData> covidDataList;
@@ -490,6 +490,35 @@ public class ArticleController {
 		model.addAttribute("alertMsg", "covid-19 데이터를 갱신했습니다.");
 
 		return "common/redirect";
+	}
+	
+	@Scheduled(cron = "0 0/30 * * * ?") // 매 30분마다 적용
+	public void autoGetCovid19Status() {
+		System.out.println("작동확인");
+		List<CovidData> covidDatas = articleService.getCovidData();
+		
+		List<CovidData> covidDataList;
+		
+		if ( covidDatas.isEmpty() ) {
+			try {
+				covidDataList = crawlingService.getCovidDatas();
+				for (CovidData data : covidDataList) {
+					articleService.setCovidData(data);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		} else {
+			try {
+				covidDataList = crawlingService.getCovidDatas();
+
+				for (CovidData data : covidDataList) {
+					articleService.setCovidDataUpdate(data);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	// COVID-19 현황
