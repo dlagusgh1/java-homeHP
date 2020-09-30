@@ -581,9 +581,12 @@ h1, h2, h3 {
 	margin-left: 5px;
 }
 
+.map_marker .body {
+	padding-right: 5px;
+}
+
 @media (max-width :801px) {
 	.map_marker {
-		padding: 10px;
 		width: auto;
 		min-width: 300px;
 		max-width: 400px;
@@ -591,26 +594,35 @@ h1, h2, h3 {
 	.map_marker_header {
 		font-size: 1rem;
 		font-weight:bold;
+		background: #eee;
+	    border-bottom: 1px solid #ddd;
+        padding: 5px 0 0 10px;
 	}
 	.map_marker nav {
-		padding: 3px 0;
+		padding: 3px 0 0 10px;
 		font-size: 0.7rem;
-		overflow: auto;
+		overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
 	}
 }
 
 @media (min-width :801px) {
 	.map_marker {
-		padding: 20px;	
 		min-width: 350px;	
 	}
 	.map_marker_header {
 		font-size: 1.2rem;
 		font-weight:bold;
+	    background: #eee;
+	    border-bottom: 1px solid #ddd;
+        padding: 5px 0 0 10px;
 	}
 	.map_marker nav {
-		padding: 3px 0;
-		text-indent: 1rem;
+		padding: 3px 0 0 10px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
 	}
 }
 
@@ -621,6 +633,7 @@ h1, h2, h3 {
 	padding:0;
 	font-family:'Malgun Gothic',dotum,'돋움',sans-serif;
 	font-size:12px;
+	line-height: 1.5;
 }
 .map_wrap {
 	position:relative;

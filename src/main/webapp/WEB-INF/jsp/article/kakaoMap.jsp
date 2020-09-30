@@ -124,12 +124,21 @@
 					${organ.organLocation1}, 
 					${organ.organLocation2}, 
 					'<div class="map_marker">'+
-					'<div class="map_marker_header">${organ.organName} (${organ.organAdmAddress})</div>'+
-					'<nav>주소 : ${organ.organAddress}</nav><nav>전화 : ${organ.organTel}</nav>'+
-					'<nav>진료시간 : ${organ.organTime}</nav>'+
-					'<nav>주말 : ${organ.organWeekendTime}</nav>'+
-					'<nav>주말운영여부 : ${organ.organWeekend}</nav>'+
-					'<nav>비고 : ${organ.organRemarks}</nav></div>', 
+						'<div class="info">' + 
+							'<div class="map_marker_header">'+
+								'${organ.organName} (${organ.organAdmAddress})'+
+							'</div>'+
+						  	'<div class="body">' + 
+		                       	'<div class="desc">' + 
+									'<nav>주소 : ${organ.organAddress}</nav><nav>전화 : ${organ.organTel}</nav>'+
+									'<nav>진료시간 : ${organ.organTime}</nav>'+
+									'<nav>주말 : ${organ.organWeekendTime}</nav>'+
+									'<nav>주말운영여부 : ${organ.organWeekend}</nav>'+
+									'<nav>비고 : ${organ.organRemarks}</nav>'+
+								'</div>' + 
+							'</div>'+
+						'</div>'+
+					'</div>', 
 					'${organ.organAdmAddress}'
 				],
 			</c:forEach>
