@@ -585,6 +585,18 @@ h1, h2, h3 {
 	padding-right: 5px;
 }
 
+.map_marker .all_header {
+	background: rgba(75, 175, 75, 0.8);
+}
+
+.map_marker .hp_header {
+	background: rgba(255, 80, 80, 0.8);
+}
+
+.map_marker .pm_header {
+	background: rgba(2, 88, 255, 0.8);
+}
+
 @media (max-width :801px) {
 	.map_marker {
 		width: auto;
@@ -594,9 +606,8 @@ h1, h2, h3 {
 	.map_marker_header {
 		font-size: 1rem;
 		font-weight:bold;
-		background: #eee;
 	    border-bottom: 1px solid #ddd;
-        padding: 5px 0 0 10px;
+        padding: 5px 0 5px 10px;
 	}
 	.map_marker nav {
 		padding: 3px 0 0 10px;
@@ -614,9 +625,8 @@ h1, h2, h3 {
 	.map_marker_header {
 		font-size: 1.2rem;
 		font-weight:bold;
-	    background: #eee;
 	    border-bottom: 1px solid #ddd;
-        padding: 5px 0 0 10px;
+        padding: 5px 0 5px 10px;
 	}
 	.map_marker nav {
 		padding: 3px 0 0 10px;

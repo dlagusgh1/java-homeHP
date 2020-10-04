@@ -125,7 +125,7 @@
 					${organ.organLocation2}, 
 					'<div class="map_marker">'+
 						'<div class="info">' + 
-							'<div class="map_marker_header">'+
+							'<div class="map_marker_header all_header">'+
 								'${organ.organName} (${organ.organAdmAddress})'+
 							'</div>'+
 						  	'<div class="body">' + 
