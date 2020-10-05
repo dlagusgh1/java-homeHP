@@ -103,14 +103,6 @@
 	// 지도의 우측에 확대 축소 컨트롤을 추가한다
 	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);	
 	
-	// 마커 이미지
-	var imageSrc = 'https://img.icons8.com/clouds/100/000000/hospital.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(60, 60), // 마커이미지의 크기입니다
-    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      
-	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-
 	// 마커들을 저장할 변수 생성
 	var markers = [];
 
@@ -145,7 +137,8 @@
 							'</div>'+
 						'</div>'+
 					'</div>', 
-					'${organ.organAdmAddress}'
+					'${organ.organAdmAddress}',
+					'${organ.organNumber}'
 				],
 			</c:forEach>
 		];
@@ -192,11 +185,27 @@
 				// x = 2, 0 1    arr 0 = 0 1, arr 1 = 0 1
 				선택된데이터[i][0] = 데이터[arr[i]][0],
 				선택된데이터[i][1] = 데이터[arr[i]][1],
-				선택된데이터[i][2] = 데이터[arr[i]][2]
+				선택된데이터[i][2] = 데이터[arr[i]][2],
+				선택된데이터[i][3] = 데이터[arr[i]][4]
 			}
 		}
 		
 		for (var i = 0; i < 선택된데이터.length; i++ ) {
+			if (선택된데이터[i][3] == 1) {
+				var imageSrc = 'https://img.icons8.com/offices/30/000000/hospital-3.png', 
+			    imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+			    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+						
+			} else if (선택된데이터[i][3] == 2) {
+				var imageSrc = 'https://img.icons8.com/color/48/000000/pill.png', 
+			    imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+			    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+						
+			}	  
+
+			// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+			
 			// 지도에 마커를 생성하고 표시한다.
 			marker = new kakao.maps.Marker({
 				position: new kakao.maps.LatLng(선택된데이터[i][0], 선택된데이터[i][1]), // 마커의 좌표
@@ -235,6 +244,21 @@
 	}
 	
 	for (var i = 0; i < 데이터.length; i++ ) {
+
+		if (데이터[i][4] == 1) {
+			var imageSrc = 'https://img.icons8.com/offices/30/000000/hospital-3.png', 
+		    imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+		    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+					
+		} else if (데이터[i][4] == 2) {
+			var imageSrc = 'https://img.icons8.com/color/48/000000/pill.png', 
+		    imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+		    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+					
+		}	  
+
+		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 		
 		// 지도에 마커를 생성하고 표시한다.
 		var marker = new kakao.maps.Marker({
