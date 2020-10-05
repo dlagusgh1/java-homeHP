@@ -125,7 +125,13 @@
 					${organ.organLocation2}, 
 					'<div class="map_marker">'+
 						'<div class="info">' + 
-							'<div class="map_marker_header all_header">'+
+						<c:if test="${organ.organNumber == 1}">
+							'<div class="map_marker_header hp_header">'+
+						</c:if>
+						<c:if test="${organ.organNumber == 2}">
+							'<div class="map_marker_header pm_header">'+
+						</c:if>
+							
 								'${organ.organName} (${organ.organAdmAddress})'+
 							'</div>'+
 						  	'<div class="body">' + 
