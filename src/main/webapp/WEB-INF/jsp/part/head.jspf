@@ -44,6 +44,9 @@
 	var param = ${paramJson};
 <%="</script>"%>
 
+<!-- 네이버 사이트 등록관련 소유확인 -->
+<meta name="naver-site-verification" content="b50f354ee834e90b79672482ae8e67ff8965b54e" />
+
 <!-- Global site tag (gtag.js) - Google Analytics // 구글 애널리틱스(사이트 통계확인 코드)--> 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173020850-2"></script>
 <script>
@@ -53,6 +56,9 @@
 
   gtag('config', 'UA-173020850-2');
 </script>
+
+<!-- 구글 애드센스 -->
+<script data-ad-client="ca-pub-1841206469944806" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 </head>
 <body>
