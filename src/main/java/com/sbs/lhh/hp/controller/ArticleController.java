@@ -49,7 +49,7 @@ public class ArticleController {
 			page = Util.getInt(req, "page");
 		}
 		
-		int itemsInAPage = 5;
+		int itemsInAPage = 10;
 		int totalCount = articleService.getForPrintListArticlesCount(boardCode);
 		int totalPage = (int) Math.ceil(totalCount / (double) itemsInAPage); // 몇개의 페이지가 있을지 체크
 		
