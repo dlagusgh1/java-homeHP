@@ -19,6 +19,7 @@ import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.dto.CateItem;
 import com.sbs.lhh.hp.dto.CovidData;
 import com.sbs.lhh.hp.dto.File;
+import com.sbs.lhh.hp.dto.FirstAid;
 import com.sbs.lhh.hp.dto.Member;
 import com.sbs.lhh.hp.dto.Organ;
 import com.sbs.lhh.hp.dto.ResultData;
@@ -380,6 +381,22 @@ public class ArticleService {
 		mailBodySb.append(String.format("<p>기관 구분 : %s<br><br>기관명 : %s<br><br> 기관 이메일 주소 : %s<br><br>수정 요청사항 : %s</p>", organNumber, organName, organEmail, modifyRequests));
 		
 		mailService.send("dlagusgh1@gmail.com", mailTitle, mailBodySb.toString());
+	}
+
+	// 응급처치 정보 리스트 가져오기
+	public List<FirstAid> getForPrintFirstAids() {
+		
+		List<FirstAid> firstAids = articleDao.getForPrintFirstAids();
+		
+		return firstAids;
+	}
+
+	// 응급처치 선택 항목 상세보기
+	public FirstAid getForPrintFirstAidByTitle(String title) {
+		
+		FirstAid firstAid = articleDao.getForPrintFirstAidByTitle(title);
+		
+		return firstAid;
 	}	
 	
 }

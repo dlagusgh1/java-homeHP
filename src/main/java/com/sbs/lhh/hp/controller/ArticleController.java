@@ -22,6 +22,7 @@ import com.sbs.lhh.hp.dto.Article;
 import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.dto.CateItem;
 import com.sbs.lhh.hp.dto.CovidData;
+import com.sbs.lhh.hp.dto.FirstAid;
 import com.sbs.lhh.hp.dto.Member;
 import com.sbs.lhh.hp.dto.Organ;
 import com.sbs.lhh.hp.dto.ResultData;
@@ -532,11 +533,28 @@ public class ArticleController {
 		return "article/covid19Status";
 	}
 	
-	// 응급처치
+	// 응급처치 리스트
 	@RequestMapping("/usr/article/firstAid")
 	public String firstAid(Model model) {
+		
+		List<FirstAid> firstAids = articleService.getForPrintFirstAids();
+
+		model.addAttribute("firstAids", firstAids);
 
 		return "article/firstAid";
+	}
+	
+	// 응급처치 상세보기
+	@RequestMapping("/usr/article/detailFirstAid")
+	public String detailFirstAid(Model model, @RequestParam Map<String, Object> param) {
+		
+		String title = (String)param.get("title");
+
+		FirstAid firstAid = articleService.getForPrintFirstAidByTitle(title);
+		
+		model.addAttribute("firstAid", firstAid);
+
+		return "article/detailFirstAid";
 	}
 	
 	// 관리자 메뉴 - 게시물 관리(게시물 숨기기)ajax

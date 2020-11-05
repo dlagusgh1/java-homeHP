@@ -220,6 +220,17 @@
 		`memberId` = #{memberId}
 	</insert>
 	
+	<select id="getForPrintFirstAids" resultType="FirstAid">
+		SELECT *
+		FROM firstAid
+	</select>
+	
+	<select id="getForPrintFirstAidByTitle" resultType="FirstAid">
+		SELECT *
+		FROM firstAid
+		WHERE title = #{title}
+	</select>
+	
 	<resultMap type="Article" id="article">
 		<id property="id" column="id" />
 		<id property="regDate" column="regDate" />

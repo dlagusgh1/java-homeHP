@@ -11,6 +11,7 @@ import com.sbs.lhh.hp.dto.Article;
 import com.sbs.lhh.hp.dto.Board;
 import com.sbs.lhh.hp.dto.CateItem;
 import com.sbs.lhh.hp.dto.CovidData;
+import com.sbs.lhh.hp.dto.FirstAid;
 import com.sbs.lhh.hp.dto.Organ;
 
 @Mapper
@@ -65,5 +66,9 @@ public interface ArticleDao {
 	List<Article> getForPrintVisibleArticles();
 	
 	void organWrite(Map<String, Object> param);
+
+	List<FirstAid> getForPrintFirstAids();
+
+	FirstAid getForPrintFirstAidByTitle(String title);
 
 }

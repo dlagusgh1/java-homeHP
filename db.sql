@@ -308,3 +308,30 @@ ALTER TABLE `file` ADD UNIQUE INDEX (`relId`, `relTypeCode`, `typeCode`, `type2C
 
 # 파일 테이블의 기존 인덱스에 유니크가 걸려 있어서 relId가 0 인 동안 충돌이 발생할 수 있다. 그래서 일반 인덱스로 바꾼다.
 ALTER TABLE `st_n35_wori`.`file` DROP INDEX `relId`, ADD INDEX (`relId` , `relTypeCode` , `typeCode` , `type2Code` , `fileNo`); 
+
+# firstAid 테이블 세팅
+DROP TABLE IF EXISTS `firstAid`;
+CREATE TABLE firstAid (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    delDate DATETIME,
+	delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+	displayStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+    title CHAR(200) NOT NULL,
+    `body` LONGTEXT NOT NULL
+);
+
+INSERT  INTO `firstAid`(`id`,`regDate`,`updateDate`,`delDate`,`delStatus`,`displayStatus`,`title`,`body`) VALUES 
+(1,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'심폐 소생술','11'),
+(2,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'기도 이물 폐쇄','11'),
+(3,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'자동 심장 충격기','11'),
+(4,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'증상별 적정 자세','11'),
+(5,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'동물 및 곤충에 물렸을 때','11'),
+(6,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'이물질이 들어갔을 때','11'),
+(7,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'중독 되었을 때','11'),
+(8,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'뼈 및 근육이 손상되었을 때','11'),
+(9,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'열 및 냉에 의한 손상이 되었을 때','11'),
+(10,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'사고에 의한 응급 상황일 때','11'),
+(11,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'응급 증상일 때','11'),
+(12,'2020-11-05 11:34:10','2020-11-05 11:34:10',NULL,0,1,'소아 응급 증상일 때','11');
