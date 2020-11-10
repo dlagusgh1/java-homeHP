@@ -557,6 +557,13 @@ public class ArticleController {
 		return "article/detailFirstAid";
 	}
 	
+	// 알약 정보 찾기
+	@RequestMapping("/usr/article/pillInfo")
+	public String findPillInfo(Model model) {
+
+		return "article/pillInfo";
+	}
+	
 	// 관리자 메뉴 - 게시물 관리(게시물 숨기기)ajax
 	@RequestMapping("/adm/article/doHideArticleAjax")
 	@ResponseBody

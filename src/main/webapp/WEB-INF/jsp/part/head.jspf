@@ -115,7 +115,7 @@
 				<li><a href="/usr/article/kakaoMap">병원/약국 찾기</a></li>	
 				<li><a href="/usr/article/covid19Status">COVID-19 현황</a></li>	
 				<li><a href="/usr/article/firstAid">응급 처치</a></li>
-				<li><a href="https://terms.naver.com/medicineSearch.nhn" target="_blank">약 찾기</a></li>			
+				<li><a href="/usr/article/pillInfo">약 찾기</a></li>			
 				<c:if test="${isLogined == false}">
 					<li><a href="/usr/member/join">회원 가입</a></li>
 					<li><a href="/usr/member/login">로그인</a></li>
@@ -159,7 +159,7 @@
 				<li class="flex flex-jc-c padding-10-0"><a href="/usr/article/kakaoMap">병원/약국 찾기</a></li>	
 				<li class="flex flex-jc-c padding-10-0"><a href="/usr/article/covid19Status">COVID-19 현황</a></li>	
 				<li class="flex flex-jc-c padding-10-0"><a href="/usr/article/firstAid">응급 처치</a></li>
-				<li class="flex flex-jc-c padding-10-0"><a href="https://terms.naver.com/medicineSearch.nhn" target="_blank">약 찾기</a></li>		
+				<li class="flex flex-jc-c padding-10-0"><a href="/usr/article/pillInfo">약 찾기</a></li>		
 				<c:if test="${isLogined == false}">
 					<li class="flex flex-jc-c padding-10-0"><a href="/usr/member/join">회원 가입</a></li>
 					<li class="flex flex-jc-c padding-10-0"><a href="/usr/member/login">로그인</a></li>
